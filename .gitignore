@@ -3,3 +3,4 @@ config.php
 .DS_*
 .git/*
 .idea/*
+config/*
