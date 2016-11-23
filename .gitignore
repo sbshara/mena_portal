@@ -4,4 +4,4 @@ config.php
 .git/*
 .idea/*
 config/*
-/composer.lock
+composer.lock
