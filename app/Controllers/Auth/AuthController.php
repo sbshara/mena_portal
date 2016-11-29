@@ -21,18 +21,14 @@ class AuthController extends Controller {
 	}
 
 	public function getSignIn ($request, $response) {
-
 		return $this->view->render($response, 'auth/signin.twig');
-
 	}
 
 	public function postSignIn ($request, $response) {
-
 		$validation = $this->validator->validate($request, [
 			'username'  =>  v::notEmpty()->alnum('-_$!@#%^&().=+~'),
 			'password'  =>  v::notEmpty()
 		]);
-
 		if ($validation->failed()) {
 			return $response->withRedirect($this->router->pathFor('auth.signin'));
 		}
@@ -41,13 +37,11 @@ class AuthController extends Controller {
 			$request->getParam('username'),
 			$request->getParam('password')
 		);
-
 		if (!$auth) {
-			$this->flash->addMessage('danger', 'Could not sign you in using these details');
+			$this->flash->addMessage('danger', 'Could not sign you in using these credentials');
 			return $response->withRedirect($this->router->pathFor('auth.signin'));
 		}
 		return $response->withRedirect($this->router->pathFor('home'));
-
 	}
 
 	public function getNewApplicant ($request, $response) {
@@ -55,10 +49,10 @@ class AuthController extends Controller {
 	}
 
 	public function postNewApplicant ($request, $response) {
-
 		$validation = $this->validator->validate($request, [
 			'first_name'        =>  v::notEmpty()->alpha(),
 			'father_name'       =>  v::notEmpty()->alpha(),
+			'middle_name'       =>  v::notEmpty()->alpha(),
 			'last_name'         =>  v::notEmpty()->alpha(),
 			'mobile'            =>  v::notEmpty()->digit(' +()'),
 			'per_email'         =>  v::notEmpty()->email()->noWhitespace()->emailAvailable(),
