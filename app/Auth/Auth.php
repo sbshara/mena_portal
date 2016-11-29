@@ -54,7 +54,7 @@ class Auth {
 	}
 
 	public function employee(){
-		return Employee::where('id', $this->user()->first()->emp_id);
+		return Employee::where('id', $this->user()['emp_id']);
 	}
 
 	public function allApplicants () {
@@ -62,7 +62,7 @@ class Auth {
 	}
 
 	public function applicant(){
-		return Applicant::where('id', $this->employee()->first()->applicant_id);
+		return Applicant::where('id', $this->employee()['applicant_id']);
 	}
 
 	public function profile () {
@@ -74,7 +74,7 @@ class Auth {
 	}
 
 	public function title() {
-		return EmployeeTitle::where('emp_id', $this->employee()->first()->id);
+		return EmployeeTitle::where('emp_id', $this->employee());
 	}
 
 
