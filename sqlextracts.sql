@@ -8,83 +8,83 @@ SET time_zone = "+04:00";
 -- Users Table
 DROP TABLE IF EXISTS users;
 CREATE TABLE users (
-  id                    INT(11) NOT NULL AUTO_INCREMENT,
-  emp_id                INT(11) NOT NULL,
-  username              VARCHAR(255) NOT NULL,
-  password              VARCHAR(255) NOT NULL,
-  active                TINYINT(1) DEFAULT 0,
-  active_hash           VARCHAR(255) NULL DEFAULT NULL,
-  recover_hash          VARCHAR(255) NULL DEFAULT NULL,
-  remembere_identifier  VARCHAR(255) NULL DEFAULT NULL,
-  remembere_token       VARCHAR(255) NULL DEFAULT NULL,
-  created_at            TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  updated_at            TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (id)
+    id                    INT(11) NOT NULL AUTO_INCREMENT,
+    emp_id                INT(11) NOT NULL,
+    username              VARCHAR(255) NOT NULL,
+    password              VARCHAR(255) NOT NULL,
+    active                TINYINT(1) DEFAULT 0,
+    active_hash           VARCHAR(255) NULL DEFAULT NULL,
+    recover_hash          VARCHAR(255) NULL DEFAULT NULL,
+    remembere_identifier  VARCHAR(255) NULL DEFAULT NULL,
+    remembere_token       VARCHAR(255) NULL DEFAULT NULL,
+    created_at            TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at            TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Table Roles:
 DROP TABLE IF EXISTS roles;
 CREATE TABLE roles (
-  id            INT(11) NOT NULL AUTO_INCREMENT,
-  title         VARCHAR(255) COMMENT 'human readable name',
-  created_at    TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  updated_at    TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (id)
+    id            INT(11) NOT NULL AUTO_INCREMENT,
+    title         VARCHAR(255) COMMENT 'human readable name',
+    created_at    TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at    TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Table Permissions:
 DROP TABLE IF EXISTS permissions;
 CREATE TABLE permissions (
-  id          INT(11) NOT NULL AUTO_INCREMENT,
-  module      VARCHAR(255) NOT NULL COMMENT 'module name',
-  title       VARCHAR(255) NOT NULL COMMENT 'human readable name',
-  funcs       VARCHAR(255) NOT NULL COMMENT 'func (key) name used in functions',
-  created_at  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  updated_at  TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (id)
+    id          INT(11) NOT NULL AUTO_INCREMENT,
+    module      VARCHAR(255) NOT NULL COMMENT 'module name',
+    title       VARCHAR(255) NOT NULL COMMENT 'human readable name',
+    funcs       VARCHAR(255) NOT NULL COMMENT 'func (key) name used in functions',
+    created_at  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at  TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Departments
 DROP TABLE IF EXISTS departments;
 CREATE TABLE departments (
-  id          INT(11) NOT NULL AUTO_INCREMENT,
-  dept_name   VARCHAR(255) NOT NULL,
-  created_at  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  updated_at  TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (id)
+    id          INT(11) NOT NULL AUTO_INCREMENT,
+    dept_name   VARCHAR(255) NOT NULL,
+    created_at  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at  TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Applicants tables
 DROP TABLE IF EXISTS applicants;
 CREATE TABLE applicants (
-  id                INT(11) NOT NULL AUTO_INCREMENT,
-  first_name        VARCHAR(255) NOT NULL,
-  middle_name       VARCHAR(255) NOT NULL,
-  father_name       VARCHAR(255) NOT NULL,
-  last_name         VARCHAR(255) NOT NULL,
-  per_email         VARCHAR(255) NOT NULL,
-  mobile_phone      VARCHAR(255) NOT NULL,
-  gender            ENUM('M','F') NOT NULL,
-  birth_date        DATE NOT NULL DEFAULT '1984-09-03',
-  prof_pic          VARCHAR(255) NOT NULL DEFAULT '/img/default.png',
-  marital_status    ENUM('Single','Married','Divorced', 'Widowed', 'No Answer') NOT NULL DEFAULT 'Single',
-  religion          ENUM('Christian','Muslim','Jew','Atheist', 'Other'),
-  doc_loc           VARCHAR(255) NOT NULL DEFAULT '/applicants/docs/',
-  source            VARCHAR(255) NOT NULL DEFAULT 'Hiring Agency',
-  created_at        TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  updated_at        TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (id)
+    id                INT(11) NOT NULL AUTO_INCREMENT,
+    first_name        VARCHAR(255) NOT NULL,
+    middle_name       VARCHAR(255) NOT NULL,
+    last_name         VARCHAR(255) NOT NULL,
+    father_name       VARCHAR(255) NOT NULL,
+    per_email         VARCHAR(255) NOT NULL,
+    mobile_phone      VARCHAR(255) NOT NULL,
+    gender            ENUM('M','F') NOT NULL,
+    birth_date        DATE NOT NULL DEFAULT '1984-09-03',
+    prof_pic          VARCHAR(255) NOT NULL DEFAULT '/img/default.png',
+    marital_status    ENUM('Single','Married','Divorced', 'Widowed', 'No Answer') NOT NULL DEFAULT 'Single',
+    religion          ENUM('Christian','Muslim','Jew','Atheist', 'Other'),
+    doc_loc           VARCHAR(255) NOT NULL DEFAULT '/applicants/docs/',
+    source            VARCHAR(255) NOT NULL DEFAULT 'Hiring Agency',
+    created_at        TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at        TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Applicant Documents
 DROP TABLE IF EXISTS applicant_docs;
 CREATE TABLE applicant_docs (
-  id                INT(11) NOT NULL AUTO_INCREMENT,
-  applicant_id      INT(11) NOT NULL,
-  doc_loc           VARCHAR(255) NOT NULL,
-  created_at        TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  updated_at        TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (id)
+    id                INT(11) NOT NULL AUTO_INCREMENT,
+    applicant_id      INT(11) NOT NULL,
+    doc_loc           VARCHAR(255) NOT NULL,
+    created_at        TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at        TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Employees
@@ -715,3 +715,158 @@ ALTER TABLE applicants
 
 ALTER TABLE applicant_docs
     ADD CONSTRAINT applicant_docs_applicant_id FOREIGN KEY (applicant_id) REFERENCES applicants(id);
+
+
+
+-- Additional Alterations Added Nov 29, 2016:
+-- TODO: add the new fields to the Models & Controllers for action
+-- TABLE: applicants
+ALTER TABLE applicants ADD mother_name VARCHAR(255) NOT NULL AFTER father_name;
+ALTER TABLE applicants ADD nationality VARCHAR(255) NOT NULL AFTER birth_date;
+ALTER TABLE applicants ADD birth_place INT(11) NOT NULL AFTER birth_date;
+ALTER TABLE applicants ADD country_origin INT(11) NOT NULL BEFORE nationality;
+ALTER TABLE applicants ADD height VARCHAR(255) NOT NULL AFTER religion;
+ALTER TABLE applicants ADD weight VARCHAR(255) NOT NULL AFTER height;
+ALTER TABLE applicants ADD emergency_contact_name VARCHAR(255) NOT NULL AFTER weight;
+ALTER TABLE applicants ADD emergency_contact_number VARCHAR(255) NOT NULL AFTER emergency_contact_name;
+ALTER TABLE applicants ADD visa_status  ENUM('Visit','Tourism','Residency - Family','Residency - LLC','Residency - Free Zone','Residency - Immigration','Residency - University') NOT NULL BEFORE doc_loc;
+ALTER TABLE applicants
+    ADD CONSTRAINT applicants_birth_place FOREIGN KEY (birth_place) REFERENCES countries(id),
+    ADD CONSTRAINT applicants_country_origin FOREIGN KEY (country_origin) REFERENCES countries(id);
+-- END OF TABLE: applicants
+-- TABLE documents
+DROP TABLE IF EXISTS documents;
+CREATE TABLE documents (
+    id              INT(11) NOT NULL AUTO_INCREMENT,
+    applicant_id    INT(11) NOT NULL,
+    doc_type        VARCHAR(255) NOT NULL,
+    doc_issuer      VARCHAR(255) NOT NULL,
+    doc_country     INT(11) NOT NULL,
+    doc_issue_date  DATE NOT NULL DEFAULT '2016-11-29',
+    doc_expiry_date DATE NOT NULL DEFAULT '2099-01-01',
+    created_at      TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at      TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP
+    PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+ALTER TABLE documents
+    ADD CONSTRAINT documents_applicant_id FOREIGN KEY (applicant_id) REFERENCES applicants(id),
+    ADD CONSTRAINT documents_doc_country FOREIGN KEY (doc_country) REFERENCES countries(id);
+-- END OF TABLE: documents
+-- TABLE documents_attachments
+DROP TABLE IF EXISTS documents_attachments;
+CREATE TABLE documents_attachments (
+    id              INT(11) NOT NULL AUTO_INCREMENT,
+    document_id     INT(11) NOT NULL,
+    doc_location    VARCHAR(255) NOT NULL
+    PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+ALTER TABLE documents_attachments
+    ADD CONSTRAINT documents_attachments_document_id FOREIGN KEY (document_id) REFERENCES documents(id);
+-- END OF TABLE: documents_attachments
+-- TABLE leaves
+DROP TABLE IF EXISTS emp_leaves;
+CREATE TABLE emp_leaves (
+    id                  INT(11) NOT NULL AUTO_INCREMENT,
+    emp_id              INT(11) NOT NULL,
+    leave_type          INT(11) NOT NULL,
+    leave_start_date    TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    leave_end_date      TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    rejoining_date      TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    leave_reason        VARCHAR(255) NOT NULL,
+    location_on_leave   INT(11) NOT NULL,
+    contact_on_leave    VARCHAR(255) NOT NULL,
+    manager             INT(11) NOT NULL,
+    manager_status      TINYINT(1) NOT NULL DEFAULT 0,
+    manager_approval    TINYINT(1) NOT NULL DEFAULT 0,
+    manager_comments    TEXT NOT NULL DEFAULT 'NO COMMENT PROVIDED BY MANAGER',
+    manager_date        TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    hr                  INT(11) NOT NULL,
+    hr_status           TINYINT(1) NOT NULL DEFAULT 0,
+    hr_approval         TINYINT(1) NOT NULL DEFAULT 0,
+    hr_comments         TEXT NOT NULL DEFAULT 'NO COMMENT PROVIDED BY HR',
+    hr_date             TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    accounts            INT(11) NOT NULL,
+    accounts_status     TINYINT(1) NOT NULL DEFAULT 0,
+    accounts_approval   TINYINT(1) NOT NULL DEFAULT 0,
+    accounts_comments   TEXT NOT NULL DEFAULT 'NO COMMENT PROVIDED BY ACCOUNTS',
+    accounts_date       TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    leave_status        TINYINT(1) NOT NULL DEFAULT 0,
+    created_at          TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at          TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+ALTER TABLE emp_leaves
+    ADD CONSTRAINT emp_leaves_emp_id FOREIGN KEY (emp_id) REFERENCES employees(id),
+    ADD CONSTRAINT emp_leaves_leave_type FOREIGN KEY (leave_type) REFERENCES leavetypes(id),
+    ADD CONSTRAINT emp_leaves_location_on_leave FOREIGN KEY (location_on_leave) REFERENCES cities(id),
+    ADD CONSTRAINT emp_leaves_manager FOREIGN KEY (manager) REFERENCES users(id),
+    ADD CONSTRAINT emp_leaves_hr FOREIGN KEY (hr) REFERENCES users(id),
+    ADD CONSTRAINT emp_leaves_accounts FOREIGN KEY (accounts) REFERENCES users(id);
+
+-- END OF TABLE emp_leaves
+
+-- TABLE leavetypes
+DROP TABLE IF EXISTS leavetypes;
+CREATE TABLE leavetypes (
+    id                  INT(11) NOT NULL AUTO_INCREMENT,
+    leave_type          VARCHAR(255) NOT NULL,
+    leave_notes         TEXT NOT NULL DEFAULT 'No notes provided.'
+    PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+-- END OF TABLE: leavetypes
+
+
+
+CREATE TABLE emp_leaves (
+    id                  INT(11) NOT NULL AUTO_INCREMENT,
+    emp_id              INT(11) NOT NULL,
+    leave_type          INT(11) NOT NULL,
+    leave_start_date    TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    leave_end_date      TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    rejoining_date      TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    leave_reason        VARCHAR(255) NOT NULL,
+    location_on_leave   INT(11) NOT NULL,
+    contact_on_leave    VARCHAR(255) NOT NULL,
+    manager             INT(11) NOT NULL,
+    -- manager_status      TINYINT(1) NOT NULL DEFAULT 0,
+    -- manager_approval    TINYINT(1) NOT NULL DEFAULT 0,
+    -- manager_comments    TEXT NOT NULL DEFAULT 'NO COMMENT PROVIDED BY MANAGER',
+    -- manager_date        TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    hr                  INT(11) NOT NULL,
+    -- hr_status           TINYINT(1) NOT NULL DEFAULT 0,
+    -- hr_approval         TINYINT(1) NOT NULL DEFAULT 0,
+    -- hr_comments         TEXT NOT NULL DEFAULT 'NO COMMENT PROVIDED BY HR',
+    -- hr_date             TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    accounts            INT(11) NOT NULL,
+    -- accounts_status     TINYINT(1) NOT NULL DEFAULT 0,
+    -- accounts_approval   TINYINT(1) NOT NULL DEFAULT 0,
+    -- accounts_comments   TEXT NOT NULL DEFAULT 'NO COMMENT PROVIDED BY ACCOUNTS',
+    -- accounts_date       TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    leave_status        TINYINT(1) NOT NULL DEFAULT 0,
+    created_at          TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at          TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE trans_emp_requests (
+    id              INT(11) NOT NULL AUTO_INCREMENT,
+    requestor       INT(11) NOT NULL,
+    request_type    INT(11) NOT NULL,
+    request_details TEXT NOT NULL DEFAULT 'THIS IS DEFAULT REQUEST DETAILS',
+    created_at          TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at          TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+
+
+
+
+
+
+-- TODO: GETTING MAXIMUM EMPLOYEE NUMBER FROM TABLE:
+-- SELECT tbl1.EmployeeCode [Before_Splitting],SUBSTRING(tbl1.EmployeeCode, 2,LEN(tbl1.EmployeeCode)) AS [After_Splitting] FROM (SELECT 'M069' AS [EmployeeCode]) AS tbl1
