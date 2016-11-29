@@ -5,3 +5,4 @@ config.php
 .idea/*
 config/*
 composer.lock
+/public/img/*
