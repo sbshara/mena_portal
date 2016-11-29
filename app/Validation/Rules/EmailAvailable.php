@@ -7,13 +7,13 @@
  */
 
 namespace App\Validation\Rules;
-use App\Models\User;
+use App\Models\Applicant;
 use Respect\Validation\Rules\AbstractRule;
 
 class EmailAvailable extends AbstractRule {
 
 	public function validate($input) {
-		return User::where('email', $input)->count() === 0;
+		return Applicant::where('per_email', $input)->count() === 0;
 	}
 
 }

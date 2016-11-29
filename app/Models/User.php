@@ -10,18 +10,25 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\Employee;
+
 class User extends Model {
 
 //	 Eloquent gets the plural of the class name and tries to match it to a table name
 //	 if the table name is different, you can use the below:
-//	protected $table = 'users';
+	protected $table = 'users';
 
 	protected $fillable = [
-		'email',
-		'first_name',
-		'last_name',
+		'emp_id',
 		'username',
-		'password'
+		'password',
+		'active',
+		'active_hash',
+		'recover_hash',
+		'remember_identifier',
+		'remember_token',
+		'created_at',
+		'updated_at'
 	];
 
 

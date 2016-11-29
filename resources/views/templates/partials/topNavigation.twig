@@ -125,15 +125,15 @@
                         <!-- Menu Body -->
                         <li class="user-body">
                             <div class="row">
-                                <div class="col-xs-4 text-center">
-                                    <a href="#">Followers</a>
+                                {#<div class="col-xs-4 text-center">#}
+                                    {#<a href="#"></a>#}
+                                {#</div>#}
+                                <div class="col-xs-12 text-center">
+                                    <a href="#">Activities</a>
                                 </div>
-                                <div class="col-xs-4 text-center">
-                                    <a href="#">Sales</a>
-                                </div>
-                                <div class="col-xs-4 text-center">
-                                    <a href="#">Friends</a>
-                                </div>
+                                {#<div class="col-xs-4 text-center">#}
+                                    {#<a href="#"></a>#}
+                                {#</div>#}
                             </div>
                             <!-- /.row -->
                         </li>
@@ -156,9 +156,9 @@
                 <li>
                     <a href="{{ path_for('auth.signin') }}">Sign in</a>
                 </li>
-                <li>
-                    <a href="{{ path_for('auth.signup') }}">Sign up</a>
-                </li>
+                {#<li>#}
+                    {#<a href="{{ path_for('auth.new.applicant') }}">Sign up</a>#}
+                {#</li>#}
             {% endif %}
 
         </ul>

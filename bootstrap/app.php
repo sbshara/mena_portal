@@ -11,6 +11,7 @@ use Respect\Validation\Validator as v;
 session_start();
 
 require __DIR__ . '/../vendor/autoload.php';
+ require_once(dirname(__DIR__) . '/app/config/development.php');
 
 
 $app = new \Slim\App([
@@ -25,13 +26,14 @@ $app = new \Slim\App([
 			'charset'   =>  'utf8',
 			'collation' =>  'utf8_unicode_ci',
 			'prefix'    =>  ''
-		]
+		],
+
 	]
 ]);
 
 $container = $app->getContainer();
 
-$capsule = new \Illuminate\Database\Capsule\Manager();
+$capsule = new \Illuminate\Database\Capsule\Manager;
 $capsule->addConnection($container['settings']['db']);
 $capsule->setAsGlobal();
 $capsule->bootEloquent();
@@ -51,11 +53,6 @@ $container['flash'] = function ($container) {
 	return new \Slim\Flash\Messages();
 };
 
-// Add global userprofile module
-$container['profile'] = function ($container) {
-	return new \App\Models\UserProfile();
-};
-
 // Add the Twig View module
 $container['view'] = function ($container) {
 	$view = new \Slim\Views\Twig(__DIR__ . '/../resources/views/', [
@@ -71,9 +68,11 @@ $container['view'] = function ($container) {
 	$view->getEnvironment()->addGlobal('auth', [
 		'check'         =>  $container->auth->check(),
 		'user'          =>  $container->auth->user(),
-		'profile'       =>  $container->auth->profile()
-//		'settings'      =>  $container->auth->settings(),
-//		'skills'        =>  $container->auth->skills()
+		'profile'       =>  $container->auth->profile(),
+		'title'         =>  $container->auth->title(),
+		'users'         =>  $container->auth->allUsers(),
+		'employees'     =>  $container->auth->allEmployees(),
+		'applicants'    =>  $container->auth->allApplicants()
 	]);
 
 	// Add the flash message
@@ -87,18 +86,21 @@ $container['validator'] = function ($container) {
 	return new App\Validation\Validator();
 };
 
+//$container['cache'] = function ($container) {
+//	return new \App\Middleware\HttpCache\CacheProvider();
+//};
+
 // Add the Customized Controllers:
 $container['HomeController'] = function ($container) { return new \App\Controllers\HomeController($container); };
 $container['AuthController'] = function ($container) { return new \App\Controllers\Auth\AuthController($container); };
 $container['PasswordController'] = function ($container) { return new \App\Controllers\Auth\PasswordController($container); };
-$container['ProfileController'] = function ($container) { return new \App\Controllers\ProfileController($container); };
 $container['csrf'] = function ($container) { return new \Slim\Csrf\Guard(); };
-
 
 
 $app->add(new \App\Middleware\ValidationErrorsMiddleware($container));
 $app->add(new \App\Middleware\OldInputMiddleware($container));
 $app->add(new \App\Middleware\CsrfViewMiddleware($container));
+//$app->add(new \App\Middleware\HttpCache\Cache($container));
 $app->add($container->csrf);
 
 

@@ -8,20 +8,13 @@
 
 namespace App\Auth;
 
+use App\Models\Applicant;
+use App\Models\Employee;
+use App\Models\EmployeeTitle;
 use App\Models\User;
-use App\Models\UserProfile;
-use App\Models\UserSettings;
-use App\Models\UserSkills;
+use App\Models\ProfileSetting;
 
 class Auth {
-
-	public function user() {
-		if (isset($_SESSION['user'])) {
-			return User::find($_SESSION['user']);
-		} else {
-			return false;
-		}
-	}
 
 	public function check () {
 		return isset($_SESSION['user']);
@@ -44,21 +37,48 @@ class Auth {
 		session_destroy($_SESSION['user']);
 	}
 
-	public function profile () {
+	public function allUsers(){
+		return User::all();
+	}
+
+	public function user() {
 		if (isset($_SESSION['user'])) {
-			return UserProfile::where('user_id', $_SESSION['user'])->first();
+			return User::find($_SESSION['user']);
 		} else {
 			return false;
 		}
 	}
 
-//	public function settings() {
-//		return UserSettings::where('userprofile_id', $this->userProfile()->id);
-//	}
-//
-//	public function skills () {
-//		return UserSkills::where('userprofile_id', $this->userProfile()->id);
-//	}
+	public function allEmployees(){
+		return Employee::all();
+	}
+
+	public function employee(){
+		return Employee::where('id', $this->user()->first()->emp_id);
+	}
+
+	public function allApplicants () {
+		return Applicant::all();
+	}
+
+	public function applicant(){
+		return Applicant::where('id', $this->employee()->first()->applicant_id);
+	}
+
+	public function profile () {
+		if (isset($_SESSION['user'])) {
+			return ProfileSetting::where('user_id', $_SESSION['user'])->first();
+		} else {
+			return false;
+		}
+	}
+
+	public function title() {
+		return EmployeeTitle::where('emp_id', $this->employee()->first()->id);
+	}
+
+
+
 
 
 }
