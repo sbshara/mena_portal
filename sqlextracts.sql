@@ -294,17 +294,6 @@ CREATE TABLE skills (
   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-# -- education degrees
-# DROP TABLE IF EXISTS edu_degree;
-# CREATE TABLE edu_degree (
-#   id            INT(11) NOT NULL AUTO_INCREMENT,
-#   degree_name   VARCHAR(255) NOT NULL,
-#   description   TEXT NULL,
-#   created_at    TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-#   updated_at    TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-#   PRIMARY KEY (id)
-# ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
 -- applicant_degree
 DROP TABLE IF EXISTS applicant_degree;
 CREATE TABLE applicant_degree (
@@ -633,7 +622,6 @@ INSERT INTO departments (id, dept_name) VALUES
   (8, 'Research'),
   (9, 'Sales');
 
-
 -- Alterations:
 ALTER TABLE users
 ADD UNIQUE KEY (username),
@@ -716,23 +704,31 @@ ALTER TABLE applicants
 ALTER TABLE applicant_docs
     ADD CONSTRAINT applicant_docs_applicant_id FOREIGN KEY (applicant_id) REFERENCES applicants(id);
 
-
-
 -- Additional Alterations Added Nov 29, 2016:
 -- TODO: add the new fields to the Models & Controllers for action
 -- TABLE: applicants
-ALTER TABLE applicants ADD mother_name VARCHAR(255) NOT NULL AFTER father_name;
-ALTER TABLE applicants ADD nationality VARCHAR(255) NOT NULL AFTER birth_date;
-ALTER TABLE applicants ADD birth_place INT(11) NOT NULL AFTER birth_date;
-ALTER TABLE applicants ADD country_origin INT(11) NOT NULL BEFORE nationality;
-ALTER TABLE applicants ADD height VARCHAR(255) NOT NULL AFTER religion;
-ALTER TABLE applicants ADD weight VARCHAR(255) NOT NULL AFTER height;
-ALTER TABLE applicants ADD emergency_contact_name VARCHAR(255) NOT NULL AFTER weight;
-ALTER TABLE applicants ADD emergency_contact_number VARCHAR(255) NOT NULL AFTER emergency_contact_name;
-ALTER TABLE applicants ADD visa_status  ENUM('Visit','Tourism','Residency - Family','Residency - LLC','Residency - Free Zone','Residency - Immigration','Residency - University') NOT NULL BEFORE doc_loc;
 ALTER TABLE applicants
-    ADD CONSTRAINT applicants_birth_place FOREIGN KEY (birth_place) REFERENCES countries(id),
-    ADD CONSTRAINT applicants_country_origin FOREIGN KEY (country_origin) REFERENCES countries(id);
+  ADD mother_name VARCHAR(255) NOT NULL AFTER father_name,
+  ADD nationality VARCHAR(255) NOT NULL AFTER birth_date,
+  ADD birth_place INT(11) NOT NULL AFTER birth_date,
+  ADD country_origin INT(11) NOT NULL AFTER birth_date,
+  ADD height VARCHAR(255) NOT NULL AFTER religion,
+  ADD weight VARCHAR(255) NOT NULL AFTER height,
+  ADD emergency_contact_name VARCHAR(255) NOT NULL AFTER weight,
+  ADD emergency_contact_number VARCHAR(255) NOT NULL AFTER emergency_contact_name,
+  ADD visa_status  ENUM(
+    'Employee Residence',
+    'Family Residence',
+    'Investor Residence',
+    'Maid Residence',
+    'Relative Residence',
+    'Student Residence',
+    'Visit',
+    'Tourist',
+    'Mission',
+    'Multiple Entry') NOT NULL AFTER religion,
+  ADD CONSTRAINT applicants_birth_place FOREIGN KEY (birth_place) REFERENCES countries(id),
+  ADD CONSTRAINT applicants_country_origin FOREIGN KEY (country_origin) REFERENCES countries(id);
 -- END OF TABLE: applicants
 -- TABLE documents
 DROP TABLE IF EXISTS documents;
@@ -745,7 +741,7 @@ CREATE TABLE documents (
     doc_issue_date  DATE NOT NULL DEFAULT '2016-11-29',
     doc_expiry_date DATE NOT NULL DEFAULT '2099-01-01',
     created_at      TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at      TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP
+    updated_at      TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -758,7 +754,7 @@ DROP TABLE IF EXISTS documents_attachments;
 CREATE TABLE documents_attachments (
     id              INT(11) NOT NULL AUTO_INCREMENT,
     document_id     INT(11) NOT NULL,
-    doc_location    VARCHAR(255) NOT NULL
+    doc_location    VARCHAR(255) NOT NULL,
     PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -794,7 +790,7 @@ CREATE TABLE emp_leaves (
     accounts_date       TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     leave_status        TINYINT(1) NOT NULL DEFAULT 0,
     created_at          TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at          TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    updated_at          TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -813,51 +809,19 @@ DROP TABLE IF EXISTS leavetypes;
 CREATE TABLE leavetypes (
     id                  INT(11) NOT NULL AUTO_INCREMENT,
     leave_type          VARCHAR(255) NOT NULL,
-    leave_notes         TEXT NOT NULL DEFAULT 'No notes provided.'
+    leave_notes         TEXT NOT NULL DEFAULT 'No notes provided.',
     PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 -- END OF TABLE: leavetypes
 
-
-
-CREATE TABLE emp_leaves (
-    id                  INT(11) NOT NULL AUTO_INCREMENT,
-    emp_id              INT(11) NOT NULL,
-    leave_type          INT(11) NOT NULL,
-    leave_start_date    TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    leave_end_date      TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    rejoining_date      TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    leave_reason        VARCHAR(255) NOT NULL,
-    location_on_leave   INT(11) NOT NULL,
-    contact_on_leave    VARCHAR(255) NOT NULL,
-    manager             INT(11) NOT NULL,
-    -- manager_status      TINYINT(1) NOT NULL DEFAULT 0,
-    -- manager_approval    TINYINT(1) NOT NULL DEFAULT 0,
-    -- manager_comments    TEXT NOT NULL DEFAULT 'NO COMMENT PROVIDED BY MANAGER',
-    -- manager_date        TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    hr                  INT(11) NOT NULL,
-    -- hr_status           TINYINT(1) NOT NULL DEFAULT 0,
-    -- hr_approval         TINYINT(1) NOT NULL DEFAULT 0,
-    -- hr_comments         TEXT NOT NULL DEFAULT 'NO COMMENT PROVIDED BY HR',
-    -- hr_date             TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    accounts            INT(11) NOT NULL,
-    -- accounts_status     TINYINT(1) NOT NULL DEFAULT 0,
-    -- accounts_approval   TINYINT(1) NOT NULL DEFAULT 0,
-    -- accounts_comments   TEXT NOT NULL DEFAULT 'NO COMMENT PROVIDED BY ACCOUNTS',
-    -- accounts_date       TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    leave_status        TINYINT(1) NOT NULL DEFAULT 0,
-    created_at          TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at          TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-    PRIMARY KEY (id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
+-- TABLE emp_requests_transactions
 CREATE TABLE trans_emp_requests (
     id              INT(11) NOT NULL AUTO_INCREMENT,
     requestor       INT(11) NOT NULL,
     request_type    INT(11) NOT NULL,
     request_details TEXT NOT NULL DEFAULT 'THIS IS DEFAULT REQUEST DETAILS',
     created_at          TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at          TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    updated_at          TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 

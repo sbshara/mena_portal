@@ -40,4 +40,15 @@ class User extends Model {
 	}
 
 
+
+	public function hash($input){
+
+	}
+
+	public function verifyHash($existing, $input){
+
+	}
+
+
+
 }

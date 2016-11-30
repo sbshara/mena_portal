@@ -1,20 +1,21 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: shiblie
+ * User: Shiblie
  * Date: 11/3/16
  * Time: 12:38 AM
  */
-
 use Respect\Validation\Validator as v;
-
+use \Slim\App as Slim;
+session_cache_limiter(false);
 session_start();
 
-require __DIR__ . '/../vendor/autoload.php';
- require_once(dirname(__DIR__) . '/app/config/development.php');
+defined('INC_ROOT') ? null : define('INC_ROOT', dirname(__DIR__));
+defined('DS') ? null : define('DS', DIRECTORY_SEPARATOR);
 
+require INC_ROOT . DS . 'vendor/autoload.php';
 
-$app = new \Slim\App([
+$app = new Slim([
 	'settings'  =>  [
 		'displayErrorDetails'   =>  true,
 		'db'        =>  [
@@ -27,7 +28,32 @@ $app = new \Slim\App([
 			'collation' =>  'utf8_unicode_ci',
 			'prefix'    =>  ''
 		],
-
+        'app'       =>  [
+            'url'       =>  'http://shiblie.menaa.local/mena_portal',
+            'hash'      =>  [
+                'algo'      =>  PASSWORD_DEFAULT,
+                'cost'      =>  10
+            ]
+        ],
+        'auth'      =>  [
+            'session'   =>  'user_id',
+            'remember'  =>  'user_r'
+        ],
+        'mail'      =>  [
+            'smtp_auth'     =>  true,
+            'smtp_secure'   =>  'tls',
+            'host'          =>  'smtp.menaa.local',
+            'username'      =>  'mena_portal@menaa.local',
+            'password'      =>  'P@ssw0rd',
+            'port'          =>  587,
+            'html'          =>  true
+        ],
+        'twig'      =>  [
+            'debug'         =>  true
+        ],
+        'csrf'      =>  [
+            'session'       =>  'csrf_token'
+        ]
 	]
 ]);
 
@@ -56,7 +82,8 @@ $container['flash'] = function ($container) {
 // Add the Twig View module
 $container['view'] = function ($container) {
 	$view = new \Slim\Views\Twig(__DIR__ . '/../resources/views/', [
-		'cache' =>  false
+		'cache' =>  false,
+        'debug' =>  true
 	]);
 
 	$view->addExtension(new \Slim\Views\TwigExtension(
@@ -106,7 +133,6 @@ $app->add($container->csrf);
 
 
 v::with('App\\Validation\\Rules\\');
-
 
 
 require __DIR__ . '/../app/routes.php';
