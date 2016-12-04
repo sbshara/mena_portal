@@ -82,3 +82,43 @@ function getStates() {
         }
     });
 }
+
+// Add and remove attachment (input field) (New Applicant)
+var attachment = 1;
+var limit = 10;
+var addErr = false;
+var remErr = false;
+
+function addInput(div){
+    if(attachment <= limit){
+        $('#attachment' + (attachment - 1)).after("<input type='file' class='btn btn-file' id='attachment" + attachment + "' name='attachment" + attachment + "'>");
+        if(remErr == true){
+            $('#remErr').remove();
+            remErr = false;
+        }
+        attachment++;
+    } else {
+        if(addErr == true){
+            return false;
+        } else {
+            $('#attachment' + (attachment - 1)).after("<span id='addErr' class='alert-error'>you have reached the limit of attachments!</span><br/>");
+            addErr = true;
+        }
+    }
+}
+
+function removeInput(div){
+    if(attachment <= 1){
+        if(remErr == true){
+            return false;
+        } else {
+            $('#help-me').after("<span id='remErr' class='alert-error'>Nothing to remove!</span>");
+            remErr = true;
+        }
+    } else {
+        $('#attachment' + (attachment - 1)).remove();
+        $('#addErr').remove();
+        addErr = false;
+        attachment--;
+    }
+}

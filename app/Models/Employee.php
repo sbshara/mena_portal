@@ -11,19 +11,29 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-use App\Models\Applicant;
-
 class Employee extends Model {
 
 	protected $table = 'employees';
 
 	protected $fillable = [
-		'emp_ref',
 		'applicant_id',
-		'hire_date',
-		'extension',
+		'birth_place',
+		'country_origin',
 		'business_email',
 		'created_at',
-		'updated_at'
+		'emergency_contact_name',
+		'emergency_contact_number',
+		'emp_ref',
+		'extension',
+		'father_name',
+		'height',
+		'hire_date',
+		'marital_status',
+		'middle_name',
+		'mother_name',
+		'religion',
+		'updated_at',
+		'visa_status',
+		'weight'
 	];
-} 
+}

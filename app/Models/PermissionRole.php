@@ -11,8 +11,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-use App\Models\Permission;
-use App\Models\Role;
 
 class PermissionRole extends Model {
 
@@ -23,4 +21,4 @@ class PermissionRole extends Model {
 		'role_id',
 		'perm_grant'
 	];
-} 
+}

@@ -20,14 +20,14 @@ class ApplicantDegree extends Model {
 
 	protected $fillable = [
 		'applicant_id',
-		'degree',
-		'acquired_date',
-		'acquired_from',
 		'city_id',
+		'acquired_date',
 		'created_at',
+		'degree',
+		'institute_name',
 		'updated_at'
 	];
 
 
 
-} 
+}

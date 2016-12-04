@@ -19,8 +19,8 @@ class ApplicantDocs extends Model {
 
 	protected $fillable = [
 		'applicant_id',
-		'doc_loc',
+		'doc_id',
 		'created_at',
 		'updated_at'
 	];
-} 
+}

@@ -20,7 +20,8 @@ class City extends Model {
 	protected $fillable = [
 		'state_id',
 		'city_name',
+		'dialing_code',
 		'created_at',
 		'updated_at'
 	];
-} 
+}

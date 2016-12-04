@@ -11,8 +11,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-use App\Models\Role;
-use App\Models\User;
+
 
 class RoleUser extends Model {
 
@@ -22,4 +21,4 @@ class RoleUser extends Model {
 		'role_id',
 		'user_id'
 	];
-} 
+}

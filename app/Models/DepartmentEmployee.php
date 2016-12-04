@@ -11,8 +11,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-use App\Models\Department;
-
 class DepartmentEmployee extends Model {
 
 	protected $table = 'dept_emp';
@@ -25,4 +23,4 @@ class DepartmentEmployee extends Model {
 		'created_at',
 		'updated_at'
 	];
-} 
+}

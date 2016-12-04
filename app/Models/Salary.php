@@ -11,7 +11,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-use App\Models\Employee;
 
 class Salary extends Model {
 
@@ -28,4 +27,4 @@ class Salary extends Model {
 		'created_at',
 		'updated_at'
 	];
-} 
+}

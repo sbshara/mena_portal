@@ -10,7 +10,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-use App\Models\Employee;
 
 class User extends Model {
 
@@ -40,11 +39,12 @@ class User extends Model {
 	}
 
 
-
+	// TODO: hash method as per codecourse PHP Authentication app
 	public function hash($input){
 
 	}
 
+	// TODO: verifyhash method as per codecourse PHP Authentication app
 	public function verifyHash($existing, $input){
 
 	}

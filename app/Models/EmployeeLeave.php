@@ -11,8 +11,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-use App\Models\Employee;
-use App\Models\Leave;
 
 class EmployeeLeave extends Model {
 
@@ -26,4 +24,4 @@ class EmployeeLeave extends Model {
 		'created_at',
 		'updated_at'
 	];
-} 
+}

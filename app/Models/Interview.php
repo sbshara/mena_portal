@@ -11,8 +11,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-use App\Models\Applicant;
-use App\Models\User;
 
 class Interview extends Model {
 
@@ -20,13 +18,10 @@ class Interview extends Model {
 
 	protected $fillable = [
 		'applicant_id',
-		'scheduled',
-		'sched_by',
-		'sched_notes',
 		'interview_date',
-		'inter_notes',
+		'inter_details',
 		'inter_result',
 		'created_at',
 		'updated_at'
 	];
-} 
+}

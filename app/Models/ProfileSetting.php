@@ -11,9 +11,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-use App\Models\User;
-
-
 class ProfileSetting extends Model {
 
 	protected $table = 'profile_settings';
@@ -32,4 +29,4 @@ class ProfileSetting extends Model {
 		'updated_at'
 	];
 
-} 
+}

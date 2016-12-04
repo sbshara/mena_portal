@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="dataSourceStorage">
-  <data-source name="MySQL - mena_portal@localhost" uuid="801c9925-a17d-492b-93e3-755351c9a9e1">
+  <data-source name="MySQL - mena_portal@localhost" uuid="82a56bdb-0d8f-478e-ad0a-502c58f025c7">
     <database-info product="MySQL" version="5.5.5-10.1.19-MariaDB" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
       <extra-name-characters>#@</extra-name-characters>
       <identifier-quote-string>`</identifier-quote-string>
@@ -45,6 +45,16 @@
       <index name="applicant_degree_applicant_id" unique="false" columns="applicant_id"/>
       <index name="applicant_degree_city_id" unique="false" columns="city_id"/>
     </table>
+    <table name="applicant_docs" schema="" catalog="mena_portal" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="applicant_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="doc_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="applicant_docs_applicant_id" columns="applicant_id" ref-table="applicants" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="applicant_docs_applicant_id" unique="false" columns="applicant_id"/>
+    </table>
     <table name="applicant_experience" schema="" catalog="mena_portal" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="applicant_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
@@ -75,24 +85,19 @@
     <table name="applicants" schema="" catalog="mena_portal" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="first_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
-      <column name="middle_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
-      <column name="father_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
-      <column name="mother_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
       <column name="last_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
       <column name="per_email" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="nationality" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="mobile_phone" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
       <column name="gender" sqlType="ENUM" precision="2" scale="0" nullable="false" jdbcType="1"/>
-      <column name="birth_date" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="JzE5ODQtMDktMDMgMDA6MDA6MDAn"/>
+      <column name="birth_date" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91" def="JzE5ODQtMDktMDMn"/>
       <column name="prof_pic" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" def="Jy9pbWcvZGVmYXVsdC5wbmcn"/>
-      <column name="marital_status" sqlType="ENUM" precision="9" scale="0" nullable="false" jdbcType="1" def="J1NpbmdsZSc="/>
-      <column name="religion" sqlType="ENUM" precision="10" scale="0" nullable="true" jdbcType="1"/>
-      <column name="doc_loc" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" def="Jy9hcHBsaWNhbnRzL2RvY3MvJw=="/>
       <column name="source" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" def="J0hpcmluZyBBZ2VuY3kn"/>
       <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
       <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
-      <column name="password" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="id"/>
       <exported-key name="applicant_degree_applicant_id" table="applicant_degree" schema="" catalog="mena_portal" columns="applicant_id"/>
+      <exported-key name="applicant_docs_applicant_id" table="applicant_docs" schema="" catalog="mena_portal" columns="applicant_id"/>
       <exported-key name="app_exp_app_id" table="applicant_experience" schema="" catalog="mena_portal" columns="applicant_id"/>
       <exported-key name="applicant_skills_appl_id" table="applicant_skills" schema="" catalog="mena_portal" columns="applicant_id"/>
       <exported-key name="applicants_addresses_applicant_id" table="applicants_addresses" schema="" catalog="mena_portal" columns="applicant_id"/>
@@ -121,6 +126,7 @@
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="state_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="city_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="dialing_code" sqlType="VARCHAR" precision="4" scale="0" nullable="false" jdbcType="12" def="JzAwMDAn"/>
       <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
       <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
       <primary-key name="PRIMARY" columns="id"/>
@@ -128,6 +134,7 @@
       <exported-key name="addresses_city_id" table="addresses" schema="" catalog="mena_portal" columns="city_id"/>
       <exported-key name="applicant_degree_city_id" table="applicant_degree" schema="" catalog="mena_portal" columns="city_id"/>
       <exported-key name="app_exp_city_id" table="applicant_experience" schema="" catalog="mena_portal" columns="city_id"/>
+      <exported-key name="employees_birth_place" table="employees" schema="" catalog="mena_portal" columns="birth_place"/>
       <index name="cities_state_id" unique="false" columns="state_id"/>
     </table>
     <table name="countries" schema="" catalog="mena_portal" type="TABLE">
@@ -142,6 +149,8 @@
       <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
       <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
       <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="documents_doc_country" table="documents" schema="" catalog="mena_portal" columns="doc_country"/>
+      <exported-key name="employees_country_origin" table="employees" schema="" catalog="mena_portal" columns="country_origin"/>
       <exported-key name="states_country_id" table="states" schema="" catalog="mena_portal" columns="country_id"/>
     </table>
     <table name="departments" schema="" catalog="mena_portal" type="TABLE">
@@ -165,12 +174,24 @@
       <foreign-key name="dept_emp_dept_no" columns="dept_no" ref-table="departments" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <index name="dept_emp_dept_no" unique="false" columns="dept_no"/>
     </table>
+    <table name="documents" schema="" catalog="mena_portal" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="doc_type" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="doc_issuer" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="doc_country" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="doc_issue_date" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91" def="JzIwMTYtMTEtMjkn"/>
+      <column name="doc_expiry_date" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91" def="JzIwOTktMDEtMDEn"/>
+      <column name="doc_loc" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="documents_doc_country" columns="doc_country" ref-table="countries" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="documents_doc_country" unique="false" columns="doc_country"/>
+    </table>
     <table name="emp_benefits" schema="" catalog="mena_portal" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="emp_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="benefit_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="received_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
-      <column name="reason" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
       <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
       <primary-key name="PRIMARY" columns="id"/>
@@ -207,39 +228,83 @@
     </table>
     <table name="employees" schema="" catalog="mena_portal" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
-      <column name="emp_ref" sqlType="VARCHAR" precision="4" scale="0" nullable="false" jdbcType="12"/>
       <column name="applicant_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="hire_date" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="JzIwMTEtMDctMDMgMDA6MDA6MDAn"/>
+      <column name="emp_ref" sqlType="VARCHAR" precision="4" scale="0" nullable="false" jdbcType="12"/>
+      <column name="middle_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="father_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="mother_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="birth_place" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="country_origin" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="height" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="weight" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="emergency_contact_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="emergency_contact_number" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="visa_status" sqlType="ENUM" precision="19" scale="0" nullable="false" jdbcType="1"/>
+      <column name="marital_status" sqlType="ENUM" precision="9" scale="0" nullable="false" jdbcType="1" def="J1NpbmdsZSc="/>
+      <column name="religion" sqlType="ENUM" precision="10" scale="0" nullable="true" jdbcType="1"/>
+      <column name="hire_date" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91" def="JzIwMTEtMDctMDMn"/>
       <column name="extension" sqlType="VARCHAR" precision="24" scale="0" nullable="true" jdbcType="12" def="JzAwMDAn"/>
       <column name="business_email" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12" def="J3VzZXJAZG9tYWluLmxvY2FsJw=="/>
       <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
       <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
       <primary-key name="PRIMARY" columns="id"/>
       <foreign-key name="employees_applicant_id" columns="applicant_id" ref-table="applicants" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="employees_birth_place" columns="birth_place" ref-table="cities" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="employees_country_origin" columns="country_origin" ref-table="countries" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <exported-key name="emp_benefits_emp_no" table="emp_benefits" schema="" catalog="mena_portal" columns="emp_id"/>
       <exported-key name="emp_title_emp_no" table="emp_title" schema="" catalog="mena_portal" columns="emp_id"/>
-      <exported-key name="interviews_sched_by" table="interviews" schema="" catalog="mena_portal" columns="sched_by"/>
+      <exported-key name="map_interviewer_interviewer_id" table="interview_interviewer" schema="" catalog="mena_portal" columns="interviewer_id"/>
+      <exported-key name="interview_schedule_scheduled_by" table="interview_schedule" schema="" catalog="mena_portal" columns="scheduled_by"/>
       <exported-key name="salaries_emp_no" table="salaries" schema="" catalog="mena_portal" columns="emp_id"/>
-      <exported-key name="users_emp_no" table="users" schema="" catalog="mena_portal" columns="emp_id"/>
+      <exported-key name="users_emp_id" table="users" schema="" catalog="mena_portal" columns="emp_id"/>
       <index name="emp_ref" unique="true" columns="emp_ref"/>
       <index name="employees_applicant_id" unique="false" columns="applicant_id"/>
+      <index name="employees_birth_place" unique="false" columns="birth_place"/>
+      <index name="employees_country_origin" unique="false" columns="country_origin"/>
+    </table>
+    <table name="interview_interviewer" schema="" catalog="mena_portal" type="TABLE">
+      <column name="interview_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="interviewer_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <foreign-key name="map_interviewer_interview_id" columns="interview_id" ref-table="interviews" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="map_interviewer_interviewer_id" columns="interviewer_id" ref-table="employees" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="map_interviewer_interview_id" unique="false" columns="interview_id"/>
+      <index name="map_interviewer_interviewer_id" unique="false" columns="interviewer_id"/>
+    </table>
+    <table name="interview_schedule" schema="" catalog="mena_portal" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="schedule_date" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="schedule_notes" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1"/>
+      <column name="scheduled_by" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="occurred" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA=="/>
+      <column name="occurance_details" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="interview_schedule_scheduled_by" columns="scheduled_by" ref-table="employees" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="map_schedule_id" table="interview_schedule_mapping" schema="" catalog="mena_portal" columns="interview_schedule_id"/>
+      <index name="interview_schedule_scheduled_by" unique="false" columns="scheduled_by"/>
+    </table>
+    <table name="interview_schedule_mapping" schema="" catalog="mena_portal" type="TABLE">
+      <column name="interview_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="interview_schedule_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <foreign-key name="map_interview_id" columns="interview_id" ref-table="interviews" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="map_schedule_id" columns="interview_schedule_id" ref-table="interview_schedule" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="map_interview_id" unique="false" columns="interview_id"/>
+      <index name="map_schedule_id" unique="false" columns="interview_schedule_id"/>
     </table>
     <table name="interviews" schema="" catalog="mena_portal" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="applicant_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="scheduled" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
-      <column name="sched_by" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="sched_notes" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
       <column name="interview_date" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
-      <column name="inter_notes" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1"/>
+      <column name="inter_details" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="true" jdbcType="-1"/>
       <column name="inter_result" sqlType="ENUM" precision="9" scale="0" nullable="false" jdbcType="1"/>
       <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
       <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
       <primary-key name="PRIMARY" columns="id"/>
       <foreign-key name="interviews_applicant_id" columns="applicant_id" ref-table="applicants" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <foreign-key name="interviews_sched_by" columns="sched_by" ref-table="employees" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="map_interviewer_interview_id" table="interview_interviewer" schema="" catalog="mena_portal" columns="interview_id"/>
+      <exported-key name="map_interview_id" table="interview_schedule_mapping" schema="" catalog="mena_portal" columns="interview_id"/>
       <index name="interviews_applicant_id" unique="false" columns="applicant_id"/>
-      <index name="interviews_sched_by" unique="false" columns="sched_by"/>
     </table>
     <table name="leaves" schema="" catalog="mena_portal" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
@@ -250,6 +315,12 @@
       <primary-key name="PRIMARY" columns="id"/>
       <exported-key name="emp_leaves_leave_type" table="emp_leaves" schema="" catalog="mena_portal" columns="leave_type"/>
       <index name="leave_name" unique="true" columns="leave_name"/>
+    </table>
+    <table name="leavetypes" schema="" catalog="mena_portal" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="leave_type" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="leave_notes" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1"/>
+      <primary-key name="PRIMARY" columns="id"/>
     </table>
     <table name="perm_role" schema="" catalog="mena_portal" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
@@ -364,11 +435,11 @@
       <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
       <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
       <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="users_emp_no" columns="emp_id" ref-table="employees" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="users_emp_id" columns="emp_id" ref-table="employees" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <exported-key name="profile_settings_user_id" table="profile_settings" schema="" catalog="mena_portal" columns="user_id"/>
       <exported-key name="role_user_user_id" table="role_user" schema="" catalog="mena_portal" columns="user_id"/>
       <index name="username" unique="true" columns="username"/>
-      <index name="users_emp_no" unique="false" columns="emp_id"/>
+      <index name="users_emp_id" unique="false" columns="emp_id"/>
     </table>
   </data-source>
 </component>

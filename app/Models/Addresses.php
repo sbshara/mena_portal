@@ -18,27 +18,27 @@ class Addresses extends Model {
 	protected $table = 'addresses';
 
 	protected $fillable = [
-		'addres_title',
 		'city_id',
+		'address_title',
+		'apartment',
 		'area',
-		'street_name',
-		'street_no',
 		'building_name',
 		'building_no',
+		'created_at',
 		'floor',
-		'apartment',
-		'pobox',
-		'landmark',
 		'landline1',
 		'landline2',
+		'landmark',
 		'mobile1',
 		'mobile2',
 		'notes',
-		'created_at',
+		'pobox',
+		'street_name',
+		'street_no',
 		'updated_at'
 	];
 
 
 
 
-} 
+}
