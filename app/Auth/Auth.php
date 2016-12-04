@@ -13,6 +13,9 @@ use App\Models\Employee;
 use App\Models\EmployeeTitle;
 use App\Models\User;
 use App\Models\ProfileSetting;
+use \App\Models\Country;
+use \App\Models\State;
+use \App\Models\City;
 
 class Auth {
 
@@ -77,6 +80,38 @@ class Auth {
 		return EmployeeTitle::where('emp_id', $this->employee());
 	}
 
+	public function allCountries() {
+		return Country::all();
+	}
+
+	public function allStates() {
+		return State::all();
+	}
+
+	public function allCities() {
+		return City::all();
+	}
+	// -----------------
+
+	public function statesByCountry($country) {
+		return State::where('country_id', $country);
+	}
+
+	public function cityByState ($state) {
+		return City::where('state_id', $state);
+	}
+	// -----------------
+	public function countryById($id){
+		return Country::where('id', $id);
+	}
+
+	public function stateById($id) {
+		return State::where('id', $id);
+	}
+
+	public function cityById ($id) {
+		return City::where('id', $id);
+	}
 
 
 

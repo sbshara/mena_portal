@@ -129,45 +129,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- My Custom functions JS -->
 <script src="{{ base_url() }}/js/shiblie.js"></script>
 <script>
-    function applicantAutoComplete(){
-        var minLen = 0;
-        var Shiblie = $('#applicant_name').text();
-        if(Shiblie.toString().length > minLen){
-            $.ajax({
-                url:        'http://localhost/~shiblie/vehicle_service/public/auth/employee/' + Shiblie.text(),
-                type:       'POST',
-                data:       {keyword:Shiblie},
-                success:    function(data){
-                    $('#applicant_option').show();
-                    $('#applicant_option').attr('value', data);
-                }
-            });
-        } else {
-            $('#applicant_option').hide()
-        }
-    };
-    {#$(function applicantComplete() {#}
-        {#var min_length = 0;#}
-        {#var shiblie = $('#applicant_name').text();#}
-        {#if(shiblie.toString().length >= min_length) {#}
-            {#$.ajax({#}
-                {#url:        'http://localhost/~shiblie/vehicle_service/public/auth/new/applicant',#}
-                {#type:       'POST',#}
-                {#data:       {keyword:shiblie},#}
-                {#success:    function(data){#}
-                    {#$('#applicant_id').show();#}
-                    {#$('#applicant_id').html(data);#}
-                {#}#}
-            {#});#}
-        {#} else {#}
-            {#$('#applicant_id').hide()#}
-        {#}#}
-    {#});#}
+//    function applicantAutoComplete(){
+//        var minLen = 0;
+//        var Shiblie = $('#applicant_name').text();
+//        if(Shiblie.toString().length > minLen){
+//            $.ajax({
+//                url:        'http://localhost/~shiblie/vehicle_service/public/auth/employee/' + Shiblie.text(),
+//                type:       'POST',
+//                data:       {keyword:Shiblie},
+//                success:    function(data){
+//                    $('#applicant_option').show();
+//                    $('#applicant_option').attr('value', data);
+//                }
+//            });
+//        } else {
+//            $('#applicant_option').hide()
+//        }
+//    }
 
-    {#$(function setApplicant(item){#}
-        {#$('#applicant_name').text(item);#}
-        {#$('#applicant_id').hide();#}
-    {#});#}
 </script>
 
 

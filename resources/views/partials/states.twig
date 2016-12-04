@@ -1,0 +1,3 @@
+{% for state in auth.states %}
+    <option id="{{ state.id }}">{{ state.state_name | e }}</option>
+{% endfor %}

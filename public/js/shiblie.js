@@ -69,3 +69,16 @@ $(function(){
 });
 
 
+function getStates() {
+    var country = $('#country');
+//        alert (encodeURI(country.val()));
+//        alert(country.val());
+    $.ajax({
+        url:        'get/states/', //+ encodeURI(country.val()),
+        type:       'post',
+        data:       {country:country.val()},
+        success:    function(data){
+            $('#state').html(data);
+        }
+    });
+}

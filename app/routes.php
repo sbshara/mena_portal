@@ -33,6 +33,13 @@ $app->group('', function () {
 	$this->get('/auth/new/applicant', 'AuthController:getNewApplicant')->setName('auth.new.applicant');
 	$this->post('/auth/new/applicant', 'AuthController:postNewApplicant');
 
+	$this->get('/auth/new/applicant/address', 'AuthController:getNewAddress')->setName('auth.new.address');
+	$this->post('/auth/new/applicant/address', 'AuthController:postNewAddress');
+
+	$this->get('/auth/new/applicant/get/states/', 'AuthController:getStateByCountry')->setName('auth.statesByCountry');
+	$this->get('/auth/new/applicant/get/cities/?:country', 'AuthController:getCityByState')->setName('auth.cityByState');
+
+
 	$this->get('/auth/new/employee', 'AuthController:getNewEmployee')->setName('auth.new.employee');
 	$this->post('/auth/new/employee', 'AuthController:postNewEmployee');
 

@@ -10,7 +10,11 @@ namespace App\Controllers\Auth;
 
 use App\Models\Applicant;
 use App\Controllers\Controller;
+use App\Models\Country;
+use App\Models\State;
+use Illuminate\Support\Facades\Request;
 use Respect\Validation\Validator as v;
+use Slim\Http\Response;
 
 
 class AuthController extends Controller {
@@ -88,15 +92,11 @@ class AuthController extends Controller {
 
 		$this->flash->addMessage('success', 'Applicant was created successfully');
 
-		if($request->getParam('employee') == true) {
-			return $response->withRedirect($this->router->pathFor('auth.new.employee'));
-		} else {
-			return $response->withRedirect($this->router->pathFor('home'));
-		}
+			return $response->withRedirect($this->router->pathFor('auth.new.address'));
 	}
 
 	public function getProfile ($request, $response, $arg) {
-		return $this->view->render($response, 'user/profile.twig');
+		return $this->view->render($response, 'auth/profile.twig');
 	}
 
 	public function getNewEmployee($request, $response){
@@ -153,6 +153,36 @@ class AuthController extends Controller {
 		return $response;
 	}
 
+	public function getNewAddress ($request, $response) {
+		return $this->view->render($response, 'auth/newAddress.twig');
+	}
+
+	public function postNewAddress ($request, $response) {
+
+	}
+
+	public function getStateByCountry ($request, $response) {
+		$country = $request->getParam('country');
+		$sql = "SELECT * FROM states tbl1 JOIN countries tbl2 ON tbl2.id = tbl1.country_id WHERE country_name LIKE '%" . $country . "%'";
+
+		$states = State::query($sql);
+		foreach ($states as $state) {
+			$result  = "<option id='";
+			$result .= $state->id;
+			$result .= "'>";
+			$result .= $state->state_name;
+			$result .= "</option>";
+			array_push($response, $result);
+		}
+//		return $this->view->render($response, 'partials/states.twig');
+		return $response;
+	}
+
+	public function getCityByState ($request, $response, $arg) {
+		$state = $request->getAttribute('state');
+		$cities = City::where('state_id', $state);
+		return $this->view->render($response, 'partials/cities.twig');
+	}
 
 
 

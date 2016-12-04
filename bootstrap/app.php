@@ -29,7 +29,7 @@ $app = new Slim([
 			'prefix'    =>  ''
 		],
         'app'       =>  [
-            'url'       =>  'http://shiblie.menaa.local/mena_portal',
+            'url'       =>  'http://localhost/mena_portal',
             'hash'      =>  [
                 'algo'      =>  PASSWORD_DEFAULT,
                 'cost'      =>  10
@@ -74,6 +74,7 @@ $container['auth'] = function ($container) {
 	return new \App\Auth\Auth();
 };
 
+
 // Add global message flash module
 $container['flash'] = function ($container) {
 	return new \Slim\Flash\Messages();
@@ -99,7 +100,10 @@ $container['view'] = function ($container) {
 		'title'         =>  $container->auth->title(),
 		'users'         =>  $container->auth->allUsers(),
 		'employees'     =>  $container->auth->allEmployees(),
-		'applicants'    =>  $container->auth->allApplicants()
+		'applicants'    =>  $container->auth->allApplicants(),
+		'countries'     =>  $container->auth->allCountries(),
+		'states'        =>  $container->auth->allStates(),
+		'cities'        =>  $container->auth->allCities()
 	]);
 
 	// Add the flash message
