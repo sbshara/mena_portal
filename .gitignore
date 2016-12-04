@@ -1,7 +1,3 @@
 vendor/*
 .DS_*
-.git/*
-.idea/*
-config/*
 composer.lock
-/public/img/*
