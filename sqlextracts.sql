@@ -444,7 +444,7 @@ ALTER TABLE users
   ADD CONSTRAINT users_emp_id FOREIGN KEY (emp_id) REFERENCES employees(id);
 
 ALTER TABLE interviews
-  ADD CONSTRAINT interviews_applicant_id FOREIGN KEY (applicant_id) REFERENCES applicants(id),
+  ADD CONSTRAINT interviews_applicant_id FOREIGN KEY (applicant_id) REFERENCES applicants(id);
 
 ALTER TABLE emp_benefits
   ADD CONSTRAINT emp_benefits_emp_no FOREIGN KEY (emp_id) REFERENCES employees(id),
@@ -854,3 +854,5 @@ INSERT INTO `departments` (`id`, `dept_name`, `created_at`, `updated_at`) VALUES
   (7, 'Quality Management', '2016-12-04 07:03:03', '2016-12-04 07:03:03'),
   (8, 'Research', '2016-12-04 07:03:03', '2016-12-04 07:03:03'),
   (9, 'Sales', '2016-12-04 07:03:03', '2016-12-04 07:03:03');
+
+

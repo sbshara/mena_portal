@@ -7,6 +7,7 @@
  */
 use Respect\Validation\Validator as v;
 use \Slim\App as Slim;
+use \Slim\Http\UploadedFile;
 session_cache_limiter(false);
 session_start();
 
@@ -126,6 +127,7 @@ $container['HomeController'] = function ($container) { return new \App\Controlle
 $container['AuthController'] = function ($container) { return new \App\Controllers\Auth\AuthController($container); };
 $container['PasswordController'] = function ($container) { return new \App\Controllers\Auth\PasswordController($container); };
 $container['csrf'] = function ($container) { return new \Slim\Csrf\Guard(); };
+$container['http'] = function ($container) { return new UploadedFile(); };
 
 
 $app->add(new \App\Middleware\ValidationErrorsMiddleware($container));

@@ -16,16 +16,16 @@ class Applicant extends Model {
 	protected $table = 'applicants';
 
 	protected $fillable = [
-		'birth_date',
-		'created_at',
 		'first_name',
-		'gender',
 		'last_name',
-		'mobile_phone',
+		'birth_date',
+		'gender',
 		'nationality',
 		'per_email',
+		'mobile_phone',
 		'prof_pic',
 		'source',
+		'created_at',
 		'updated_at'
 	];
 

@@ -10,11 +10,12 @@ namespace App\Controllers\Auth;
 
 use App\Models\Applicant;
 use App\Controllers\Controller;
-use App\Models\Country;
+use App\Models\ApplicantDocs;
+use App\Models\Document;
 use App\Models\State;
 use Illuminate\Support\Facades\Request;
 use Respect\Validation\Validator as v;
-use Slim\Http\Response;
+use Slim\Http;
 
 
 class AuthController extends Controller {
@@ -52,47 +53,91 @@ class AuthController extends Controller {
 		return $this->view->render($response, 'auth/newApplicant.twig');
 	}
 
-	public function postNewApplicant ($request, $response) {
+	public function postNewApplicant ($request, $response, $arg) {
+
+		// Check validation of some fields (as required)
 		$validation = $this->validator->validate($request, [
 			'first_name'        =>  v::notEmpty()->alpha(),
-			'father_name'       =>  v::notEmpty()->alpha(),
-			'middle_name'       =>  v::notEmpty()->alpha(),
 			'last_name'         =>  v::notEmpty()->alpha(),
-			'mobile'            =>  v::notEmpty()->digit(' +()'),
+			'mobile_phone'      =>  v::notEmpty()->digit(' +()')->phoneAvailable(),
 			'per_email'         =>  v::notEmpty()->email()->noWhitespace()->emailAvailable(),
 			'gender'            =>  v::notEmpty(),
 			'dob'               =>  v::notEmpty()->date()->OverEighteen(),
+			'nationality'       =>  v::notEmpty()->min(1)
 		]);
 
+		// Check if validation has passed or failed
 		if ($validation->failed()) {
 			return $response->withRedirect($this->router->pathFor('auth.new.applicant'));
 		}
 
-		$file = $request->getUploadedFiles();
-		$upload = $file['profilepic'];
-		$filename = $upload->getClientFilename();
-		$upload->moveTo('img/applicants/' . $filename);
+		// upload profile picture
+		$profile = $request->getUploadedFiles()['profilepic'];
+		$profile_location = 'img/applicants/';
+		if (empty($profile)) {
+			$this->flash->addMessage('danger', 'Expected a profile image to be uploaded!');
+			return $response->withRedirect($this->router->pathFor('auth.new.applicant'));
+		}
+		if ($profile->getError() === UPLOAD_ERR_OK) {
+			$uploadFileName = $profile->getClientFilename();
+			$profile->moveTo("img/applicants/" . $uploadFileName);
+		}
 
+		// created the applicant record:
 		$applicant = Applicant::create([
 			'first_name'        =>  $request->getParam('first_name'),
-			'middle_name'       =>  $request->getParam('middle_name'),
-			'father_name'       =>  $request->getParam('father_name'),
 			'last_name'         =>  $request->getParam('last_name'),
 			'per_email'         =>  $request->getParam('per_email'),
-			'mobile_phone'      =>  $request->getParam('mobile'),
+			'mobile_phone'      =>  $request->getParam('mobile_phone'),
 			'gender'            =>  $request->getParam('gender'),
 			'birth_date'        =>  $request->getParam('dob'),
-			'prof_pic'          =>  'applicants/' . $filename,
-			'marital_status'    =>  $request->getParam('marital'),
-			'religion'          =>  $request->getParam('religion'),
-			'doc_loc'           =>  "docs/applicants/",
-			'source'            =>  $request->getParam('source')
+			'prof_pic'          =>  $profile_location,
+			'source'            =>  $request->getParam('source'),
+			'nationality'       =>  $request->getParam('nationality')
 		]);
 
+		$totalAttach = count($request->getUploadedFiles()['attachment']);
+		$attachments = $request->getUploadedFiles()['attachment'];
 
+		// -- Loop through each file
+		for($i = 0; $i <= $totalAttach; $i++) {
+			$attachment = $attachments[$i];
+			// -- Get the temp file path
+			$tmpattach = $attachment->file;
+			// -- Make sure we have a filepath
+			if (!empty($tmpattach)) {
+				if ($attachment->getError() === UPLOAD_ERR_OK || $attachment->getError() == 0) {
+					$uploadAttchName = $attachment->getClientFilename();
+					$attachment->moveTo("docs/applicants/" . $uploadAttchName);
+	//				var_dump($attachment);
+	//				die();
+						$document = Document::create([
+							'doc_country'       =>  $request->getParam('attachmentCountry[' . $i . ']'),
+							'doc_expiry_date'   =>  $request->getParam('attachmentExpiryDate[' . $i . ']'),
+							'doc_issue_date'    =>  $request->getParam('attachmentIssueDate[' . $i . ']'),
+							'doc_issuer'        =>  $request->getParam('attachmentIssuer[' . $i . ']'),
+							'doc_type'          =>  $request->getParam('attachmentType[' . $i . ']'),
+	//						'doc_loc'           =>  'docs/applicants/' . $attachment->getClientFilename()
+							'doc_loc'           =>  $attachment
+						]);
+
+						$mapper = ApplicantDocs::create([
+							'applicant_id'      =>  $applicant->id,
+							'doc_id'            =>  $document->id
+						]);
+				} else {
+					$this->flash->addMessage('danger', 'Something is wrong with the uploaded files!');
+					return $response->withRedirect($this->router->pathFor('auth.new.applicant'));
+				}
+			}
+		}
+
+
+		// Flash a message that the applicant record is created.
 		$this->flash->addMessage('success', 'Applicant was created successfully');
 
-			return $response->withRedirect($this->router->pathFor('auth.new.address'));
+		// redirect to the next page (add experience, add address, ...etc.)
+		return $response->withRedirect($this->router->pathFor('auth.new.address'));
 	}
 
 	public function getProfile ($request, $response, $arg) {

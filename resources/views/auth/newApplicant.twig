@@ -40,12 +40,12 @@
                         {% endif %}
                     </div>
 
-                    <div class="form-group has-feedback{{ errors.mobile ? ' has-error' : '' }}">
-                        <label for="mobile">Mobile Phone Number: </label>
-                        <input type="tel" name="mobile" id="mobile" placeholder="+971 50 123 4567" class="form-control" value="{{ old.mobile }}"/>
+                    <div class="form-group has-feedback{{ errors.mobile_phone ? ' has-error' : '' }}">
+                        <label for="mobile_phone">Mobile Phone Number: </label>
+                        <input type="tel" name="mobile_phone" id="mobile_phone" placeholder="+971 50 000 0000" class="form-control" value="{{ old.mobile_phone }}"/>
                         <span class="glyphicon glyphicon-phone form-control-feedback"></span>
-                        {% if errors.mobile %}
-                            <span class="help-block">{{ errors.mobile | first }}</span>
+                        {% if errors.mobile_phone %}
+                            <span class="help-block">{{ errors.mobile_phone | first }}</span>
                         {% endif %}
                     </div>
 
@@ -63,13 +63,13 @@
                     <div class="form-group has-feedback{{ errors.nationality ? ' has-error' : '' }}">
                         <label for="nationality">Nationality: </label>
                         <select class="form-control" name="nationality" id="nationality">
-                            <option id="0">Please Select ... </option>
+                            <option value="0">Please Select ... </option>
                             {% for country in auth.countries %}
-                                <option id="{{ country.id }} {% if country.country_name == old.nationality %}selected{% endif %}">{{ country.country_name | e }}</option>
+                                <option value="{{ country.id }}" {% if country.id == old.nationality %}selected{% endif %}>{{ country.country_name | e }}</option>
                             {% endfor %}
                         </select>
                         {% if errors.nationality %}
-                            <span class="help-block">{{ errors.nationality| first }}</span>
+                            <span class="help-block">{{ errors.nationality | first }}</span>
                         {% endif %}
                     </div>
 
@@ -89,73 +89,49 @@
                     <div class="form-group has-feedback{{ errors.profilepic ? ' has-error' : '' }}">
                         <label for="profilePic">Photo:</label>
                         <input type="file" id="profilePic" name="profilepic" value="{{ old.profilepic }}">
-                        <p class="help-block"><small><i>File must be *.jpg, *.png, or *.bmb and < 2MBs</i></small></p>
+                        <p class="help-block"><small><i>File must be *.jpg, *.jpeg, *.png, *.gif, or *.bmb and < 3MBs</i></small></p>
                         {% if errors.profilepic %}
                             <span class="help-block">{{ errors.profilepic | first }}</span>
                         {% endif %}
                     </div>
 
-
-
-                    {#<div class="form-group has-feedback{{ errors.marital ? ' has-error' : '' }}">#}
-                        {#<label>Marital Status:  &nbsp;</label>#}
-                        {#<select class="form-control" name="marital">#}
-                            {#<option value="Single" {% if old.marital == 'Single' %}selected{% endif %}>Single</option>#}
-                            {#<option value="Married" {% if old.marital == 'Married' %}selected{% endif %}>Married</option>#}
-                            {#<option value="Divorced" {% if old.marital == 'Divorced' %}selected{% endif %}>Divorced</option>#}
-                            {#<option value="Widowed" {% if old.marital == 'Widowed' %}selected{% endif %}>Widowed</option>#}
-                            {#<option value="No Answer" {% if old.marital == 'No Answer' %}selected{% endif %}>No Answer</option>#}
-                        {#</select>#}
-                        {#{% if errors.marital %}#}
-                            {#<span class="help-block">{{ errors.marital | first }}</span>#}
-                        {#{% endif %}#}
-                    {#</div>#}
-
-                    {#<div class="form-group has-feedback{{ errors.religion ? ' has-error' : '' }}">#}
-                        {#<div class="input-group">#}
-                            {#<label>Religion: &nbsp; &nbsp;</label>#}
-                            {#<br />#}
-                            {#<label>#}
-                                {#<input type="radio" name="religion" id="christian" value="christian" {% if old.religion == 'christian' %}checked="checked"{% endif %}/>#}
-                                {#<img src="{{ base_url() }}/img/icons/christian.png" width="10px"> Christian&nbsp;&nbsp;#}
-                            {#</label>#}
-                            {#<label>#}
-                                {#<input type="radio" name="religion" id="muslim" value="muslim" {% if old.religion == 'muslim' %}checked="checked"{% endif %}/>#}
-                                {#<img src="{{ base_url() }}/img/icons/muslim.png" width="10px"> Muslim&nbsp;&nbsp;#}
-                            {#</label>#}
-                            {#<label>#}
-                                {#<input type="radio" name="religion" id="jew" value="jew" {% if old.religion == 'jew' %}checked="checked"{% endif %}/>#}
-                                {#<img src="{{ base_url() }}/img/icons/jew.png" width="10px"> Jewish&nbsp;&nbsp;#}
-                            {#</label>#}
-                            {#<label>#}
-                                {#<input type="radio" name="religion" id="other" value="other" {% if old.religion == 'other' %}checked="checked"{% endif %}/>#}
-                                {#<img src="{{ base_url() }}/img/icons/other.png" width="10px"> Other#}
-                            {#</label>#}
-                        {#</div>#}
-                        {#{% if errors.religion %}#}
-                            {#<span class="help-block">{{ errors.religion | first }}</span>#}
-                        {#{% endif %}#}
-                    {#</div>#}
-
                     <div id="newAttachment" class="form-group has-feedback{{ errors.attachment ? ' has-error' : '' }}">
-                        <label for="attachment0">Attachments:</label>
-                        <p class="help-block" id="help-me"><small><i>Attach CV, Passport Copy, VISA Copy, or any other related documents</i></small></p>
-                        <input type="file" id="attachment0" class="btn btn-file" name="attachment0" value="{{ old.attachment }}">
-                        <input type="button" id="add" class="btn btn-xs" onclick="addInput('#newAttachment')" value="Add" />
-                        <input type="button" id="remove" class="btn btn-xs" onclick="removeInput('#newAttachment')" value="Remove" />
+                        <label for="help-me">Attachments:</label>
+                        <p class="help-block" id="help-me"><span><i>Attach CV, Passport Copy, VISA Copy, Educational Degree, or any other related documents<br/><span class="alert-warning">Remember to rename the files respectively!!!</span></i></span></p>
+                        <div class="input-group" id="attachmentGroup">
+                            <label for="attachment">File: &nbsp;</label>
+                            <input type="file" id="attachment" name="attachment[]" value="{{ old.attachment }}"> &nbsp;
+                            <label for="attachmentCountry">Issuance Country: &nbsp;</label>
+                            <select name="attachmentCountry[]" id="attachmentCountry">
+                                <option value="0">Please Select ... </option>
+                                {% for country in auth.countries %}
+                                    <option value="{{ country.id }}" {% if country.id == old.attachmentCountry %}selected{% endif %}>{{ country.country_name | e }}</option>
+                                {% endfor %}
+                            </select><br/>
+                            <label for="attachmentType">Type: &nbsp;</label>
+                            <input id="attachmentType" name="attachmentType[]" type="text">
+                            <label for="attachmentIssuer">Issued By: &nbsp;</label>
+                            <input type="text" id="attachmentIssuer" name="attachmentIssuer[]"> &nbsp;
+                            <label for="attachmentIssueDate">Issue Date: &nbsp;</label>
+                            <input type="date" id="attachmentIssueDate" name="attachmentIssueDate[]" value="1999-12-31"> &nbsp;
+                            <label for="attachmentExpiryDate">Expiry Date: &nbsp;</label>
+                            <input type="date" id="attachmentExpiryDate" name="attachmentExpiryDate[]" value="2099-12-31"> &nbsp;
+                        </div>
                         {% if errors.attachment %}
                             <span class="help-block">{{ errors.attachment | first }}</span>
                         {% endif %}
+                        <input type="button" id="add" class="btn btn-xs" onclick="addInput('#attachmentGroup')" value="Add New" title="Add new attachment field"/>
+                        <input type="button" id="remove" class="btn btn-xs btn-danger" onclick="removeInput(this)" value="Remove" title="Removes the last item"/>
                     </div>
 
                     <div class="form-group has-feedback{{ errors.source ? ' has-error' : '' }}">
                         <label for="source">Application Source:  &nbsp;</label>
                         <p class="help-block"><small><i>How did the applicant hear about us</i></small></p>
                         <select class="form-control" name="source" id="source">
-                            <option value="Single" selected>HR Agency</option>
-                            <option value="Married" {% if old.source == 'Search Engine' %}selected{% endif %}>Search Engine</option>
-                            <option value="Divorced" {% if old.source == 'Friend' %}selected{% endif %}>Friend</option>
-                            <option value="Widowed" {% if old.source == 'Other' %}selected{% endif %}>Other</option>
+                            <option value="HR Agency" selected>HR Agency</option>
+                            <option value="Search Engine" {% if old.source == 'Search Engine' %}selected{% endif %}>Search Engine</option>
+                            <option value="Friend or Colleague" {% if old.source == 'Friend' %}selected{% endif %}>Friend</option>
+                            <option value="Other" {% if old.source == 'Other' %}selected{% endif %}>Other</option>
                             <option value="No Answer" {% if old.source == 'No Answer' %}selected{% endif %}>No Answer</option>
                         </select>
                         {% if errors.source %}
@@ -163,9 +139,6 @@
                         {% endif %}
                     </div>
 
-                    {#<div class="form-group has-feedback">#}
-                        {#<p class="help-block"><small><i>Add this applicant as employee?</i></small> &nbsp; <input type="checkbox" name="employee"></p>#}
-                    {#</div>#}
                     <button type="submit" name="submit" id="submit"class="btn btn-default">Register New Applicant</button>
                     {{ csrf.field | raw }}
                 </form>
