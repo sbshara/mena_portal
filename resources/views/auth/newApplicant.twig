@@ -98,30 +98,36 @@
                     <div id="newAttachment" class="form-group has-feedback{{ errors.attachment ? ' has-error' : '' }}">
                         <label for="help-me">Attachments:</label>
                         <p class="help-block" id="help-me"><span><i>Attach CV, Passport Copy, VISA Copy, Educational Degree, or any other related documents<br/><span class="alert-warning">Remember to rename the files respectively!!!</span></i></span></p>
-                        <div class="input-group" id="attachmentGroup">
+                        <input type="hidden" id="attachmentCounter" name="attachmentCounter" value="1">
+                        <input type="button" id="add" class="btn btn-xs" onclick="addInput('attachmentGroup0')" value="Add New" title="Add new attachment field"/>
+                        <br/>
+                        <br/>
+
+                        <div class="input-group" id="attachmentGroup0">
                             <label for="attachment">File: &nbsp;</label>
                             <input type="file" id="attachment" name="attachment[]" value="{{ old.attachment }}"> &nbsp;
                             <label for="attachmentCountry">Issuance Country: &nbsp;</label>
-                            <select name="attachmentCountry[]" id="attachmentCountry">
+                            <select name="attachmentCountry0" id="attachmentCountry">
                                 <option value="0">Please Select ... </option>
                                 {% for country in auth.countries %}
                                     <option value="{{ country.id }}" {% if country.id == old.attachmentCountry %}selected{% endif %}>{{ country.country_name | e }}</option>
                                 {% endfor %}
-                            </select><br/>
+                            </select>
                             <label for="attachmentType">Type: &nbsp;</label>
-                            <input id="attachmentType" name="attachmentType[]" type="text">
+                            <input id="attachmentType" name="attachmentType0" type="text">
                             <label for="attachmentIssuer">Issued By: &nbsp;</label>
-                            <input type="text" id="attachmentIssuer" name="attachmentIssuer[]"> &nbsp;
+                            <input type="text" id="attachmentIssuer" name="attachmentIssuer0"> &nbsp;
                             <label for="attachmentIssueDate">Issue Date: &nbsp;</label>
-                            <input type="date" id="attachmentIssueDate" name="attachmentIssueDate[]" value="1999-12-31"> &nbsp;
+                            <input type="date" id="attachmentIssueDate" name="attachmentIssueDate0" value="1999-12-31"> &nbsp;
                             <label for="attachmentExpiryDate">Expiry Date: &nbsp;</label>
-                            <input type="date" id="attachmentExpiryDate" name="attachmentExpiryDate[]" value="2099-12-31"> &nbsp;
+                            <input type="date" id="attachmentExpiryDate" name="attachmentExpiryDate0" value="2099-12-31"> &nbsp;
+                            <input type="button" id="remove" class="btn btn-xs btn-danger" onclick="removeInput(this)" value="X" title="Removes the last item" />
                         </div>
+
+
                         {% if errors.attachment %}
                             <span class="help-block">{{ errors.attachment | first }}</span>
                         {% endif %}
-                        <input type="button" id="add" class="btn btn-xs" onclick="addInput('#attachmentGroup')" value="Add New" title="Add new attachment field"/>
-                        <input type="button" id="remove" class="btn btn-xs btn-danger" onclick="removeInput(this)" value="Remove" title="Removes the last item"/>
                     </div>
 
                     <div class="form-group has-feedback{{ errors.source ? ' has-error' : '' }}">

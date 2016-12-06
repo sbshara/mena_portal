@@ -83,6 +83,7 @@ function getStates() {
     });
 }
 
+
 // Add and remove attachment (input field) (New Applicant)
 var attachment = 1;
 var limit = 10;
@@ -90,9 +91,16 @@ var addErr = false;
 var remErr = false;
 
 function addInput(div){
-    if(attachment <= limit){
-        $(div).clone().appendTo('#newAttachment');
-    //    $('#attachment' + (attachment - 1)).after("<input type='file' class='btn btn-file' id='attachment" + attachment + "' name='attachment[" + attachment + "]'>");
+    if(attachment < limit){
+        var newDiv = div.slice(0,-1) + attachment;
+        $('#'+div).clone().appendTo('#newAttachment').prop('id', newDiv);
+        $('#'+newDiv).find('#remove').prop('hidden', '');
+        $('#'+newDiv).find('#attachmentCountry').prop('name', 'attachmentCountry'+attachment);
+        $('#'+newDiv).find('#attachmentType').prop('name', 'attachmentType'+attachment);
+        $('#'+newDiv).find('#attachmentIssuer').prop('name', 'attachmentIssuer'+attachment);
+        $('#'+newDiv).find('#attachmentIssueDate').prop('name', 'attachmentIssueDate'+attachment);
+        $('#'+newDiv).find('#attachmentExpiryDate').prop('name', 'attachmentExpiryDate'+attachment);
+        $('#attachmentCounter').val(attachment);
         if(remErr == true){
             $('#remErr').remove();
             remErr = false;
@@ -102,22 +110,23 @@ function addInput(div){
         if(addErr == true){
             return false;
         } else {
-            $("div[id='attachmentGroup']:first").before("<span id='addErr' class='alert-error'>you have reached the limit of attachments!</span><br/>");
+            $('#'+div).before("<span id='addErr' class='alert-error'>you have reached the limit of attachments!</span><br/>");
             addErr = true;
         }
     }
 }
 
-function removeInput(){
+function removeInput(Obj){
     if(attachment <= 1){
         if(remErr == true){
             return false;
         } else {
-            $("div[id='attachmentGroup']:first").before("<span id='remErr' class='alert-error'>Nothing to remove!</span>");
+            $(Obj).parent().before("<span id='remErr' class='alert-error'>Nothing to remove!</span>");
             remErr = true;
         }
     } else {
-        $("div[id='attachmentGroup']:last").remove();
+        $(Obj).parent().remove();
+        $('#attachmentCounter').val(attachment);
         $('#addErr').remove();
         addErr = false;
         attachment--;

@@ -55,7 +55,7 @@ class AuthController extends Controller {
 
 	public function postNewApplicant ($request, $response, $arg) {
 
-		// Check validation of some fields (as required)
+		// Check validation of the applicant information:
 		$validation = $this->validator->validate($request, [
 			'first_name'        =>  v::notEmpty()->alpha(),
 			'last_name'         =>  v::notEmpty()->alpha(),
@@ -65,15 +65,14 @@ class AuthController extends Controller {
 			'dob'               =>  v::notEmpty()->date()->OverEighteen(),
 			'nationality'       =>  v::notEmpty()->min(1)
 		]);
-
 		// Check if validation has passed or failed
 		if ($validation->failed()) {
 			return $response->withRedirect($this->router->pathFor('auth.new.applicant'));
 		}
-
-		// upload profile picture
+// --------------------------------------------------------------------------------------------------------
+        // upload profile picture
 		$profile = $request->getUploadedFiles()['profilepic'];
-		$profile_location = 'img/applicants/';
+		$profile_location = 'img/applicants/'.$profile->getClientFilename();
 		if (empty($profile)) {
 			$this->flash->addMessage('danger', 'Expected a profile image to be uploaded!');
 			return $response->withRedirect($this->router->pathFor('auth.new.applicant'));
@@ -98,10 +97,10 @@ class AuthController extends Controller {
 
 		$totalAttach = count($request->getUploadedFiles()['attachment']);
 		$attachments = $request->getUploadedFiles()['attachment'];
-
 		// -- Loop through each file
 		for($i = 0; $i <= $totalAttach; $i++) {
 			$attachment = $attachments[$i];
+            $attachmentLocation = 'docs/applicants/'.'id'.$applicant->id.'_'.$attachment->getClientFilename();
 			// -- Get the temp file path
 			$tmpattach = $attachment->file;
 			// -- Make sure we have a filepath
@@ -112,13 +111,12 @@ class AuthController extends Controller {
 	//				var_dump($attachment);
 	//				die();
 						$document = Document::create([
-							'doc_country'       =>  $request->getParam('attachmentCountry[' . $i . ']'),
-							'doc_expiry_date'   =>  $request->getParam('attachmentExpiryDate[' . $i . ']'),
-							'doc_issue_date'    =>  $request->getParam('attachmentIssueDate[' . $i . ']'),
-							'doc_issuer'        =>  $request->getParam('attachmentIssuer[' . $i . ']'),
-							'doc_type'          =>  $request->getParam('attachmentType[' . $i . ']'),
-	//						'doc_loc'           =>  'docs/applicants/' . $attachment->getClientFilename()
-							'doc_loc'           =>  $attachment
+							'doc_country'       =>  $request->getParam('attachmentCountry'.$i),
+							'doc_expiry_date'   =>  $request->getParam('attachmentExpiryDate'.$i),
+							'doc_issue_date'    =>  $request->getParam('attachmentIssueDate'.$i),
+							'doc_issuer'        =>  $request->getParam('attachmentIssuer'.$i),
+							'doc_type'          =>  $request->getParam('attachmentType'.$i),
+							'doc_loc'           =>  $attachment->getClientFilename()
 						]);
 
 						$mapper = ApplicantDocs::create([
