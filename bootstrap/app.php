@@ -95,16 +95,18 @@ $container['view'] = function ($container) {
 
 	// Globalize the Auth module to access it within template partials
 	$view->getEnvironment()->addGlobal('auth', [
-		'check'         =>  $container->auth->check(),
-		'user'          =>  $container->auth->user(),
-		'profile'       =>  $container->auth->profile(),
-		'title'         =>  $container->auth->title(),
-		'users'         =>  $container->auth->allUsers(),
-		'employees'     =>  $container->auth->allEmployees(),
-		'applicants'    =>  $container->auth->allApplicants(),
-		'countries'     =>  $container->auth->allCountries(),
-		'states'        =>  $container->auth->allStates(),
-		'cities'        =>  $container->auth->allCities()
+		'check'         	=>  $container->auth->check(),
+		'user'          	=>  $container->auth->user(),
+		'profile'       	=>  $container->auth->profile(),
+		'title'         	=>  $container->auth->title(),
+		'users'         	=>  $container->auth->allUsers(),
+		'employees'     	=>  $container->auth->allEmployees(),
+		'applicants'    	=>  $container->auth->allApplicants(),
+		'countries'     	=>  $container->auth->allCountries(),
+		'states'        	=>  $container->auth->allStates(),
+		'stateByCountry' 	=>  $container->auth->statesByCountry($container),
+		'cities'        	=>  $container->auth->allCities(),
+		'cityByState'       =>  $container->auth->cityByState(),
 	]);
 
 	// Add the flash message
@@ -126,6 +128,7 @@ $container['validator'] = function ($container) {
 $container['HomeController'] = function ($container) { return new \App\Controllers\HomeController($container); };
 $container['AuthController'] = function ($container) { return new \App\Controllers\Auth\AuthController($container); };
 $container['HRController'] = function ($container) { return new \App\Controllers\Auth\HRController($container); };
+$container['AddressController'] = function ($container) { return new \App\Controllers\AddressController($container); };
 $container['PasswordController'] = function ($container) { return new \App\Controllers\Auth\PasswordController($container); };
 $container['csrf'] = function ($container) { return new \Slim\Csrf\Guard(); };
 $container['http'] = function ($container) { return new UploadedFile(); };

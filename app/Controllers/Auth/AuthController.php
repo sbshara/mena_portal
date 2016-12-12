@@ -199,7 +199,7 @@ class AuthController extends Controller {
 		$direction = $request->getParam('nextstep');
 		switch ($direction) {
 			case 'address':
-				return $response->withRedirect($this->router->pathFor('auth.new.address'));
+				return $response->withRedirect($this->router->pathFor('new.address'));
 			case 'skill':
 				return $response->withRedirect($this->router->pathFor('auth.new.skills'));
 			case 'degree':
@@ -213,7 +213,7 @@ class AuthController extends Controller {
 		}
 
 		// redirect to the next page (add experience, add address, ...etc.)
-		return $response->withRedirect($this->router->pathFor('auth.new.address'));
+		return $response->withRedirect($this->router->pathFor('new.address'));
 	}
 
 	public function getAllApplicants ($request, $response) {

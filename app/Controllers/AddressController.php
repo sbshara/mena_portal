@@ -18,13 +18,19 @@ use App\Models\ApplicantAddress;
 class AddressController extends Controller {
 
 	public function getNewAddress ($request, $response) {
-		return $this->view->render($response, 'auth/newAddress.twig');
+		return $this->view->render($response, 'hr/newAddress.twig');
 	}
 
 	public function postNewAddress ($request, $response) {
 
 	}
 
+	public function getStates ($request, $response, $arg) {
+		return $this->view->render($response, 'partials/states.twig');
+	}
 
+	public function getCities ($request, $response, $arg) {
+		return $this->view->render($response, 'partials/cities.twig');
+	}
 
 }

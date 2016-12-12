@@ -23,6 +23,10 @@ class HRController extends Controller {
 	}
 
 	public function postNewApplicant ($request, $response) {
+
+//        var_dump($request);
+//        die();
+
 		// Defining profile pic:
 		$profile = $request->getUploadedFiles()['profilepic'];
 
@@ -55,8 +59,8 @@ class HRController extends Controller {
 					$country            =>  v::notEmpty()->numeric(),
 					$type               =>  v::notEmpty()->alnum(),
 					$issuer             =>  v::notEmpty()->alnum(),
-					$issueDate          =>  v::date()->notEmpty(),
-					$issueExpiry        =>  v::date()->notEmpty(),
+					$issueDate          =>  v::notEmpty(),
+					$issueExpiry        =>  v::notEmpty(),
 					'first_name'        =>  v::notEmpty()->alpha(),
 					'last_name'         =>  v::notEmpty()->alpha(),
 					'mobile_phone'      =>  v::notEmpty()->digit(' +()-')->phoneAvailable(),
@@ -167,7 +171,7 @@ class HRController extends Controller {
 		$direction = $request->getParam('nextstep');
 		switch ($direction) {
 			case 'address':
-				return $response->withRedirect($this->router->pathFor('auth.new.address'));
+				return $response->withRedirect($this->router->pathFor('new.address'));
 			case 'skill':
 				return $response->withRedirect($this->router->pathFor('auth.new.skills'));
 			case 'degree':
@@ -181,7 +185,7 @@ class HRController extends Controller {
 		}
 
 		// redirect to the next page (add experience, add address, ...etc.)
-		return $response->withRedirect($this->router->pathFor('auth.new.address'));
+		return $response->withRedirect($this->router->pathFor('new.address'));
 	}
 
 	public function getAllApplicants ($request, $response) {
@@ -245,14 +249,6 @@ class HRController extends Controller {
 			array_push($response, $result['first_name'].$result['last_name']);
 		}
 		return $response;
-	}
-
-	public function getNewAddress ($request, $response) {
-		return $this->view->render($response, 'hr/newAddress.twig');
-	}
-
-	public function postNewAddress ($request, $response) {
-
 	}
 
 	public function getStateByCountry ($request, $response) {

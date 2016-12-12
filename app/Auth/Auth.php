@@ -13,9 +13,10 @@ use App\Models\Employee;
 use App\Models\EmployeeTitle;
 use App\Models\User;
 use App\Models\ProfileSetting;
-use \App\Models\Country;
-use \App\Models\State;
-use \App\Models\City;
+use App\Models\Country;
+use App\Models\State;
+use App\Models\City;
+
 
 class Auth {
 

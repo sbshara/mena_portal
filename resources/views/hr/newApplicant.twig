@@ -76,7 +76,7 @@
                             <div class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
                             </div>
-                            <input type="date" class="form-control pull-right" name="dob" id="date-picker" value="{{ old.dob }}">
+                            <input type="text" class="form-control pull-right" name="dob" id="datepicker" value="{{ old.dob }}">
                         </div>
                         {% if errors.dob %}
                             <span class="help-block">{{ errors.dob | first }}</span>
@@ -95,17 +95,14 @@
                     <div id="newAttachment" class="form-group">
                         <label for="help-me">Attachments:</label>
                         <p class="help-block" id="help-me"><span><i>Attach CV, Passport Copy, VISA Copy, Educational Degree, or any other related documents<br/><mark>Remember to rename the files respectively</mark></i></span></p>
-                        <input type="hidden" id="attachmentCounter" name="attachmentCounter" value="0">
+                        <input type="hidden" id="attachmentCounter" name="attachmentCounter" value="-1">
                         <input type="button" id="add" class="btn btn-xs" onclick="showInput('divattachmentGroup')" value="Add New" title="Add new attachment field"/>
                         <input type="button" id="remove" class="btn btn-xs btn-danger" onclick="hideInput('divattachmentGroup')" value="Remove" title="Removes the last item" />
                         <br/>
-                        <div class="form-group bg-gray-light hidden has-feedback{{ errors.attachment0 ? ' has-error' : '' }}{{ errors.attachmentCountry0 ? ' has-error' : '' }}{{ errors.attachmentType0 ? ' has-error' : '' }}{{ errors.attachmentIssuer0 ? ' has-error' : '' }}{{ errors.attachmentIssueDate0 ? ' has-error' : '' }}{{ errors.attachmentExpiryDate0 ? ' has-error' : '' }}" id="divattachmentGroup0">
-                            <div class="input-group inline has-feedback{{ errors.attachment0 ? ' has-error' : '' }}" id="attachment0">
+                        <div class="form-group bg-gray-light hidden has-feedback{{ errors.attachmentCountry0 ? ' has-error' : '' }}{{ errors.attachmentType0 ? ' has-error' : '' }}{{ errors.attachmentIssuer0 ? ' has-error' : '' }}{{ errors.attachmentIssueDate0 ? ' has-error' : '' }}{{ errors.attachmentExpiryDate0 ? ' has-error' : '' }}" id="divattachmentGroup0">
+                            <div class="input-group inline has-feedback" id="div2attachment0">
                                 <label for="attachment0">File: &nbsp;</label>
-                                <input type="file" id="attachment0" name="attachment[]" value="{{ old.attachment0 }}"> &nbsp;
-                                {% if errors.attachment0 %}
-                                    <span class="help-block">{{ errors.attachment0 | first }}</span>
-                                {% endif %}
+                                <input type="file" id="attachment0" name="attachment[]" > &nbsp;
                             </div>
                             <div class="input-group inline has-feedback{{ errors.attachmentCountry0 ? ' has-error' : '' }}" id="attachmentCountry0">
                                 <label for="attachmentCountry0">Issuance Country: &nbsp;</label>
@@ -149,13 +146,10 @@
                                 {% endif %}
                             </div>
                         </div>
-                        <div class="form-group hidden has-feedback{{ errors.attachment1 ? ' has-error' : '' }}{{ errors.attachmentCountry1 ? ' has-error' : '' }}{{ errors.attachmentType1 ? ' has-error' : '' }}{{ errors.attachmentIssuer1 ? ' has-error' : '' }}{{ errors.attachmentIssueDate1 ? ' has-error' : '' }}{{ errors.attachmentExpiryDate1 ? ' has-error' : '' }}" id="divattachmentGroup1">
-                            <div class="input-group inline has-feedback{{ errors.attachment1 ? ' has-error' : '' }}" id="attachment1">
+                        <div class="form-group hidden has-feedback{{ errors.attachmentCountry1 ? ' has-error' : '' }}{{ errors.attachmentType1 ? ' has-error' : '' }}{{ errors.attachmentIssuer1 ? ' has-error' : '' }}{{ errors.attachmentIssueDate1 ? ' has-error' : '' }}{{ errors.attachmentExpiryDate1 ? ' has-error' : '' }}" id="divattachmentGroup1">
+                            <div class="input-group inline has-feedback" id="div2attachment1">
                                 <label for="attachment1">File: &nbsp;</label>
-                                <input type="file" id="attachment1" name="attachment[]" value="{{ old.attachment1 }}"> &nbsp;
-                                {% if errors.attachment1 %}
-                                    <span class="help-block">{{ errors.attachment1 | first }}</span>
-                                {% endif %}
+                                <input type="file" id="attachment1" name="attachment[]"> &nbsp;
                             </div>
                             <div class="input-group inline has-feedback{{ errors.attachmentCountry1 ? ' has-error' : '' }}" id="attachmentCountry1">
                                 <label for="attachmentCountry1">Issuance Country: &nbsp;</label>
@@ -199,13 +193,10 @@
                                 {% endif %}
                             </div>
                         </div>
-                        <div class="form-group bg-gray-light hidden has-feedback{{ errors.attachment2 ? ' has-error' : '' }}{{ errors.attachmentCountry2 ? ' has-error' : '' }}{{ errors.attachmentType2 ? ' has-error' : '' }}{{ errors.attachmentIssuer2 ? ' has-error' : '' }}{{ errors.attachmentIssueDate2 ? ' has-error' : '' }}{{ errors.attachmentExpiryDate2 ? ' has-error' : '' }}" id="divattachmentGroup2">
-                            <div class="input-group inline has-feedback{{ errors.attachment2 ? ' has-error' : '' }}" id="attachment2">
+                        <div class="form-group bg-gray-light hidden has-feedback{{ errors.attachmentCountry2 ? ' has-error' : '' }}{{ errors.attachmentType2 ? ' has-error' : '' }}{{ errors.attachmentIssuer2 ? ' has-error' : '' }}{{ errors.attachmentIssueDate2 ? ' has-error' : '' }}{{ errors.attachmentExpiryDate2 ? ' has-error' : '' }}" id="divattachmentGroup2">
+                            <div class="input-group inline has-feedback" id="div2attachment2">
                                 <label for="attachment2">File: &nbsp;</label>
-                                <input type="file" id="attachment2" name="attachment[]" value="{{ old.attachment2 }}"> &nbsp;
-                                {% if errors.attachment2 %}
-                                    <span class="help-block">{{ errors.attachment2 | first }}</span>
-                                {% endif %}
+                                <input type="file" id="attachment2" name="attachment[]"> &nbsp;
                             </div>
                             <div class="input-group inline has-feedback{{ errors.attachmentCountry2 ? ' has-error' : '' }}" id="attachmentCountry2">
                                 <label for="attachmentCountry2">Issuance Country: &nbsp;</label>
@@ -249,13 +240,10 @@
                                 {% endif %}
                             </div>
                         </div>
-                        <div class="form-group hidden has-feedback{{ errors.attachment3 ? ' has-error' : '' }}{{ errors.attachmentCountry3 ? ' has-error' : '' }}{{ errors.attachmentType3 ? ' has-error' : '' }}{{ errors.attachmentIssuer3 ? ' has-error' : '' }}{{ errors.attachmentIssueDate3 ? ' has-error' : '' }}{{ errors.attachmentExpiryDate3 ? ' has-error' : '' }}" id="divattachmentGroup3">
-                            <div class="input-group inline has-feedback{{ errors.attachment3 ? ' has-error' : '' }}" id="attachment3">
+                        <div class="form-group hidden has-feedback{{ errors.attachmentCountry3 ? ' has-error' : '' }}{{ errors.attachmentType3 ? ' has-error' : '' }}{{ errors.attachmentIssuer3 ? ' has-error' : '' }}{{ errors.attachmentIssueDate3 ? ' has-error' : '' }}{{ errors.attachmentExpiryDate3 ? ' has-error' : '' }}" id="divattachmentGroup3">
+                            <div class="input-group inline has-feedback" id="div2attachment3">
                                 <label for="attachment3">File: &nbsp;</label>
-                                <input type="file" id="attachment3" name="attachment[]" value="{{ old.attachment3 }}"> &nbsp;
-                                {% if errors.attachment3 %}
-                                    <span class="help-block">{{ errors.attachment3 | first }}</span>
-                                {% endif %}
+                                <input type="file" id="attachment3" name="attachment[]"> &nbsp;
                             </div>
                             <div class="input-group inline has-feedback{{ errors.attachmentCountry3 ? ' has-error' : '' }}" id="attachmentCountry3">
                                 <label for="attachmentCountry3">Issuance Country: &nbsp;</label>
@@ -299,13 +287,10 @@
                                 {% endif %}
                             </div>
                         </div>
-                        <div class="form-group bg-gray-light hidden has-feedback{{ errors.attachment4 ? ' has-error' : '' }}{{ errors.attachmentCountry4 ? ' has-error' : '' }}{{ errors.attachmentType4 ? ' has-error' : '' }}{{ errors.attachmentIssuer4 ? ' has-error' : '' }}{{ errors.attachmentIssueDate4 ? ' has-error' : '' }}{{ errors.attachmentExpiryDate4 ? ' has-error' : '' }}" id="divattachmentGroup4">
-                            <div class="input-group inline has-feedback{{ errors.attachment4 ? ' has-error' : '' }}" id="attachment4">
+                        <div class="form-group bg-gray-light hidden has-feedback{{ errors.attachmentCountry4 ? ' has-error' : '' }}{{ errors.attachmentType4 ? ' has-error' : '' }}{{ errors.attachmentIssuer4 ? ' has-error' : '' }}{{ errors.attachmentIssueDate4 ? ' has-error' : '' }}{{ errors.attachmentExpiryDate4 ? ' has-error' : '' }}" id="divattachmentGroup4">
+                            <div class="input-group inline has-feedback" id="div2attachment4">
                                 <label for="attachment4">File: &nbsp;</label>
-                                <input type="file" id="attachment4" name="attachment[]" value="{{ old.attachment4 }}"> &nbsp;
-                                {% if errors.attachment4 %}
-                                    <span class="help-block">{{ errors.attachment4 | first }}</span>
-                                {% endif %}
+                                <input type="file" id="attachment4" name="attachment[]"> &nbsp;
                             </div>
                             <div class="input-group inline has-feedback{{ errors.attachmentCountry4 ? ' has-error' : '' }}" id="attachmentCountry4">
                                 <label for="attachmentCountry4">Issuance Country: &nbsp;</label>
@@ -349,13 +334,10 @@
                                 {% endif %}
                             </div>
                         </div>
-                        <div class="form-group hidden  has-feedback{{ errors.attachment5 ? ' has-error' : '' }}{{ errors.attachmentCountry5 ? ' has-error' : '' }}{{ errors.attachmentType5 ? ' has-error' : '' }}{{ errors.attachmentIssuer5 ? ' has-error' : '' }}{{ errors.attachmentIssueDate5 ? ' has-error' : '' }}{{ errors.attachmentExpiryDate5 ? ' has-error' : '' }}" id="divattachmentGroup5">
-                            <div class="input-group inline has-feedback{{ errors.attachment5 ? ' has-error' : '' }}" id="attachment5">
+                        <div class="form-group hidden  has-feedback{{ errors.attachmentCountry5 ? ' has-error' : '' }}{{ errors.attachmentType5 ? ' has-error' : '' }}{{ errors.attachmentIssuer5 ? ' has-error' : '' }}{{ errors.attachmentIssueDate5 ? ' has-error' : '' }}{{ errors.attachmentExpiryDate5 ? ' has-error' : '' }}" id="divattachmentGroup5">
+                            <div class="input-group inline has-feedback" id="div2attachment5">
                                 <label for="attachment5">File: &nbsp;</label>
-                                <input type="file" id="attachment5" name="attachment[]" value="{{ old.attachment5 }}"> &nbsp;
-                                {% if errors.attachment5 %}
-                                    <span class="help-block">{{ errors.attachment5 | first }}</span>
-                                {% endif %}
+                                <input type="file" id="attachment5" name="attachment[]"> &nbsp;
                             </div>
                             <div class="input-group inline has-feedback{{ errors.attachmentCountry5 ? ' has-error' : '' }}" id="attachmentCountry5">
                                 <label for="attachmentCountry5">Issuance Country: &nbsp;</label>
@@ -399,13 +381,10 @@
                                 {% endif %}
                             </div>
                         </div>
-                        <div class="form-group bg-gray-light hidden has-feedback{{ errors.attachment6 ? ' has-error' : '' }}{{ errors.attachmentCountry6 ? ' has-error' : '' }}{{ errors.attachmentType6 ? ' has-error' : '' }}{{ errors.attachmentIssuer6 ? ' has-error' : '' }}{{ errors.attachmentIssueDate6 ? ' has-error' : '' }}{{ errors.attachmentExpiryDate6 ? ' has-error' : '' }}" id="divattachmentGroup6">
-                            <div class="input-group inline has-feedback{{ errors.attachment6 ? ' has-error' : '' }}" id="attachment6">
+                        <div class="form-group bg-gray-light hidden has-feedback{{ errors.attachmentCountry6 ? ' has-error' : '' }}{{ errors.attachmentType6 ? ' has-error' : '' }}{{ errors.attachmentIssuer6 ? ' has-error' : '' }}{{ errors.attachmentIssueDate6 ? ' has-error' : '' }}{{ errors.attachmentExpiryDate6 ? ' has-error' : '' }}" id="divattachmentGroup6">
+                            <div class="input-group inline has-feedback" id="div2attachment6">
                                 <label for="attachment6">File: &nbsp;</label>
-                                <input type="file" id="attachment6" name="attachment[]" value="{{ old.attachment6 }}"> &nbsp;
-                                {% if errors.attachment6 %}
-                                    <span class="help-block">{{ errors.attachment6 | first }}</span>
-                                {% endif %}
+                                <input type="file" id="attachment6" name="attachment[]"> &nbsp;
                             </div>
                             <div class="input-group inline has-feedback{{ errors.attachmentCountry6 ? ' has-error' : '' }}" id="attachmentCountry6">
                                 <label for="attachmentCountry6">Issuance Country: &nbsp;</label>
@@ -449,13 +428,10 @@
                                 {% endif %}
                             </div>
                         </div>
-                        <div class="form-group hidden has-feedback{{ errors.attachment7 ? ' has-error' : '' }}{{ errors.attachmentCountry7 ? ' has-error' : '' }}{{ errors.attachmentType7 ? ' has-error' : '' }}{{ errors.attachmentIssuer7 ? ' has-error' : '' }}{{ errors.attachmentIssueDate7 ? ' has-error' : '' }}{{ errors.attachmentExpiryDate7 ? ' has-error' : '' }}" id="divattachmentGroup7">
-                            <div class="input-group inline has-feedback{{ errors.attachment7 ? ' has-error' : '' }}" id="attachment7">
+                        <div class="form-group hidden has-feedback{{ errors.attachmentCountry7 ? ' has-error' : '' }}{{ errors.attachmentType7 ? ' has-error' : '' }}{{ errors.attachmentIssuer7 ? ' has-error' : '' }}{{ errors.attachmentIssueDate7 ? ' has-error' : '' }}{{ errors.attachmentExpiryDate7 ? ' has-error' : '' }}" id="divattachmentGroup7">
+                            <div class="input-group inline has-feedback" id="div2attachment7">
                                 <label for="attachment7">File: &nbsp;</label>
-                                <input type="file" id="attachment7" name="attachment[]" value="{{ old.attachment7 }}"> &nbsp;
-                                {% if errors.attachment7 %}
-                                    <span class="help-block">{{ errors.attachment7 | first }}</span>
-                                {% endif %}
+                                <input type="file" id="attachment7" name="attachment[]"> &nbsp;
                             </div>
                             <div class="input-group inline has-feedback{{ errors.attachmentCountry7 ? ' has-error' : '' }}" id="attachmentCountry7">
                                 <label for="attachmentCountry7">Issuance Country: &nbsp;</label>
@@ -499,13 +475,10 @@
                                 {% endif %}
                             </div>
                         </div>
-                        <div class="form-group bg-gray-light hidden has-feedback{{ errors.attachment8 ? ' has-error' : '' }}{{ errors.attachmentCountry8 ? ' has-error' : '' }}{{ errors.attachmentType8 ? ' has-error' : '' }}{{ errors.attachmentIssuer8 ? ' has-error' : '' }}{{ errors.attachmentIssueDate8 ? ' has-error' : '' }}{{ errors.attachmentExpiryDate8 ? ' has-error' : '' }}" id="divattachmentGroup8">
-                            <div class="input-group inline has-feedback{{ errors.attachment8 ? ' has-error' : '' }}" id="attachment8">
+                        <div class="form-group bg-gray-light hidden has-feedback{{ errors.attachmentCountry8 ? ' has-error' : '' }}{{ errors.attachmentType8 ? ' has-error' : '' }}{{ errors.attachmentIssuer8 ? ' has-error' : '' }}{{ errors.attachmentIssueDate8 ? ' has-error' : '' }}{{ errors.attachmentExpiryDate8 ? ' has-error' : '' }}" id="divattachmentGroup8">
+                            <div class="input-group inline has-feedback" id="div2attachment8">
                                 <label for="attachment8">File: &nbsp;</label>
-                                <input type="file" id="attachment8" name="attachment[]" value="{{ old.attachment8 }}"> &nbsp;
-                                {% if errors.attachment8 %}
-                                    <span class="help-block">{{ errors.attachment8 | first }}</span>
-                                {% endif %}
+                                <input type="file" id="attachment8" name="attachment[]"> &nbsp;
                             </div>
                             <div class="input-group inline has-feedback{{ errors.attachmentCountry8 ? ' has-error' : '' }}" id="attachmentCountry8">
                                 <label for="attachmentCountry8">Issuance Country: &nbsp;</label>
@@ -549,13 +522,10 @@
                                 {% endif %}
                             </div>
                         </div>
-                        <div class="form-group hidden has-feedback{{ errors.attachment9 ? ' has-error' : '' }}{{ errors.attachmentCountry9 ? ' has-error' : '' }}{{ errors.attachmentType9 ? ' has-error' : '' }}{{ errors.attachmentIssuer9 ? ' has-error' : '' }}{{ errors.attachmentIssueDate9 ? ' has-error' : '' }}{{ errors.attachmentExpiryDate9 ? ' has-error' : '' }}" id="divattachmentGroup9">
-                            <div class="input-group inline has-feedback{{ errors.attachment9 ? ' has-error' : '' }}" id="attachment9">
+                        <div class="form-group hidden has-feedback{{ errors.attachmentCountry9 ? ' has-error' : '' }}{{ errors.attachmentType9 ? ' has-error' : '' }}{{ errors.attachmentIssuer9 ? ' has-error' : '' }}{{ errors.attachmentIssueDate9 ? ' has-error' : '' }}{{ errors.attachmentExpiryDate9 ? ' has-error' : '' }}" id="divattachmentGroup9">
+                            <div class="input-group inline has-feedback" id="div2attachment9">
                                 <label for="attachment9">File: &nbsp;</label>
-                                <input type="file" id="attachment9" name="attachment[]" value="{{ old.attachment9 }}"> &nbsp;
-                                {% if errors.attachment9 %}
-                                    <span class="help-block">{{ errors.attachment9 | first }}</span>
-                                {% endif %}
+                                <input type="file" id="attachment9" name="attachment[]"> &nbsp;
                             </div>
                             <div class="input-group inline has-feedback{{ errors.attachmentCountry9 ? ' has-error' : '' }}" id="attachmentCountry9">
                                 <label for="attachmentCountry9">Issuance Country: &nbsp;</label>
@@ -622,11 +592,11 @@
                         <select class="form-control" name="nextstep" id="nextstep">
                             <option value="" {% if old.nextstep == '' %}selected{% endif %}>Please Select ...</option>
                             <option value="address" {% if old.nextstep == 'address' %}selected{% endif %}>Applicant Address</option>
-                            <option value="skill" {% if old.nextstep == 'Search Engine' %}selected{% endif %}>Applicant skills</option>
-                            <option value="degree" {% if old.nextstep == 'Friend' %}selected{% endif %}>Applicant educational degrees</option>
-                            <option value="experience" {% if old.nextstep == 'Other' %}selected{% endif %}>Applicant experiences</option>
-                            <option value="interview" {% if old.nextstep == 'No Answer' %}selected{% endif %}>Schedule an interview</option>
-                            <option value="home" {% if old.nextstep == 'No Answer' %}selected{% endif %} title="Not Recommended!">Do nothing!</option>
+                            <option value="skill" {% if old.nextstep == 'skill' %}selected{% endif %}>Applicant skills</option>
+                            <option value="degree" {% if old.nextstep == 'education' %}selected{% endif %}>Applicant educational degrees</option>
+                            <option value="experience" {% if old.nextstep == 'experience' %}selected{% endif %}>Applicant experiences</option>
+                            <option value="interview" {% if old.nextstep == 'interview' %}selected{% endif %}>Schedule an interview</option>
+                            <option value="home" {% if old.nextstep == 'home' %}selected{% endif %} title="Not Recommended!">Do nothing!</option>
                         </select>
                         {% if errors.nextstep %}
                             <span class="help-block">{{ errors.nextstep | first }}</span>

@@ -9,14 +9,10 @@
             <div class="register-box-body">
                 <p class="login-box-msg">Add a new address</p>
 
-                <form action="{{ path_for('auth.new.address') }}" method="post" autocomplete="on" enctype="multipart/form-data" >
+                <form action="{{ path_for('new.address') }}" method="post" autocomplete="on" enctype="multipart/form-data" >
                     {#TODO: show this field (applicant only if authorised, otherwise, show <p> with loggedin user details #}
                     <div class="form-group has-feedback{{ errors.applicant ? ' has-error' : '' }}">
-                        {% if old.first_name %}
-                            <input type="text" id="applicant" name="applicant" value="{{ old.first_name }}.{{ old.last_name }}">
-                        {% else %}
-                            <input type="text" id="applicant" name="applicant" class="form-control" placeholder="Start typing applicant's name">
-                        {% endif %}
+                            <input type="text" id="applicant" name="applicant" value="{{ old.first_name ? old.first_name ~ ' ' ~ old.last_name : '' }}">
                         {% if errors.applicant %}
                             <span class="help-block">{{ errors.applicant | first }}</span>
                         {% endif %}
@@ -40,8 +36,9 @@
 
                     <div class="form-group has-feedback{{ errors.country ? ' has-error' : '' }}">
                         <select class="form-control" name="country" id="country" onchange="getStates()">
+                            <option value="">Please Select ... </option>
                             {% for country in auth.countries %}
-                                <option id="{{ country.id }}">{{ country.country_name | e }}</option>
+                                <option value="{{ country.id }}" {% if country.id == old.nationality %}selected{% endif %}>{{ country.country_name | e }}</option>
                             {% endfor %}
                         </select>
                         {% if errors.country %}
@@ -200,9 +197,21 @@
                             <span class="help-block">{{ errors.source | first }}</span>
                         {% endif %}
                     </div>
-                    <div class="form-group has-feedback">
-                        <p class="help-block"><small><i>Add this applicant as employee?</i></small> &nbsp; <input type="checkbox" name="employee"></p>
+                    <div class="form-group has-feedback{{ errors.nextstep ? ' has-error' : '' }}">
+                        <label for="nextstep">Next Step:  &nbsp;</label>
+                        <select class="form-control" name="nextstep" id="nextstep">
+                            <option value="" {% if old.nextstep == '' %}selected{% endif %}>Please Select ...</option>
+                            <option value="skill" {% if old.nextstep == 'skill' %}selected{% endif %}>Applicant skills</option>
+                            <option value="degree" {% if old.nextstep == 'education' %}selected{% endif %}>Applicant educational degrees</option>
+                            <option value="experience" {% if old.nextstep == 'experience' %}selected{% endif %}>Applicant experiences</option>
+                            <option value="interview" {% if old.nextstep == 'interview' %}selected{% endif %}>Schedule an interview</option>
+                            <option value="home" {% if old.nextstep == 'home' %}selected{% endif %} title="Not Recommended!">Do nothing!</option>
+                        </select>
+                        {% if errors.nextstep %}
+                            <span class="help-block">{{ errors.nextstep | first }}</span>
+                        {% endif %}
                     </div>
+
                     <button type="submit" name="submit" id="submit"class="btn btn-default">Register New Applicant</button>
                     {{ csrf.field | raw }}
                 </form>

@@ -36,11 +36,23 @@ $app->group('', function () {
 	$this->get('/HR/applicants[/]', 'HRController:getAllApplicants')->setName('all.applicants');
 	$this->get('/HR/applicant[/{$id}]', 'HRController:getApplicantById')->setName('applicantById');
 
-	$this->get('/HR/new/applicant/address[/]', 'AuthController:getNewAddress')->setName('auth.new.address');
-	$this->post('/HR/new/applicant/address[/]', 'AuthController:postNewAddress');
+	$this->get('/HR/new/applicant/address[/]', 'AddressController:getNewAddress')->setName('new.address');
+	$this->post('/HR/new/applicant/address[/]', 'AddressController:postNewAddress');
 
-	$this->get('/HR/new/applicant/get/states/', 'AuthController:getStateByCountry')->setName('auth.statesByCountry');
-	$this->get('/HR/new/applicant/get/cities/?:country', 'AuthController:getCityByState')->setName('auth.cityByState');
+
+
+
+
+	$this->get('/HR/states', 'AddressController:getStates')->setName('getStates');
+	$this->get('/HR/states/{id}', 'AddressController:stateByCountry')->setName('getStatesByCountry');
+
+	$this->get('/HR/cities', 'AddressController:getCities')->setName('getCities');
+	$this->get('/HR/cities/{id}', 'AddressController:cityByState')->setName('getCitiesByState');
+
+
+
+
+
 
 
 	$this->get('/HR/new/employee[/]', 'AuthController:getNewEmployee')->setName('auth.new.employee');
