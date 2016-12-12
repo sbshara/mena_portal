@@ -125,6 +125,7 @@ $container['validator'] = function ($container) {
 // Add the Customized Controllers:
 $container['HomeController'] = function ($container) { return new \App\Controllers\HomeController($container); };
 $container['AuthController'] = function ($container) { return new \App\Controllers\Auth\AuthController($container); };
+$container['HRController'] = function ($container) { return new \App\Controllers\Auth\HRController($container); };
 $container['PasswordController'] = function ($container) { return new \App\Controllers\Auth\PasswordController($container); };
 $container['csrf'] = function ($container) { return new \Slim\Csrf\Guard(); };
 $container['http'] = function ($container) { return new UploadedFile(); };

@@ -15,14 +15,6 @@ class Validator {
 
 	protected $errors;
 
-	public $fileInfo = [
-		'jpg',
-		'png',
-		'jpeg',
-		'bmb',
-		'gif'
-	];
-
 	public function validate ($request, array $rules) {
 
 		foreach ($rules as $field => $rule) {

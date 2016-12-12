@@ -8,45 +8,15 @@
 
 namespace App\Controllers\Auth;
 
-use App\Models\Applicant;
 use App\Controllers\Controller;
-use App\Models\ApplicantDocs;
-use App\Models\Document;
-use App\Models\State;
 use Respect\Validation\Validator as v;
 use Slim\Http;
+use App\Models\Applicant;
+use App\Models\ApplicantDocs;
+use App\Models\Document;
 
 
-class AuthController extends Controller {
-
-	public function getSignOut($request, $response) {
-		$this->auth->logout();
-		return $response->withRedirect($this->router->pathFor('home'));
-	}
-
-	public function getSignIn ($request, $response) {
-		return $this->view->render($response, 'auth/signin.twig');
-	}
-
-	public function postSignIn ($request, $response) {
-		$validation = $this->validator->validate($request, [
-			'username'  =>  v::notEmpty()->alnum('-_$!@#%^&().=+~'),
-			'password'  =>  v::notEmpty()
-		]);
-		if ($validation->failed()) {
-			return $response->withRedirect($this->router->pathFor('auth.signin'));
-		}
-
-		$auth = $this->auth->attempt(
-			$request->getParam('username'),
-			$request->getParam('password')
-		);
-		if (!$auth) {
-			$this->flash->addMessage('danger', 'Could not sign you in using these credentials');
-			return $response->withRedirect($this->router->pathFor('auth.signin'));
-		}
-		return $response->withRedirect($this->router->pathFor('home'));
-	}
+class HRController extends Controller {
 
 	public function getNewApplicant ($request, $response) {
 		return $this->view->render($response, 'hr/newApplicant.twig');
@@ -58,22 +28,15 @@ class AuthController extends Controller {
 
 		// Define storage location for profilepic (attachment loop goes within the loop):
 		if($profile->getClientFilename() == '') {
-			if($request->getParam('gender') == 'M') {
+			if($request->getParam('gender') === 'M') {
 				$profile_location = 'img/applicants/defaultMale.png';
 			} else {
 				$profile_location = 'img/applicants/defaultFemale.png';
 			}
 		} else {
-			$profile_location =
-				'img/applicants/' .
-				$request->getParam('first_name') .
-				$request->getParam('last_name') .
-				$profile->getClientFilename();
-		}
-
-		// If profile upload has no errors, move the file
-		if ($profile->getError() === UPLOAD_ERR_OK) {
-			$profile->moveTo($profile_location);
+			$profile_location = 'img/applicants/' .
+				$request->getParam('first_name') . $request->getParam('last_name') .
+				date('Y-m-d') . '_' .time() . $profile->getClientFilename();
 		}
 
 		// Check if validation has passed or failed
@@ -83,7 +46,6 @@ class AuthController extends Controller {
 			$totalAttach = $request->getParam('attachmentCounter');
 			// Validate fields of attachment data:
 			for ($i = 0; $i <= $totalAttach; $i++) {
-				$attach         = 'attachment'.$i;
 				$country        = 'attachmentCountry'.$i;
 				$type           = 'attachmentType'.$i;
 				$issuer         = 'attachmentIssuer'.$i;
@@ -95,10 +57,9 @@ class AuthController extends Controller {
 					$issuer             =>  v::notEmpty()->alnum(),
 					$issueDate          =>  v::date()->notEmpty(),
 					$issueExpiry        =>  v::date()->notEmpty(),
-					$attach             =>  v::notEmpty(),
 					'first_name'        =>  v::notEmpty()->alpha(),
 					'last_name'         =>  v::notEmpty()->alpha(),
-					'mobile_phone'      =>  v::notEmpty()->digit(' +()')->phoneAvailable(),
+					'mobile_phone'      =>  v::notEmpty()->digit(' +()-')->phoneAvailable(),
 					'per_email'         =>  v::notEmpty()->email()->noWhitespace()->emailAvailable(),
 					'gender'            =>  v::notEmpty(),
 					'dob'               =>  v::notEmpty()->date()->OverEighteen(),
@@ -112,8 +73,12 @@ class AuthController extends Controller {
 				$this->flash->addMessage('danger', 'There are errors in some fields, please check and try again!');
 				return $response->withRedirect($this->router->pathFor('auth.new.applicant'));
 			}
+			// If profile upload has no errors, move the file
+			if ($profile->getError() === UPLOAD_ERR_OK) {
+				$profile->moveTo($profile_location);
+			}
 			// created the applicant record:
-			$applicant = Applicant::create([
+			$applicant0 = Applicant::create([
 				'first_name'        =>  $request->getParam('first_name'),
 				'last_name'         =>  $request->getParam('last_name'),
 				'per_email'         =>  $request->getParam('per_email'),
@@ -129,13 +94,12 @@ class AuthController extends Controller {
 			for($i = 0; $i <= $totalAttach; $i++) {
 				$attachment = $attachments[$i];
 				$attachmentLocation =
-					'docs/applicants/' .
-					'id_' .
-					$applicant->id .
-					'_' .
+					'docs/applicants/' . 'ID' .
+					$applicant0->id . '_' .
+					date('Y-m-d') . '-' . time() . '_' .
 					$attachment->getClientFilename();
 				// -- Get the temp file path
-				$tmpattach = $attachment->file;
+				$tmpattach = $attachment->getClientFilename();
 				// -- Make sure we have a filepath
 				if (!empty($tmpattach)) {
 					if ($attachment->getError() === UPLOAD_ERR_OK) {
@@ -151,7 +115,7 @@ class AuthController extends Controller {
 						]);
 
 						$mapper = ApplicantDocs::create([
-							'applicant_id'      =>  $applicant->id,
+							'applicant_id'      =>  $applicant0->id,
 							'doc_id'            =>  $document->id
 						]);
 					} else {
@@ -176,6 +140,10 @@ class AuthController extends Controller {
 			if ($validation->failed()) {
 				$this->flash->addMessage('danger', 'There are errors in some fields, please check and try again!');
 				return $response->withRedirect($this->router->pathFor('auth.new.applicant'));
+			}
+			// If profile upload has no errors, move the file
+			if ($profile->getError() === UPLOAD_ERR_OK) {
+				$profile->moveTo($profile_location);
 			}
 			// created the applicant record:
 			$applicant = Applicant::create([
@@ -223,10 +191,6 @@ class AuthController extends Controller {
 	public function getApplicantById ($request, $response, $arg) {
 // TODO: find a way to insert the ID provided in the link, and search for that record, then render the data from multiple tables accordingly
 		return $this->view->render($response, 'hr/applicantById.twig');
-	}
-
-	public function getProfile ($request, $response, $arg) {
-		return $this->view->render($response, 'auth/profile.twig');
 	}
 
 	public function getNewEmployee($request, $response){

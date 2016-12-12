@@ -85,8 +85,8 @@ function getStates() {
 
 
 // Add and remove attachment (input field) (New Applicant)
-var attachment = 1;
-var limit = 10;
+var attachment = -1;
+var limit = 9;
 var addErr = false;
 var remErr = false;
 
@@ -132,3 +132,49 @@ function removeInput(Obj){
         attachment--;
     }
 }
+
+function showInput(div) {
+    if(attachment < limit){
+        attachment++;
+        $('#' + div + attachment).removeClass(' hidden');
+        $('#attachmentCounter').val(attachment);
+        if(remErr == true){
+            $('#remErr').remove();
+            remErr = false;
+        }
+    } else {
+        if(addErr == true){
+            return false;
+        } else {
+            $('#' + div + '0').before("<span id='addErr' class='alert-error'>you have reached the limit of attachments!</span><br/>");
+            addErr = true;
+        }
+    }
+}
+
+function hideInput(div) {
+    if(attachment <= -1){
+        if(remErr == true) {
+            return false;
+        } else {
+            $('#' + div + attachment).before("<span id='remErr' class='alert-error'>Nothing to remove!</span>");
+            remErr = true;
+        }
+    } else {
+        $('#' + div + attachment).addClass(' hidden');
+        $('#addErr').remove();
+        addErr = false;
+        attachment--;
+        $('#attachmentCounter').val(attachment);
+    }
+}
+
+$(function () {
+    $('.has-error').each(function(i, Obj){
+        if($('.has-error').hasClass('hidden')){
+            var countErr = $(this).length - 1;
+            $('#attachmentCounter').val(countErr);
+            $('.has-error').removeClass('hidden');
+        }
+    });
+});

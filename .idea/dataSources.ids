@@ -422,6 +422,45 @@
       <exported-key name="epp_exp_title_id" table="applicant_experience" schema="" catalog="mena_portal" columns="title"/>
       <exported-key name="emp_title_title_id" table="emp_title" schema="" catalog="mena_portal" columns="tite_id"/>
     </table>
+    <table name="user_master" schema="" catalog="mena_portal" type="VIEW">
+      <column name="APPID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="birth_date" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91" def="JzE5ODQtMDktMDMn"/>
+      <column name="first_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="gender" sqlType="ENUM" precision="2" scale="0" nullable="false" jdbcType="1"/>
+      <column name="last_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="mobile_phone" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="nationality" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="per_email" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="prof_pic" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" def="Jy9pbWcvZGVmYXVsdC5wbmcn"/>
+      <column name="source" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" def="J0hpcmluZyBBZ2VuY3kn"/>
+      <column name="EMPID" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4" def="MA=="/>
+      <column name="birth_place" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="country_origin" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="business_email" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12" def="J3VzZXJAZG9tYWluLmxvY2FsJw=="/>
+      <column name="emergency_contact_name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="emergency_contact_number" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="emp_ref" sqlType="VARCHAR" precision="4" scale="0" nullable="true" jdbcType="12"/>
+      <column name="extension" sqlType="VARCHAR" precision="24" scale="0" nullable="true" jdbcType="12" def="JzAwMDAn"/>
+      <column name="father_name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="mother_name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="height" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="weight" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="hire_date" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91" def="JzIwMTEtMDctMDMn"/>
+      <column name="marital_status" sqlType="ENUM" precision="9" scale="0" nullable="true" jdbcType="1" def="J1NpbmdsZSc="/>
+      <column name="middle_name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="religion" sqlType="ENUM" precision="10" scale="0" nullable="true" jdbcType="1"/>
+      <column name="visa_status" sqlType="ENUM" precision="19" scale="0" nullable="true" jdbcType="1"/>
+      <column name="active" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA=="/>
+      <column name="active_hash" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="recover_hash" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="remembere_identifier" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="remembere_token" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="username" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="city_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="acquired_date" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="JzIwMTYtMDEtMDEgMDA6MDA6MDAn"/>
+      <column name="degree" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="institute_name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+    </table>
     <table name="users" schema="" catalog="mena_portal" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="emp_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
