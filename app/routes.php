@@ -39,14 +39,14 @@ $app->group('', function () {
 	$this->get('/HR/new/applicant/address[/]', 'AddressController:getNewAddress')->setName('new.address');
 	$this->post('/HR/new/applicant/address[/]', 'AddressController:postNewAddress');
 
-
-
-
-
 	$this->get('/HR/states', 'AddressController:getStates')->setName('getStates');
+	$this->get('/HR/cities', 'AddressController:getCities')->setName('getCities');
+
+
+
 	$this->get('/HR/states/{id}', 'AddressController:stateByCountry')->setName('getStatesByCountry');
 
-	$this->get('/HR/cities', 'AddressController:getCities')->setName('getCities');
+
 	$this->get('/HR/cities/{id}', 'AddressController:cityByState')->setName('getCitiesByState');
 
 

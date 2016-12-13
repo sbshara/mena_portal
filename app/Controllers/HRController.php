@@ -6,7 +6,7 @@
  * Time: 10:29 AM
  */
 
-namespace App\Controllers\Auth;
+namespace App\Controllers;
 
 use App\Controllers\Controller;
 use Respect\Validation\Validator as v;
@@ -23,13 +23,8 @@ class HRController extends Controller {
 	}
 
 	public function postNewApplicant ($request, $response) {
-
-//        var_dump($request);
-//        die();
-
 		// Defining profile pic:
 		$profile = $request->getUploadedFiles()['profilepic'];
-
 		// Define storage location for profilepic (attachment loop goes within the loop):
 		if($profile->getClientFilename() == '') {
 			if($request->getParam('gender') === 'M') {
@@ -42,7 +37,6 @@ class HRController extends Controller {
 				$request->getParam('first_name') . $request->getParam('last_name') .
 				date('Y-m-d') . '_' .time() . $profile->getClientFilename();
 		}
-
 		// Check if validation has passed or failed
 		if ($request->getParam('attachmentCounter') > -1) {
 			$attachments    = $request->getUploadedFiles()['attachment'];
@@ -72,7 +66,6 @@ class HRController extends Controller {
 					'source'            =>  v::notEmpty()
 				]);
 			}
-
 			if ($validation->failed()) {
 				$this->flash->addMessage('danger', 'There are errors in some fields, please check and try again!');
 				return $response->withRedirect($this->router->pathFor('auth.new.applicant'));
@@ -93,7 +86,6 @@ class HRController extends Controller {
 				'source'            =>  $request->getParam('source'),
 				'nationality'       =>  $request->getParam('nationality')
 			]);
-
 			// -- Loop through each file
 			for($i = 0; $i <= $totalAttach; $i++) {
 				$attachment = $attachments[$i];
@@ -140,7 +132,6 @@ class HRController extends Controller {
 				'nextstep'          =>  v::notEmpty(),
 				'source'            =>  v::notEmpty()
 			]);
-
 			if ($validation->failed()) {
 				$this->flash->addMessage('danger', 'There are errors in some fields, please check and try again!');
 				return $response->withRedirect($this->router->pathFor('auth.new.applicant'));
@@ -162,12 +153,8 @@ class HRController extends Controller {
 				'nationality' => $request->getParam('nationality')
 			]);
 		}
-
 		// Flash a message that the applicant record is created.
 		$this->flash->addMessage('success', 'Applicant was created successfully');
-
-
-		// TODO: create address, skills, degrees, experiences, interviews, and redirect accordingly:
 		$direction = $request->getParam('nextstep');
 		switch ($direction) {
 			case 'address':
@@ -183,7 +170,6 @@ class HRController extends Controller {
 			default:
 				return $response->withRedirect($this->router->pathFor('home'));
 		}
-
 		// redirect to the next page (add experience, add address, ...etc.)
 		return $response->withRedirect($this->router->pathFor('new.address'));
 	}
@@ -194,7 +180,12 @@ class HRController extends Controller {
 
 	public function getApplicantById ($request, $response, $arg) {
 // TODO: find a way to insert the ID provided in the link, and search for that record, then render the data from multiple tables accordingly
-		return $this->view->render($response, 'hr/applicantById.twig');
+
+		$this->view->render($response, 'hr/applicantById.twig', [
+			'id'	=>	$arg['id']
+		]);
+		var_dump($response);
+		die();
 	}
 
 	public function getNewEmployee($request, $response){

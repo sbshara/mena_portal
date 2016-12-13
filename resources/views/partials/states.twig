@@ -1,5 +1,5 @@
 <states>
-{% for state in auth.stateByCountry %}
+{% for state in HR.states %}
     <state>
         <id>
             {{ state.id }}
@@ -11,5 +11,6 @@
             {{ state.state_name | e }}
         </state_name>
     </state>
+    <br/>
 {% endfor %}
 </states>

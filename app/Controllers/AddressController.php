@@ -26,10 +26,19 @@ class AddressController extends Controller {
 	}
 
 	public function getStates ($request, $response, $arg) {
-		return $this->view->render($response, 'partials/states.twig');
+		return $this->view->render($response, 'partials/states.twig', $arg);
 	}
 
 	public function getCities ($request, $response, $arg) {
+		return $this->view->render($response, 'partials/cities.twig', $arg);
+	}
+
+
+	public function stateByCountry ($request, $response, $arg) {
+		return $this->view->render($response, 'partials/states.twig');
+	}
+
+	public function cityByState ($request, $response, $arg) {
 		return $this->view->render($response, 'partials/cities.twig');
 	}
 

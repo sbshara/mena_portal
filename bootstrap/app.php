@@ -72,9 +72,12 @@ $container['db'] = function ($container) use ($capsule) {
 
 // Add the authorization module
 $container['auth'] = function ($container) {
-	return new \App\Auth\Auth();
+	return new \App\Helpers\Auth();
 };
 
+$container['HR'] = function ($container) {
+    return new \App\Helpers\HR();
+};
 
 // Add global message flash module
 $container['flash'] = function ($container) {
@@ -97,16 +100,16 @@ $container['view'] = function ($container) {
 	$view->getEnvironment()->addGlobal('auth', [
 		'check'         	=>  $container->auth->check(),
 		'user'          	=>  $container->auth->user(),
-		'profile'       	=>  $container->auth->profile(),
-		'title'         	=>  $container->auth->title(),
-		'users'         	=>  $container->auth->allUsers(),
-		'employees'     	=>  $container->auth->allEmployees(),
-		'applicants'    	=>  $container->auth->allApplicants(),
-		'countries'     	=>  $container->auth->allCountries(),
-		'states'        	=>  $container->auth->allStates(),
-		'stateByCountry' 	=>  $container->auth->statesByCountry($container),
-		'cities'        	=>  $container->auth->allCities(),
-		'cityByState'       =>  $container->auth->cityByState(),
+		'profile'       	=>  $container->auth->profile()
+	]);
+
+	$view->getEnvironment()->addGlobal('HR', [
+		'countries'			=>	$container->HR->allCountries(),
+		'states'            =>  $container->HR->allStates(),
+        'cities'			=>  $container->HR->allCities(),
+        'applicants'        =>  $container->HR->allApplicants(),
+        'applicant'         =>  $container->HR->applicantById()
+
 	]);
 
 	// Add the flash message
@@ -127,7 +130,7 @@ $container['validator'] = function ($container) {
 // Add the Customized Controllers:
 $container['HomeController'] = function ($container) { return new \App\Controllers\HomeController($container); };
 $container['AuthController'] = function ($container) { return new \App\Controllers\Auth\AuthController($container); };
-$container['HRController'] = function ($container) { return new \App\Controllers\Auth\HRController($container); };
+$container['HRController'] = function ($container) { return new \App\Controllers\HRController($container); };
 $container['AddressController'] = function ($container) { return new \App\Controllers\AddressController($container); };
 $container['PasswordController'] = function ($container) { return new \App\Controllers\Auth\PasswordController($container); };
 $container['csrf'] = function ($container) { return new \Slim\Csrf\Guard(); };
