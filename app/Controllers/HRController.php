@@ -18,8 +18,13 @@ use App\Models\Document;
 
 class HRController extends Controller {
 
+	// Applicants
 	public function getNewApplicant ($request, $response) {
 		return $this->view->render($response, 'hr/newApplicant.twig');
+	}
+
+	public function getAllApplicants ($request, $response) {
+		return $this->view->render($response, 'hr/allApplicants.twig');
 	}
 
 	public function postNewApplicant ($request, $response) {
@@ -174,25 +179,12 @@ class HRController extends Controller {
 		return $response->withRedirect($this->router->pathFor('new.address'));
 	}
 
-	public function getAllApplicants ($request, $response) {
-		return $this->view->render($response, 'hr/allApplicants.twig');
-	}
-
-	public function getApplicantById ($request, $response, $arg) {
-// TODO: find a way to insert the ID provided in the link, and search for that record, then render the data from multiple tables accordingly
-
-		$this->view->render($response, 'hr/applicantById.twig', [
-			'id'	=>	$arg['id']
-		]);
-		var_dump($response);
-		die();
-	}
-
-	public function getNewEmployee($request, $response){
+	// Employees
+	public function getNewEmployee ($request, $response) {
 		return$this->view->render($response, 'hr/newEmployee.twig');
 	}
 
-	public function postNewEmployee($request, $response) {
+	public function postNewEmployee ($request, $response) {
 		// TODO Finish Post Employee after populating the full applicants
 //		$validation = $this->validator->validate($request, [
 //			'first_name'        =>  v::notEmpty()->alpha(),
@@ -233,7 +225,7 @@ class HRController extends Controller {
 		}
 	}
 
-	public function postApplicants($request, $response, $arg){
+	public function getAllEmployees ($request, $response) {
 		$sql = "SELECT * FROM applicants WHERE first_name LIKE '%" . $arg . "%' OR last_name LIKE '%" . $arg . "%' ORDER BY first_name ASC";
 		$applicants = Applicant::query($sql);
 		while($result = $applicants->fetch_array(MYSQL_ASSOC)){
@@ -242,27 +234,17 @@ class HRController extends Controller {
 		return $response;
 	}
 
-	public function getStateByCountry ($request, $response) {
-		$country = $request->getParam('country');
-		$sql = "SELECT * FROM states tbl1 JOIN countries tbl2 ON tbl2.id = tbl1.country_id WHERE country_name LIKE '%" . $country . "%'";
-
-		$states = State::query($sql);
-		foreach ($states as $state) {
-			$result  = "<option id='";
-			$result .= $state->id;
-			$result .= "'>";
-			$result .= $state->state_name;
-			$result .= "</option>";
-			array_push($response, $result);
-		}
-//		return $this->view->render($response, 'partials/states.twig');
-		return $response;
+	// Users
+	public function getNewUser ($request, $response) {
+		return $this->view->render($response, 'hr/newUser.twig');
 	}
 
-	public function getCityByState ($request, $response, $arg) {
-		$state = $request->getAttribute('state');
-		$cities = City::where('state_id', $state);
-		return $this->view->render($response, 'partials/cities.twig');
+	public function getAllUsers ($request, $response) {
+		return $this->view->render($response, 'hr/allUsers.twig');
+	}
+
+	public function postNewUser ($request, $response) {
+
 	}
 
 

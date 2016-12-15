@@ -1,5 +1,10 @@
 {% extends 'templates/app.twig' %}
 {% block title %}Sign in{% endblock %}
+
+{% block bodyTags %}
+    hold-transition skin-blue sidebar-collapse sidebar-mini
+{% endblock %}
+
 {% block contents %}
 <section class="content">
     <div class="login-box">
@@ -24,7 +29,7 @@
                         <span class="help-block">{{ errors.password | first }}</span>
                     {% endif %}
                 </div>
-                <div class="row">
+                <div class="form-group has-feedback">
                     <div class="col-xs-8">
                         <div class="checkbox icheck">
                             <label>
@@ -40,7 +45,8 @@
                     <!-- /.col -->
                 </div>
             </form>
-
+            <p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</p>
+            <a href="#" class="text-center">I Forgot my password</a>
             {#<div class="social-auth-links text-center">#}
                 {#<p>- OR -</p>#}
                 {#<a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using#}
@@ -49,10 +55,6 @@
                     {#Google+</a>#}
             {#</div>#}
             <!-- /.social-auth-links -->
-
-            <a href="#">I forgot my password</a><br>
-            <a href="{{ path_for('auth.new.applicant') }}" class="text-center">Register a new membership</a>
-
         </div>
         <!-- /.login-box-body -->
     </div>

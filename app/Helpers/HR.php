@@ -12,7 +12,6 @@ use App\Models\Applicant;
 use App\Models\Employee;
 use App\Models\EmployeeTitle;
 use App\Models\User;
-use App\Models\ProfileSetting;
 use App\Models\Country;
 use App\Models\State;
 use App\Models\City;
@@ -21,12 +20,6 @@ class HR {
 
     public function allApplicants(){
 		return Applicant::all();
-	}
-
-	public function applicantById(){
-        $id = $this->view->$arg['id'];
-        return Applicant::applicantById($id);
-//		return Applicant::where('id', $id)->first();
 	}
 
 	public function allEmployees(){

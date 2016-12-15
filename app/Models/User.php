@@ -49,6 +49,9 @@ class User extends Model {
 
 	}
 
+	public function getAll() {
+		$this->all();
+	}
 
 
 }

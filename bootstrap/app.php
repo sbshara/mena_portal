@@ -5,9 +5,12 @@
  * Date: 11/3/16
  * Time: 12:38 AM
  */
+
 use Respect\Validation\Validator as v;
 use \Slim\App as Slim;
 use \Slim\Http\UploadedFile;
+
+
 session_cache_limiter(false);
 session_start();
 
@@ -100,15 +103,15 @@ $container['view'] = function ($container) {
 	$view->getEnvironment()->addGlobal('auth', [
 		'check'         	=>  $container->auth->check(),
 		'user'          	=>  $container->auth->user(),
-		'profile'       	=>  $container->auth->profile()
+		'profile'       	=>  $container->auth->profile(),
+		'userMaster'        =>  $container->auth->userMaster()
 	]);
 
 	$view->getEnvironment()->addGlobal('HR', [
 		'countries'			=>	$container->HR->allCountries(),
 		'states'            =>  $container->HR->allStates(),
         'cities'			=>  $container->HR->allCities(),
-        'applicants'        =>  $container->HR->allApplicants(),
-        'applicant'         =>  $container->HR->applicantById()
+        'applicants'        =>  $container->HR->allApplicants()
 
 	]);
 
@@ -127,14 +130,15 @@ $container['validator'] = function ($container) {
 //	return new \App\Middleware\HttpCache\CacheProvider();
 //};
 
-// Add the Customized Controllers:
+// Add the Controllers:
 $container['HomeController'] = function ($container) { return new \App\Controllers\HomeController($container); };
 $container['AuthController'] = function ($container) { return new \App\Controllers\Auth\AuthController($container); };
 $container['HRController'] = function ($container) { return new \App\Controllers\HRController($container); };
 $container['AddressController'] = function ($container) { return new \App\Controllers\AddressController($container); };
+$container['UserController'] = function ($container) { return new \App\Controllers\UserController($container); };
 $container['PasswordController'] = function ($container) { return new \App\Controllers\Auth\PasswordController($container); };
 $container['csrf'] = function ($container) { return new \Slim\Csrf\Guard(); };
-$container['http'] = function ($container) { return new UploadedFile(); };
+//$container['http'] = function ($container) { return new UploadedFile(); };
 
 
 $app->add(new \App\Middleware\ValidationErrorsMiddleware($container));

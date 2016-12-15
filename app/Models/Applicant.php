@@ -29,8 +29,4 @@ class Applicant extends Model {
 		'updated_at'
 	];
 
-	public function applicantById ($id) {
-		return Applicant::find($id)->first();
-	}
-
 }

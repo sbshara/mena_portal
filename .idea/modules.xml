@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/vehicle_service.iml" filepath="$PROJECT_DIR$/.idea/vehicle_service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/mena_portal.iml" filepath="$PROJECT_DIR$/.idea/mena_portal.iml" />
     </modules>
   </component>
 </project>

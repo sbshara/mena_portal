@@ -42,7 +42,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <![endif]-->
 </head>
 
-<body class="hold-transition skin-blue sidebar-collapse sidebar-mini">
+<body class="{% block bodyTags %}{% endblock %}">
+{#<body class="hold-transition skin-blue sidebar-collapse sidebar-mini">#}
 <div class="wrapper">
 <!-- Main Header -->
 <header class="main-header">

@@ -1,9 +1,12 @@
 {% extends 'templates/app.twig' %}
 {% block title %}User Profile{% endblock %}
+
+{% block bodyTags %}hold-transition skin-blue sidebar-collapse sidebar-mini{% endblock %}
+
 {% block contents %}
     <section class="content-header">
         <h1>
-            {{ auth.user.first_name }} {{ auth.user.last_name }} Profile
+            {{ auth.userMaster.first_name }} {{ auth.userMaster.last_name }} Profile
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{ base_url() }}"><i class="fa fa-dashboard"></i> Home</a></li>

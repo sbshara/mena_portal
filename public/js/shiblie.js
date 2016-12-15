@@ -68,20 +68,44 @@ $(function(){
 
 });
 
+//$(document).ajaxStart(function() { Pace.restart(); });
 
-function getStates() {
-    var country = $('#country');
-//        alert (encodeURI(country.val()));
-//        alert(country.val());
+function getStates(Country) {
+    var country = $(Country).val();
     $.ajax({
-        url:        'get/states/', //+ encodeURI(country.val()),
-        type:       'post',
-        data:       {country:country.val()},
-        success:    function(data){
-            $('#state').html(data);
+        start:      function () { Pace.restart(); },
+        url:        'http://localhost/~shiblie/mena_portal/public/HR/states/' + country,
+        type:       'get',
+        success:    function(response){
+                        var option_data = '';
+                        $.each(response, function(i, response){
+                            option_data = option_data + "<option id='"+response.id+"'>"+response.state_name+"</option>";
+                        });
+                        $('#state').html(option_data);
         }
     });
-}
+};
+
+function getCities(State) {
+    var state = $(State).val();
+    $.ajax({
+        url:        'http://localhost/~shiblie/mena_portal/public/HR/cities/' + state,
+        type:       'get',
+        success:    function(response){
+                        var option_data = '';
+                        $.each(response, function(i, response){
+                            option_data =
+                                option_data +
+                                "<option id='" +
+                                response.id +
+                                "'>" +
+                                response.city_name +
+                                "</option>";
+                        });
+                        $('#city').html(option_data);
+                    }
+    });
+};
 
 
 // Add and remove attachment (input field) (New Applicant)

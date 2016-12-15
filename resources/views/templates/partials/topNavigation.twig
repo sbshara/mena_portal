@@ -108,18 +108,18 @@
                     <!-- Menu Toggle Button -->
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <!-- The user image in the navbar-->
-                        <img src="{{ base_url() }}/img/shiblie.jpg" class="user-image" alt="User Image">
+                        <img src="{{ base_url() }}{{ auth.userMaster.prof_pic }}" class="user-image" alt="User Image">
                         <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                        <span class="hidden-xs">{{ auth.user.first_name }} {{ auth.user.last_name }}</span>
+                        <span class="hidden-xs">{{ auth.userMaster.first_name }} {{ auth.userMaster.last_name }}</span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- The user image in the menu -->
                         <li class="user-header">
-                            <img src="{{ base_url() }}/{{ auth.profile.user_profile_image }}" class="img-circle" alt="User Image">
+                            <img src="{{ base_url() }}/{{ auth.userMaster.prof_pic }}" class="img-circle" alt="User Image">
 
                             <p>
-                                Shiblie Bshara - Project Coordinator
-                                <small>Member since Jul. 2011</small>
+                                {{ auth.userMaster.first_name }} {{ auth.userMaster.last_name }} - {{ auth.userMaster.title_name }}
+                                <small>Member since {{ auth.userMaster.joining_date }}</small>
                             </p>
                         </li>
                         <!-- Menu Body -->

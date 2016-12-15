@@ -10,6 +10,7 @@ namespace App\Helpers;
 
 use App\Models\User;
 use App\Models\ProfileSetting;
+use App\Models\UserMaster;
 
 
 class Auth {
@@ -40,6 +41,18 @@ class Auth {
 			return User::find($_SESSION['user'])->first();
 		} else {
 			return false;
+		}
+	}
+
+	public function userMaster () {
+		if(!$this->user()){
+			return false;
+		} else {
+			if (isset($_SESSION['user'])) {
+				return UserMaster::where('u_id', $_SESSION['user'])->first();
+			} else {
+				return false;
+			}
 		}
 	}
 
