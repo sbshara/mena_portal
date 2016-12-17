@@ -89,6 +89,7 @@ function getStates(Country) {
 function getCities(State) {
     var state = $(State).val();
     $.ajax({
+        start:      function () { Pace.restart(); },
         url:        'http://localhost/~shiblie/mena_portal/public/HR/cities/' + state,
         type:       'get',
         success:    function(response){
@@ -107,6 +108,32 @@ function getCities(State) {
     });
 };
 
+function getApplicantName(Obj){
+    var str = $(Obj).val().toString();
+    //if(str.length >= '3') {
+        $.ajax({
+            start:      function () { Pace.restart(); },
+            url:        'http://localhost/~shiblie/mena_portal/public/AJAX/applicant/' + str.val(),
+            type:       'get',
+            success:    function (response) {
+                var option_data = '';
+                $.each(response, function (i, response){
+                    option_data =
+                        option_data +
+                        "<p>" +
+                        response.first_name +
+                            " " +
+                        response.last_name +
+                        "</p>";
+                });
+                $('#name-guide').show();
+                $('#name-guide').val(option_data);
+            }
+        });
+    //} else {
+    //    $('#name-guide').hide();
+    //}
+};
 
 // Add and remove attachment (input field) (New Applicant)
 var attachment = -1;

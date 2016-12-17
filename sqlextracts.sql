@@ -485,7 +485,7 @@ ALTER TABLE emp_leaves
 
 ALTER TABLE emp_title
   ADD CONSTRAINT emp_title_emp_no FOREIGN KEY (emp_id) REFERENCES employees(id),
-  ADD CONSTRAINT emp_title_title_id FOREIGN KEY (tite_id) REFERENCES titles(id);
+  ADD CONSTRAINT emp_title_title_id FOREIGN KEY (title_id) REFERENCES titles(id);
 
 ALTER TABLE salaries
   ADD CONSTRAINT salaries_emp_no FOREIGN KEY (emp_id) REFERENCES employees(id);

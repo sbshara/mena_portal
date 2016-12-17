@@ -47,7 +47,7 @@ class AuthController extends Controller {
 
 	// Logged In User theme and other display preferences
 	public function getUserProfile ($request, $response) {
-		return $this->view->render($response, 'auth/profile.twig');
+		return $this->view->render($response, 'auth/HR/User/profile.twig');
 	}
 
 	public function postUserProfile ($request, $response, $args) {
