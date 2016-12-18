@@ -14,7 +14,7 @@
         <!-- /.login-logo -->
         <div class="login-box-body">
             <p class="login-box-msg">Sign in to start your session</p>
-            <form action="{{ path_for('auth.signin') }}" method="post" autocomplete="off">
+            <form action="{{ path_for('auth.Signin') }}" method="post" autocomplete="off">
                 <div class="form-group has-feedback{{ errors.username ? ' has-error' : '' }}">
                     <input type="text" class="form-control" placeholder="Username" name="username" id="username" value="{{ old.username }}">
                     <span class="glyphicon glyphicon-user form-control-feedback"></span>
