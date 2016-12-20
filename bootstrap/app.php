@@ -90,7 +90,7 @@ $container['flash'] = function ($container) {
 // Add the Twig View module
 $container['view'] = function ($container) {
 	$view = new \Slim\Views\Twig(__DIR__ . '/../resources/views/', [
-		'cache' =>  false,
+		'cache' =>  __DIR__ . '/../cache',
         'debug' =>  true
 	]);
 
@@ -126,9 +126,9 @@ $container['validator'] = function ($container) {
 	return new App\Validation\Validator();
 };
 
-//$container['cache'] = function ($container) {
-//	return new \App\Middleware\HttpCache\CacheProvider();
-//};
+$container['cache'] = function ($container) {
+	return new \App\Middleware\HttpCache\CacheProvider();
+};
 
 // Add the Controllers:
 $container['HomeController'] = function ($container) { return new \App\Controllers\HomeController($container); };
@@ -140,14 +140,11 @@ $container['PasswordController'] = function ($container) { return new \App\Contr
 $container['csrf'] = function ($container) { return new \Slim\Csrf\Guard(); };
 //$container['http'] = function ($container) { return new UploadedFile(); };
 
-
 $app->add(new \App\Middleware\ValidationErrorsMiddleware($container));
 $app->add(new \App\Middleware\OldInputMiddleware($container));
 $app->add(new \App\Middleware\CsrfViewMiddleware($container));
-//$app->add(new \App\Middleware\HttpCache\Cache($container));
+$app->add(new \Slim\HttpCache\Cache('public', 86400));
 $app->add($container->csrf);
-
-
 
 v::with('App\\Validation\\Rules\\');
 

@@ -1,3 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project version="4" />
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="mena_portal@localhost" uuid="0911d869-a466-44a7-97fc-eb3ccbe13594">
+      <secret-storage>master_key</secret-storage>
+      <user-name>root</user-name>
+      <schema-pattern>mena_portal.*</schema-pattern>
+      <default-schemas>mena_portal.*</default-schemas>
+    </data-source>
+  </component>
+</project>
 

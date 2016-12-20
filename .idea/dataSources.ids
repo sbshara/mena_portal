@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="mena_portal@localhost" uuid="0911d869-a466-44a7-97fc-eb3ccbe13594">
+    <database-info product="MySQL" version="5.7.17" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="mixed" quoted-identifiers="upper"/>
+    <schema name="" catalog="mena_portal"/>
+    <table name="addresses" schema="" catalog="mena_portal" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="address_title" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="city_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="area" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="street_name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="street_no" sqlType="VARCHAR" precision="24" scale="0" nullable="true" jdbcType="12"/>
+      <column name="building_name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="building_no" sqlType="VARCHAR" precision="24" scale="0" nullable="true" jdbcType="12"/>
+      <column name="floor" sqlType="VARCHAR" precision="10" scale="0" nullable="true" jdbcType="12"/>
+      <column name="apartment" sqlType="VARCHAR" precision="10" scale="0" nullable="true" jdbcType="12"/>
+      <column name="pobox" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="landmark" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="landline1" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="landline2" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="mobile1" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="mobile2" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="notes" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="addresses_city_id" columns="city_id" ref-table="cities" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="applicants_addresses_address_id" table="applicants_addresses" schema="" catalog="mena_portal" columns="address_id"/>
+      <index name="addresses_city_id" unique="false" columns="city_id"/>
+    </table>
+    <table name="applicant_degree" schema="" catalog="mena_portal" type="TABLE">
+      <column name="applicant_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="degree" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="acquired_date" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="JzIwMTYtMDEtMDEgMDA6MDA6MDAn"/>
+      <column name="institute_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="city_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <foreign-key name="applicant_degree_applicant_id" columns="applicant_id" ref-table="applicants" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="applicant_degree_city_id" columns="city_id" ref-table="cities" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="applicant_degree_applicant_id" unique="false" columns="applicant_id"/>
+      <index name="applicant_degree_city_id" unique="false" columns="city_id"/>
+    </table>
+    <table name="applicant_docs" schema="" catalog="mena_portal" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="applicant_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="doc_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="applicant_docs_applicant_id" columns="applicant_id" ref-table="applicants" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="applicant_docs_applicant_id" unique="false" columns="applicant_id"/>
+    </table>
+    <table name="applicant_experience" schema="" catalog="mena_portal" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="applicant_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="city_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="title" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="company" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="details" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="from_date" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="to_date" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="app_exp_app_id" columns="applicant_id" ref-table="applicants" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="app_exp_city_id" columns="city_id" ref-table="cities" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="epp_exp_title_id" columns="title" ref-table="titles" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="app_exp_app_id" unique="false" columns="applicant_id"/>
+      <index name="app_exp_city_id" unique="false" columns="city_id"/>
+      <index name="epp_exp_title_id" unique="false" columns="title"/>
+    </table>
+    <table name="applicant_skills" schema="" catalog="mena_portal" type="TABLE">
+      <column name="applicant_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="skill_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <foreign-key name="applicant_skill_id" columns="skill_id" ref-table="skills" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="applicant_skills_appl_id" columns="applicant_id" ref-table="applicants" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="applicant_skill_id" unique="false" columns="skill_id"/>
+      <index name="applicant_skills_appl_id" unique="false" columns="applicant_id"/>
+    </table>
+    <table name="applicants" schema="" catalog="mena_portal" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="first_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="last_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="per_email" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="nationality" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="mobile_phone" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="gender" sqlType="ENUM" precision="2" scale="0" nullable="false" jdbcType="1"/>
+      <column name="birth_date" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91" def="JzE5ODQtMDktMDMn"/>
+      <column name="prof_pic" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" def="Jy9pbWcvZGVmYXVsdC5wbmcn"/>
+      <column name="source" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" def="J0hpcmluZyBBZ2VuY3kn"/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="applicant_degree_applicant_id" table="applicant_degree" schema="" catalog="mena_portal" columns="applicant_id"/>
+      <exported-key name="applicant_docs_applicant_id" table="applicant_docs" schema="" catalog="mena_portal" columns="applicant_id"/>
+      <exported-key name="app_exp_app_id" table="applicant_experience" schema="" catalog="mena_portal" columns="applicant_id"/>
+      <exported-key name="applicant_skills_appl_id" table="applicant_skills" schema="" catalog="mena_portal" columns="applicant_id"/>
+      <exported-key name="applicants_addresses_applicant_id" table="applicants_addresses" schema="" catalog="mena_portal" columns="applicant_id"/>
+      <exported-key name="employees_applicant_id" table="employees" schema="" catalog="mena_portal" columns="applicant_id"/>
+      <exported-key name="interviews_applicant_id" table="interviews" schema="" catalog="mena_portal" columns="applicant_id"/>
+      <index name="per_email" unique="true" columns="per_email"/>
+    </table>
+    <table name="applicants_addresses" schema="" catalog="mena_portal" type="TABLE">
+      <column name="applicant_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="address_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <foreign-key name="applicants_addresses_address_id" columns="address_id" ref-table="addresses" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="applicants_addresses_applicant_id" columns="applicant_id" ref-table="applicants" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="applicants_addresses_address_id" unique="false" columns="address_id"/>
+      <index name="applicants_addresses_applicant_id" unique="false" columns="applicant_id"/>
+    </table>
+    <table name="benefits" schema="" catalog="mena_portal" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="benefit_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="description" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="emp_benefits_benefit_id" table="emp_benefits" schema="" catalog="mena_portal" columns="benefit_id"/>
+    </table>
+    <table name="cities" schema="" catalog="mena_portal" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="state_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="city_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="dialing_code" sqlType="VARCHAR" precision="4" scale="0" nullable="false" jdbcType="12" def="JzAwMDAn"/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="cities_state_id" columns="state_id" ref-table="states" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="addresses_city_id" table="addresses" schema="" catalog="mena_portal" columns="city_id"/>
+      <exported-key name="applicant_degree_city_id" table="applicant_degree" schema="" catalog="mena_portal" columns="city_id"/>
+      <exported-key name="app_exp_city_id" table="applicant_experience" schema="" catalog="mena_portal" columns="city_id"/>
+      <exported-key name="employees_birth_place" table="employees" schema="" catalog="mena_portal" columns="birth_place"/>
+      <index name="cities_state_id" unique="false" columns="state_id"/>
+    </table>
+    <table name="countries" schema="" catalog="mena_portal" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="country_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="a2_iso" sqlType="VARCHAR" precision="2" scale="0" nullable="false" jdbcType="12" remarks="Y291bnRyeV9wcmVmZXgy"/>
+      <column name="a3_un" sqlType="VARCHAR" precision="3" scale="0" nullable="false" jdbcType="12" remarks="Y291bnRyeV9wcmVmZXgz"/>
+      <column name="num_un" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="Y291bnRyeSBudW1iZXIgaW4gdGhlIFVO"/>
+      <column name="dialing_code" sqlType="VARCHAR" precision="24" scale="0" nullable="true" jdbcType="12"/>
+      <column name="flag" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="documents_doc_country" table="documents" schema="" catalog="mena_portal" columns="doc_country"/>
+      <exported-key name="employees_country_origin" table="employees" schema="" catalog="mena_portal" columns="country_origin"/>
+      <exported-key name="states_country_id" table="states" schema="" catalog="mena_portal" columns="country_id"/>
+    </table>
+    <table name="departments" schema="" catalog="mena_portal" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="dept_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="dept_emp_dept_no" table="dept_emp" schema="" catalog="mena_portal" columns="dept_no"/>
+      <index name="dept_name" unique="true" columns="dept_name"/>
+    </table>
+    <table name="dept_emp" schema="" catalog="mena_portal" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="emp_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="dept_no" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="from_date" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" version="true"/>
+      <column name="to_date" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="dept_emp_dept_no" columns="dept_no" ref-table="departments" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="dept_emp_dept_no" unique="false" columns="dept_no"/>
+    </table>
+    <table name="documents" schema="" catalog="mena_portal" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="doc_type" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="doc_issuer" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="doc_country" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="doc_issue_date" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91" def="JzIwMTYtMTEtMjkn"/>
+      <column name="doc_expiry_date" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91" def="JzIwOTktMDEtMDEn"/>
+      <column name="doc_loc" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="documents_doc_country" columns="doc_country" ref-table="countries" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="documents_doc_country" unique="false" columns="doc_country"/>
+    </table>
+    <table name="emp_benefits" schema="" catalog="mena_portal" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="emp_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="benefit_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="emp_benefits_benefit_id" columns="benefit_id" ref-table="benefits" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="emp_benefits_emp_no" columns="emp_id" ref-table="employees" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="emp_benefits_benefit_id" unique="false" columns="benefit_id"/>
+      <index name="emp_benefits_emp_no" unique="false" columns="emp_id"/>
+    </table>
+    <table name="emp_leaves" schema="" catalog="mena_portal" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="emp_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="from_date" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="to_date" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="leave_type" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="emp_leaves_leave_type" columns="leave_type" ref-table="leaves" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="emp_leaves_leave_type" unique="false" columns="leave_type"/>
+    </table>
+    <table name="emp_title" schema="" catalog="mena_portal" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="emp_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="title_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="from_date" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="to_date" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="emp_title_emp_no" columns="emp_id" ref-table="employees" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="emp_title_title_id" columns="title_id" ref-table="titles" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="emp_title_emp_no" unique="false" columns="emp_id"/>
+      <index name="emp_title_title_id" unique="false" columns="title_id"/>
+    </table>
+    <table name="employees" schema="" catalog="mena_portal" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="applicant_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="emp_ref" sqlType="VARCHAR" precision="4" scale="0" nullable="false" jdbcType="12"/>
+      <column name="middle_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="father_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="mother_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="birth_place" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="country_origin" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="height" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="weight" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="emergency_contact_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="emergency_contact_number" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="visa_status" sqlType="ENUM" precision="19" scale="0" nullable="false" jdbcType="1"/>
+      <column name="marital_status" sqlType="ENUM" precision="9" scale="0" nullable="false" jdbcType="1" def="J1NpbmdsZSc="/>
+      <column name="religion" sqlType="ENUM" precision="10" scale="0" nullable="true" jdbcType="1"/>
+      <column name="hire_date" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91" def="JzIwMTEtMDctMDMn"/>
+      <column name="extension" sqlType="VARCHAR" precision="24" scale="0" nullable="true" jdbcType="12" def="JzAwMDAn"/>
+      <column name="business_email" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12" def="J3VzZXJAZG9tYWluLmxvY2FsJw=="/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="employees_applicant_id" columns="applicant_id" ref-table="applicants" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="employees_birth_place" columns="birth_place" ref-table="cities" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="employees_country_origin" columns="country_origin" ref-table="countries" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="emp_benefits_emp_no" table="emp_benefits" schema="" catalog="mena_portal" columns="emp_id"/>
+      <exported-key name="emp_title_emp_no" table="emp_title" schema="" catalog="mena_portal" columns="emp_id"/>
+      <exported-key name="map_interviewer_interviewer_id" table="interview_interviewer" schema="" catalog="mena_portal" columns="interviewer_id"/>
+      <exported-key name="interview_schedule_scheduled_by" table="interview_schedule" schema="" catalog="mena_portal" columns="scheduled_by"/>
+      <exported-key name="salaries_emp_no" table="salaries" schema="" catalog="mena_portal" columns="emp_id"/>
+      <exported-key name="users_emp_id" table="users" schema="" catalog="mena_portal" columns="emp_id"/>
+      <index name="emp_ref" unique="true" columns="emp_ref"/>
+      <index name="employees_applicant_id" unique="false" columns="applicant_id"/>
+      <index name="employees_birth_place" unique="false" columns="birth_place"/>
+      <index name="employees_country_origin" unique="false" columns="country_origin"/>
+    </table>
+    <table name="interview_interviewer" schema="" catalog="mena_portal" type="TABLE">
+      <column name="interview_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="interviewer_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <foreign-key name="map_interviewer_interview_id" columns="interview_id" ref-table="interviews" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="map_interviewer_interviewer_id" columns="interviewer_id" ref-table="employees" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="map_interviewer_interview_id" unique="false" columns="interview_id"/>
+      <index name="map_interviewer_interviewer_id" unique="false" columns="interviewer_id"/>
+    </table>
+    <table name="interview_schedule" schema="" catalog="mena_portal" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="schedule_date" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="schedule_notes" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1"/>
+      <column name="scheduled_by" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="occurred" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA=="/>
+      <column name="occurance_details" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="interview_schedule_scheduled_by" columns="scheduled_by" ref-table="employees" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="map_schedule_id" table="interview_schedule_mapping" schema="" catalog="mena_portal" columns="interview_schedule_id"/>
+      <index name="interview_schedule_scheduled_by" unique="false" columns="scheduled_by"/>
+    </table>
+    <table name="interview_schedule_mapping" schema="" catalog="mena_portal" type="TABLE">
+      <column name="interview_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="interview_schedule_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <foreign-key name="map_interview_id" columns="interview_id" ref-table="interviews" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="map_schedule_id" columns="interview_schedule_id" ref-table="interview_schedule" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="map_interview_id" unique="false" columns="interview_id"/>
+      <index name="map_schedule_id" unique="false" columns="interview_schedule_id"/>
+    </table>
+    <table name="interviews" schema="" catalog="mena_portal" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="applicant_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="interview_date" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="inter_details" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="inter_result" sqlType="ENUM" precision="9" scale="0" nullable="false" jdbcType="1"/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="interviews_applicant_id" columns="applicant_id" ref-table="applicants" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="map_interviewer_interview_id" table="interview_interviewer" schema="" catalog="mena_portal" columns="interview_id"/>
+      <exported-key name="map_interview_id" table="interview_schedule_mapping" schema="" catalog="mena_portal" columns="interview_id"/>
+      <index name="interviews_applicant_id" unique="false" columns="applicant_id"/>
+    </table>
+    <table name="leaves" schema="" catalog="mena_portal" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="leave_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="leave_desc" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="emp_leaves_leave_type" table="emp_leaves" schema="" catalog="mena_portal" columns="leave_type"/>
+      <index name="leave_name" unique="true" columns="leave_name"/>
+    </table>
+    <table name="leavetypes" schema="" catalog="mena_portal" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="leave_type" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="leave_notes" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="perm_role" schema="" catalog="mena_portal" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="perm_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="aWQgZnJvbSBwZXJtaXNzaW9ucyB0YWJsZQ=="/>
+      <column name="role_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="aWQgZnJvbSByb2xlcyB0YWJsZQ=="/>
+      <column name="perm_grant" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA==" remarks="MCA9IGRlbnksIDEgPSBncmFudA=="/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="perm_role_perm_id" columns="perm_id" ref-table="permissions" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="perm_role_role_id" columns="role_id" ref-table="roles" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="perm_role_perm_id" unique="false" columns="perm_id"/>
+      <index name="perm_role_role_id" unique="false" columns="role_id"/>
+    </table>
+    <table name="permissions" schema="" catalog="mena_portal" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="module" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" remarks="bW9kdWxlIG5hbWU="/>
+      <column name="title" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" remarks="aHVtYW4gcmVhZGFibGUgbmFtZQ=="/>
+      <column name="funcs" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" remarks="ZnVuYyAoa2V5KSBuYW1lIHVzZWQgaW4gZnVuY3Rpb25z"/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="perm_role_perm_id" table="perm_role" schema="" catalog="mena_portal" columns="perm_id"/>
+    </table>
+    <table name="profile_settings" schema="" catalog="mena_portal" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="theme_color" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" def="J3NraW4tYmx1ZSc="/>
+      <column name="sidebar_collapsed" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA=="/>
+      <column name="sidebar_mini" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MQ=="/>
+      <column name="sidebar_hover_expand" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA==" remarks="b3B0aW9uIGNhbm5vdCBhcHBseSBpZiBzaWRlYmFyLW1pbmkgPSB0cnVl"/>
+      <column name="layout_fixed" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA=="/>
+      <column name="layout_boxed" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA=="/>
+      <column name="rightbar_slide" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA=="/>
+      <column name="rightbar_skin_dark" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MQ=="/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="profile_settings_user_id" columns="user_id" ref-table="users" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="profile_settings_user_id" unique="false" columns="user_id"/>
+    </table>
+    <table name="role_user" schema="" catalog="mena_portal" type="TABLE">
+      <column name="role_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <foreign-key name="role_user_role_id" columns="role_id" ref-table="roles" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="role_user_user_id" columns="user_id" ref-table="users" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="role_user_role_id" unique="false" columns="role_id"/>
+      <index name="role_user_user_id" unique="false" columns="user_id"/>
+    </table>
+    <table name="roles" schema="" catalog="mena_portal" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="title" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12" remarks="aHVtYW4gcmVhZGFibGUgbmFtZQ=="/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="perm_role_role_id" table="perm_role" schema="" catalog="mena_portal" columns="role_id"/>
+      <exported-key name="role_user_role_id" table="role_user" schema="" catalog="mena_portal" columns="role_id"/>
+    </table>
+    <table name="salaries" schema="" catalog="mena_portal" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="emp_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="salary" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="basic" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="housing" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="transport" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="from_date" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="to_date" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="salaries_emp_no" columns="emp_id" ref-table="employees" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="salaries_emp_no" unique="false" columns="emp_id"/>
+    </table>
+    <table name="skills" schema="" catalog="mena_portal" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="skill_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="skill_desc" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="applicant_skill_id" table="applicant_skills" schema="" catalog="mena_portal" columns="skill_id"/>
+    </table>
+    <table name="states" schema="" catalog="mena_portal" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="country_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="state_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="states_country_id" columns="country_id" ref-table="countries" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="cities_state_id" table="cities" schema="" catalog="mena_portal" columns="state_id"/>
+      <index name="states_country_id" unique="false" columns="country_id"/>
+    </table>
+    <table name="titles" schema="" catalog="mena_portal" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="title" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="description" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1"/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="epp_exp_title_id" table="applicant_experience" schema="" catalog="mena_portal" columns="title"/>
+      <exported-key name="emp_title_title_id" table="emp_title" schema="" catalog="mena_portal" columns="title_id"/>
+    </table>
+    <table name="usermaster" schema="" catalog="mena_portal" type="VIEW">
+      <column name="active" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA=="/>
+      <column name="active_hash" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="u_created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn"/>
+      <column name="u_updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="u_emp_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="u_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="password" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="recover_hash" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="remembere_identifier" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="remembere_token" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="username" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="e_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4" def="MA=="/>
+      <column name="e_applicant_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="birth_place" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="country_origin" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="business_email" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12" def="J3VzZXJAZG9tYWluLmxvY2FsJw=="/>
+      <column name="e_created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn"/>
+      <column name="e_updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="emergency_contact_name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="emergency_contact_number" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="emp_ref" sqlType="VARCHAR" precision="4" scale="0" nullable="true" jdbcType="12"/>
+      <column name="extension" sqlType="VARCHAR" precision="24" scale="0" nullable="true" jdbcType="12" def="JzAwMDAn"/>
+      <column name="father_name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="height" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="hire_date" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91" def="JzIwMTEtMDctMDMn"/>
+      <column name="marital_status" sqlType="ENUM" precision="9" scale="0" nullable="true" jdbcType="1" def="J1NpbmdsZSc="/>
+      <column name="middle_name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="mother_name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="religion" sqlType="ENUM" precision="10" scale="0" nullable="true" jdbcType="1"/>
+      <column name="visa_status" sqlType="ENUM" precision="19" scale="0" nullable="true" jdbcType="1"/>
+      <column name="weight" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="a_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4" def="MA=="/>
+      <column name="birth_date" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91" def="JzE5ODQtMDktMDMn"/>
+      <column name="a_created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn"/>
+      <column name="a_updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="first_name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="last_name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="gender" sqlType="ENUM" precision="2" scale="0" nullable="true" jdbcType="1"/>
+      <column name="mobile_phone" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="nationality" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="per_email" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="prof_pic" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12" def="Jy9pbWcvZGVmYXVsdC5wbmcn"/>
+      <column name="source" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12" def="J0hpcmluZyBBZ2VuY3kn"/>
+      <column name="country_name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="co_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4" def="MA=="/>
+      <column name="a2_iso" sqlType="VARCHAR" precision="2" scale="0" nullable="true" jdbcType="12" remarks="Y291bnRyeV9wcmVmZXgy"/>
+      <column name="a3_un" sqlType="VARCHAR" precision="3" scale="0" nullable="true" jdbcType="12" remarks="Y291bnRyeV9wcmVmZXgz"/>
+      <column name="co_dialing_code" sqlType="VARCHAR" precision="24" scale="0" nullable="true" jdbcType="12"/>
+      <column name="flag" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="num_un" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4" remarks="Y291bnRyeSBudW1iZXIgaW4gdGhlIFVO"/>
+      <column name="co_created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn"/>
+      <column name="co_updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="d_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4" def="MA=="/>
+      <column name="dept_name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="d_created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn"/>
+      <column name="d_updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="de_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4" def="MA=="/>
+      <column name="dept_no" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="de_emp_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="de_from_date" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn"/>
+      <column name="de_to_date" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="de_created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn"/>
+      <column name="de_updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="t_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4" def="MA=="/>
+      <column name="t_title" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="title_description" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="te_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4" def="MA=="/>
+      <column name="te_emp_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="te_title_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="te_from_date" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn"/>
+      <column name="te_to_date" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn"/>
+      <column name="ps_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4" def="MA=="/>
+      <column name="ps_user_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="layout_boxed" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA=="/>
+      <column name="layout_fixed" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA=="/>
+      <column name="rightbar_skin_dark" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MQ=="/>
+      <column name="rightbar_slide" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA=="/>
+      <column name="sidebar_collapsed" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA=="/>
+      <column name="sidebar_hover_expand" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA==" remarks="b3B0aW9uIGNhbm5vdCBhcHBseSBpZiBzaWRlYmFyLW1pbmkgPSB0cnVl"/>
+      <column name="sidebar_mini" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MQ=="/>
+      <column name="theme_color" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12" def="J3NraW4tYmx1ZSc="/>
+    </table>
+    <table name="users" schema="" catalog="mena_portal" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="emp_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="username" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="password" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="active" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA=="/>
+      <column name="active_hash" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="recover_hash" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="remembere_identifier" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="remembere_token" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="users_emp_id" columns="emp_id" ref-table="employees" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="profile_settings_user_id" table="profile_settings" schema="" catalog="mena_portal" columns="user_id"/>
+      <exported-key name="role_user_user_id" table="role_user" schema="" catalog="mena_portal" columns="user_id"/>
+      <index name="username" unique="true" columns="username"/>
+      <index name="users_emp_id" unique="false" columns="emp_id"/>
+    </table>
+  </data-source>
+</component>

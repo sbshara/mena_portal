@@ -30,7 +30,7 @@ class AuthController extends Controller {
 			'password'  =>  v::notEmpty()
 		]);
 		if ($validation->failed()) {
-			return $response->withRedirect($this->router->pathFor('auth.signin'));
+			return $response->withRedirect($this->router->pathFor('auth.Signin'));
 		}
 
 		$auth = $this->auth->attempt(
@@ -39,7 +39,7 @@ class AuthController extends Controller {
 		);
 		if (!$auth) {
 			$this->flash->addMessage('danger', 'Could not sign you in using these credentials');
-			return $response->withRedirect($this->router->pathFor('auth.signin'));
+			return $response->withRedirect($this->router->pathFor('auth.Signin'));
 		}
 		return $response->withRedirect($this->router->pathFor('home'));
 	}

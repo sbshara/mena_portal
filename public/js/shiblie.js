@@ -70,70 +70,107 @@ $(function(){
 
 //$(document).ajaxStart(function() { Pace.restart(); });
 
-function getStates(Country) {
-    var country = $(Country).val();
+// Populate States on Country Selection
+function getStates() {
+    var country = $('#country').val();
+    var localurl = '/public/AJAX/states/' + country;
     $.ajax({
         start:      function () { Pace.restart(); },
-        url:        'http://localhost/~shiblie/mena_portal/public/HR/states/' + country,
+        url:        localurl,
         type:       'get',
         success:    function(response){
                         var option_data = '';
                         $.each(response, function(i, response){
-                            option_data = option_data + "<option id='"+response.id+"'>"+response.state_name+"</option>";
+                            option_data = option_data + "<option id='"+response.id + "' value='" +response.id+"'>"+response.state_name+"</option>";
                         });
                         $('#state').html(option_data);
-        }
+                    }
     });
 };
 
-function getCities(State) {
-    var state = $(State).val();
+// Populate cities on state selection
+function getCities() {
+    var state = $('#state').val();
+    var oldState = $('#state_selection').val();
+    $('#state_selection').val(state);
+    var localurl = '/public/AJAX/cities/' + state;
     $.ajax({
         start:      function () { Pace.restart(); },
-        url:        'http://localhost/~shiblie/mena_portal/public/HR/cities/' + state,
+        url:        localurl,
         type:       'get',
         success:    function(response){
                         var option_data = '';
+                        var result = '';
                         $.each(response, function(i, response){
-                            option_data =
-                                option_data +
-                                "<option id='" +
-                                response.id +
-                                "'>" +
-                                response.city_name +
-                                "</option>";
+                            result  = "<option id='";
+                            result += response.id;
+                            result += "' value='";
+                            result += response.id;
+                            result += "' ";
+                            if(response.id == oldState){
+                                result += "selected ";
+                            };
+                            result += ">";
+                            result += response.city_name;
+                            result += " - ";
+                            result += response.city_name_ar;
+                            result += "</option>";
+
+                            option_data += result;
                         });
                         $('#city').html(option_data);
                     }
     });
 };
 
-function getApplicantName(Obj){
-    var str = $(Obj).val().toString();
-    //if(str.length >= '3') {
+function setCity() {
+  var city = $('#city').val();
+    $('#city_selection').val(city);
+};
+
+// Autocomplete applicant name on adding new address
+function getApplicantName(Ray){
+    var str = $(Ray).val().toString();
+    var localurl = '/public/AJAX/applicant/' + str;
+    if(str.length > 1) {
         $.ajax({
-            start:      function () { Pace.restart(); },
-            url:        'http://localhost/~shiblie/mena_portal/public/AJAX/applicant/' + str.val(),
-            type:       'get',
-            success:    function (response) {
-                var option_data = '';
-                $.each(response, function (i, response){
+            start: function () { Pace.restart(); },
+            url: localurl,
+            type: 'get',
+            success: function (response) {
+                var option_data = "Options: (click on name to select)<ul>";
+                $.each(response, function (i, response) {
                     option_data =
                         option_data +
-                        "<p>" +
-                        response.first_name +
-                            " " +
-                        response.last_name +
-                        "</p>";
+                        "<li id='" +
+                        response.id +
+                        "'  style='cursor: pointer;' onclick='selectName(this)'" +
+                        "data-applicant='" +
+                        response.first_name + "." + response.last_name +
+                        "'>" +
+                        response.first_name + " " + response.last_name + "</li>";
                 });
+                option_data = option_data + "</ul>";
                 $('#name-guide').show();
-                $('#name-guide').val(option_data);
+                $('#name-guide').html(option_data);
+                },
+            Error: function(response) {
+                $('#name-guide').hide();
+                //$('#name-guide').html(response);
             }
         });
-    //} else {
-    //    $('#name-guide').hide();
-    //}
+    }
 };
+
+// selecting suggested applicant name
+function selectName(ObJ) {
+    var strName = ObJ.getAttribute('data-applicant');
+    var strID = ObJ.getAttribute('id');
+        //data('applicant');
+    $('#applicant').val(strName);
+    $('#applicantid').val(strID);
+    $('#name-guide').hide();
+}
 
 // Add and remove attachment (input field) (New Applicant)
 var attachment = -1;

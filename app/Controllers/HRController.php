@@ -8,11 +8,15 @@
 
 namespace App\Controllers;
 
+use App\Models\Addresses;
+use App\Models\ApplicantAddress;
 use Respect\Validation\Validator as v;
 use App\Models\Applicant;
 use App\Models\ApplicantDocs;
 use App\Models\Document;
 use App\Models\UserMaster;
+use App\Models\State;
+use App\Models\City;
 
 
 class HRController extends Controller {
@@ -178,11 +182,6 @@ class HRController extends Controller {
 		return $response->withRedirect($this->router->pathFor('HR.NewAddress'));
 	}
 
-
-
-
-
-
 	// Employees
 	public function getNewEmployee ($request, $response) {
 		return$this->view->render($response, 'auth/HR/Employee/newEmployee.twig');
@@ -233,16 +232,6 @@ class HRController extends Controller {
 		}
 	}
 
-//	public function getAllEmployees ($request, $response) {
-//		$sql = "SELECT * FROM applicants WHERE first_name LIKE '%" . $arg . "%' OR last_name LIKE '%" . $arg . "%' ORDER BY first_name ASC";
-//		$applicants = Applicant::query($sql);
-//      TODO: use the below loop to insert the data into $response
-//		while($result = $applicants->fetch_array(MYSQL_ASSOC)){
-//			array_push($response, $result['first_name'].$result['last_name']);
-//		}
-//		return $response;
-//	}
-
 	// Users
 	public function getNewUser ($request, $response) {
 		return $this->view->render($response, 'auth/HR/User/NewUser.twig');
@@ -256,6 +245,7 @@ class HRController extends Controller {
 		//
 	}
 
+    // Addresses
 	public function getNewAddress ($request, $response) {
 		return $this->view->render($response, 'auth/HR/Address/newAddress.twig');
 	}
@@ -265,7 +255,62 @@ class HRController extends Controller {
 	}
 
 	public function postNewAddress ($request, $response) {
-		//
+        $validation = $this->validator->validate($request, [
+            'applicant'             =>  v::notEmpty()->alpha('.'),
+            'applicantid'           =>  v::notEmpty()->numeric(),
+            'address_title'         =>  v::notEmpty(),
+            'mobile'                =>  v::notEmpty()->phone(),
+            'country'               =>  v::notEmpty(),
+            'state'                 =>  v::notEmpty(),
+            'city'                  =>  v::notEmpty(),
+            'area'                  =>  v::notEmpty()->alnum(),
+            'nextstep'              =>  v::notEmpty()
+        ]);
+//        print_r($request->getParams());
+//        die();
+        if ($validation->failed()) {
+            $this->flash->addMessage('danger', 'There are errors in some fields, please check and try again!');
+            return $response->withRedirect($this->router->pathFor('HR.NewAddress'));
+        }
+        $address = Addresses::create([
+            'address_title'     =>  $request->getParam('address_title'),
+            'city_id'           =>  $request->getParam('city'),
+            'area'              =>  $request->getParam('area'),
+            'street_name'       =>  $request->getParam('streetName'),
+            'street_no'         =>  $request->getParam('streetNumber'),
+            'building_name'     =>  $request->getParam('buildingName'),
+            'building_no'       =>  $request->getParam('buildingNumber'),
+            'apartment'         =>  $request->getParam('apartFloor'),
+            'pobox'             =>  $request->getParam('pobox'),
+            'landmark'          =>  $request->getParam('landmark'),
+            'landline1'         =>  $request->getParam('landline'),
+            'mobile1'           =>  $request->getParam('mobile'),
+            'notes'             =>  $request->getParam('notes'),
+        ]);
+
+        $addressMap = ApplicantAddress::create([
+            'address_id'        =>  $address->id,
+            'applicant_id'      =>  $request->getParam('applicantid')
+        ]);
+
+        $this->flash->addMessage('success', "Applicant's Address was created successfully");
+        $direction = $request->getParam('nextstep');
+        switch ($direction) {
+            case 'address':
+                return $response->withRedirect($this->router->pathFor('HR.NewAddress'));
+            case 'skill':
+                return $response->withRedirect($this->router->pathFor('HR.NewSkill'));
+            case 'degree':
+                return $response->withRedirect($this->router->pathFor('HR.NewEducation'));
+            case 'experience':
+                return $response->withRedirect($this->router->pathFor('HR.NewExperience'));
+            case 'interview':
+                return $response->withRedirect($this->router->pathFor('HR.NewInterview'));
+            default:
+//                return $response->withRedirect($this->router->pathFor('home'));
+        }
+        // redirect to the next page (add experience, add address, ...etc.)
+        return $response->withRedirect($this->router->pathFor('HR.NewSkill'));
 	}
 
 
@@ -343,18 +388,18 @@ class HRController extends Controller {
 
 	// AJAX Requests:
 	public function stateByCountry ($request, $response, $arg) {
-		$states = State::where('country_id', $arg['country_id']);
+		$states = State::all()->where('country_id', (int)$arg['country_id']);
 		return $response->withJson($states);
 	}
 
 	public function cityByState ($request, $response, $arg) {
-		$cities = City::where('state_id', $arg['state_id']);
+		$cities = City::all()->where('state_id', $arg['state_id']);
 		return $response->withJson($cities);
 	}
 
 	public function applicantByName ($request, $response, $arg) {
-		$name = $arg['applicant_name'];
-		$applicant = UserMaster::where('first_name', $name)->first();
+		$name = "%".$arg['applicant_name']."%";
+		$applicant = Applicant::where('first_name', 'LIKE', $name)->orWhere('last_name', 'LIKE', $name)->get();
 		return $response->withJson($applicant);
 	}
 

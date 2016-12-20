@@ -145,7 +145,7 @@ $app->group('', function () {
 	// AJAX Requests:
 	$this->group('/AJAX', function () {
 		// Get States by Country ID:
-		$this->get('/states/{country_id}', HRController::class . ':stateByCountry')->setName('AJAXStatesByCountry');
+		$this->get('/states/{country_id}', HRController::class . ':stateByCountry')->setName('AJAX.StatesByCountry');
 		// Get Cities by State ID:
 		$this->get('/cities/{state_id}', HRController::class . ':cityByState')->setName('AJAX.CitiesByState');
 		// Get Applicant Name by string:
