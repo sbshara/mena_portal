@@ -8,8 +8,6 @@
 
 use Respect\Validation\Validator as v;
 use \Slim\App as Slim;
-use \Slim\Http\UploadedFile;
-
 
 session_cache_limiter(false);
 session_start();
@@ -22,6 +20,7 @@ require INC_ROOT . DS . 'vendor/autoload.php';
 $app = new Slim([
 	'settings'  =>  [
 		'displayErrorDetails'   =>  true,
+        'httpVersion'           =>  '1.1',
 		'db'        =>  [
 			'driver'    =>  'mysql',
 			'host'      =>  'localhost',
@@ -90,7 +89,8 @@ $container['flash'] = function ($container) {
 // Add the Twig View module
 $container['view'] = function ($container) {
 	$view = new \Slim\Views\Twig(__DIR__ . '/../resources/views/', [
-		'cache' =>  __DIR__ . '/../cache',
+//		'cache' =>  __DIR__ . '/../cache',
+        'cache' =>  false,
         'debug' =>  true
 	]);
 
@@ -129,6 +129,7 @@ $container['validator'] = function ($container) {
 $container['cache'] = function ($container) {
 	return new \App\Middleware\HttpCache\CacheProvider();
 };
+
 
 // Add the Controllers:
 $container['HomeController'] = function ($container) { return new \App\Controllers\HomeController($container); };
