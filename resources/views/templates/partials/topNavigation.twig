@@ -115,11 +115,11 @@
                     <ul class="dropdown-menu">
                         <!-- The user image in the menu -->
                         <li class="user-header">
-                            <img src="{{ base_url() }}/{{ auth.userMaster.prof_pic }}" class="img-circle" alt="User Image">
+                            <img src="{{ base_url() }}{{ auth.userMaster.prof_pic }}" class="img-circle" alt="User Image">
 
                             <p>
                                 {{ auth.userMaster.first_name }} {{ auth.userMaster.last_name }} - {{ auth.userMaster.title_name }}
-                                <small>Member since {{ auth.userMaster.joining_date }}</small>
+                                <small>Member since {{ auth.userMaster.hire_date }}</small>
                             </p>
                         </li>
                         <!-- Menu Body -->

@@ -8,6 +8,7 @@
 
 use Respect\Validation\Validator as v;
 use \Slim\App as Slim;
+use \Illuminate\Database\Capsule\Manager as Capsule;
 
 session_cache_limiter(false);
 session_start();
@@ -17,52 +18,13 @@ defined('DS') ? null : define('DS', DIRECTORY_SEPARATOR);
 
 require INC_ROOT . DS . 'vendor/autoload.php';
 
-$app = new Slim([
-	'settings'  =>  [
-		'displayErrorDetails'   =>  true,
-        'httpVersion'           =>  '1.1',
-		'db'        =>  [
-			'driver'    =>  'mysql',
-			'host'      =>  'localhost',
-			'database'  =>  'mena_portal',
-			'username'  =>  'mena_portal',
-			'password'  =>  'P@ssw0rd',
-			'charset'   =>  'utf8',
-			'collation' =>  'utf8_unicode_ci',
-			'prefix'    =>  ''
-		],
-        'app'       =>  [
-            'url'       =>  'http://localhost/mena_portal',
-            'hash'      =>  [
-                'algo'      =>  PASSWORD_DEFAULT,
-                'cost'      =>  10
-            ]
-        ],
-        'auth'      =>  [
-            'session'   =>  'user_id',
-            'remember'  =>  'user_r'
-        ],
-        'mail'      =>  [
-            'smtp_auth'     =>  true,
-            'smtp_secure'   =>  'tls',
-            'host'          =>  'smtp.menaa.local',
-            'username'      =>  'mena_portal@menaa.local',
-            'password'      =>  'P@ssw0rd',
-            'port'          =>  587,
-            'html'          =>  true
-        ],
-        'twig'      =>  [
-            'debug'         =>  true
-        ],
-        'csrf'      =>  [
-            'session'       =>  'csrf_token'
-        ]
-	]
-]);
+$settings = require __DIR__ . '/../app/config/settings.php';
+
+$app = new Slim($settings);
 
 $container = $app->getContainer();
 
-$capsule = new \Illuminate\Database\Capsule\Manager;
+$capsule = new Capsule;
 $capsule->addConnection($container['settings']['db']);
 $capsule->setAsGlobal();
 $capsule->bootEloquent();
@@ -72,7 +34,7 @@ $container['db'] = function ($container) use ($capsule) {
 	return $capsule;
 };
 
-// Add the authorization module
+// Add the authorization dependency
 $container['auth'] = function ($container) {
 	return new \App\Helpers\Auth();
 };
@@ -81,15 +43,15 @@ $container['HR'] = function ($container) {
     return new \App\Helpers\HR();
 };
 
-// Add global message flash module
+// Add global message flash dependency
 $container['flash'] = function ($container) {
 	return new \Slim\Flash\Messages();
 };
 
-// Add the Twig View module
+// Add the Twig View dependency
 $container['view'] = function ($container) {
 	$view = new \Slim\Views\Twig(__DIR__ . '/../resources/views/', [
-//		'cache' =>  __DIR__ . '/../cache',
+		'cache' =>  __DIR__ . '/../cache',
         'cache' =>  false,
         'debug' =>  true
 	]);
@@ -121,7 +83,7 @@ $container['view'] = function ($container) {
 	return $view;
 };
 
-// Add the validation module
+// Add the validation dependency
 $container['validator'] = function ($container) {
 	return new App\Validation\Validator();
 };
@@ -144,7 +106,7 @@ $container['csrf'] = function ($container) { return new \Slim\Csrf\Guard(); };
 $app->add(new \App\Middleware\ValidationErrorsMiddleware($container));
 $app->add(new \App\Middleware\OldInputMiddleware($container));
 $app->add(new \App\Middleware\CsrfViewMiddleware($container));
-$app->add(new \Slim\HttpCache\Cache('public', 86400));
+$app->add(new \Slim\HttpCache\Cache('public', 30));
 $app->add($container->csrf);
 
 v::with('App\\Validation\\Rules\\');

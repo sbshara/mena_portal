@@ -80,7 +80,7 @@ class HRController extends Controller {
 			}
 			if ($validation->failed()) {
 				$this->flash->addMessage('danger', 'There are errors in some fields, please check and try again!');
-				return $response->withRedirect($this->router->pathFor('HR.NewApplicant'));
+				return $response->withRedirect($this->router->pathFor('HR.ApplicantWizard'));
 			}
 			// If profile upload has no errors, move the file
 			if ($profile->getError() === UPLOAD_ERR_OK) {
@@ -128,7 +128,7 @@ class HRController extends Controller {
 						]);
 					} else {
 						$this->flash->addMessage('danger', 'Something is wrong with the uploaded files!');
-						return $response->withRedirect($this->router->pathFor('HR.NewApplicant'));
+						return $response->withRedirect($this->router->pathFor('HR.ApplicantWizard'));
 					}
 				}
 			}
@@ -141,12 +141,11 @@ class HRController extends Controller {
 				'gender'            =>  v::notEmpty(),
 				'dob'               =>  v::notEmpty()->date()->OverEighteen(),
 				'nationality'       =>  v::notEmpty()->numeric(),
-				'nextstep'          =>  v::notEmpty(),
 				'source'            =>  v::notEmpty()
 			]);
 			if ($validation->failed()) {
 				$this->flash->addMessage('danger', 'There are errors in some fields, please check and try again!');
-				return $response->withRedirect($this->router->pathFor('HR.NewApplicant'));
+				return $response->withRedirect($this->router->pathFor('HR.ApplicantWizard'));
 			}
 			// If profile upload has no errors, move the file
 			if ($profile->getError() === UPLOAD_ERR_OK) {
@@ -167,23 +166,23 @@ class HRController extends Controller {
 		}
 		// Flash a message that the applicant record is created.
 		$this->flash->addMessage('success', 'Applicant was created successfully');
-		$direction = $request->getParam('nextstep');
-		switch ($direction) {
-			case 'address':
-				return $response->withRedirect($this->router->pathFor('HR.NewAddress'));
-			case 'skill':
-				return $response->withRedirect($this->router->pathFor('HR.NewSkill'));
-			case 'degree':
-				return $response->withRedirect($this->router->pathFor('HR.NewEducation'));
-			case 'experience':
-				return $response->withRedirect($this->router->pathFor('HR.NewExperience'));
-			case 'interview':
-				return $response->withRedirect($this->router->pathFor('HR.NewInterview'));
-			default:
-				return $response->withRedirect($this->router->pathFor('home'));
-		}
-		// redirect to the next page (add experience, add address, ...etc.)
-		return $response->withRedirect($this->router->pathFor('HR.NewAddress'));
+		$direction = 'SEC2';
+//		switch ($direction) {
+//			case 'address':
+//				return $response->withRedirect($this->router->pathFor('HR.NewAddress'));
+//			case 'skill':
+//				return $response->withRedirect($this->router->pathFor('HR.NewSkill'));
+//			case 'degree':
+//				return $response->withRedirect($this->router->pathFor('HR.NewEducation'));
+//			case 'experience':
+//				return $response->withRedirect($this->router->pathFor('HR.NewExperience'));
+//			case 'interview':
+//				return $response->withRedirect($this->router->pathFor('HR.NewInterview'));
+//			default:
+//				return $response->withRedirect($this->router->pathFor('home'));
+//		}
+//		// redirect to the next page (add experience, add address, ...etc.)
+		return $response->withRedirect($this->router->pathFor('HR.ApplicantWizard'));
 	}
 
 	// Employees
