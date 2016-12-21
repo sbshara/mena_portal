@@ -2,6 +2,12 @@
  * Created by shiblie on 11/28/16.
  */
 
+
+$( function() {
+    $('#accordion').accordion();
+} );
+
+
 $(function(){
     $(".select2").select2();
     //Datemask dd/mm/yyyy

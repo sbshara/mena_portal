@@ -36,6 +36,7 @@ $app->group('', function () {
 	$this->group('/auth', function () {
 		// Group all URLs that start with /HR
 		$this->group('/HR', function () {
+            $this->get('/wizard[/]', HRController::class . ':getWizard')->setName('HR.ApplicantWizard');
 			// Applicants:
 			$this->group('/applicant', function () {
 				// View New Applicant page:

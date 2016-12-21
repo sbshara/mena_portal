@@ -26,6 +26,10 @@ class HRController extends Controller {
 		return $this->view->render($response, 'auth/HR/Applicant/newApplicant.twig');
 	}
 
+    public function getWizard ($request, $response) {
+        return $this->view->render($response, 'auth/HR/SinglePage.twig');
+    }
+
 	public function getAllApplicants ($request, $response) {
 		return $this->view->render($response, 'auth/HR/Applicant/allApplicants.twig');
 	}
