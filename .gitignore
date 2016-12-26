@@ -2,4 +2,4 @@ vendor/*
 .DS_*
 composer.lock
 cache/*
-.idea*
+.idea/*
