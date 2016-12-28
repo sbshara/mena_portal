@@ -8,23 +8,26 @@
 
 {% block contents %}
 <div id="accordion">
-    <h3>Register a new Applicant</h3>
+    {# TODO: Change color of tag according to theme color #}
+    <h3 style="background: {{ auth.userMaster.theme_color }}; border: #000000; ">Register a new Applicant</h3>
     <div id="SEC1" class="register-box-body">
         {#<p class="login-box-msg">Register a new Applicant</p>#}
         <form action="{{ path_for('HR.NewApplicant') }}" method="post" autocomplete="on" enctype="multipart/form-data" >
-
-            <div class="form-group col-xs-6 has-feedback{{ errors.first_name ? ' has-error' : '' }}">
-                <label for="first_name">First Name: &nbsp;</label>
-                <input type="text" name="first_name" id="first_name" class="form-control input-group-lg reg_name" value="{{ old.first_name }}" placeholder="Applicant's First Name"/>
+        {#<form action="" method="post" autocomplete="on" enctype="multipart/form-data" >#}
+            <br/>
+            <br/>
+            <div class="form-group has-feedback{{ errors.first_name ? ' has-error' : '' }}">
+                <label for="first_name">First Name: &nbsp;</label><span class="text-red"><b>*</b></span>
+                <input type="text" name="first_name" id="first_name" class="form-control" value="{{ old.first_name }}" placeholder="Applicant's First Name" />
                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
                 {% if errors.first_name %}
                     <span class="help-block">{{ errors.first_name | first }}</span>
                 {% endif %}
             </div>
 
-            <div class="form-group col-xs-6 has-feedback{{ errors.last_name ? ' has-error' : '' }}">
-                <label for="last_name">Last Name: &nbsp;</label>
-                <input type="text" name="last_name" id="last_name" class="form-control input-group-lg reg_name" value="{{ old.last_name }}" placeholder="Applicant's Last Name"/>
+            <div class="form-group has-feedback{{ errors.last_name ? ' has-error' : '' }}">
+                <label class="required" for="last_name">Last Name: &nbsp;</label><span class="text-red"><b>*</b></span>
+                <input type="text" name="last_name" id="last_name" class="form-control" value="{{ old.last_name }}" placeholder="Applicant's Last Name"/>
                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
                 {% if errors.last_name %}
                     <span class="help-block">{{ errors.last_name | first }}</span>
@@ -33,7 +36,7 @@
 <br/>
 
             <div class="form-group has-feedback{{ errors.per_email ? ' has-error' : '' }}">
-                <label for="per_email">Personal Email: &nbsp;</label>
+                <label for="per_email">Personal Email: &nbsp;</label><span class="text-red"><b>*</b></span>
                 <input type="email" name="per_email" id="per_email" placeholder="applicant@domain.com" class="form-control" value="{{ old.per_email }}"/>
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                 {% if errors.per_email %}
@@ -42,7 +45,7 @@
             </div>
 
             <div class="form-group has-feedback{{ errors.mobile_phone ? ' has-error' : '' }}">
-                <label for="mobile_phone">Mobile Phone Number: </label>
+                <label for="mobile_phone">Mobile Phone Number: &nbsp;</label><span class="text-red"><b>*</b></span>
                 <input type="tel" name="mobile_phone" id="mobile_phone" placeholder="+971 50 000 0000" class="form-control" value="{{ old.mobile_phone }}"/>
                 <span class="glyphicon glyphicon-phone form-control-feedback"></span>
                 {% if errors.mobile_phone %}
@@ -51,7 +54,7 @@
             </div>
 
             <div class="form-group has-feedback{{ errors.gender ? ' has-error' : '' }}">
-                <label for="male">Gender: &nbsp; &nbsp;</label>
+                <label for="male">Gender: &nbsp;</label><span class="text-red"><b>*</b></span> &nbsp;
                 <input type="radio" name="gender" id="male" value="M" {% if old.gender == 'M' %}checked="checked"{% endif %}/>
                 <span class="fa fa-male"> Male &nbsp; &nbsp;</span>
                 <input type="radio" name="gender" id="female" value="F" {% if old.gender == 'F' %}checked="checked"{% endif %}/>
@@ -62,7 +65,7 @@
             </div>
 
             <div class="form-group has-feedback{{ errors.nationality ? ' has-error' : '' }}">
-                <label for="nationality">Nationality: </label>
+                <label for="nationality">Nationality: &nbsp;</label><span class="text-red"><b>*</b></span>
                 <select class="form-control" name="nationality" id="nationality">
                     <option value="">Please Select ... </option>
                     {% for country in HR.countries %}
@@ -75,7 +78,7 @@
             </div>
 
             <div class="form-group has-feedback{{ errors.dob ? ' has-error' : '' }}">
-                <label for="date-picker">Date of Birth: </label>
+                <label for="date-picker">Date of Birth: &nbsp;</label><span class="text-red"><b>*</b></span>
                 <div class="input-group date">
                     <div class="input-group-addon">
                         <i class="fa fa-calendar"></i>
@@ -88,8 +91,8 @@
             </div>
 
             <div class="form-group has-feedback{{ errors.profilepic ? ' has-error' : '' }}">
-                <label for="profilePic">Photo:</label>
-                <input type="file" id="profilePic" name="profilepic" value="{{ old.profilepic }}">
+                <label for="profilePic">Photo: &nbsp;</label><span class="text-red"><b>*</b></span>
+                <input type="file" id="profilePic" name="profilepic" value="{{ old.profilepic }}" class="form-control-static">
                 <p class="help-block"><small><i>File must be *.jpg, *.jpeg, *.png, *.gif, or *.bmb and < 3MBs</i></small></p>
                 {% if errors.profilepic %}
                     <span class="help-block">{{ errors.profilepic | first }}</span>
@@ -97,7 +100,7 @@
             </div>
 
             <div id="newAttachment" class="form-group">
-                <label for="help-me">Attachments:</label>
+                <label for="help-me">Additional Attachments:</label>
                 <p class="help-block" id="help-me"><span><i>Attach CV, Passport Copy, VISA Copy, Educational Degree, or any other related documents<br/><mark>Remember to rename the files respectively</mark></i></span></p>
                 <input type="hidden" id="attachmentCounter" name="attachmentCounter" value="-1">
                 <input type="button" id="add" class="btn btn-xs" onclick="showInput('divattachmentGroup')" value="Add New" title="Add new attachment field"/>
@@ -574,9 +577,52 @@
                     </div>
                 </div>
             </div>
+            <br/>
+
+            <div class="form-group has-feedback{{ errors.visa ? ' has-error' : '' }}">
+                {#<div class="form-group has-feedback{{ errors.visa ? ' has-error' : '' }}">#}
+                    <label for="inputvisa">Current Visa Status: &nbsp;</label><span class="text-red"><b>*</b></span>
+                {#</div>#}
+                <br/>
+
+                <label for="employee_residence">Employee Residency</label>
+                    <input type="radio" class="radio-inline" name="visa" id="employee_residence" value="Employee Residence" {% if old.visa == 'Employee Residence' %}checked="checked"{% endif %} /> &nbsp; &nbsp;
+                <label for="family_residence">Family Residency</label>
+                    <input type="radio" class="radio-inline" name="visa" id="family_residence" value="Family Residence" {% if old.visa == 'Family Residence' %}checked="checked"{% endif %} /> &nbsp; &nbsp;
+                <label for="visit">Visit Visa</label>
+                    <input type="radio" class="radio-inline" name="visa" id="visit" value="Visit" {% if old.visa == 'Visit' %}checked="checked"{% endif %} /> &nbsp; &nbsp;
+                <label for="tourist">Tourist Visa</label>
+                    <input type="radio" class="radio-inline" name="visa" id="tourist" value="Tourist" {% if old.visa == 'Tourist' %}checked="checked"{% endif %} /> &nbsp; &nbsp;
+                <label for="expired">Expired Visa</label>
+                    <input type="radio" class="radio-inline" name="visa" id="expired" value="Expired" {% if old.visa == 'Expired' %}checked="checked"{% endif %} /> &nbsp; &nbsp;
+
+                {#<label for="investor_residence">Investor Residency</label><input type="radio" class="radio-inline" name="visa" id="investor_residence" value="Investor Residence" {% if old.visa == 'Investor Residence' %}checked="checked"{% endif %} /> &nbsp; &nbsp;<label for="maid_residence">Maid Residency</label><input type="radio" class="radio-inline" name="visa" id="maid_residence" value="Maid Residence" {% if old.visa == 'Maid Residence' %}checked="checked"{% endif %} /> &nbsp; &nbsp;<label for="relative_residence">Investor Residency</label><input type="radio" class="radio-inline" name="visa" id="relative_residence" value="Relative Residence" {% if old.visa == 'Relative Residence' %}checked="checked"{% endif %} /> &nbsp; &nbsp;<label for="student_residence">Investor Residence</label><input type="radio" class="radio-inline" name="visa" id="student_residence" value="Student Residence" {% if old.visa == 'Student Residence' %}checked="checked"{% endif %} /> &nbsp; &nbsp;<label for="mission">Mission Visa</label><input type="radio" class="radio-inline" name="visa" id="mission" value="Mission" {% if old.visa == 'Mission' %}checked="checked"{% endif %} /> &nbsp; &nbsp;<label for="multiple_entry">Multiple Entry Visa</label><input type="radio" class="radio-inline" name="visa" id="multiple_entry" value="Multiple Entry" {% if old.visa == 'Multiple Entry' %}checked="checked"{% endif %} /> &nbsp; &nbsp;#}
+
+                {% if errors.visa %}
+                    <span class="help-block">{{ errors.visa | first }}</span>
+                {% endif %}
+            </div>
+
+            <br/>
+            <div class="form-group has-feedback{{ errors.visa_age ? ' has-error' : '' }}">
+                <label for="visa_age">Visa Age: &nbsp;</label><span class="text-red"><b>*</b></span>
+                <span class="help-block"><small><i>Time since the first issuance of visa from current employer</i></small></span>
+                <input type="text" class="form-control" name="visa_age" id="visa_age" placeholder="Two years ..." value="{{ old.visa_age ? old.visa_age : '' }}" />&nbsp;
+                {% if errors.visa_age %}
+                    <span class="help-block">{{ errors.visa_age | first }}</span>
+                {% endif %}
+            </div>
+
+            <div class="form-group has-feedback{{ errors.notice ? ' has-error' : '' }}">
+                <label for="notice">Required Notice Period:</label>
+                <input type="text" class="form-control" name="notice" id="notice" value="{{ old.notice ? old.notice : '' }}" placeholder="One month ..." />&nbsp;
+                {% if errors.notice %}
+                    <span class="help-block">{{ errors.notice | first }}</span>
+                {% endif %}
+            </div>
 
             <div class="form-group has-feedback{{ errors.source ? ' has-error' : '' }}">
-                <label for="source">Application Source:  &nbsp;</label>
+                <label for="source">Application Source:  &nbsp;</label><span class="text-red"><b>*</b></span>
                 <p class="help-block"><small><i>How did the applicant hear about us</i></small></p>
                 <select class="form-control" name="source" id="source">
                     <option value="" {% if old.source == '' %}selected{% endif %}>Please Select ...</option>
@@ -591,29 +637,16 @@
                 {% endif %}
             </div>
 
-            {#<div class="form-group has-feedback{{ errors.nextstep ? ' has-error' : '' }}">#}
-                {#<label for="nextstep">Next Step:  &nbsp;</label>#}
-                {#<select class="form-control" name="nextstep" id="nextstep">#}
-                    {#<option value="" {% if old.nextstep == '' %}selected{% endif %}>Please Select ...</option>#}
-                    {#<option value="address" {% if old.nextstep == 'address' %}selected{% endif %}>Applicant Address</option>#}
-                    {#<option value="skill" {% if old.nextstep == 'skill' %}selected{% endif %}>Applicant skills</option>#}
-                    {#<option value="degree" {% if old.nextstep == 'education' %}selected{% endif %}>Applicant educational degrees</option>#}
-                    {#<option value="experience" {% if old.nextstep == 'experience' %}selected{% endif %}>Applicant experiences</option>#}
-                    {#<option value="interview" {% if old.nextstep == 'interview' %}selected{% endif %}>Schedule an interview</option>#}
-                    {#<option value="home" {% if old.nextstep == 'home' %}selected{% endif %} title="Not Recommended!">Do nothing!</option>#}
-                {#</select>#}
-                {#{% if errors.nextstep %}#}
-                    {#<span class="help-block">{{ errors.nextstep | first }}</span>#}
-                {#{% endif %}#}
-            {#</div>#}
-            <button type="submit" name="applicantNext" id="applicantNext"class="btn btn-default">Save Applicant & Continue</button>
+            <div class="form-group has-feedback">
+                <input type="submit" name="submit" id="submitApplicant" onclick="saveApplicant()" value="Save & Continue"/>
+            </div>
             {{ csrf.field | raw }}
         </form>
     </div>
-    <h3>Add a new address</h3>
+    <h3 style="background: #3c8dbc; border: #000000; ">Add a new address</h3>
     <div id="SEC2" class="register-box-body">
     {#<p class="login-box-msg">Add a new address</p>#}
-    <form action="{{ path_for('HR.NewAddress') }}" method="post" autocomplete="on" enctype="multipart/form-data" >
+    {#<form action="{{ path_for('HR.NewAddress') }}" method="post" autocomplete="on" enctype="multipart/form-data" >#}
         <div class="form-group has-feedback{{ errors.applicant ? ' has-error' : '' }}{{ errors.applicantid ? ' has-error' : '' }}">
             <input type="text" id="applicant" name="applicant" class="form-control" value="{{ old.applicant }}" onkeyup="getApplicantName(this)" placeholder="Start typing appplicant's name..." />
             <input type="hidden" id="applicantid" name="applicantid" value="{{ old.applicantid }}"/>
@@ -780,7 +813,19 @@
         {{ csrf.field | raw }}
     </form>
 </div>
-
+    {#<h3 style="background: black; border: #3c8dbc;>Details about this form goes here</h3>#}
+    {#<div id="SEC3" class="register-box-body">#}
+        {#<form action="{{ path_for('HR.NewSkill') }}" method="post" autocomplete="on" enctype="multipart/form-data">#}
+            {#&#123;&#35; TODO: decide on this form details &#35;&#125;#}
+            {#<div class="form-group has-feedback{{ errors. ? ' has-error' : '' }}">#}
+                {#<input type="text" name="" id="" class="form-control" value="{{ old. }}" placeholder=""/>#}
+                {#<span class="glyphicon glyphicon-asterisk form-control-feedback"></span>#}
+                {#{% if errors. %}#}
+                    {#<span class="help-block">{{ errors. | first }}</span>#}
+                {#{% endif %}#}
+            {#</div>#}
+        {#</form>#}
+    {#</div>#}
 </div>
 
 {% endblock %}

@@ -59,7 +59,7 @@ class Auth {
 	// TODO: Delete this method (to be replaced by userMaster method)
 	public function profile () {
 		if (isset($_SESSION['user'])) {
-			return ProfileSetting::where('user_id', $_SESSION['user'])->first();
+			return UserMaster::where('u_id', $_SESSION['user'])->first();
 		} else {
 			return false;
 		}

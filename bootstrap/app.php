@@ -52,7 +52,7 @@ $container['flash'] = function ($container) {
 $container['view'] = function ($container) {
 	$view = new \Slim\Views\Twig(__DIR__ . '/../resources/views/', [
 		'cache' =>  __DIR__ . '/../cache',
-        'cache' =>  false,
+//        'cache' =>  false,
         'debug' =>  true
 	]);
 

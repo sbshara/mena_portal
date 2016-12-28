@@ -3,6 +3,17 @@
  */
 
 
+//function saveApplicant () {
+//    $.ajax({
+//        start:      function () { pace.restart() },
+//        url:        '/public/auth/HR/applicant/',
+//        type:       'post',
+//        success:    function (response) {
+//            alert('It Worked so far');
+//        }
+//    });
+//};
+
 $( function() {
     $('#accordion').accordion();
 } );

@@ -18,6 +18,7 @@ class ProfileSetting extends Model {
 	protected $fillable = [
 		'user_id',
 		'theme_color',
+        'color_code',
 		'sidebar_collapsed',
 		'sidebar_mini',
 		'sidebar_hover_expand',

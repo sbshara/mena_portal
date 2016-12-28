@@ -74,8 +74,10 @@ class HRController extends Controller {
 					'gender'            =>  v::notEmpty(),
 					'dob'               =>  v::notEmpty()->date()->OverEighteen(),
 					'nationality'       =>  v::notEmpty()->numeric(),
-					'nextstep'          =>  v::notEmpty(),
-					'source'            =>  v::notEmpty()
+					'visa'              =>  v::notEmpty(),
+                    'visa_age'          =>  v::notEmpty(),
+					'source'            =>  v::notEmpty(),
+                    'notice'            =>  v::notEmpty()
 				]);
 			}
 			if ($validation->failed()) {
@@ -141,7 +143,10 @@ class HRController extends Controller {
 				'gender'            =>  v::notEmpty(),
 				'dob'               =>  v::notEmpty()->date()->OverEighteen(),
 				'nationality'       =>  v::notEmpty()->numeric(),
-				'source'            =>  v::notEmpty()
+                'visa'              =>  v::notEmpty(),
+                'visa_age'          =>  v::notEmpty(),
+                'source'            =>  v::notEmpty(),
+                'notice'            =>  v::notEmpty()
 			]);
 			if ($validation->failed()) {
 				$this->flash->addMessage('danger', 'There are errors in some fields, please check and try again!');

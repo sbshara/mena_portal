@@ -29,9 +29,15 @@ $app->group('', function () {
 })->add(new GuestMiddleware($container));
 
 
-
 // Routes with signed in required.
 $app->group('', function () {
+
+    $this->group('/SHB', function () {
+        $this->get("/one", AuthController::class . ':one')->setName('one');
+        $this->get("/redirect", AuthController::class . ':red')->setName('red');
+        $this->get("/two", AuthController::class . ':two')->setName('two');
+    });
+
 	// Group all URLs that start with /auth
 	$this->group('/auth', function () {
 		// Group all URLs that start with /HR
