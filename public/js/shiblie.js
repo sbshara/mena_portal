@@ -15,9 +15,36 @@
 //};
 
 $( function() {
-    $('#accordion').accordion();
-} );
+    $('#accordion').accordion({
+        collapsible: true,
+        heightStyle: "content"
+    });
+});
 
+function homeAddress() {
+    $('#homeAddress').show('slow');
+    $('#originAddress').hide('slow');
+    $('#otherAddress').hide('slow');
+    $('#otherName').hide('slow');
+};
+
+function originAddress() {
+    $('#homeAddress').hide('slow');
+    $('#originAddress').show('slow');
+    $('#otherAddress').hide('slow');
+    $('#otherName').hide('slow');
+};
+
+function otherAddress() {
+    $('#homeAddress').hide('slow');
+    $('#originAddress').hide('slow');
+    $('#otherAddress').show('slow');
+    $('#otherName').show('slow');
+};
+
+function typeOtherAddress () {
+    $('#other').val($('#otherName').val());
+};
 
 $(function(){
     $(".select2").select2();
@@ -82,8 +109,12 @@ $(function(){
         showInputs: false
     });
 
-
+    $('#homeAddress').hide();
+    $('#originAddress').hide();
+    $('#otherAddress').hide();
+    $('#otherName').hide();
 });
+
 
 //$(document).ajaxStart(function() { Pace.restart(); });
 
@@ -148,7 +179,8 @@ function setCity() {
 // Autocomplete applicant name on adding new address
 function getApplicantName(Ray){
     var str = $(Ray).val().toString();
-    var localurl = '/public/AJAX/applicant/' + str;
+    alert (str);
+    var localurl = '/public/auth/AJAX/applicant/' + str;
     if(str.length > 1) {
         $.ajax({
             start: function () { Pace.restart(); },
@@ -187,7 +219,7 @@ function selectName(ObJ) {
     $('#applicant').val(strName);
     $('#applicantid').val(strID);
     $('#name-guide').hide();
-}
+};
 
 // Add and remove attachment (input field) (New Applicant)
 var attachment = -1;

@@ -7,7 +7,8 @@
  */
 
 use Respect\Validation\Validator as v;
-use \Slim\App as Slim;
+use \DI\Bridge\Slim\App as DiSlim;
+//use \Slim\App as DiSlim;
 use \Illuminate\Database\Capsule\Manager as Capsule;
 
 session_cache_limiter(false);
@@ -18,14 +19,24 @@ defined('DS') ? null : define('DS', DIRECTORY_SEPARATOR);
 
 require INC_ROOT . DS . 'vendor/autoload.php';
 
-$settings = require __DIR__ . '/../app/config/settings.php';
+//$settings = require __DIR__ . '/../app/config/settings.php';
 
-$app = new Slim($settings);
+//$container = $app->getContainer();
+// $app used to be here
 
-$container = $app->getContainer();
+$container = new \Slim\Container;
+
+$container['config'] = function ($container) {
+    return new \Noodlehaus\Config([
+//        __DIR__ . '/../app/config/settings.php',
+        INC_ROOT . DS . 'app/config/settings.php'
+    ]);
+};
+
+$app = new DiSlim($container);
 
 $capsule = new Capsule;
-$capsule->addConnection($container['settings']['db']);
+$capsule->addConnection($container['config']->get('settings.db'));
 $capsule->setAsGlobal();
 $capsule->bootEloquent();
 
@@ -50,11 +61,15 @@ $container['flash'] = function ($container) {
 
 // Add the Twig View dependency
 $container['view'] = function ($container) {
-	$view = new \Slim\Views\Twig(__DIR__ . '/../resources/views/', [
-		'cache' =>  __DIR__ . '/../cache',
-//        'cache' =>  false,
-        'debug' =>  true
-	]);
+	$view = new \Slim\Views\Twig(
+//        $container['config']->get('settings.twig.template'), [
+        __DIR__ . '/../resources/views/', [
+//            $container['config']->get('settings.twig.cache'),
+            'cache' =>  __DIR__ . '/../cache',
+//            $container['config']->get('settings.twig.debug'),
+            'debug' =>  true
+	    ]
+    );
 
 	$view->addExtension(new \Slim\Views\TwigExtension(
 		$container->router,
@@ -92,6 +107,13 @@ $container['cache'] = function ($container) {
 	return new \App\Middleware\HttpCache\CacheProvider();
 };
 
+$container['notFoundHandler'] = function ($container) {
+    return function ($request, $response) use ($container) {
+        $container->view->render($response, 'errors/404.twig');
+        return $response->withStatus(404);
+    };
+};
+
 
 // Add the Controllers:
 $container['HomeController'] = function ($container) { return new \App\Controllers\HomeController($container); };
@@ -106,11 +128,10 @@ $container['csrf'] = function ($container) { return new \Slim\Csrf\Guard(); };
 $app->add(new \App\Middleware\ValidationErrorsMiddleware($container));
 $app->add(new \App\Middleware\OldInputMiddleware($container));
 $app->add(new \App\Middleware\CsrfViewMiddleware($container));
-$app->add(new \Slim\HttpCache\Cache('public', 30));
+$app->add(new \Slim\HttpCache\Cache('public', 30)); //86400
 $app->add($container->csrf);
 
 v::with('App\\Validation\\Rules\\');
 
 
 require __DIR__ . '/../app/routes.php';
-

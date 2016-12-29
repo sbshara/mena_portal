@@ -20,7 +20,8 @@ return [
             'prefix'    =>  ''
         ],
         'app'       =>  [
-            'url'       =>  'http://localhost/mena_portal',
+            'site_name' =>  'MENA_PORTAL',
+            'url'       =>  'http://localhost/~shiblie/mena_portal/public',
             'hash'      =>  [
                 'algo'      =>  PASSWORD_DEFAULT,
                 'cost'      =>  10
@@ -40,6 +41,7 @@ return [
             'html'          =>  true
         ],
         'twig'      =>  [
+            'template'      =>  __DIR__ . DS. '..' . DS . 'resources' . DS . 'views' . DS,
             'cache'         =>  __DIR__ . DS. '..' . DS . 'cache',
             'debug'         =>  true,
             'auto_reload'   =>  true
@@ -51,6 +53,5 @@ return [
             'name' => 'MENA_PORTAL',
             'path' => __DIR__ . DS . '..' . DS . 'logs' . DS . 'app.log',
         ],
-
     ]
 ];
