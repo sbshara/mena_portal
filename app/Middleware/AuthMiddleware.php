@@ -15,7 +15,10 @@ class AuthMiddleware extends Middleware {
 
 		if (!$this->container->auth->check()) {
 			$this->container->flash->addMessage('danger', 'Please sign in to continue.');
-            $_SESSION['referrer'] = $this->getHeader("HTTP_REFERRER");
+            if ($this->container->getHeader('HTTP_REFERRER') !== null){
+                $_SESSION['referrer'] = $this->container->getHeader("HTTP_REFERRER");
+            }
+
 			return $response->withRedirect($this->container->router->pathFor('auth.Signin'));
 		}
 

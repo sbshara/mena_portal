@@ -396,18 +396,18 @@ class HRController extends Controller {
 
 	// AJAX Requests:
 	public function stateByCountry ($request, $response, $arg) {
-		$states = State::all()->where('country_id', (int)$arg['country_id']);
+		$states = State::where('country_id', (int)$arg['country_id'])->orderBy('state_name', 'ASC')->get();
 		return $response->withJson($states);
 	}
 
 	public function cityByState ($request, $response, $arg) {
-		$cities = City::all()->where('state_id', $arg['state_id']);
+		$cities = City::where('state_id', $arg['state_id'])->orderBy('city_name', 'ASC')->get();
 		return $response->withJson($cities);
 	}
 
 	public function applicantByName ($request, $response, $arg) {
 		$name = "%".$arg['applicant_name']."%";
-		$applicant = Applicant::where('first_name', 'LIKE', $name)->orWhere('last_name', 'LIKE', $name)->get();
+		$applicant = Applicant::where('first_name', 'LIKE', $name)->orWhere('last_name', 'LIKE', $name)->orderBy('first_name', 'ASC')->get();
 		return $response->withJson($applicant);
 	}
 

@@ -7,8 +7,8 @@
  */
 
 use Respect\Validation\Validator as v;
-use \DI\Bridge\Slim\App as DiSlim;
-//use \Slim\App as DiSlim;
+//use \DI\Bridge\Slim\App as Slim;
+use \Slim\App as Slim;
 use \Illuminate\Database\Capsule\Manager as Capsule;
 
 session_cache_limiter(false);
@@ -19,24 +19,26 @@ defined('DS') ? null : define('DS', DIRECTORY_SEPARATOR);
 
 require INC_ROOT . DS . 'vendor/autoload.php';
 
-//$settings = require __DIR__ . '/../app/config/settings.php';
+$settings = require __DIR__ . '/../app/config/settings.php';
 
 //$container = $app->getContainer();
 // $app used to be here
 
-$container = new \Slim\Container;
+//$container = new \Slim\Container;
 
-$container['config'] = function ($container) {
-    return new \Noodlehaus\Config([
-//        __DIR__ . '/../app/config/settings.php',
-        INC_ROOT . DS . 'app/config/settings.php'
-    ]);
-};
+//$container['config'] = function ($container) {
+//    return new \Noodlehaus\Config([
+////        __DIR__ . '/../app/config/settings.php',
+//        INC_ROOT . DS . 'app/config/settings.php'
+//    ]);
+//};
 
-$app = new DiSlim($container);
+$app = new Slim($settings);
+
+$container = $app->getContainer();
 
 $capsule = new Capsule;
-$capsule->addConnection($container['config']->get('settings.db'));
+$capsule->addConnection($container['settings']['db']);
 $capsule->setAsGlobal();
 $capsule->bootEloquent();
 
