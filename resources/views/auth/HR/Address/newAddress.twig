@@ -16,7 +16,7 @@
                 <p class="login-box-msg">Add a new address</p>
                 <form action="{{ path_for('HR.NewAddress') }}" method="post" autocomplete="on" enctype="multipart/form-data" >
                     <div class="form-group has-feedback{{ errors.applicant ? ' has-error' : '' }}{{ errors.applicantid ? ' has-error' : '' }}">
-                        <input type="text" id="applicant" name="applicant" class="form-control" value="{{ old.applicant }}" onkeyup="getApplicantName(this)" placeholder="Start typing appplicant's name..." />
+                        <input type="text" id="applicant" name="applicant" class="form-control" value="{{ old.applicant }}" onchange="getApplicantName(this)" placeholder="Start typing appplicant's name..." />
                         <input type="hidden" id="applicantid" name="applicantid" value="{{ old.applicantid }}"/>
                         <div id="name-guide" class="help-block"></div>
                         <span class="glyphicon glyphicon-user form-control-feedback"></span>

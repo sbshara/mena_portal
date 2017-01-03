@@ -15,6 +15,31 @@ use Slim\Http;
 
 class AuthController extends Controller {
 
+    public function one ($request, $response, $args) {
+        return $response->write('<a href="redirect">Click here</a>');
+    }
+
+    public function red ($request, $response, $args) {
+        return $response->withRedirect($this->router->pathFor('two'));
+    }
+
+    public function two ($request, $response, $args) {
+        print_r($request->getHeader("HTTP_REFERER"));
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	public function getSignOut($request, $response) {
 		$this->auth->logout();
 		return $response->withRedirect($this->router->pathFor('home'));
@@ -41,7 +66,8 @@ class AuthController extends Controller {
 			$this->flash->addMessage('danger', 'Could not sign you in using these credentials');
 			return $response->withRedirect($this->router->pathFor('auth.Signin'));
 		}
-		return $response->withRedirect($this->router->pathFor('home'));
+
+        return $response->withRedirect($this->router->pathFor('home'));
 	}
 
 

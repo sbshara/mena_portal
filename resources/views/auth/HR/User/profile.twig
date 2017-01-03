@@ -25,17 +25,17 @@
 
                     <h3 class="profile-username text-center">{{ auth.userMaster.first_name }} {{ auth.userMaster.last_name }}</h3>
 
-                    <p class="text-muted text-center">{{ auth.userMaster.t_title }}</p>
+                    <p class="text-muted text-center">{{ auth.userMaster.title }}</p>
 
                     <ul class="list-group list-group-unbordered">
                         <li class="list-group-item">
                             <b>Employee ID:</b> <a class="pull-right">{{ auth.userMaster.emp_ref }}</a>
                         </li>
                         <li class="list-group-item">
-                            <b>Extension:</b> <a class="pull-right" href="tel:{{ auth.userMaster.extension }}">{{ auth.userMaster.extension }}</a>
+                            <b>Extension:</b> <a class="pull-right" href="tel:{{ auth.userMaster.local_extension }}">{{ auth.userMaster.local_extension }}</a>
                         </li>
                         <li class="list-group-item">
-                            <b>Mobile Number</b> <a class="pull-right" href="tel:{{ auth.userMaster.mobile_phone }}">{{ auth.userMaster.mobile_phone }}</a>
+                            <b>Mobile Number</b> <a class="pull-right" href="tel:{{ auth.userMaster.primary_phone }}">{{ auth.userMaster.primary_phone }}</a>
                         </li>
                     </ul>
 
@@ -53,7 +53,7 @@
                 <!-- /.box-header -->
                 <div class="box-body">
                     <strong><i class="fa fa-book margin-r-5"></i> Education</strong>
-                    <p class="text-muted">{{ auth.userMaster.education }}</p>
+                    <p class="text-muted">{{ auth.userMaster.degree }}</p>
                     <hr>
                     <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
                     <p class="text-muted">{{ auth.userMaster.location }}Dubai, UAE</p>

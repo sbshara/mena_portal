@@ -3,3 +3,9 @@
 Placeholder for any customized CSS rules
 
 */
+
+
+/*.form-group.required .label:after {*/
+    /*content: "*";*/
+    /*color: #ff0000;*/
+/*}*/

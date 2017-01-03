@@ -1,6 +1,42 @@
-/**
- * Created by shiblie on 11/28/16.
- */
+/*
+* Created by shiblie on 11/28/16.
+*/
+//
+function homeAddress() {
+    if($('#home').is(':checked') == true) {
+        $('#homeAddress :input').attr('disabled', false);
+    } else {
+        $('#homeAddress :input').attr('disabled', true);
+    }
+};
+function originAddress() {
+    if($('#origin').is(':checked') == true) {
+        $('#originAddress :input').attr('disabled', false);
+    } else {
+        $('#originAddress :input').attr('disabled', true);
+    }
+};
+//
+function otherAddress() {
+    if($('#other').is(':checked') == true) {
+        $('#otherAddress :input').attr('disabled', false);
+        $('#otherName').attr('disabled', false);
+    } else {
+        $('#otherAddress :input').attr('disabled', true);
+        $('#otherName').attr('disabled', true);
+    }
+};
+
+function typeOtherAddress () {
+    var srcName = $('#otherName').val();
+    if(srcName.length > 0){
+        $('#other').val(srcName);
+        $('#otherAddressTTL').html(srcName);
+    } else {
+        $('#other').val('Other Address');
+        $('#otherAddressTTL').html('Other Address');
+    }
+};
 
 $(function(){
     $(".select2").select2();
@@ -65,73 +101,84 @@ $(function(){
         showInputs: false
     });
 
+    $('#accordion').accordion({
+        collapsible: true,
+        heightStyle: "content",
+        icons: {
+            "header": "ui-icon-plusthick",
+            "activeHeader": "ui-icon-minusthick"
+        }
+    });
 
+    $('#homeAddress :input').attr('disabled', true);
+    $('#originAddress :input').attr('disabled', true);
+    $('#otherAddress :input').attr('disabled', true);
+    $('#otherName').attr('disabled', true);
 });
 
-//$(document).ajaxStart(function() { Pace.restart(); });
+
+$(document).ajaxStart(function() { Pace.restart(); });
 
 // Populate States on Country Selection
-function getStates() {
-    var country = $('#country').val();
-    var localurl = '/public/AJAX/states/' + country;
+function getStates(obj, trgt) {
+    var country = obj.value;
+    var localurl = 'http://localhost/~shiblie/mena_portal/public/AJAX/states/' + country;
     $.ajax({
         start:      function () { Pace.restart(); },
         url:        localurl,
         type:       'get',
         success:    function(response){
-                        var option_data = '';
+                        var option_data = '<option>Please select a state...</option>';
                         $.each(response, function(i, response){
                             option_data = option_data + "<option id='"+response.id + "' value='" +response.id+"'>"+response.state_name+"</option>";
                         });
-                        $('#state').html(option_data);
+                        $('#' + trgt).html(option_data);
                     }
     });
 };
 
 // Populate cities on state selection
-function getCities() {
-    var state = $('#state').val();
-    var oldState = $('#state_selection').val();
-    $('#state_selection').val(state);
-    var localurl = '/public/AJAX/cities/' + state;
+function getCities(obj, trgt) {
+    var state = obj.value;
+    var objName = obj.name;
+    var oldState = $('#' + objName + '_selection').val();
+    var localurl = 'http://localhost/~shiblie/mena_portal/public/AJAX/cities/' + state;
+    $('#' + oldState).val(state);
     $.ajax({
         start:      function () { Pace.restart(); },
         url:        localurl,
         type:       'get',
         success:    function(response){
-                        var option_data = '';
-                        var result = '';
+                        var option_data = '<option>Please select a city...</option>';
                         $.each(response, function(i, response){
-                            result  = "<option id='";
-                            result += response.id;
-                            result += "' value='";
-                            result += response.id;
-                            result += "' ";
+                            option_data += "<option id='" + response.id + "' value='" + response.id + "' ";
                             if(response.id == oldState){
-                                result += "selected ";
+                                option_data += "selected ";
                             };
-                            result += ">";
-                            result += response.city_name;
-                            result += " - ";
-                            result += response.city_name_ar;
-                            result += "</option>";
-
-                            option_data += result;
+                            option_data += ">";
+                            option_data += response.city_name;
+                            if(response.city_name_ar !== ''){
+                                option_data += " - ";
+                                option_data += response.city_name_ar;
+                            }
+                            option_data += "</option>";
                         });
-                        $('#city').html(option_data);
+                        $('#' + trgt).html(option_data);
                     }
     });
 };
 
-function setCity() {
-  var city = $('#city').val();
-    $('#city_selection').val(city);
+function setCity(obj) {
+    cityField = obj.name;
+  var city = obj.value;
+    $('#' + cityField + '_selection').val(city);
 };
 
 // Autocomplete applicant name on adding new address
 function getApplicantName(Ray){
     var str = $(Ray).val().toString();
-    var localurl = '/public/AJAX/applicant/' + str;
+    alert (str);
+    var localurl = '/public/auth/AJAX/applicant/' + str;
     if(str.length > 1) {
         $.ajax({
             start: function () { Pace.restart(); },
@@ -170,92 +217,113 @@ function selectName(ObJ) {
     $('#applicant').val(strName);
     $('#applicantid').val(strID);
     $('#name-guide').hide();
-}
+};
 
 // Add and remove attachment (input field) (New Applicant)
-var attachment = -1;
-var limit = 9;
-var addErr = false;
-var remErr = false;
+//var attachment = -1;
+//var limit = 9;
+var atachAddErr = false;
+var atachRemErr = false;
 
-function addInput(div){
-    if(attachment < limit){
-        var newDiv = div.slice(0,-1) + attachment;
-        $('#'+div).clone().appendTo('#newAttachment').prop('id', newDiv);
-        $('#'+newDiv).find('#remove').prop('hidden', '');
-        $('#'+newDiv).find('#attachmentCountry').prop('name', 'attachmentCountry'+attachment);
-        $('#'+newDiv).find('#attachmentType').prop('name', 'attachmentType'+attachment);
-        $('#'+newDiv).find('#attachmentIssuer').prop('name', 'attachmentIssuer'+attachment);
-        $('#'+newDiv).find('#attachmentIssueDate').prop('name', 'attachmentIssueDate'+attachment);
-        $('#'+newDiv).find('#attachmentExpiryDate').prop('name', 'attachmentExpiryDate'+attachment);
-        $('#attachmentCounter').val(attachment);
-        if(remErr == true){
-            $('#remErr').remove();
-            remErr = false;
+function showInput(div, counter) {
+    var cntrV = $('#' + counter).val();
+    var cntrN = counter.toString();
+    if(cntrV < 9){
+        cntrV++;
+        $('#' + div + cntrV).removeClass(' hidden');
+        $('#' + cntrN).val(cntrV);
+        if(atachRemErr == true){
+            $('#' + div + 'Err').remove();
+            atachRemErr = false;
         }
-        attachment++;
     } else {
-        if(addErr == true){
+        if(atachAddErr == true){
             return false;
         } else {
-            $('#'+div).before("<span id='addErr' class='alert-error'>you have reached the limit of attachments!</span><br/>");
-            addErr = true;
+            $('#' + div + '0').before(
+                "<span id='" +
+                div +
+                "Err'" +
+                "class='alert-error'>" +
+                "you have reached the limit of " +
+                div.slice(3,div.length - 5) +
+                "s!</span><br/>"
+            );
+            atachAddErr = true;
         }
     }
 }
 
-function removeInput(Obj){
-    if(attachment <= 1){
-        if(remErr == true){
+function hideInput(div, counter) {
+    var cntrV = $('#' + counter).val();
+    var cntrN = counter.toString();
+
+    if(cntrV <= -1){
+        if(atachRemErr == true) {
             return false;
         } else {
-            $(Obj).parent().before("<span id='remErr' class='alert-error'>Nothing to remove!</span>");
-            remErr = true;
+            $('#' + div + cntrV).before(
+                "<span id='" +
+                div +
+                "Err'" +
+                "class='alert-error'>" +
+                "Nothing to remove!</span>"
+            );
+            atachRemErr = true;
         }
     } else {
-        $(Obj).parent().remove();
-        $('#attachmentCounter').val(attachment);
-        $('#addErr').remove();
-        addErr = false;
-        attachment--;
+        $('#' + div + cntrV).addClass(' hidden');
+        $('#' + div + 'Err').remove();
+        atachAddErr = false;
+        cntrV--;
+        $('#' + cntrN).val(cntrV);
     }
 }
 
-function showInput(div) {
-    if(attachment < limit){
-        attachment++;
-        $('#' + div + attachment).removeClass(' hidden');
-        $('#attachmentCounter').val(attachment);
-        if(remErr == true){
-            $('#remErr').remove();
-            remErr = false;
-        }
-    } else {
-        if(addErr == true){
-            return false;
-        } else {
-            $('#' + div + '0').before("<span id='addErr' class='alert-error'>you have reached the limit of attachments!</span><br/>");
-            addErr = true;
-        }
-    }
-}
 
-function hideInput(div) {
-    if(attachment <= -1){
-        if(remErr == true) {
-            return false;
-        } else {
-            $('#' + div + attachment).before("<span id='remErr' class='alert-error'>Nothing to remove!</span>");
-            remErr = true;
-        }
-    } else {
-        $('#' + div + attachment).addClass(' hidden');
-        $('#addErr').remove();
-        addErr = false;
-        attachment--;
-        $('#attachmentCounter').val(attachment);
-    }
-}
+// Add & Remove attachment field (copy div)
+//function addInput(div){
+//    if(attachment < limit){
+//        var newDiv = div.slice(0,-1) + attachment;
+//        $('#'+div).clone().appendTo('#newAttachment').prop('id', newDiv);
+//        $('#'+newDiv).find('#remove').prop('hidden', '');
+//        $('#'+newDiv).find('#attachmentCountry').prop('name', 'attachmentCountry'+attachment);
+//        $('#'+newDiv).find('#attachmentType').prop('name', 'attachmentType'+attachment);
+//        $('#'+newDiv).find('#attachmentIssuer').prop('name', 'attachmentIssuer'+attachment);
+//        $('#'+newDiv).find('#attachmentIssueDate').prop('name', 'attachmentIssueDate'+attachment);
+//        $('#'+newDiv).find('#attachmentExpiryDate').prop('name', 'attachmentExpiryDate'+attachment);
+//        $('#attachmentCounter').val(attachment);
+//        if(remErr == true){
+//            $('#remErr').remove();
+//            remErr = false;
+//        }
+//        attachment++;
+//    } else {
+//        if(addErr == true){
+//            return false;
+//        } else {
+//            $('#'+div).before("<span id='addErr' class='alert-error'>you have reached the limit of attachments!</span><br/>");
+//            addErr = true;
+//        }
+//    }
+//}
+//
+//function removeInput(Obj){
+//    if(attachment <= 1){
+//        if(remErr == true){
+//            return false;
+//        } else {
+//            $(Obj).parent().before("<span id='remErr' class='alert-error'>Nothing to remove!</span>");
+//            remErr = true;
+//        }
+//    } else {
+//        $(Obj).parent().remove();
+//        $('#attachmentCounter').val(attachment);
+//        $('#addErr').remove();
+//        addErr = false;
+//        attachment--;
+//    }
+//}
 
 $(function () {
     $('.has-error').each(function(i, Obj){
