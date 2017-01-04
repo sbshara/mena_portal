@@ -23,6 +23,7 @@ class VisaStatus extends Model {
         'sponsor',
         'issue_date',
         'expiry_date',
+        'visa_age',
 		'created_at',
 		'updated_at'
 	];

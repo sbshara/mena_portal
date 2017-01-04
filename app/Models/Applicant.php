@@ -26,6 +26,7 @@ class Applicant extends Model {
 		'prof_pic',
         'expectation',
 		'source',
+        'notice_period',
 		'created_at',
 		'updated_at'
 	];

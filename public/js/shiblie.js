@@ -41,9 +41,9 @@ function typeOtherAddress () {
 $(function(){
     $(".select2").select2();
     //Datemask dd/mm/yyyy
-    $("#datemask").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
+    $("#datemask").inputmask("yyyy-mm-dd", {"placeholder": "yyyy-mm-dd"});
     //Datemask2 mm/dd/yyyy
-    $("#datemask2").inputmask("mm/dd/yyyy", {"placeholder": "mm/dd/yyyy"});
+    $("#datemask2").inputmask("yyyy-mm-dd", {"placeholder": "yyyy-mm-dd"});
     //Money Euro
     $("[data-mask]").inputmask();
 
@@ -72,8 +72,12 @@ $(function(){
 
     //Date picker
     $('#datepicker').datepicker({
-        autoclose: true
+        autoclose: true,
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: 'yy-mm-dd'
     });
+
 
     //iCheck for checkbox and radio inputs
     $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
@@ -336,7 +340,7 @@ $(function () {
 });
 
 function languageCounter(obj){
-    var checker = obj.name;
+    var checker = obj.id;
     var langCount = $('#languageCount').val();
     if($('#' + checker).is(':checked') == true){
             langCount++;

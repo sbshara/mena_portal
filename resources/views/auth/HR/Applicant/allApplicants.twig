@@ -33,6 +33,8 @@
                     <th>Phone</th>
                     <th>Email</th>
                     <th>Nationality</th>
+                    <th>Gender</th>
+                    <th>DoB</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -43,6 +45,8 @@
                         <td>{{ applicant.mobile_phone }}</td>
                         <td>{{ applicant.per_email }}</td>
                         <td>{{ applicant.nationality }}</td>
+                        <td>{{ applicant.gender }}</td>
+                        <td>{{ applicant.birth_date }}</td>
                     </tr>
                 {% endfor %}
                 </tbody>

@@ -157,6 +157,8 @@ $app->group('', function () {
 		$this->get('/cities/{state_id}', HRController::class . ':cityByState')->setName('AJAX.CitiesByState');
 		// Get Applicant Name by string:
 		$this->get('/applicant/{applicant_name}', HRController::class . ':applicantByName')->setName('AJAX.ApplicantName');
+        // Get Country by ID:
+        $this->get('/countries/{country_id}', HRController::class . ':countryById')->setName('AJAX.countryById');
 	});
 
 })->add(new AuthMiddleware($container));

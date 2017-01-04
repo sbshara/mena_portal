@@ -15,8 +15,11 @@ use App\Models\Applicant;
 use App\Models\ApplicantDocs;
 use App\Models\Document;
 use App\Models\UserMaster;
+use App\Models\Country;
 use App\Models\State;
 use App\Models\City;
+use App\Models\VisaStatus;
+use App\Models\ApplicantLanguage;
 
 
 class HRController extends Controller {
@@ -77,12 +80,14 @@ class HRController extends Controller {
 					'visa'              =>  v::notEmpty(),
                     'visa_age'          =>  v::notEmpty(),
 					'source'            =>  v::notEmpty(),
-                    'notice'            =>  v::notEmpty()
+                    'notice'            =>  v::notEmpty(),
+                    'expectation'       =>  v::notEmpty()->numeric()->min(2000),
+                    'languageCount'     =>  v::min(1)
 				]);
 			}
 			if ($validation->failed()) {
 				$this->flash->addMessage('danger', 'There are errors in some fields, please check and try again!');
-				return $response->withRedirect($this->router->pathFor('HR.ApplicantWizard'));
+				return $response->withRedirect($this->router->pathFor('HR.NewApplicant'));
 			}
 			// If profile upload has no errors, move the file
 			if ($profile->getError() === UPLOAD_ERR_OK) {
@@ -98,8 +103,19 @@ class HRController extends Controller {
 				'birth_date'        =>  $request->getParam('dob'),
 				'prof_pic'          =>  $profile_location,
 				'source'            =>  $request->getParam('source'),
-				'nationality'       =>  $request->getParam('nationality')
+				'nationality'       =>  $request->getParam('nationality'),
+                'notice_period'     =>  $request->getParam('notice'),
+                'expectation'       =>  $request->getParam('expectation')
 			]);
+
+
+
+            $visa0 = VisaStatus::create([
+                'applicant_id'      =>  $applicant0->id,
+                'visa_type'         =>  $request->getParam('visa'),
+                'visa_age'          =>  $request->getParam('visa_age')
+            ]);
+
 			// -- Loop through each file
 			for($i = 0; $i <= $totalAttach; $i++) {
 				$attachment = $attachments[$i];
@@ -130,27 +146,29 @@ class HRController extends Controller {
 						]);
 					} else {
 						$this->flash->addMessage('danger', 'Something is wrong with the uploaded files!');
-						return $response->withRedirect($this->router->pathFor('HR.ApplicantWizard'));
+						return $response->withRedirect($this->router->pathFor('HR.NewApplicant'));
 					}
 				}
 			}
 		} else {
 			$validation = $this->validator->validate($request, [
 				'first_name'        =>  v::notEmpty()->alpha(),
-				'last_name'         =>  v::notEmpty()->alpha(),
-				'mobile_phone'      =>  v::notEmpty()->digit(' +()')->phoneAvailable(),
-				'per_email'         =>  v::notEmpty()->email()->noWhitespace()->emailAvailable(),
-				'gender'            =>  v::notEmpty(),
-				'dob'               =>  v::notEmpty()->date()->OverEighteen(),
-				'nationality'       =>  v::notEmpty()->numeric(),
+                'last_name'         =>  v::notEmpty()->alpha(),
+                'mobile_phone'      =>  v::notEmpty()->digit(' +()-')->phoneAvailable(),
+                'per_email'         =>  v::notEmpty()->email()->noWhitespace()->emailAvailable(),
+                'gender'            =>  v::notEmpty(),
+                'dob'               =>  v::notEmpty()->date()->OverEighteen(),
+                'nationality'       =>  v::notEmpty()->numeric(),
                 'visa'              =>  v::notEmpty(),
                 'visa_age'          =>  v::notEmpty(),
                 'source'            =>  v::notEmpty(),
-                'notice'            =>  v::notEmpty()
+                'notice'            =>  v::notEmpty(),
+                'expectation'       =>  v::notEmpty()->numeric()->min(2000),
+                'languageCount'     =>  v::min(1)
 			]);
 			if ($validation->failed()) {
 				$this->flash->addMessage('danger', 'There are errors in some fields, please check and try again!');
-				return $response->withRedirect($this->router->pathFor('HR.ApplicantWizard'));
+				return $response->withRedirect($this->router->pathFor('HR.NewApplicant'));
 			}
 			// If profile upload has no errors, move the file
 			if ($profile->getError() === UPLOAD_ERR_OK) {
@@ -158,36 +176,28 @@ class HRController extends Controller {
 			}
 			// created the applicant record:
 			$applicant = Applicant::create([
-				'first_name' => $request->getParam('first_name'),
-				'last_name' => $request->getParam('last_name'),
-				'per_email' => $request->getParam('per_email'),
-				'mobile_phone' => $request->getParam('mobile_phone'),
-				'gender' => $request->getParam('gender'),
-				'birth_date' => $request->getParam('dob'),
-				'prof_pic' => $profile_location,
-				'source' => $request->getParam('source'),
-				'nationality' => $request->getParam('nationality')
+				'first_name'        =>  $request->getParam('first_name'),
+				'last_name'         =>  $request->getParam('last_name'),
+				'per_email'         =>  $request->getParam('per_email'),
+				'mobile_phone'      =>  $request->getParam('mobile_phone'),
+				'gender'            =>  $request->getParam('gender'),
+				'birth_date'        =>  $request->getParam('dob'),
+				'prof_pic'          =>  $profile_location,
+				'source'            =>  $request->getParam('source'),
+				'nationality'       =>  $request->getParam('nationality'),
+                'notice_period'     =>  $request->getParam('notice'),
+                'expectation'       =>  $request->getParam('expectation')
 			]);
+            $visa = VisaStatus::create([
+                'applicant_id'      =>  $applicant->id,
+                'visa_type'         =>  $request->getParam('visa'),
+                'visa_age'          =>  $request->getParam('visa_age')
+            ]);
 		}
 		// Flash a message that the applicant record is created.
 		$this->flash->addMessage('success', 'Applicant was created successfully');
-		$direction = 'SEC2';
-//		switch ($direction) {
-//			case 'address':
-//				return $response->withRedirect($this->router->pathFor('HR.NewAddress'));
-//			case 'skill':
-//				return $response->withRedirect($this->router->pathFor('HR.NewSkill'));
-//			case 'degree':
-//				return $response->withRedirect($this->router->pathFor('HR.NewEducation'));
-//			case 'experience':
-//				return $response->withRedirect($this->router->pathFor('HR.NewExperience'));
-//			case 'interview':
-//				return $response->withRedirect($this->router->pathFor('HR.NewInterview'));
-//			default:
-//				return $response->withRedirect($this->router->pathFor('home'));
-//		}
-//		// redirect to the next page (add experience, add address, ...etc.)
-		return $response->withRedirect($this->router->pathFor('HR.ApplicantWizard'));
+		// redirect to the next page (add experience, add address, ...etc.)
+		return $response->withRedirect($this->router->pathFor('home'));
 	}
 
 	// Employees
@@ -200,46 +210,7 @@ class HRController extends Controller {
 	}
 
 	public function postNewEmployee ($request, $response) {
-		// TODO Finish Post Employee after populating the full applicants
-//		$validation = $this->validator->validate($request, [
-//			'first_name'        =>  v::notEmpty()->alpha(),
-//			'father_name'       =>  v::notEmpty()->alpha(),
-//			'last_name'         =>  v::notEmpty()->alpha(),
-//			'username'          =>  v::notEmpty()->alnum('-_$!@#%^&().=+~')->UsernameAvailable(),
-//			'per_email'         =>  v::notEmpty()->email()->noWhitespace()->emailAvailable(),
-//			'gender'            =>  v::notEmpty(),
-//			'dob'               =>  v::notEmpty()->date()->OverEighteen()
-//		]);
-//
-//		if ($validation->failed()) {
-//			return $response->withRedirect($this->router->pathFor('auth.newApplicant'));
-//		}
-
-		$employee = Applicant::create([
-//			'first_name'        =>  $request->getParam('first_name'),
-//			'middle_name'       =>  $request->getParam('middle_name'),
-//			'father_name'       =>  $request->getParam('father_name'),
-//			'last_name'         =>  $request->getParam('last_name'),
-//			'per_email'         =>  $request->getParam('per_email'),
-//			'mobile_phone'      =>  $request->getParam('mobile'),
-//			'gender'            =>  $request->getParam('gender'),
-//			'birth_date'        =>  $request->getParam('dob'),
-//			'prof_pic'          =>  $request->getParam('profilePic'),
-//			'marital_status'    =>  $request->getParam('marital'),
-//			'religion'          =>  $request->getParam('religion'),
-//			'doc_loc'           =>  "/applicants/docs/",
-//			'source'            =>  $request->getParam('source')
-		]);
-
-//		$this->flash->addMessage('success', 'Employee was created successfully');
-
-		if($request->getParam('user') == true) {
-			return $response->withRedirect($this->router->pathFor('HR.NewUser'));
-		} else {
-			return $response->withRedirect($this->router->pathFor('home'));
-		}
-	}
-
+    }
 	// Users
 	public function getNewUser ($request, $response) {
 		return $this->view->render($response, 'auth/HR/User/NewUser.twig');
@@ -410,6 +381,11 @@ class HRController extends Controller {
 		$applicant = Applicant::where('first_name', 'LIKE', $name)->orWhere('last_name', 'LIKE', $name)->orderBy('first_name', 'ASC')->get();
 		return $response->withJson($applicant);
 	}
+
+    public function countryById ($request, $response, $arg) {
+        $countryName = Country::where('id', (int)$arg['country_id'])->get();
+        return $response->withJson($countryName);
+    }
 
 
 
