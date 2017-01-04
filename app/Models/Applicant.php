@@ -24,6 +24,7 @@ class Applicant extends Model {
 		'per_email',
 		'mobile_phone',
 		'prof_pic',
+        'expectation',
 		'source',
 		'created_at',
 		'updated_at'

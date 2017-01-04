@@ -15,6 +15,7 @@ use App\Models\User;
 use App\Models\Country;
 use App\Models\State;
 use App\Models\City;
+use App\Models\Languages;
 
 class HR {
 
@@ -73,5 +74,9 @@ class HR {
 	public function cityByState ($state) {
 		return City::where('state_id', $state);
 	}
+
+    public function allLanguages() {
+        return Languages::all();
+    }
 
 }

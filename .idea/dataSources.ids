@@ -73,6 +73,14 @@
       <index name="app_exp_city_id" unique="false" columns="city_id"/>
       <index name="epp_exp_title_id" unique="false" columns="title"/>
     </table>
+    <table name="applicant_language" schema="" catalog="mena_portal" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="applicant_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="language_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="applicant_language_applicant_id" columns="applicant_id" ref-table="applicants" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="applicant_language_language_id" columns="language_id" ref-table="languages" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
     <table name="applicant_skills" schema="" catalog="mena_portal" type="TABLE">
       <column name="applicant_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="skill_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
@@ -98,6 +106,7 @@
       <exported-key name="applicant_degree_applicant_id" table="applicant_degree" schema="" catalog="mena_portal" columns="applicant_id"/>
       <exported-key name="applicant_docs_applicant_id" table="applicant_docs" schema="" catalog="mena_portal" columns="applicant_id"/>
       <exported-key name="app_exp_app_id" table="applicant_experience" schema="" catalog="mena_portal" columns="applicant_id"/>
+      <exported-key name="applicant_language_applicant_id" table="applicant_language" schema="" catalog="mena_portal" columns="applicant_id"/>
       <exported-key name="applicant_skills_appl_id" table="applicant_skills" schema="" catalog="mena_portal" columns="applicant_id"/>
       <exported-key name="applicants_addresses_applicant_id" table="applicants_addresses" schema="" catalog="mena_portal" columns="applicant_id"/>
       <exported-key name="employees_applicant_id" table="employees" schema="" catalog="mena_portal" columns="applicant_id"/>
@@ -303,6 +312,14 @@
       <exported-key name="map_interview_id" table="interview_schedule_mapping" schema="" catalog="mena_portal" columns="interview_id"/>
       <index name="interviews_applicant_id" unique="false" columns="applicant_id"/>
     </table>
+    <table name="languages" schema="" catalog="mena_portal" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="language_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="iso639_2_code" sqlType="VARCHAR" precision="12" scale="0" nullable="false" jdbcType="12"/>
+      <column name="iso639_1_code" sqlType="VARCHAR" precision="12" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="applicant_language_language_id" table="applicant_language" schema="" catalog="mena_portal" columns="language_id"/>
+    </table>
     <table name="leavetypes" schema="" catalog="mena_portal" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="leave_type" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
@@ -333,14 +350,15 @@
     <table name="profile_settings" schema="" catalog="mena_portal" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="theme_color" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" def="J3NraW4tYmx1ZSc="/>
-      <column name="sidebar_collapsed" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA=="/>
-      <column name="sidebar_mini" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MQ=="/>
-      <column name="sidebar_hover_expand" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA==" remarks="b3B0aW9uIGNhbm5vdCBhcHBseSBpZiBzaWRlYmFyLW1pbmkgPSB0cnVl"/>
-      <column name="layout_fixed" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA=="/>
-      <column name="layout_boxed" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA=="/>
-      <column name="rightbar_slide" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA=="/>
-      <column name="rightbar_skin_dark" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MQ=="/>
+      <column name="theme_color" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" def="J2JsdWUn"/>
+      <column name="color_code" sqlType="VARCHAR" precision="7" scale="0" nullable="false" jdbcType="12"/>
+      <column name="sidebar_collapsed" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="sidebar_mini" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="sidebar_hover_expand" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12" remarks="b3B0aW9uIGNhbm5vdCBhcHBseSBpZiBzaWRlYmFyLW1pbmkgPSB0cnVl"/>
+      <column name="layout_fixed" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="layout_boxed" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="rightbar_slide" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="rightbar_skin_dark" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
       <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
       <primary-key name="PRIMARY" columns="id"/>
@@ -510,14 +528,14 @@
       <column name="interview_details" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="true" jdbcType="-1"/>
       <column name="interview_result" sqlType="ENUM" precision="9" scale="0" nullable="true" jdbcType="1"/>
       <column name="tblint_interview_date" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn"/>
-      <column name="layout_boxed" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA=="/>
-      <column name="layout_fixed" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA=="/>
-      <column name="rightbar_skin_dark" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MQ=="/>
-      <column name="rightbar_slide" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA=="/>
-      <column name="sidebar_collapsed" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA=="/>
-      <column name="sidebar_hover_expand" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA==" remarks="b3B0aW9uIGNhbm5vdCBhcHBseSBpZiBzaWRlYmFyLW1pbmkgPSB0cnVl"/>
-      <column name="sidebar_mini" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MQ=="/>
-      <column name="theme_color" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12" def="J3NraW4tYmx1ZSc="/>
+      <column name="layout_boxed" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="layout_fixed" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="rightbar_skin_dark" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="rightbar_slide" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="sidebar_collapsed" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="sidebar_hover_expand" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12" remarks="b3B0aW9uIGNhbm5vdCBhcHBseSBpZiBzaWRlYmFyLW1pbmkgPSB0cnVl"/>
+      <column name="sidebar_mini" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="theme_color" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12" def="J2JsdWUn"/>
       <column name="visa_file_number" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="visa_sponsor" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="visa_type" sqlType="ENUM" precision="19" scale="0" nullable="true" jdbcType="1"/>

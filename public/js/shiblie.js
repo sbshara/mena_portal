@@ -252,7 +252,7 @@ function showInput(div, counter) {
             atachAddErr = true;
         }
     }
-}
+};
 
 function hideInput(div, counter) {
     var cntrV = $('#' + counter).val();
@@ -278,7 +278,7 @@ function hideInput(div, counter) {
         cntrV--;
         $('#' + cntrN).val(cntrV);
     }
-}
+};
 
 
 // Add & Remove attachment field (copy div)
@@ -334,3 +334,15 @@ $(function () {
         }
     });
 });
+
+function languageCounter(obj){
+    var checker = obj.name;
+    var langCount = $('#languageCount').val();
+    if($('#' + checker).is(':checked') == true){
+            langCount++;
+        $('#languageCount').val(langCount);
+    } else {
+        langCount--;
+        $('#languageCount').val(langCount);
+    }
+};

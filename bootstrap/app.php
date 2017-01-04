@@ -90,8 +90,8 @@ $container['view'] = function ($container) {
 		'countries'			=>	$container->HR->allCountries(),
 		'states'            =>  $container->HR->allStates(),
         'cities'			=>  $container->HR->allCities(),
-        'applicants'        =>  $container->HR->allApplicants()
-
+        'applicants'        =>  $container->HR->allApplicants(),
+        'languages'         =>  $container->HR->allLanguages()
 	]);
 
 	// Add the flash message
