@@ -2,19 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c909f7f3-fe0a-4d80-99cf-c318cd97a804" name="Default" comment="Validation added (w/exception), &#10;updated AuthController, &#10;updated routes, &#10;added new twig templates, &#10;added custom js">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Models/ApplicantLanguage.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Models/Languages.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.ids" afterPath="$PROJECT_DIR$/.idea/dataSources.ids" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Models/Applicant.php" afterPath="$PROJECT_DIR$/app/Models/Applicant.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Helpers/HR.php" afterPath="$PROJECT_DIR$/app/Helpers/HR.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bootstrap/app.php" afterPath="$PROJECT_DIR$/bootstrap/app.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/templates/app.twig" afterPath="$PROJECT_DIR$/resources/views/templates/app.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Models/ApplicantLanguage.php" afterPath="$PROJECT_DIR$/app/Models/ApplicantLanguage.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Controllers/HRController.php" afterPath="$PROJECT_DIR$/app/Controllers/HRController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/auth/HR/Applicant/newApplicant.twig" afterPath="$PROJECT_DIR$/resources/views/auth/HR/Applicant/newApplicant.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/shiblie.js" afterPath="$PROJECT_DIR$/public/js/shiblie.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/shiblie.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/shiblie.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/shiblie_bshara.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/shiblie_bshara.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="vehicle_service.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -77,11 +69,72 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="newApplicant.twig" pinned="false" current-in-tab="true">
+      <file leaf-file-name="newApplicant.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/auth/HR/Applicant/newApplicant.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.3529415" vertical-offset="8205" max-vertical-offset="9765">
-              <caret line="123" column="113" selection-start-line="123" selection-start-column="113" selection-end-line="123" selection-end-column="113" />
+            <state vertical-scroll-proportion="-12.083333" vertical-offset="1555" max-vertical-offset="2310">
+              <caret line="123" column="68" selection-start-line="123" selection-start-column="68" selection-end-line="123" selection-end-column="68" />
+              <folding>
+                <element signature="n#div#8;n#form#0;n#div#1;n#div#0;n#section#0;n#!!top" expanded="false" />
+                <element signature="n#div#9;n#form#0;n#div#1;n#div#0;n#section#0;n#!!top" expanded="false" />
+                <element signature="n#div#10;n#form#0;n#div#1;n#div#0;n#section#0;n#!!top" expanded="false" />
+                <element signature="n#div#11;n#form#0;n#div#1;n#div#0;n#section#0;n#!!top" expanded="false" />
+                <element signature="n#div#12;n#form#0;n#div#1;n#div#0;n#section#0;n#!!top" expanded="false" />
+                <element signature="n#div#13;n#form#0;n#div#1;n#div#0;n#section#0;n#!!top" expanded="false" />
+                <element signature="n#div#14;n#form#0;n#div#1;n#div#0;n#section#0;n#!!top" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HRController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Controllers/HRController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.44852942" vertical-offset="2815" max-vertical-offset="4590">
+              <caret line="219" column="114" selection-start-line="219" selection-start-column="114" selection-end-line="219" selection-end-column="114" />
+              <folding>
+                <element signature="e#119#144#0#PHP" expanded="true" />
+                <element signature="e#538#676#0#PHP" expanded="false" />
+                <element signature="e#682#811#0#PHP" expanded="false" />
+                <element signature="e#814#954#0#PHP" expanded="false" />
+                <element signature="e#10163#10297#0#PHP" expanded="false" />
+                <element signature="e#10300#10437#0#PHP" expanded="false" />
+                <element signature="e#10440#10502#0#PHP" expanded="false" />
+                <element signature="e#10515#10638#0#PHP" expanded="false" />
+                <element signature="e#10641#10766#0#PHP" expanded="false" />
+                <element signature="e#10769#10828#0#PHP" expanded="false" />
+                <element signature="e#10848#10980#0#PHP" expanded="false" />
+                <element signature="e#10983#11119#0#PHP" expanded="false" />
+                <element signature="e#11122#14251#0#PHP" expanded="false" />
+                <element signature="e#14272#14413#0#PHP" expanded="false" />
+                <element signature="e#14416#14559#0#PHP" expanded="false" />
+                <element signature="e#14562#14627#0#PHP" expanded="false" />
+                <element signature="e#14646#14784#0#PHP" expanded="false" />
+                <element signature="e#14787#14927#0#PHP" expanded="false" />
+                <element signature="e#14930#14994#0#PHP" expanded="false" />
+                <element signature="e#15014#15155#0#PHP" expanded="false" />
+                <element signature="e#15158#15301#0#PHP" expanded="false" />
+                <element signature="e#15304#15369#0#PHP" expanded="false" />
+                <element signature="e#15388#15526#0#PHP" expanded="false" />
+                <element signature="e#15529#15669#0#PHP" expanded="false" />
+                <element signature="e#15672#15736#0#PHP" expanded="false" />
+                <element signature="e#15751#15877#0#PHP" expanded="false" />
+                <element signature="e#15880#16008#0#PHP" expanded="false" />
+                <element signature="e#16011#16071#0#PHP" expanded="false" />
+                <element signature="e#16096#16300#0#PHP" expanded="false" />
+                <element signature="e#16303#16493#0#PHP" expanded="false" />
+                <element signature="e#16496#16780#0#PHP" expanded="false" />
+                <element signature="e#16786#16976#0#PHP" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ApplicantLanguage.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Models/ApplicantLanguage.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-9.375" vertical-offset="0" max-vertical-offset="420">
+              <caret line="20" column="19" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -90,7 +143,7 @@
       <file leaf-file-name="shiblie.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/shiblie.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="4023" max-vertical-offset="4785">
+            <state vertical-scroll-proportion="0.0" vertical-offset="4650" max-vertical-offset="4860">
               <caret line="344" column="20" selection-start-line="344" selection-start-column="20" selection-end-line="344" selection-end-column="20" />
               <folding>
                 <element signature="n#!!block;n#getApplicantName#0" expanded="false" />
@@ -143,18 +196,18 @@
         <option value="$PROJECT_DIR$/resources/views/errors/404.twig" />
         <option value="$PROJECT_DIR$/resources/views/errors/500.twig" />
         <option value="$PROJECT_DIR$/app/Middleware/AuthMiddleware.php" />
-        <option value="$PROJECT_DIR$/app/Controllers/HRController.php" />
         <option value="$PROJECT_DIR$/resources/views/auth/HR/SinglePage.twig" />
         <option value="db-console:/69aaf592/0911d869-a466-44a7-97fc-eb3ccbe13594/" />
         <option value="$PROJECT_DIR$/app/Models/Addresses.php" />
         <option value="$PROJECT_DIR$/app/Models/Languages.php" />
-        <option value="$PROJECT_DIR$/app/Models/ApplicantLanguage.php" />
         <option value="$PROJECT_DIR$/bootstrap/app.php" />
         <option value="$PROJECT_DIR$/app/Helpers/HR.php" />
         <option value="$PROJECT_DIR$/public/js/shiblie.js" />
         <option value="$PROJECT_DIR$/resources/views/templates/app.twig" />
         <option value="$PROJECT_DIR$/app/Models/Applicant.php" />
         <option value="$PROJECT_DIR$/resources/views/auth/HR/Applicant/newApplicant.twig" />
+        <option value="$PROJECT_DIR$/app/Models/ApplicantLanguage.php" />
+        <option value="$PROJECT_DIR$/app/Controllers/HRController.php" />
       </list>
     </option>
   </component>
@@ -198,7 +251,6 @@
       <sortByType ProjectPane="false" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -477,6 +529,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -531,13 +584,13 @@
     <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
       <method />
     </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
     <configuration default="true" type="com.intellij.database.run.ConsoleRunConfigurationType" factoryName="Query Language Console">
       <option name="VM_PARAMETERS" value="" />
       <option name="USER_CFG_CLASS" />
       <option name="CONTEXT_PROVIDER" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
       <method />
     </configuration>
     <configuration default="true" type="PhpBehatConfigurationType" factoryName="Behat">
@@ -547,6 +600,9 @@
     <configuration default="true" type="AppEnginePhpConfigurationType" factoryName="App Engine for PHP">
       <method />
     </configuration>
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
+      <method />
+    </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
       <node-options />
       <gulpfile />
@@ -554,9 +610,6 @@
       <arguments />
       <pass-parent-envs>true</pass-parent-envs>
       <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
       <method />
     </configuration>
     <configuration default="false" name="Unnamed" type="com.intellij.database.run.ConsoleRunConfigurationType" factoryName="Query Language Console">
@@ -614,7 +667,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3260274" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22540984" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -622,7 +675,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19224556" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24959612" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14781906" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15024233" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4178082" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3260274" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -657,9 +710,9 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19063005" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32876712" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32876712" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -957,13 +1010,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Controllers/HRController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7013782" vertical-offset="5452" max-vertical-offset="6105">
-          <caret line="409" column="8" selection-start-line="409" selection-start-column="8" selection-end-line="409" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Controllers/HomeController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="330">
@@ -989,13 +1035,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.89041096" vertical-offset="0" max-vertical-offset="480">
           <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/ApplicantLanguage.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.58219177" vertical-offset="0" max-vertical-offset="438">
-          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1053,9 +1092,66 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/auth/HR/Applicant/newApplicant.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.3529415" vertical-offset="8205" max-vertical-offset="9765">
-          <caret line="123" column="113" selection-start-line="123" selection-start-column="113" selection-end-line="123" selection-end-column="113" />
+        <state vertical-scroll-proportion="-12.083333" vertical-offset="1555" max-vertical-offset="2310">
+          <caret line="123" column="68" selection-start-line="123" selection-start-column="68" selection-end-line="123" selection-end-column="68" />
+          <folding>
+            <element signature="n#div#8;n#form#0;n#div#1;n#div#0;n#section#0;n#!!top" expanded="false" />
+            <element signature="n#div#9;n#form#0;n#div#1;n#div#0;n#section#0;n#!!top" expanded="false" />
+            <element signature="n#div#10;n#form#0;n#div#1;n#div#0;n#section#0;n#!!top" expanded="false" />
+            <element signature="n#div#11;n#form#0;n#div#1;n#div#0;n#section#0;n#!!top" expanded="false" />
+            <element signature="n#div#12;n#form#0;n#div#1;n#div#0;n#section#0;n#!!top" expanded="false" />
+            <element signature="n#div#13;n#form#0;n#div#1;n#div#0;n#section#0;n#!!top" expanded="false" />
+            <element signature="n#div#14;n#form#0;n#div#1;n#div#0;n#section#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/ApplicantLanguage.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.375" vertical-offset="0" max-vertical-offset="420">
+          <caret line="20" column="19" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Controllers/HRController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.44852942" vertical-offset="2815" max-vertical-offset="4590">
+          <caret line="219" column="114" selection-start-line="219" selection-start-column="114" selection-end-line="219" selection-end-column="114" />
+          <folding>
+            <element signature="e#119#144#0#PHP" expanded="true" />
+            <element signature="e#538#676#0#PHP" expanded="false" />
+            <element signature="e#682#811#0#PHP" expanded="false" />
+            <element signature="e#814#954#0#PHP" expanded="false" />
+            <element signature="e#10163#10297#0#PHP" expanded="false" />
+            <element signature="e#10300#10437#0#PHP" expanded="false" />
+            <element signature="e#10440#10502#0#PHP" expanded="false" />
+            <element signature="e#10515#10638#0#PHP" expanded="false" />
+            <element signature="e#10641#10766#0#PHP" expanded="false" />
+            <element signature="e#10769#10828#0#PHP" expanded="false" />
+            <element signature="e#10848#10980#0#PHP" expanded="false" />
+            <element signature="e#10983#11119#0#PHP" expanded="false" />
+            <element signature="e#11122#14251#0#PHP" expanded="false" />
+            <element signature="e#14272#14413#0#PHP" expanded="false" />
+            <element signature="e#14416#14559#0#PHP" expanded="false" />
+            <element signature="e#14562#14627#0#PHP" expanded="false" />
+            <element signature="e#14646#14784#0#PHP" expanded="false" />
+            <element signature="e#14787#14927#0#PHP" expanded="false" />
+            <element signature="e#14930#14994#0#PHP" expanded="false" />
+            <element signature="e#15014#15155#0#PHP" expanded="false" />
+            <element signature="e#15158#15301#0#PHP" expanded="false" />
+            <element signature="e#15304#15369#0#PHP" expanded="false" />
+            <element signature="e#15388#15526#0#PHP" expanded="false" />
+            <element signature="e#15529#15669#0#PHP" expanded="false" />
+            <element signature="e#15672#15736#0#PHP" expanded="false" />
+            <element signature="e#15751#15877#0#PHP" expanded="false" />
+            <element signature="e#15880#16008#0#PHP" expanded="false" />
+            <element signature="e#16011#16071#0#PHP" expanded="false" />
+            <element signature="e#16096#16300#0#PHP" expanded="false" />
+            <element signature="e#16303#16493#0#PHP" expanded="false" />
+            <element signature="e#16496#16780#0#PHP" expanded="false" />
+            <element signature="e#16786#16976#0#PHP" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

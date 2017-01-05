@@ -19,6 +19,7 @@ use App\Models\Country;
 use App\Models\State;
 use App\Models\City;
 use App\Models\VisaStatus;
+use App\Models\Languages;
 use App\Models\ApplicantLanguage;
 
 
@@ -109,6 +110,23 @@ class HRController extends Controller {
 			]);
 
 
+            // Note: This method is not working:
+            //      Could be due to getParam (doesn't get
+            $languages = $request->getParam('language_');
+            $lang = [];
+            if(empty($languages)){
+                $this->flash->addMessage('danger', 'You have to select at least 1 language!');
+                return $response->withRedirect($this->router->pathFor('HR.NewApplicant'));
+            } else {
+                $langNum = count($languages);
+                for($k = 0; $k <= $langNum; $k++){
+                    $lang[$k] = ApplicantLanguage::create([
+                        'applicant_id'  =>  $applicant0->id,
+                        'language_id'   =>  Languages::where('iso639_1_code', substr($languages[$i], -2))->first()['id']
+                    ]);
+                }
+            }
+
 
             $visa0 = VisaStatus::create([
                 'applicant_id'      =>  $applicant0->id,
@@ -188,6 +206,21 @@ class HRController extends Controller {
                 'notice_period'     =>  $request->getParam('notice'),
                 'expectation'       =>  $request->getParam('expectation')
 			]);
+
+            $languages = $request->getParam('language_');
+            $lang = [];
+            if(empty($languages)){
+                $this->flash->addMessage('danger', 'You have to select at least 1 language!');
+                return $response->withRedirect($this->router->pathFor('HR.NewApplicant'));
+            } else {
+                $langNum = count($languages);
+                for($k = 0; $k <= $langNum; $k++){
+                    $lang[$k] = ApplicantLanguage::create([
+                        'applicant_id'  =>  $applicant->id,
+                        'language_id'   =>  Languages::where('iso639_1_code', substr($languages[$k], -2))->first()
+                    ]);
+                }
+            }
             $visa = VisaStatus::create([
                 'applicant_id'      =>  $applicant->id,
                 'visa_type'         =>  $request->getParam('visa'),
@@ -210,7 +243,9 @@ class HRController extends Controller {
 	}
 
 	public function postNewEmployee ($request, $response) {
+
     }
+
 	// Users
 	public function getNewUser ($request, $response) {
 		return $this->view->render($response, 'auth/HR/User/NewUser.twig');
