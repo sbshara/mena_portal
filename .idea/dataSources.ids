@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="dataSourceStorage">
   <data-source name="mena_portal@localhost" uuid="0911d869-a466-44a7-97fc-eb3ccbe13594">
-    <database-info product="MySQL" version="5.7.17" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+    <database-info product="MySQL" version="5.5.5-10.1.19-MariaDB" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
       <extra-name-characters>#@</extra-name-characters>
       <identifier-quote-string>`</identifier-quote-string>
     </database-info>
-    <case-sensitivity plain-identifiers="mixed" quoted-identifiers="upper"/>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
     <schema name="" catalog="mena_portal"/>
     <table name="addresses" schema="" catalog="mena_portal" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
@@ -98,7 +98,9 @@
       <column name="mobile_phone" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
       <column name="gender" sqlType="ENUM" precision="2" scale="0" nullable="false" jdbcType="1"/>
       <column name="birth_date" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91" def="JzE5ODQtMDktMDMn"/>
+      <column name="expectation" sqlType="VARCHAR" precision="96" scale="0" nullable="false" jdbcType="12"/>
       <column name="prof_pic" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" def="Jy9pbWcvZGVmYXVsdC5wbmcn"/>
+      <column name="notice_period" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
       <column name="source" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" def="J0hpcmluZyBBZ2VuY3kn"/>
       <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
       <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
@@ -217,7 +219,7 @@
       <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
       <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
       <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="emp_leaves_leave_type" columns="leave_type" ref-table="leaves" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="emp_leaves_leave_type" columns="leave_type" ref-table="leavetypes" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <index name="emp_leaves_leave_type" unique="false" columns="leave_type"/>
     </table>
     <table name="emp_title" schema="" catalog="mena_portal" type="TABLE">
@@ -325,6 +327,7 @@
       <column name="leave_type" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
       <column name="leave_notes" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1"/>
       <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="emp_leaves_leave_type" table="emp_leaves" schema="" catalog="mena_portal" columns="leave_type"/>
     </table>
     <table name="perm_role" schema="" catalog="mena_portal" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
@@ -576,6 +579,7 @@
       <column name="sponsor" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
       <column name="issue_date" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
       <column name="expiry_date" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="visa_age" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" remarks="VGltZSBzaW5jZSBpc3N1YW5jZSBvZiBmaXJzdCB2aXNhIGZyb20gY3VycmVudCBzcG9uc29y"/>
       <column name="created_at" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
       <column name="updated_at" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
       <primary-key name="PRIMARY" columns="id"/>
