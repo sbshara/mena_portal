@@ -17,6 +17,8 @@ class UserMaster extends Model {
 	protected $table = 'usermaster';
 
 	protected $fillable = [
+        'emp_id',
+        'app_id',
         'acquired_date',
         'active',
         'address_title',

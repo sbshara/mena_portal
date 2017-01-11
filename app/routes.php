@@ -36,6 +36,8 @@ $app->group('', function () {
         $this->get("/one", AuthController::class . ':one')->setName('one');
         $this->get("/redirect", AuthController::class . ':red')->setName('red');
         $this->get("/two", AuthController::class . ':two')->setName('two');
+        $this->post('/requestdump', HRController::class . ':postDumpRequest')->setName('DumpRequest');
+//        $this->get('/test', HRController::class . ':test');
     });
 
 	// Group all URLs that start with /auth
@@ -115,9 +117,9 @@ $app->group('', function () {
 			// Interviews:
 			$this->group('/interview', function () {
 				// View New Interview:
-				$this->get('/', HRController::class . ':getNewInterview')->setName('HR.NewInterview');
+				$this->get('/[{applicant_id}]', HRController::class . ':getNewInterview')->setName('HR.NewInterview');
 				// Submit a new Interview appointment:
-				$this->post('/', HRController::class . ':postNewInterview');
+				$this->post('/[applicant_id]', HRController::class . ':postNewInterview');
 				// View All Interviews:
 				$this->get('s/', HRController::class . ':getAllInterviews')->setName('HR.AllInterviews');
 			});
@@ -159,6 +161,8 @@ $app->group('', function () {
 		$this->get('/applicant/{applicant_name}', HRController::class . ':applicantByName')->setName('AJAX.ApplicantName');
         // Get Country by ID:
         $this->get('/countries/{country_id}', HRController::class . ':countryById')->setName('AJAX.countryById');
+        // Get Department Head Information
+        $this->get('/department/{department_id}', HRController::class . ':DepartmentHead')->setName('AJAX.headByDepartment');
 	});
 
 })->add(new AuthMiddleware($container));

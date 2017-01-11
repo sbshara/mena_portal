@@ -3,7 +3,7 @@
 
 
 {% block contents %}
-<section class="content" xmlns="http://www.w3.org/1999/html">
+<section class="content">
         <div class="raw">
             <div class="register-logo">
                 <a href="{{ base_url() }}"><b>MENA</b> Assistance</a>
@@ -13,59 +13,59 @@
                 <form action="{{ path_for('HR.NewApplicant') }}" method="post" autocomplete="on" enctype="multipart/form-data" >
                     {{ csrf.field | raw }}
                     <div class="form-group has-feedback{{ errors.first_name ? ' has-error' : '' }}">
-                            <label for="first_name">First Name: &nbsp;</label><span class="text-red"><b>*</b></span>
-                            <input type="text" name="first_name" id="first_name" class="form-control" value="{{ old.first_name }}" placeholder="Applicant's First Name" />
-                            <span class="glyphicon glyphicon-user form-control-feedback"></span>
-                            {% if errors.first_name %}
-                                <span class="help-block">{{ errors.first_name | first }}</span>
-                            {% endif %}
-                        </div>
+                        <label for="first_name">First Name: &nbsp;</label><span class="text-red"><b>*</b></span>
+                        <input type="text" name="first_name" id="first_name" class="form-control" value="{{ old.first_name }}" placeholder="Applicant's First Name" />
+                        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                        {% if errors.first_name %}
+                            <span class="help-block">{{ errors.first_name | first }}</span>
+                        {% endif %}
+                    </div>
                     <div class="form-group has-feedback{{ errors.last_name ? ' has-error' : '' }}">
-                            <label class="required" for="last_name">Last Name: &nbsp;</label><span class="text-red"><b>*</b></span>
-                            <input type="text" name="last_name" id="last_name" class="form-control" value="{{ old.last_name }}" placeholder="Applicant's Last Name"/>
-                            <span class="glyphicon glyphicon-user form-control-feedback"></span>
-                            {% if errors.last_name %}
-                                <span class="help-block">{{ errors.last_name | first }}</span>
-                            {% endif %}
-                        </div>
+                        <label class="required" for="last_name">Last Name: &nbsp;</label><span class="text-red"><b>*</b></span>
+                        <input type="text" name="last_name" id="last_name" class="form-control" value="{{ old.last_name }}" placeholder="Applicant's Last Name"/>
+                        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                        {% if errors.last_name %}
+                            <span class="help-block">{{ errors.last_name | first }}</span>
+                        {% endif %}
+                    </div>
                     <div class="form-group has-feedback{{ errors.per_email ? ' has-error' : '' }}">
-                            <label for="per_email">Personal Email: &nbsp;</label><span class="text-red"><b>*</b></span>
-                            <input type="email" name="per_email" id="per_email" placeholder="applicant@domain.com" class="form-control" value="{{ old.per_email }}"/>
-                            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                            {% if errors.per_email %}
-                                <span class="help-block">{{ errors.per_email | first }}</span>
-                            {% endif %}
-                        </div>
+                        <label for="per_email">Personal Email: &nbsp;</label><span class="text-red"><b>*</b></span>
+                        <input type="email" name="per_email" id="per_email" placeholder="applicant@domain.com" class="form-control" value="{{ old.per_email }}"/>
+                        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                        {% if errors.per_email %}
+                            <span class="help-block">{{ errors.per_email | first }}</span>
+                        {% endif %}
+                    </div>
                     <div class="form-group has-feedback{{ errors.mobile_phone ? ' has-error' : '' }}">
-                            <label for="mobile_phone">Mobile Phone Number: &nbsp;</label><span class="text-red"><b>*</b></span>
-                            <input type="tel" name="mobile_phone" id="mobile_phone" placeholder="+971 50 000 0000" class="form-control" value="{{ old.mobile_phone }}"/>
-                            <span class="glyphicon glyphicon-phone form-control-feedback"></span>
-                            {% if errors.mobile_phone %}
-                                <span class="help-block">{{ errors.mobile_phone | first }}</span>
-                            {% endif %}
-                        </div>
+                        <label for="mobile_phone">Mobile Phone Number: &nbsp;</label><span class="text-red"><b>*</b></span>
+                        <input type="tel" name="mobile_phone" id="mobile_phone" placeholder="+971 50 000 0000" class="form-control" value="{{ old.mobile_phone }}"/>
+                        <span class="glyphicon glyphicon-phone form-control-feedback"></span>
+                        {% if errors.mobile_phone %}
+                            <span class="help-block">{{ errors.mobile_phone | first }}</span>
+                        {% endif %}
+                    </div>
                     <div class="form-group has-feedback{{ errors.gender ? ' has-error' : '' }}">
-                            <label for="male">Gender: &nbsp;</label><span class="text-red"><b>*</b></span> &nbsp;
-                            <input type="radio" name="gender" id="male" value="M" {% if old.gender == 'M' %}checked="checked"{% endif %}/>
-                            <span class="fa fa-male"> Male &nbsp; &nbsp;</span>
-                            <input type="radio" name="gender" id="female" value="F" {% if old.gender == 'F' %}checked="checked"{% endif %}/>
-                            <span class="fa fa-female"> Female</span>
-                            {% if errors.gender %}
-                                <span class="help-block">{{ errors.gender | first }}</span>
-                            {% endif %}
-                        </div>
+                        <label for="male">Gender: &nbsp;</label><span class="text-red"><b>*</b></span> &nbsp;
+                        <input type="radio" name="gender" id="male" value="M" {% if old.gender == 'M' %}checked="checked"{% endif %}/>
+                        <span class="fa fa-male"> Male &nbsp; &nbsp;</span>
+                        <input type="radio" name="gender" id="female" value="F" {% if old.gender == 'F' %}checked="checked"{% endif %}/>
+                        <span class="fa fa-female"> Female</span>
+                        {% if errors.gender %}
+                            <span class="help-block">{{ errors.gender | first }}</span>
+                        {% endif %}
+                    </div>
                     <div class="form-group has-feedback{{ errors.nationality ? ' has-error' : '' }}">
-                            <label for="nationality">Nationality: &nbsp;</label><span class="text-red"><b>*</b></span>
-                            <select class="form-control" name="nationality" id="nationality">
-                                <option value="">Please Select ... </option>
-                                {% for country in HR.countries %}
-                                    <option value="{{ country.id }}" {% if country.id == old.nationality %}selected{% endif %}>{{ country.country_name | e }}</option>
-                                {% endfor %}
-                            </select>
-                            {% if errors.nationality %}
-                                <span class="help-block">{{ errors.nationality | first }}</span>
-                            {% endif %}
-                        </div>
+                        <label for="nationality">Nationality: &nbsp;</label><span class="text-red"><b>*</b></span>
+                        <select class="form-control" name="nationality" id="nationality">
+                            <option value="">Please Select ... </option>
+                            {% for country in HR.countries %}
+                                <option value="{{ country.id }}" {% if country.id == old.nationality %}selected{% endif %}>{{ country.country_name | e }}</option>
+                            {% endfor %}
+                        </select>
+                        {% if errors.nationality %}
+                            <span class="help-block">{{ errors.nationality | first }}</span>
+                        {% endif %}
+                    </div>
                     <div class="form-group has-feedback{{ errors.dob ? ' has-error' : '' }}">
                             <label for="date-picker">Date of Birth: &nbsp;</label><span class="text-red"><b>*</b></span>
                             <div class="input-group date">
@@ -80,68 +80,35 @@
                         </div>
                     <div class="form-group has-feedback{{ errors.languageCount ? ' has-error' : '' }}">
                         <label class="required">Languages: &nbsp;</label><span class="text-red"><b>*</b></span>
-                        <label for="language_Ar">
-                            <input type="checkbox" name="language_[]" id="language_Ar" class="checkbox-inline" {% if old.language_Ar == 'on' %} checked {% endif %} onchange="languageCounter(this)"/>
-                            &nbsp;Arabic &nbsp;
-                        </label> &nbsp; &nbsp;
-                        <label for="language_Zh">
-                            <input type="checkbox" name="language_[]" id="language_Zh" class="checkbox-inline" {% if old.language_Zh == 'on' %} checked {% endif %} onchange="languageCounter(this)"/>
-                            &nbsp;Chinese &nbsp;
-                        </label> &nbsp; &nbsp;
-                        <label for="language_En">
-                            <input type="checkbox" name="language_[]" id="language_En" class="checkbox-inline" {% if old.language_En == 'on' %} checked {% endif %} onchange="languageCounter(this)"/>
-                            &nbsp;English &nbsp;
-                        </label> &nbsp; &nbsp;
-                        <label for="language_Fr">
-                            <input type="checkbox" name="language_[]" id="language_Fr" class="checkbox-inline" {% if old.language_Fr == 'on' %} checked {% endif %} onchange="languageCounter(this)"/>
-                            &nbsp;French &nbsp;
-                        </label> &nbsp; &nbsp;
-                        <label for="language_Hi">
-                        <input type="checkbox" name="language_[]" id="language_Hi" class="checkbox-inline" {% if old.language_Hi == 'on' %} checked {% endif %} onchange="languageCounter(this)"/>
-                            &nbsp;Hindi &nbsp;
-                        </label> &nbsp; &nbsp;
-                        <label for="language_Fa">
-                            <input type="checkbox" name="language_[]" id="language_Fa" class="checkbox-inline" {% if old.language_Fa == 'on' %} checked {% endif %} onchange="languageCounter(this)"/>
-                            &nbsp;Persian &nbsp;
-                        </label> &nbsp; &nbsp;
-                        <label for="language_Pl">
-                            <input type="checkbox" name="language_[]" id="language_Pl" class="checkbox-inline" {% if old.language_Pl == 'on' %} checked {% endif %} onchange="languageCounter(this)"/>
-                            &nbsp;Polish &nbsp;
-                        </label> &nbsp; &nbsp;
-                        <label for="language_Ru">
-                            <input type="checkbox" name="language_[]" id="language_Ru" class="checkbox-inline" {% if old.language_Ru == 'on' %} checked {% endif %} onchange="languageCounter(this)"/>
-                            &nbsp;Russian &nbsp;
-                        </label> &nbsp; &nbsp;
-                        <label for="language_Tl">
-                            <input type="checkbox" name="language_[]" id="language_Tl" class="checkbox-inline" {% if old.language_Tl == 'on' %} checked {% endif %} onchange="languageCounter(this)"/>
-                            &nbsp;Tagalog &nbsp;
-                        </label> &nbsp; &nbsp;
-                        <label for="language_Ur">
-                            <input type="checkbox" name="language_[]" id="language_Ur" class="checkbox-inline" {% if old.language_Ur == 'on' %} checked {% endif %} onchange="languageCounter(this)"/>
-                            &nbsp;Urdu &nbsp;
-                        </label> &nbsp; &nbsp;
-                        <label for="language_De">
-                            <input type="checkbox" name="language_[]" id="language_De" class="checkbox-inline" {% if old.language_De == 'on' %} checked {% endif %} onchange="languageCounter(this)"/>
-                            &nbsp;German &nbsp;
-                        </label> &nbsp; &nbsp;
-
-                        <input type="hidden" name="languageCount" id="languageCount" value="{{ old.languageCount ? old.languageCount : 0 }}" />
-                            {% if errors.languageCount %}
-                                <span class="help-block">{{ errors.languageCount | first }} language.</span>
-                            {% endif %}
-                        </div>
+                        {% for language in HR.languages %}
+                            <label for="{{ language.id }}">
+                                <input
+                                        type="checkbox"
+                                        id="{{ language.id }}"
+                                        name="language_[]"
+                                        value="{{ language.id }}"
+                                        class="checkbox-inline"
+                                        onchange="languageCounter(this)"
+                                />&nbsp;{{ language.language_name | e }} &nbsp; &nbsp;
+                            </label> &nbsp; &nbsp;
+                        {% endfor %}
+                        <input type="hidden" name="languageCount" id="languageCount" value="0" />
+                        {% if errors.languageCount %}
+                            <span class="help-block">{{ errors.languageCount | first }} language.</span>
+                        {% endif %}
+                    </div>
                     <div class="form-group has-feedback{{ errors.expectation ? ' has-error' : '' }}">
-                            <label for="expectation">Expected Salary: <span class="help-block inline"><small><i>Expected Salary Amount (inclusive of benefits) in U.A.E. Dirhams</i></small></span></label>
-                            <div class="input-group has-feedback">
-                                <span class="input-group-addon">AED</span>
-                                <input type="number" name="expectation" id="expectation" class="form-control" value="{{ old.expectation }}" placeholder="Enter expected amount in Dhs">
-                                <span class="input-group-addon">.00</span>
-                            </div>
-    <!--                            <span class="glyphicon glyphicon-usd form-control-feedback"></span>-->
-                            {% if errors.expectation %}
-                                <span class="help-block">{{ errors.expectation | first }}</span>
-                            {% endif %}
+                        <label for="expectation">Expected Salary: <span class="help-block inline"><small><i>Expected Salary Amount (inclusive of benefits) in U.A.E. Dirhams</i></small></span></label>
+                        <div class="input-group has-feedback">
+                            <span class="input-group-addon">AED</span>
+                            <input type="number" name="expectation" id="expectation" class="form-control" value="{{ old.expectation }}" placeholder="Enter expected amount in Dhs">
+                            <span class="input-group-addon">.00</span>
                         </div>
+<!--                            <span class="glyphicon glyphicon-usd form-control-feedback"></span>-->
+                        {% if errors.expectation %}
+                            <span class="help-block">{{ errors.expectation | first }}</span>
+                        {% endif %}
+                    </div>
                     <div class="form-group has-feedback{{ errors.visa ? ' has-error' : '' }}">
                         <label for="inputvisa">Current Visa Status: &nbsp;</label><span class="text-red"><b>*</b></span>
                         <br/>
@@ -166,12 +133,12 @@
                         {% endif %}
                     </div>
                     <div class="form-group has-feedback{{ errors.visa_age ? ' has-error' : '' }}">
-                            <label for="visa_age">Visa Age: &nbsp;</label><span class="text-red"><b>*</b></span> &nbsp; <span class="help-block inline"><small><i>Time since the first issuance of visa from current employer</i></small></span>
-                            <input type="text" class="form-control" name="visa_age" id="visa_age" placeholder="Two years ..." value="{{ old.visa_age ? old.visa_age : '' }}" />&nbsp;
-                            {% if errors.visa_age %}
-                                <span class="help-block">{{ errors.visa_age | first }}</span>
-                            {% endif %}
-                        </div>
+                        <label for="visa_age">Visa Age: &nbsp;</label><span class="text-red"><b>*</b></span> &nbsp; <span class="help-block inline"><small><i>Time since the first issuance of visa from current employer</i></small></span>
+                        <input type="text" class="form-control" name="visa_age" id="visa_age" placeholder="Two years ..." value="{{ old.visa_age ? old.visa_age : '' }}" />&nbsp;
+                        {% if errors.visa_age %}
+                            <span class="help-block">{{ errors.visa_age | first }}</span>
+                        {% endif %}
+                    </div>
                     <div class="form-group has-feedback{{ errors.notice ? ' has-error' : '' }}">
                             <label for="notice">Required Notice Period:</label> &nbsp; <span class="text-red"><b>*</b></span>
                             <input type="text" class="form-control" name="notice" id="notice" value="{{ old.notice ? old.notice : '' }}" placeholder="One month ..." />&nbsp;
@@ -180,20 +147,20 @@
                             {% endif %}
                         </div>
                     <div class="form-group has-feedback{{ errors.source ? ' has-error' : '' }}">
-                            <label for="source">Application Source:  &nbsp;</label><span class="text-red"><b>*</b></span>
-                            <p class="help-block"><small><i>How did the applicant hear about us</i></small></p>
-                            <select class="form-control" name="source" id="source">
-                                <option value="" {% if old.source == '' %}selected{% endif %}>Please Select ...</option>
-                                <option value="HR Agency" {% if old.source == 'HR Agency' %}selected{% endif %}>HR Agency</option>
-                                <option value="Search Engine" {% if old.source == 'Search Engine' %}selected{% endif %}>Search Engine</option>
-                                <option value="Friend or Colleague" {% if old.source == 'Friend' %}selected{% endif %}>Friend</option>
-                                <option value="Other" {% if old.source == 'Other' %}selected{% endif %}>Other</option>
-                                <option value="No Answer" {% if old.source == 'No Answer' %}selected{% endif %}>No Answer</option>
-                            </select>
-                            {% if errors.source %}
-                                <span class="help-block">{{ errors.source | first }}</span>
-                            {% endif %}
-                        </div>
+                        <label for="source">Application Source:  &nbsp;</label><span class="text-red"><b>*</b></span>
+                        <p class="help-block"><small><i>How did the applicant hear about us</i></small></p>
+                        <select class="form-control" name="source" id="source">
+                            <option value="" {% if old.source == '' %}selected{% endif %}>Please Select ...</option>
+                            <option value="HR Agency" {% if old.source == 'HR Agency' %}selected{% endif %}>HR Agency</option>
+                            <option value="Search Engine" {% if old.source == 'Search Engine' %}selected{% endif %}>Search Engine</option>
+                            <option value="Friend or Colleague" {% if old.source == 'Friend' %}selected{% endif %}>Friend</option>
+                            <option value="Other" {% if old.source == 'Other' %}selected{% endif %}>Other</option>
+                            <option value="No Answer" {% if old.source == 'No Answer' %}selected{% endif %}>No Answer</option>
+                        </select>
+                        {% if errors.source %}
+                            <span class="help-block">{{ errors.source | first }}</span>
+                        {% endif %}
+                    </div>
                     <div class="form-group has-feedback{{ errors.profilepic ? ' has-error' : '' }}">
                         <label class="control-label" for="profilePic">Photo: &nbsp;</label>
                         <input type="file" id="profilePic" name="profilepic" value="{{ old.profilepic }}" class="file">
@@ -680,12 +647,19 @@
                                 </div>
                             </div>
                         </div>
-
-                    <br/>
+                    <div class="form-group has-feedback{{ errors.interview ? ' has-error' : '' }}">
+                        <label for="interview">Would you like to schedule an interview for this applicant? &nbsp;
+                        <input type="checkbox" name="interview" id="interview" class="checkbox-inline" value="{{ old.interview ? old.interview : 'null' }}" onchange="interviewCheck(this)"/></label>
+                        {% if errors.interview %}
+                            <span class="help-block">{{ errors.interview | first }}</span>
+                        {% endif %}
+                    </div>
+                    {# Google reCaptcha
+                    <div class="g-recaptcha" data-sitekey="6Le6_xAUAAAAAIv642XjRtyLT7I0P1yiMO5GpoKN"></div> #}
                     <div class="form-group has-feedback">
-                        <input type="submit" name="submit" id="submit" class="btn btn-primary" value="Save Applicant"/>
+                        <input type="submit" name="submit" id="submit" class="btn btn-primary" value="Save Applicant" />
                     </div>
                 </form>
             </div>
-    </div>
+        </div>
 {% endblock %}

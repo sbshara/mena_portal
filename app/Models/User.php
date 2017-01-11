@@ -50,8 +50,13 @@ class User extends Model {
 	}
 
 	public function getAll() {
-		$this->all();
+		return $this->all();
 	}
+
+    public function fullName ($id) {
+        $user = $this->where('id', $id)-get();
+        return $user->first_name . ' ' . $user->last_name;
+    }
 
 
 }

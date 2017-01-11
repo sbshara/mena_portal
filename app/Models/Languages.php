@@ -16,9 +16,12 @@ class Languages extends Model {
     protected $table = 'languages';
 
     protected $fillable = [
+        'id',
         'language_name',
         'iso639_2_code',
-        'iso639_1_code'
+        'iso639_1_code',
+        'created_at',
+        'updated_at'
     ];
 
 

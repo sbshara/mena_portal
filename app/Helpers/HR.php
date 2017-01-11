@@ -9,6 +9,7 @@
 namespace App\Helpers;
 
 use App\Models\Applicant;
+use App\Models\Department;
 use App\Models\Employee;
 use App\Models\EmployeeTitle;
 use App\Models\User;
@@ -16,6 +17,8 @@ use App\Models\Country;
 use App\Models\State;
 use App\Models\City;
 use App\Models\Languages;
+use App\Models\UserMaster;
+use App\Models\DepartmentHeads;
 
 class HR {
 
@@ -77,6 +80,15 @@ class HR {
 
     public function allLanguages() {
         return Languages::all();
+    }
+
+    public function allDepartments(){
+        return Department::all();
+    }
+
+    public function departmentHead ($deptID) {
+
+
     }
 
 }

@@ -12,15 +12,17 @@ use App\Models\Addresses;
 use App\Models\ApplicantAddress;
 use Respect\Validation\Validator as v;
 use App\Models\Applicant;
+use App\Models\Employee;
 use App\Models\ApplicantDocs;
 use App\Models\Document;
-use App\Models\UserMaster;
+//use App\Models\UserMaster;
 use App\Models\Country;
 use App\Models\State;
 use App\Models\City;
 use App\Models\VisaStatus;
-use App\Models\Languages;
+//use App\Models\Languages;
 use App\Models\ApplicantLanguage;
+use App\Models\DepartmentHeads;
 
 
 class HRController extends Controller {
@@ -42,6 +44,7 @@ class HRController extends Controller {
 		// Defining profile pic:
 		$profile = $request->getUploadedFiles()['profilepic'];
 		// Define storage location for profilepic (attachment loop goes within the loop):
+        // If no profile pic provided, the app would read the gender and choose default image accordingly
 		if($profile->getClientFilename() == '') {
 			if($request->getParam('gender') === 'M') {
 				$profile_location = 'img/applicants/defaultMale.png';
@@ -49,188 +52,152 @@ class HRController extends Controller {
 				$profile_location = 'img/applicants/defaultFemale.png';
 			}
 		} else {
+            // If profile pic is provided, then get the name, and save the name & destination in a variable:
 			$profile_location = 'img/applicants/' .
 				$request->getParam('first_name') . $request->getParam('last_name') .
 				date('Y-m-d') . '_' .time() . $profile->getClientFilename();
 		}
-		// Check if validation has passed or failed
+        // Define Languages part:
+        $languages = $request->getParam('language_');
+        $langNum = $request->getParam('languageCount');
+        $lang = [];
+        //--------------------------------------------
+        // Validate form fields
+        $fieldValidation = $this->validator->validate($request, [
+            'first_name'        =>  v::notEmpty()->alpha(),
+            'last_name'         =>  v::notEmpty()->alpha(),
+            'mobile_phone'      =>  v::notEmpty()->digit(' +()-')->phoneAvailable(),
+            'per_email'         =>  v::notEmpty()->email()->noWhitespace()->emailAvailable(),
+            'gender'            =>  v::notEmpty(),
+            'dob'               =>  v::notEmpty()->date()->OverEighteen(),
+            'nationality'       =>  v::notEmpty()->numeric(),
+            'visa'              =>  v::notEmpty(),
+            'visa_age'          =>  v::notEmpty(),
+            'source'            =>  v::notEmpty(),
+            'notice'            =>  v::notEmpty(),
+            'expectation'       =>  v::notEmpty()->numeric()->min(2000),
+            'languageCount'     =>  v::min(1)
+        ]);
+        if(empty($languages)){
+            $this->flash->addMessage('danger', 'You have to select at least 1 language!');
+            return $response->withRedirect($this->router->pathFor('HR.NewApplicant'));
+        }
 		if ($request->getParam('attachmentCounter') > -1) {
-			$attachments    = $request->getUploadedFiles()['attachment'];
-			// Count total attachments (excluding profile pic):
-			$totalAttach = $request->getParam('attachmentCounter');
-			// Validate fields of attachment data:
-			for ($i = 0; $i <= $totalAttach; $i++) {
-				$country        = 'attachmentCountry'.$i;
-				$type           = 'attachmentType'.$i;
-				$issuer         = 'attachmentIssuer'.$i;
-				$issueDate      = 'attachmentIssueDate'.$i;
-				$issueExpiry    = 'attachmentExpiryDate'.$i;
-				$validation = $this->validator->validate($request, [
-					$country            =>  v::notEmpty()->numeric(),
-					$type               =>  v::notEmpty()->alnum(),
-					$issuer             =>  v::notEmpty()->alnum(),
-					$issueDate          =>  v::notEmpty(),
-					$issueExpiry        =>  v::notEmpty(),
-					'first_name'        =>  v::notEmpty()->alpha(),
-					'last_name'         =>  v::notEmpty()->alpha(),
-					'mobile_phone'      =>  v::notEmpty()->digit(' +()-')->phoneAvailable(),
-					'per_email'         =>  v::notEmpty()->email()->noWhitespace()->emailAvailable(),
-					'gender'            =>  v::notEmpty(),
-					'dob'               =>  v::notEmpty()->date()->OverEighteen(),
-					'nationality'       =>  v::notEmpty()->numeric(),
-					'visa'              =>  v::notEmpty(),
-                    'visa_age'          =>  v::notEmpty(),
-					'source'            =>  v::notEmpty(),
-                    'notice'            =>  v::notEmpty(),
-                    'expectation'       =>  v::notEmpty()->numeric()->min(2000),
-                    'languageCount'     =>  v::min(1)
-				]);
-			}
-			if ($validation->failed()) {
-				$this->flash->addMessage('danger', 'There are errors in some fields, please check and try again!');
-				return $response->withRedirect($this->router->pathFor('HR.NewApplicant'));
-			}
-			// If profile upload has no errors, move the file
-			if ($profile->getError() === UPLOAD_ERR_OK) {
-				$profile->moveTo($profile_location);
-			}
-			// created the applicant record:
-			$applicant0 = Applicant::create([
-				'first_name'        =>  $request->getParam('first_name'),
-				'last_name'         =>  $request->getParam('last_name'),
-				'per_email'         =>  $request->getParam('per_email'),
-				'mobile_phone'      =>  $request->getParam('mobile_phone'),
-				'gender'            =>  $request->getParam('gender'),
-				'birth_date'        =>  $request->getParam('dob'),
-				'prof_pic'          =>  $profile_location,
-				'source'            =>  $request->getParam('source'),
-				'nationality'       =>  $request->getParam('nationality'),
-                'notice_period'     =>  $request->getParam('notice'),
-                'expectation'       =>  $request->getParam('expectation')
-			]);
+            $attachments = $request->getUploadedFiles()['attachment'];
+            // Count total attachments (excluding profile pic):
+            $totalAttach = $request->getParam('attachmentCounter');
+            // Validate fields of attachment data:
+            for ($j = 0; $j <= $totalAttach; $j++) {
+                $country = 'attachmentCountry' . $j;
+                $type = 'attachmentType' . $j;
+                $issuer = 'attachmentIssuer' . $j;
+                $issueDate = 'attachmentIssueDate' . $j;
+                $issueExpiry = 'attachmentExpiryDate' . $j;
 
+                // Validate Attachment Fields
+                $attachmentValidation = $this->validator->validate($request, [
+                    $country        => v::notEmpty()->numeric(),
+                    $type           => v::notEmpty()->alnum(),
+                    $issuer         => v::notEmpty()->alnum(),
+                    $issueDate      => v::notEmpty(),
+                    $issueExpiry    => v::notEmpty(),
+                ]);
+            }
+        }
+        // Check if validations (fields & attachments) passed or failed
+        if (is_null($attachmentValidation) ? '' : $attachmentValidation->failed() || $fieldValidation->failed()) {
+            $this->flash->addMessage('danger', 'There are errors in some fields, please check and try again!');
+            return $response->withRedirect($this->router->pathFor('HR.NewApplicant'));
+        }
+        // ============ If Validation Passed: ============
+        // If profile upload has no errors, move the file
+        if ($profile->getError() === UPLOAD_ERR_OK) {
+            $profile->moveTo($profile_location);
+        }
+        // created the applicant record:
+        $applicant = Applicant::create([
+            'first_name'        =>  $request->getParam('first_name'),
+            'last_name'         =>  $request->getParam('last_name'),
+            'per_email'         =>  $request->getParam('per_email'),
+            'mobile_phone'      =>  $request->getParam('mobile_phone'),
+            'gender'            =>  $request->getParam('gender'),
+            'birth_date'        =>  $request->getParam('dob'),
+            'prof_pic'          =>  $profile_location,
+            'source'            =>  $request->getParam('source'),
+            'nationality'       =>  $request->getParam('nationality'),
+            'notice_period'     =>  $request->getParam('notice'),
+            'expectation'       =>  $request->getParam('expectation')
+        ]);
+        // Create a record for each selected language (in applicant-language mapper)
+        for($k = 0; $k < $langNum; $k++) {
+            $languageID = $request->getParam('language_')[$k];
+            ApplicantLanguage::create([
+                'applicant_id'  => $applicant->id,
+                'language_id'   => $languageID
+            ]);
+        }
+        $visa = VisaStatus::create([
+            'applicant_id'      =>  $applicant->id,
+            'visa_type'         =>  $request->getParam('visa'),
+            'visa_age'          =>  $request->getParam('visa_age')
+        ]);
+			// -- Loop through each file (attachments)
+        if ($request->getParam('attachmentCounter') > -1) {
+            $attachments = $request->getUploadedFiles()['attachment'];
+            // Count total attachments (excluding profile pic):
+            $totalAttach = $request->getParam('attachmentCounter');
+            // Validate fields of attachment data:
+            for ($i = 0; $i <= $totalAttach; $i++) {
+                $attachment         = $attachments[$i];
+                $country            = 'attachmentCountry' . $i;
+                $type               = 'attachmentType' . $i;
+                $issuer             = 'attachmentIssuer' . $i;
+                $issueDate          = 'attachmentIssueDate' . $i;
+                $issueExpiry        = 'attachmentExpiryDate' . $i;
+                $attachmentLocation =
+                    'docs/applicants/' . 'applicantID_' .
+                    $applicant->id . '_date' .
+                    date('Y-m-d') . '-time' . time() . '_filename_' .
+                    $attachment->getClientFilename();
+                // -- Get the temp file path
+                $tmpattach = $attachment->getClientFilename();
+                // -- Make sure we have a filepath
+                if (!empty($tmpattach)) {
+                    if ($attachment->getError() === UPLOAD_ERR_OK) {
+                        $attachment->moveTo($attachmentLocation);
 
-            // Note: This method is not working:
-            //      Could be due to getParam (doesn't get
-            $languages = $request->getParam('language_');
-            $lang = [];
-            if(empty($languages)){
-                $this->flash->addMessage('danger', 'You have to select at least 1 language!');
-                return $response->withRedirect($this->router->pathFor('HR.NewApplicant'));
-            } else {
-                $langNum = count($languages);
-                for($k = 0; $k <= $langNum; $k++){
-                    $lang[$k] = ApplicantLanguage::create([
-                        'applicant_id'  =>  $applicant0->id,
-                        'language_id'   =>  Languages::where('iso639_1_code', substr($languages[$i], -2))->first()['id']
-                    ]);
+                        $document = Document::create([
+                            'doc_country'       => $request->getParam($country),
+                            'doc_expiry_date'   => $request->getParam($issueExpiry),
+                            'doc_issue_date'    => $request->getParam($issueDate),
+                            'doc_issuer'        => $request->getParam($issuer),
+                            'doc_type'          => $request->getParam($type),
+                            'doc_loc'           => $attachmentLocation
+                        ]);
+
+                        $mapper = ApplicantDocs::create([
+                            'applicant_id'  => $applicant->id,
+                            'doc_id'        => $document->id
+                        ]);
+//                        } else {
+//                            $this->flash->addMessage('danger', 'Something is wrong with the uploaded files!');
+//                            return $response->withRedirect($this->router->pathFor('HR.NewApplicant'));
+                    }
                 }
             }
-
-
-            $visa0 = VisaStatus::create([
-                'applicant_id'      =>  $applicant0->id,
-                'visa_type'         =>  $request->getParam('visa'),
-                'visa_age'          =>  $request->getParam('visa_age')
-            ]);
-
-			// -- Loop through each file
-			for($i = 0; $i <= $totalAttach; $i++) {
-				$attachment = $attachments[$i];
-				$attachmentLocation =
-					'docs/applicants/' . 'ID' .
-					$applicant0->id . '_' .
-					date('Y-m-d') . '-' . time() . '_' .
-					$attachment->getClientFilename();
-				// -- Get the temp file path
-				$tmpattach = $attachment->getClientFilename();
-				// -- Make sure we have a filepath
-				if (!empty($tmpattach)) {
-					if ($attachment->getError() === UPLOAD_ERR_OK) {
-						$attachment->moveTo($attachmentLocation);
-
-						$document = Document::create([
-							'doc_country'       =>  $request->getParam('attachmentCountry'.$i),
-							'doc_expiry_date'   =>  $request->getParam('attachmentExpiryDate'.$i),
-							'doc_issue_date'    =>  $request->getParam('attachmentIssueDate'.$i),
-							'doc_issuer'        =>  $request->getParam('attachmentIssuer'.$i),
-							'doc_type'          =>  $request->getParam('attachmentType'.$i),
-							'doc_loc'           =>  $attachmentLocation
-						]);
-
-						$mapper = ApplicantDocs::create([
-							'applicant_id'      =>  $applicant0->id,
-							'doc_id'            =>  $document->id
-						]);
-					} else {
-						$this->flash->addMessage('danger', 'Something is wrong with the uploaded files!');
-						return $response->withRedirect($this->router->pathFor('HR.NewApplicant'));
-					}
-				}
-			}
-		} else {
-			$validation = $this->validator->validate($request, [
-				'first_name'        =>  v::notEmpty()->alpha(),
-                'last_name'         =>  v::notEmpty()->alpha(),
-                'mobile_phone'      =>  v::notEmpty()->digit(' +()-')->phoneAvailable(),
-                'per_email'         =>  v::notEmpty()->email()->noWhitespace()->emailAvailable(),
-                'gender'            =>  v::notEmpty(),
-                'dob'               =>  v::notEmpty()->date()->OverEighteen(),
-                'nationality'       =>  v::notEmpty()->numeric(),
-                'visa'              =>  v::notEmpty(),
-                'visa_age'          =>  v::notEmpty(),
-                'source'            =>  v::notEmpty(),
-                'notice'            =>  v::notEmpty(),
-                'expectation'       =>  v::notEmpty()->numeric()->min(2000),
-                'languageCount'     =>  v::min(1)
-			]);
-			if ($validation->failed()) {
-				$this->flash->addMessage('danger', 'There are errors in some fields, please check and try again!');
-				return $response->withRedirect($this->router->pathFor('HR.NewApplicant'));
-			}
-			// If profile upload has no errors, move the file
-			if ($profile->getError() === UPLOAD_ERR_OK) {
-				$profile->moveTo($profile_location);
-			}
-			// created the applicant record:
-			$applicant = Applicant::create([
-				'first_name'        =>  $request->getParam('first_name'),
-				'last_name'         =>  $request->getParam('last_name'),
-				'per_email'         =>  $request->getParam('per_email'),
-				'mobile_phone'      =>  $request->getParam('mobile_phone'),
-				'gender'            =>  $request->getParam('gender'),
-				'birth_date'        =>  $request->getParam('dob'),
-				'prof_pic'          =>  $profile_location,
-				'source'            =>  $request->getParam('source'),
-				'nationality'       =>  $request->getParam('nationality'),
-                'notice_period'     =>  $request->getParam('notice'),
-                'expectation'       =>  $request->getParam('expectation')
-			]);
-
-            $languages = $request->getParam('language_');
-            $lang = [];
-            if(empty($languages)){
-                $this->flash->addMessage('danger', 'You have to select at least 1 language!');
-                return $response->withRedirect($this->router->pathFor('HR.NewApplicant'));
-            } else {
-                $langNum = count($languages);
-                for($k = 0; $k <= $langNum; $k++){
-                    $lang[$k] = ApplicantLanguage::create([
-                        'applicant_id'  =>  $applicant->id,
-                        'language_id'   =>  Languages::where('iso639_1_code', substr($languages[$k], -2))->first()
-                    ]);
-                }
-            }
-            $visa = VisaStatus::create([
-                'applicant_id'      =>  $applicant->id,
-                'visa_type'         =>  $request->getParam('visa'),
-                'visa_age'          =>  $request->getParam('visa_age')
-            ]);
-		}
+        }
 		// Flash a message that the applicant record is created.
 		$this->flash->addMessage('success', 'Applicant was created successfully');
 		// redirect to the next page (add experience, add address, ...etc.)
-		return $response->withRedirect($this->router->pathFor('home'));
+        if($request->getParam('interview') == 'interview') {
+            $interviewURL = $this->router->pathFor('HR.NewInterview', [
+                'applicant_id'  =>  $applicant->id
+            ]);
+
+
+            return $response->withRedirect($interviewURL);
+        }
+        return $response->withRedirect($this->router->pathFor('home'));
 	}
 
 	// Employees
@@ -371,15 +338,24 @@ class HRController extends Controller {
 
 
 	// Interview:
-	public function getNewInterview ($request, $response) {
-		return $this->view->render($response, 'auth/HR/Interview/newInterview.twig');
+	public function getNewInterview ($request, $response, $arg) {
+        $applicantID = $arg['applicant_id'];
+        $applicant = Applicant::where('id', $applicantID)->get()->first();
+		return $this->view->render(
+            $response,
+            'auth/HR/Interview/newInterview.twig',
+            [
+                'applicantID'   =>  $applicant->id,
+                'applicantName' =>  $applicant->first_name . ' ' .$applicant->last_name
+
+        ]);
 	}
 
-	public function getAllInterviews ($request, $response) {
+	public function getAllInterviews ($request, $response, $arg) {
 		return $this->view->render($response, 'auth/HR/Interview/allInterviews.twig');
 	}
 
-	public function postNewInterview ($request, $response) {
+	public function postNewInterview ($request, $response, $arg) {
 		//
 	}
 
@@ -420,6 +396,24 @@ class HRController extends Controller {
     public function countryById ($request, $response, $arg) {
         $countryName = Country::where('id', (int)$arg['country_id'])->get();
         return $response->withJson($countryName);
+    }
+
+    public function DepartmentHead ($request, $response, $arg){
+        $deptID = $arg['department_id'];
+        $applicant = Applicant::where(
+            'id',
+            Employee::where(
+                'id',
+                DepartmentHeads::where(
+                    'dept_id',
+                    $deptID
+                )->orderBy(
+                    'from_date',
+                    'DESC'
+                )->get()->first()['emp_id']
+            )->get()->first()['applicant_id']
+        )->get()->first();
+        return $response->withJson($applicant);
     }
 
 

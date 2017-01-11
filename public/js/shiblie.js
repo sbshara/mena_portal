@@ -350,3 +350,12 @@ function languageCounter(obj){
         $('#languageCount').val(langCount);
     }
 };
+
+function interviewCheck(obj){
+    var Check = obj.id;
+    if ($('#'+Check).is(':checked')){
+        $('#'+Check).val('interview');
+    } else {
+        $('#'+Check).val('null');
+    }
+};

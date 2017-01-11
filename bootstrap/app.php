@@ -38,7 +38,7 @@ $app = new Slim($settings);
 $container = $app->getContainer();
 
 $capsule = new Capsule;
-$capsule->addConnection($container['settings']['db']);
+$capsule->addConnection($container->db);
 $capsule->setAsGlobal();
 $capsule->bootEloquent();
 
@@ -64,19 +64,19 @@ $container['flash'] = function ($container) {
 // Add the Twig View dependency
 $container['view'] = function ($container) {
 	$view = new \Slim\Views\Twig(
-//        $container['config']->get('settings.twig.template'), [
         __DIR__ . '/../resources/views/', [
-//            $container['config']->get('settings.twig.cache'),
             'cache' =>  __DIR__ . '/../cache',
-//            $container['config']->get('settings.twig.debug'),
+//            'cache' =>  false,
             'debug' =>  true
 	    ]
     );
 
-	$view->addExtension(new \Slim\Views\TwigExtension(
-		$container->router,
-		$container->request->getUri()
-	));
+	$view->addExtension (
+        new \Slim\Views\TwigExtension (
+		    $container->router,
+		    $container->request->getUri()
+	    )
+    );
 
 	// Globalize the Auth module to access it within template partials
 	$view->getEnvironment()->addGlobal('auth', [
@@ -91,7 +91,8 @@ $container['view'] = function ($container) {
 		'states'            =>  $container->HR->allStates(),
         'cities'			=>  $container->HR->allCities(),
         'applicants'        =>  $container->HR->allApplicants(),
-        'languages'         =>  $container->HR->allLanguages()
+        'languages'         =>  $container->HR->allLanguages(),
+        'departments'       =>  $container->HR->allDepartments()
 	]);
 
 	// Add the flash message
