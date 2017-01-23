@@ -33,7 +33,7 @@ class Auth {
 
 	public function logout() {
 		unset($_SESSION['user']);
-		session_destroy($_SESSION['user']);
+		session_destroy();
 	}
 
 	public function user() {

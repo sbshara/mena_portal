@@ -15,12 +15,10 @@ use App\Models\Applicant;
 use App\Models\Employee;
 use App\Models\ApplicantDocs;
 use App\Models\Document;
-//use App\Models\UserMaster;
 use App\Models\Country;
 use App\Models\State;
 use App\Models\City;
 use App\Models\VisaStatus;
-//use App\Models\Languages;
 use App\Models\ApplicantLanguage;
 use App\Models\DepartmentHeads;
 
@@ -179,9 +177,7 @@ class HRController extends Controller {
                             'applicant_id'  => $applicant->id,
                             'doc_id'        => $document->id
                         ]);
-//                        } else {
-//                            $this->flash->addMessage('danger', 'Something is wrong with the uploaded files!');
-//                            return $response->withRedirect($this->router->pathFor('HR.NewApplicant'));
+
                     }
                 }
             }
@@ -190,9 +186,7 @@ class HRController extends Controller {
 		$this->flash->addMessage('success', 'Applicant was created successfully');
 		// redirect to the next page (add experience, add address, ...etc.)
         if($request->getParam('interview') == 'interview') {
-            $interviewURL = $this->router->pathFor('HR.NewInterview', [
-                'applicant_id'  =>  $applicant->id
-            ]);
+            $interviewURL = $this->router->pathFor('HR.NewInterview', compact('applicant'));
 
 
             return $response->withRedirect($interviewURL);
@@ -247,8 +241,6 @@ class HRController extends Controller {
             'area'                  =>  v::notEmpty()->alnum(),
             'nextstep'              =>  v::notEmpty()
         ]);
-//        print_r($request->getParams());
-//        die();
         if ($validation->failed()) {
             $this->flash->addMessage('danger', 'There are errors in some fields, please check and try again!');
             return $response->withRedirect($this->router->pathFor('HR.NewAddress'));
@@ -279,16 +271,22 @@ class HRController extends Controller {
         switch ($direction) {
             case 'address':
                 return $response->withRedirect($this->router->pathFor('HR.NewAddress'));
+                break;
             case 'skill':
                 return $response->withRedirect($this->router->pathFor('HR.NewSkill'));
+                break;
             case 'degree':
                 return $response->withRedirect($this->router->pathFor('HR.NewEducation'));
+                break;
             case 'experience':
                 return $response->withRedirect($this->router->pathFor('HR.NewExperience'));
+                break;
             case 'interview':
                 return $response->withRedirect($this->router->pathFor('HR.NewInterview'));
+                break;
             default:
-//                return $response->withRedirect($this->router->pathFor('home'));
+                return $response->withRedirect($this->router->pathFor('home'));
+                break;
         }
         // redirect to the next page (add experience, add address, ...etc.)
         return $response->withRedirect($this->router->pathFor('HR.NewSkill'));
@@ -341,14 +339,7 @@ class HRController extends Controller {
 	public function getNewInterview ($request, $response, $arg) {
         $applicantID = $arg['applicant_id'];
         $applicant = Applicant::where('id', $applicantID)->get()->first();
-		return $this->view->render(
-            $response,
-            'auth/HR/Interview/newInterview.twig',
-            [
-                'applicantID'   =>  $applicant->id,
-                'applicantName' =>  $applicant->first_name . ' ' .$applicant->last_name
-
-        ]);
+		return $this->view->render($response, 'auth/HR/Interview/newInterview.twig',compact('applicant'));
 	}
 
 	public function getAllInterviews ($request, $response, $arg) {
@@ -379,17 +370,37 @@ class HRController extends Controller {
 	// AJAX Requests:
 	public function stateByCountry ($request, $response, $arg) {
 		$states = State::where('country_id', (int)$arg['country_id'])->orderBy('state_name', 'ASC')->get();
+        if (count($states) <= 0) {
+            return $response->withStatus(404)->withJson(['error (404):' => 'No Records Found!']);
+        }
 		return $response->withJson($states);
 	}
 
 	public function cityByState ($request, $response, $arg) {
 		$cities = City::where('state_id', $arg['state_id'])->orderBy('city_name', 'ASC')->get();
+        if (count($cities) <= 0) {
+            return $response->withStatus(404)->withJson(['error (404):' => 'No Records Found!']);
+        }
 		return $response->withJson($cities);
 	}
 
 	public function applicantByName ($request, $response, $arg) {
 		$name = "%".$arg['applicant_name']."%";
-		$applicant = Applicant::where('first_name', 'LIKE', $name)->orWhere('last_name', 'LIKE', $name)->orderBy('first_name', 'ASC')->get();
+		$applicant = Applicant::where(
+                                    'first_name',
+                                    'LIKE',
+                                    $name
+                                )->orWhere(
+                                    'last_name',
+                                    'LIKE',
+                                    $name
+                                )->orderBy(
+                                    'first_name',
+                                    'ASC'
+                                )->get();
+        if (count($applicant) <= 0) {
+            return $response->withStatus(404)->withJson(['error (404):' => 'No Records Found!']);
+        }
 		return $response->withJson($applicant);
 	}
 
@@ -413,6 +424,8 @@ class HRController extends Controller {
                 )->get()->first()['emp_id']
             )->get()->first()['applicant_id']
         )->get()->first();
+//        var_dump($applicant);
+//        die();
         return $response->withJson($applicant);
     }
 

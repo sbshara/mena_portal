@@ -2,279 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c909f7f3-fe0a-4d80-99cf-c318cd97a804" name="Default" comment="Validation added (w/exception), &#10;updated AuthController, &#10;updated routes, &#10;added new twig templates, &#10;added custom js">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Models/DepartmentHeads.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/500.jpg" afterPath="$PROJECT_DIR$/public/img/500.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/ABW.png" afterPath="$PROJECT_DIR$/public/img/flags/ABW.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/AFG.png" afterPath="$PROJECT_DIR$/public/img/flags/AFG.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/AGO.png" afterPath="$PROJECT_DIR$/public/img/flags/AGO.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/AIA.png" afterPath="$PROJECT_DIR$/public/img/flags/AIA.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/ALA.png" afterPath="$PROJECT_DIR$/public/img/flags/ALA.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/ALB.png" afterPath="$PROJECT_DIR$/public/img/flags/ALB.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/AND.png" afterPath="$PROJECT_DIR$/public/img/flags/AND.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/ARE.png" afterPath="$PROJECT_DIR$/public/img/flags/ARE.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/ARG.png" afterPath="$PROJECT_DIR$/public/img/flags/ARG.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/ARM.png" afterPath="$PROJECT_DIR$/public/img/flags/ARM.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/ASM.png" afterPath="$PROJECT_DIR$/public/img/flags/ASM.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/ATA.png" afterPath="$PROJECT_DIR$/public/img/flags/ATA.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/ATG.png" afterPath="$PROJECT_DIR$/public/img/flags/ATG.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/AUS.png" afterPath="$PROJECT_DIR$/public/img/flags/AUS.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/AUT.png" afterPath="$PROJECT_DIR$/public/img/flags/AUT.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/AZE.png" afterPath="$PROJECT_DIR$/public/img/flags/AZE.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/BDI.png" afterPath="$PROJECT_DIR$/public/img/flags/BDI.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/BEL.png" afterPath="$PROJECT_DIR$/public/img/flags/BEL.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/BEN.png" afterPath="$PROJECT_DIR$/public/img/flags/BEN.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/BES.png" afterPath="$PROJECT_DIR$/public/img/flags/BES.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/BFA.png" afterPath="$PROJECT_DIR$/public/img/flags/BFA.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/BGD.png" afterPath="$PROJECT_DIR$/public/img/flags/BGD.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/BGR.png" afterPath="$PROJECT_DIR$/public/img/flags/BGR.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/BHR.png" afterPath="$PROJECT_DIR$/public/img/flags/BHR.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/BHS.png" afterPath="$PROJECT_DIR$/public/img/flags/BHS.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/BIH.png" afterPath="$PROJECT_DIR$/public/img/flags/BIH.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/BLR.png" afterPath="$PROJECT_DIR$/public/img/flags/BLR.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/BLZ.png" afterPath="$PROJECT_DIR$/public/img/flags/BLZ.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/BMU.png" afterPath="$PROJECT_DIR$/public/img/flags/BMU.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/BOL.png" afterPath="$PROJECT_DIR$/public/img/flags/BOL.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/BRA.png" afterPath="$PROJECT_DIR$/public/img/flags/BRA.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/BRB.png" afterPath="$PROJECT_DIR$/public/img/flags/BRB.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/BRN.png" afterPath="$PROJECT_DIR$/public/img/flags/BRN.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/BTN.png" afterPath="$PROJECT_DIR$/public/img/flags/BTN.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/BVT.png" afterPath="$PROJECT_DIR$/public/img/flags/BVT.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/BWA.png" afterPath="$PROJECT_DIR$/public/img/flags/BWA.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/CAF.png" afterPath="$PROJECT_DIR$/public/img/flags/CAF.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/CAN.png" afterPath="$PROJECT_DIR$/public/img/flags/CAN.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/CCK.png" afterPath="$PROJECT_DIR$/public/img/flags/CCK.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/CHE.png" afterPath="$PROJECT_DIR$/public/img/flags/CHE.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/CHL.png" afterPath="$PROJECT_DIR$/public/img/flags/CHL.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/CHN.png" afterPath="$PROJECT_DIR$/public/img/flags/CHN.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/CIV.png" afterPath="$PROJECT_DIR$/public/img/flags/CIV.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/CMR.png" afterPath="$PROJECT_DIR$/public/img/flags/CMR.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/COD.png" afterPath="$PROJECT_DIR$/public/img/flags/COD.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/COG.png" afterPath="$PROJECT_DIR$/public/img/flags/COG.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/COK.png" afterPath="$PROJECT_DIR$/public/img/flags/COK.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/COL.png" afterPath="$PROJECT_DIR$/public/img/flags/COL.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/COM.png" afterPath="$PROJECT_DIR$/public/img/flags/COM.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/CPV.png" afterPath="$PROJECT_DIR$/public/img/flags/CPV.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/CRI.png" afterPath="$PROJECT_DIR$/public/img/flags/CRI.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/CUB.png" afterPath="$PROJECT_DIR$/public/img/flags/CUB.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/CXR.png" afterPath="$PROJECT_DIR$/public/img/flags/CXR.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/CYM.png" afterPath="$PROJECT_DIR$/public/img/flags/CYM.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/CYP.png" afterPath="$PROJECT_DIR$/public/img/flags/CYP.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/CZE.png" afterPath="$PROJECT_DIR$/public/img/flags/CZE.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/DEU.png" afterPath="$PROJECT_DIR$/public/img/flags/DEU.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/DJI.png" afterPath="$PROJECT_DIR$/public/img/flags/DJI.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/DMA.png" afterPath="$PROJECT_DIR$/public/img/flags/DMA.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/DNK.png" afterPath="$PROJECT_DIR$/public/img/flags/DNK.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/DOM.png" afterPath="$PROJECT_DIR$/public/img/flags/DOM.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/DZA.png" afterPath="$PROJECT_DIR$/public/img/flags/DZA.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/ECU.png" afterPath="$PROJECT_DIR$/public/img/flags/ECU.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/EGY.png" afterPath="$PROJECT_DIR$/public/img/flags/EGY.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/ERI.png" afterPath="$PROJECT_DIR$/public/img/flags/ERI.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/ESP.png" afterPath="$PROJECT_DIR$/public/img/flags/ESP.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/EST.png" afterPath="$PROJECT_DIR$/public/img/flags/EST.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/ETH.png" afterPath="$PROJECT_DIR$/public/img/flags/ETH.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/applicants/EbrahimHemed2017-01-04_14835251061.jpg" afterPath="$PROJECT_DIR$/public/img/applicants/EbrahimHemed2017-01-04_14835251061.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/FIN.png" afterPath="$PROJECT_DIR$/public/img/flags/FIN.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/FJI.png" afterPath="$PROJECT_DIR$/public/img/flags/FJI.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/FLK.png" afterPath="$PROJECT_DIR$/public/img/flags/FLK.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/FRA.png" afterPath="$PROJECT_DIR$/public/img/flags/FRA.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/FRO.png" afterPath="$PROJECT_DIR$/public/img/flags/FRO.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/FSM.png" afterPath="$PROJECT_DIR$/public/img/flags/FSM.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/applicants/First nameLast Name2017-01-04_14835374002016-11-14_11-37-12.jpg" afterPath="$PROJECT_DIR$/public/img/applicants/First nameLast Name2017-01-04_14835374002016-11-14_11-37-12.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/applicants/FouadAssad2017-01-04_1483524942fouad assad 2 - Copy.jpg" afterPath="$PROJECT_DIR$/public/img/applicants/FouadAssad2017-01-04_1483524942fouad assad 2 - Copy.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/GAB.png" afterPath="$PROJECT_DIR$/public/img/flags/GAB.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/GBR.png" afterPath="$PROJECT_DIR$/public/img/flags/GBR.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/GEO.png" afterPath="$PROJECT_DIR$/public/img/flags/GEO.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/GGY.png" afterPath="$PROJECT_DIR$/public/img/flags/GGY.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/GHA.png" afterPath="$PROJECT_DIR$/public/img/flags/GHA.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/GIB.png" afterPath="$PROJECT_DIR$/public/img/flags/GIB.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/GIN.png" afterPath="$PROJECT_DIR$/public/img/flags/GIN.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/GNB.png" afterPath="$PROJECT_DIR$/public/img/flags/GNB.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/GNQ.png" afterPath="$PROJECT_DIR$/public/img/flags/GNQ.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/GRC.png" afterPath="$PROJECT_DIR$/public/img/flags/GRC.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/GRD.png" afterPath="$PROJECT_DIR$/public/img/flags/GRD.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/GRL.png" afterPath="$PROJECT_DIR$/public/img/flags/GRL.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/GTM.png" afterPath="$PROJECT_DIR$/public/img/flags/GTM.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/GUM.png" afterPath="$PROJECT_DIR$/public/img/flags/GUM.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/GUY.png" afterPath="$PROJECT_DIR$/public/img/flags/GUY.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/Gambia.png" afterPath="$PROJECT_DIR$/public/img/flags/Gambia.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/HKG.png" afterPath="$PROJECT_DIR$/public/img/flags/HKG.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/HND.png" afterPath="$PROJECT_DIR$/public/img/flags/HND.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/HRV.png" afterPath="$PROJECT_DIR$/public/img/flags/HRV.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/HTI.png" afterPath="$PROJECT_DIR$/public/img/flags/HTI.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/HUN.png" afterPath="$PROJECT_DIR$/public/img/flags/HUN.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/docs/applicants/ID15_2017-01-04-1483525528_26433.pdf" afterPath="$PROJECT_DIR$/public/docs/applicants/ID15_2017-01-04-1483525528_26433.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/docs/applicants/ID17_2017-01-04-1483537400_Ford Data - UAE - Nov 2015 to Oct 2016.xlsx" afterPath="$PROJECT_DIR$/public/docs/applicants/ID17_2017-01-04-1483537400_Ford Data - UAE - Nov 2015 to Oct 2016.xlsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/IDN.png" afterPath="$PROJECT_DIR$/public/img/flags/IDN.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/IMN.png" afterPath="$PROJECT_DIR$/public/img/flags/IMN.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/IND.png" afterPath="$PROJECT_DIR$/public/img/flags/IND.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/IOT.png" afterPath="$PROJECT_DIR$/public/img/flags/IOT.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/IRL.png" afterPath="$PROJECT_DIR$/public/img/flags/IRL.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/IRN.png" afterPath="$PROJECT_DIR$/public/img/flags/IRN.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/IRQ.png" afterPath="$PROJECT_DIR$/public/img/flags/IRQ.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/ISL.png" afterPath="$PROJECT_DIR$/public/img/flags/ISL.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/ITA.png" afterPath="$PROJECT_DIR$/public/img/flags/ITA.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/JAM.png" afterPath="$PROJECT_DIR$/public/img/flags/JAM.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/JOR.png" afterPath="$PROJECT_DIR$/public/img/flags/JOR.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/JPN.png" afterPath="$PROJECT_DIR$/public/img/flags/JPN.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/KAZ.png" afterPath="$PROJECT_DIR$/public/img/flags/KAZ.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/KEN.png" afterPath="$PROJECT_DIR$/public/img/flags/KEN.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/KGZ.png" afterPath="$PROJECT_DIR$/public/img/flags/KGZ.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/KHM.png" afterPath="$PROJECT_DIR$/public/img/flags/KHM.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/KIR.png" afterPath="$PROJECT_DIR$/public/img/flags/KIR.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/KNA.png" afterPath="$PROJECT_DIR$/public/img/flags/KNA.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/KOR.png" afterPath="$PROJECT_DIR$/public/img/flags/KOR.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/KWT.png" afterPath="$PROJECT_DIR$/public/img/flags/KWT.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/LAO.png" afterPath="$PROJECT_DIR$/public/img/flags/LAO.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/LBN.png" afterPath="$PROJECT_DIR$/public/img/flags/LBN.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/LBR.png" afterPath="$PROJECT_DIR$/public/img/flags/LBR.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/LBY.png" afterPath="$PROJECT_DIR$/public/img/flags/LBY.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/LCA.png" afterPath="$PROJECT_DIR$/public/img/flags/LCA.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/LIE.png" afterPath="$PROJECT_DIR$/public/img/flags/LIE.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/LKA.png" afterPath="$PROJECT_DIR$/public/img/flags/LKA.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/LSO.png" afterPath="$PROJECT_DIR$/public/img/flags/LSO.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/LTU.png" afterPath="$PROJECT_DIR$/public/img/flags/LTU.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/LUX.png" afterPath="$PROJECT_DIR$/public/img/flags/LUX.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/LVA.png" afterPath="$PROJECT_DIR$/public/img/flags/LVA.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/MAC.png" afterPath="$PROJECT_DIR$/public/img/flags/MAC.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/MAR.png" afterPath="$PROJECT_DIR$/public/img/flags/MAR.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/MCO.png" afterPath="$PROJECT_DIR$/public/img/flags/MCO.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/MDA.png" afterPath="$PROJECT_DIR$/public/img/flags/MDA.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/MDG.png" afterPath="$PROJECT_DIR$/public/img/flags/MDG.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/MDV.png" afterPath="$PROJECT_DIR$/public/img/flags/MDV.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/MEX.png" afterPath="$PROJECT_DIR$/public/img/flags/MEX.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/MHL.png" afterPath="$PROJECT_DIR$/public/img/flags/MHL.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/MKD.png" afterPath="$PROJECT_DIR$/public/img/flags/MKD.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/MLI.png" afterPath="$PROJECT_DIR$/public/img/flags/MLI.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/MLT.png" afterPath="$PROJECT_DIR$/public/img/flags/MLT.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/MMR.png" afterPath="$PROJECT_DIR$/public/img/flags/MMR.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/MNE.png" afterPath="$PROJECT_DIR$/public/img/flags/MNE.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/MNG.png" afterPath="$PROJECT_DIR$/public/img/flags/MNG.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/MNP.png" afterPath="$PROJECT_DIR$/public/img/flags/MNP.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/MOZ.png" afterPath="$PROJECT_DIR$/public/img/flags/MOZ.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/MRT.png" afterPath="$PROJECT_DIR$/public/img/flags/MRT.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/MSR.png" afterPath="$PROJECT_DIR$/public/img/flags/MSR.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/MUS.png" afterPath="$PROJECT_DIR$/public/img/flags/MUS.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/MWI.png" afterPath="$PROJECT_DIR$/public/img/flags/MWI.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/MYS.png" afterPath="$PROJECT_DIR$/public/img/flags/MYS.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/MYT.png" afterPath="$PROJECT_DIR$/public/img/flags/MYT.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/NAM.png" afterPath="$PROJECT_DIR$/public/img/flags/NAM.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/NER.png" afterPath="$PROJECT_DIR$/public/img/flags/NER.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/NFK.png" afterPath="$PROJECT_DIR$/public/img/flags/NFK.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/NGA.png" afterPath="$PROJECT_DIR$/public/img/flags/NGA.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/NIC.png" afterPath="$PROJECT_DIR$/public/img/flags/NIC.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/NIU.png" afterPath="$PROJECT_DIR$/public/img/flags/NIU.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/NLD.png" afterPath="$PROJECT_DIR$/public/img/flags/NLD.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/NOR.png" afterPath="$PROJECT_DIR$/public/img/flags/NOR.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/NPL.png" afterPath="$PROJECT_DIR$/public/img/flags/NPL.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/NRU.png" afterPath="$PROJECT_DIR$/public/img/flags/NRU.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/NZL.png" afterPath="$PROJECT_DIR$/public/img/flags/NZL.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/OMN.png" afterPath="$PROJECT_DIR$/public/img/flags/OMN.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/PAK.png" afterPath="$PROJECT_DIR$/public/img/flags/PAK.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/PAN.png" afterPath="$PROJECT_DIR$/public/img/flags/PAN.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/PCN.png" afterPath="$PROJECT_DIR$/public/img/flags/PCN.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/PER.png" afterPath="$PROJECT_DIR$/public/img/flags/PER.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/PHL.png" afterPath="$PROJECT_DIR$/public/img/flags/PHL.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/PLW.png" afterPath="$PROJECT_DIR$/public/img/flags/PLW.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/PNG.png" afterPath="$PROJECT_DIR$/public/img/flags/PNG.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/POL.png" afterPath="$PROJECT_DIR$/public/img/flags/POL.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/PRI.png" afterPath="$PROJECT_DIR$/public/img/flags/PRI.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/PRK.png" afterPath="$PROJECT_DIR$/public/img/flags/PRK.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/PRT.png" afterPath="$PROJECT_DIR$/public/img/flags/PRT.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/PRY.png" afterPath="$PROJECT_DIR$/public/img/flags/PRY.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/PSE.png" afterPath="$PROJECT_DIR$/public/img/flags/PSE.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/PYF.png" afterPath="$PROJECT_DIR$/public/img/flags/PYF.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/QAT.png" afterPath="$PROJECT_DIR$/public/img/flags/QAT.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/ROU.png" afterPath="$PROJECT_DIR$/public/img/flags/ROU.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/RUS.png" afterPath="$PROJECT_DIR$/public/img/flags/RUS.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/RWA.png" afterPath="$PROJECT_DIR$/public/img/flags/RWA.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/SAU.png" afterPath="$PROJECT_DIR$/public/img/flags/SAU.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/SDN.png" afterPath="$PROJECT_DIR$/public/img/flags/SDN.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/SEN.png" afterPath="$PROJECT_DIR$/public/img/flags/SEN.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/SGP.png" afterPath="$PROJECT_DIR$/public/img/flags/SGP.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/SGS.png" afterPath="$PROJECT_DIR$/public/img/flags/SGS.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/SHN.png" afterPath="$PROJECT_DIR$/public/img/flags/SHN.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/SLB.png" afterPath="$PROJECT_DIR$/public/img/flags/SLB.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/SLE.png" afterPath="$PROJECT_DIR$/public/img/flags/SLE.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/SLV.png" afterPath="$PROJECT_DIR$/public/img/flags/SLV.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/SMR.png" afterPath="$PROJECT_DIR$/public/img/flags/SMR.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/SOM.png" afterPath="$PROJECT_DIR$/public/img/flags/SOM.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/SPM.png" afterPath="$PROJECT_DIR$/public/img/flags/SPM.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/SRB.png" afterPath="$PROJECT_DIR$/public/img/flags/SRB.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/STP.png" afterPath="$PROJECT_DIR$/public/img/flags/STP.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/SUR.png" afterPath="$PROJECT_DIR$/public/img/flags/SUR.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/SVK.png" afterPath="$PROJECT_DIR$/public/img/flags/SVK.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/SVN.png" afterPath="$PROJECT_DIR$/public/img/flags/SVN.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/SWE.png" afterPath="$PROJECT_DIR$/public/img/flags/SWE.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/SWZ.png" afterPath="$PROJECT_DIR$/public/img/flags/SWZ.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/SYC.png" afterPath="$PROJECT_DIR$/public/img/flags/SYC.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/SYR.png" afterPath="$PROJECT_DIR$/public/img/flags/SYR.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/TCA.png" afterPath="$PROJECT_DIR$/public/img/flags/TCA.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/TCD.png" afterPath="$PROJECT_DIR$/public/img/flags/TCD.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/TGO.png" afterPath="$PROJECT_DIR$/public/img/flags/TGO.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/THA.png" afterPath="$PROJECT_DIR$/public/img/flags/THA.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/TJK.png" afterPath="$PROJECT_DIR$/public/img/flags/TJK.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/TKM.png" afterPath="$PROJECT_DIR$/public/img/flags/TKM.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/TLS.png" afterPath="$PROJECT_DIR$/public/img/flags/TLS.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/TON.png" afterPath="$PROJECT_DIR$/public/img/flags/TON.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/TTO.png" afterPath="$PROJECT_DIR$/public/img/flags/TTO.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/TUN.png" afterPath="$PROJECT_DIR$/public/img/flags/TUN.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/TUR.png" afterPath="$PROJECT_DIR$/public/img/flags/TUR.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/TUV.png" afterPath="$PROJECT_DIR$/public/img/flags/TUV.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/TWN.png" afterPath="$PROJECT_DIR$/public/img/flags/TWN.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/TZA.png" afterPath="$PROJECT_DIR$/public/img/flags/TZA.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/UGA.png" afterPath="$PROJECT_DIR$/public/img/flags/UGA.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/UKR.png" afterPath="$PROJECT_DIR$/public/img/flags/UKR.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/URY.png" afterPath="$PROJECT_DIR$/public/img/flags/URY.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/USA.png" afterPath="$PROJECT_DIR$/public/img/flags/USA.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/UZB.png" afterPath="$PROJECT_DIR$/public/img/flags/UZB.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/VAT.png" afterPath="$PROJECT_DIR$/public/img/flags/VAT.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/VCT.png" afterPath="$PROJECT_DIR$/public/img/flags/VCT.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/VEN.png" afterPath="$PROJECT_DIR$/public/img/flags/VEN.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/VGB.png" afterPath="$PROJECT_DIR$/public/img/flags/VGB.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/VIR.png" afterPath="$PROJECT_DIR$/public/img/flags/VIR.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/VNM.png" afterPath="$PROJECT_DIR$/public/img/flags/VNM.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/VUT.png" afterPath="$PROJECT_DIR$/public/img/flags/VUT.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/WLF.png" afterPath="$PROJECT_DIR$/public/img/flags/WLF.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/WSM.png" afterPath="$PROJECT_DIR$/public/img/flags/WSM.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/YEM.png" afterPath="$PROJECT_DIR$/public/img/flags/YEM.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/ZAF.png" afterPath="$PROJECT_DIR$/public/img/flags/ZAF.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/ZMB.png" afterPath="$PROJECT_DIR$/public/img/flags/ZMB.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/flags/ZWE.png" afterPath="$PROJECT_DIR$/public/img/flags/ZWE.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/avatar6.png" afterPath="$PROJECT_DIR$/public/img/avatar6.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/icons/christian.png" afterPath="$PROJECT_DIR$/public/img/icons/christian.png" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/routes.php" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.ids" afterPath="$PROJECT_DIR$/.idea/dataSources.ids" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/applicants/defaultFemale.png" afterPath="$PROJECT_DIR$/public/img/applicants/defaultFemale.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/applicants/defaultMale.png" afterPath="$PROJECT_DIR$/public/img/applicants/defaultMale.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/error404.jpg" afterPath="$PROJECT_DIR$/public/img/error404.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/error404.png" afterPath="$PROJECT_DIR$/public/img/error404.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/error_500.png" afterPath="$PROJECT_DIR$/public/img/error_500.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/favicon.png" afterPath="$PROJECT_DIR$/public/img/favicon.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/icons/jew.png" afterPath="$PROJECT_DIR$/public/img/icons/jew.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/icons/muslim.png" afterPath="$PROJECT_DIR$/public/img/icons/muslim.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/applicants/ooyy2017-01-04_148352552808b3a79d-f789-49c3-8318-5274d8fa823d-large.jpeg" afterPath="$PROJECT_DIR$/public/img/applicants/ooyy2017-01-04_148352552808b3a79d-f789-49c3-8318-5274d8fa823d-large.jpeg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/icons/other.png" afterPath="$PROJECT_DIR$/public/img/icons/other.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/applicants/shiblie.jpg" afterPath="$PROJECT_DIR$/public/img/applicants/shiblie.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/.htaccess" afterPath="$PROJECT_DIR$/public/.htaccess" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/errors/404.twig" afterPath="$PROJECT_DIR$/resources/views/errors/404.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Models/Applicant.php" afterPath="$PROJECT_DIR$/app/Models/Applicant.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Helpers/Auth.php" afterPath="$PROJECT_DIR$/app/Helpers/Auth.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Controllers/Auth/AuthController.php" afterPath="$PROJECT_DIR$/app/Controllers/Auth/AuthController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Middleware/AuthMiddleware.php" afterPath="$PROJECT_DIR$/app/Middleware/AuthMiddleware.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Helpers/HR.php" afterPath="$PROJECT_DIR$/app/Helpers/HR.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Controllers/HRController.php" afterPath="$PROJECT_DIR$/app/Controllers/HRController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/docs/applicants/ID5_2016-12-13-1481624068_account_activities_201411_201602 (1).csv" afterPath="$PROJECT_DIR$/public/docs/applicants/ID5_2016-12-13-1481624068_account_activities_201411_201602 (1).csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Models/Languages.php" afterPath="$PROJECT_DIR$/app/Models/Languages.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Models/User.php" afterPath="$PROJECT_DIR$/app/Models/User.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Models/UserMaster.php" afterPath="$PROJECT_DIR$/app/Models/UserMaster.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/app.css" afterPath="$PROJECT_DIR$/public/css/app.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bootstrap/app.php" afterPath="$PROJECT_DIR$/bootstrap/app.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/templates/app.twig" afterPath="$PROJECT_DIR$/resources/views/templates/app.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/index.php" afterPath="$PROJECT_DIR$/public/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sqlextracts/mena_portal-2017-01-11.sql" afterPath="$PROJECT_DIR$/sqlextracts/mena_portal-2017-01-11.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mode.php" afterPath="$PROJECT_DIR$/mode.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/auth/HR/Applicant/newApplicant.twig" afterPath="$PROJECT_DIR$/resources/views/auth/HR/Applicant/newApplicant.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/auth/HR/Interview/newInterview.twig" afterPath="$PROJECT_DIR$/resources/views/auth/HR/Interview/newInterview.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/routes.php" afterPath="$PROJECT_DIR$/app/routes.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/settings.php" afterPath="$PROJECT_DIR$/app/config/settings.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/shiblie.js" afterPath="$PROJECT_DIR$/public/js/shiblie.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/shiblie.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/shiblie.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/shiblie_bshara.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/shiblie_bshara.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="vehicle_service.iws" />
@@ -304,18 +53,6 @@
         <option name="myItemId" />
         <option name="myItemType" value="com.intellij.database.view.DbRootNodeDescriptor" />
       </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="mena_portal@localhost" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="mena_portal" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="usermaster" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
     </PATH>
     <PATH>
       <PATH_ELEMENT>
@@ -328,60 +65,6 @@
       </PATH_ELEMENT>
       <PATH_ELEMENT>
         <option name="myItemId" value="mena_portal" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-    </PATH>
-    <PATH>
-      <PATH_ELEMENT>
-        <option name="myItemId" />
-        <option name="myItemType" value="com.intellij.database.view.DbRootNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="mena_portal@localhost" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="mena_portal" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="skills" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-    </PATH>
-    <PATH>
-      <PATH_ELEMENT>
-        <option name="myItemId" />
-        <option name="myItemType" value="com.intellij.database.view.DbRootNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="mena_portal@localhost" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="mena_portal" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="languages" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-    </PATH>
-    <PATH>
-      <PATH_ELEMENT>
-        <option name="myItemId" />
-        <option name="myItemType" value="com.intellij.database.view.DbRootNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="mena_portal@localhost" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="mena_portal" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="dept_heads" />
         <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
       </PATH_ELEMENT>
     </PATH>
@@ -392,110 +75,44 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="newApplicant.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/auth/HR/Applicant/newApplicant.twig">
+      <file leaf-file-name="AuthController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Controllers/Auth/AuthController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-18.25" vertical-offset="132" max-vertical-offset="855">
-              <caret line="651" column="185" selection-start-line="651" selection-start-column="185" selection-end-line="651" selection-end-column="185" />
+            <state vertical-scroll-proportion="-19.5" vertical-offset="507" max-vertical-offset="1320">
+              <caret line="72" column="35" selection-start-line="72" selection-start-column="35" selection-end-line="72" selection-end-column="35" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="web.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Routes/web.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-8.125" vertical-offset="0" max-vertical-offset="2145">
+              <caret line="26" column="36" selection-start-line="26" selection-start-column="36" selection-end-line="26" selection-end-column="36" />
               <folding>
-                <element signature="e#1270#1936#0#HTML" expanded="false" />
-                <element signature="e#1957#2615#0#HTML" expanded="false" />
-                <element signature="e#2636#3311#0#HTML" expanded="false" />
-                <element signature="e#3332#4130#0#HTML" expanded="false" />
-                <element signature="e#4151#5018#0#HTML" expanded="false" />
-                <element signature="e#5039#5863#0#HTML" expanded="false" />
-                <element signature="e#5884#7113#0#HTML" expanded="false" />
-                <element signature="e#7134#8142#0#HTML" expanded="false" />
-                <element signature="e#8163#11633#0#HTML" expanded="false" />
-                <element signature="e#11654#12349#0#HTML" expanded="false" />
-                <element signature="e#12370#12960#0#HTML" expanded="false" />
-                <element signature="e#12981#14351#0#HTML" expanded="false" />
-                <element signature="e#14372#15171#0#HTML" expanded="false" />
-                <element signature="e#15192#62049#0#HTML" expanded="false" />
+                <element signature="e#6097#6193#1#PHP" expanded="false" />
+                <element signature="e#6269#6363#1#PHP" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="newInterview.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/auth/HR/Interview/newInterview.twig">
+      <file leaf-file-name="Auth.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Helpers/Auth.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-20.0" vertical-offset="0" max-vertical-offset="720">
-              <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.50884956" vertical-offset="75" max-vertical-offset="1050">
+              <caret line="35" column="26" selection-start-line="35" selection-start-column="26" selection-end-line="35" selection-end-column="26" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HR.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Helpers/HR.php">
+      <file leaf-file-name="AuthMiddleware.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Middleware/AuthMiddleware.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.666667" vertical-offset="1004" max-vertical-offset="1425">
-              <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
-              <folding>
-                <element signature="e#115#140#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mena_portal@localhost" pinned="false" current-in-tab="false">
-        <entry file="dbDummy://db-console:/69aaf592/0911d869-a466-44a7-97fc-eb3ccbe13594/">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.0" vertical-offset="0" max-vertical-offset="3615">
-              <caret line="2" column="22" selection-start-line="0" selection-start-column="0" selection-end-line="235" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserMaster.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Models/UserMaster.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.34562212" vertical-offset="0" max-vertical-offset="2190">
-              <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HRController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Controllers/HRController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.1764708" vertical-offset="5589" max-vertical-offset="6330">
-              <caret line="402" column="30" selection-start-line="402" selection-start-column="21" selection-end-line="402" selection-end-column="30" />
-              <folding>
-                <element signature="e#119#144#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/routes.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-23.25" vertical-offset="1707" max-vertical-offset="2415">
-              <caret line="164" column="46" selection-start-line="164" selection-start-column="46" selection-end-line="164" selection-end-column="46" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bootstrap/app.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.8431373" vertical-offset="773" max-vertical-offset="2070">
-              <caret line="76" column="39" selection-start-line="76" selection-start-column="33" selection-end-line="76" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="composer.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/composer.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-16.25" vertical-offset="0" max-vertical-offset="555">
-              <caret line="26" column="38" selection-start-line="26" selection-start-column="38" selection-end-line="26" selection-end-column="38" />
+            <state vertical-scroll-proportion="-7.5" vertical-offset="0" max-vertical-offset="405">
+              <caret line="17" column="36" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -522,15 +139,12 @@
         <option value="$PROJECT_DIR$/app/Models/City.php" />
         <option value="$PROJECT_DIR$/app/Middleware/HttpCache/Cache.php" />
         <option value="$PROJECT_DIR$/bootstrap/settings.php" />
-        <option value="$PROJECT_DIR$/public/index.php" />
         <option value="$PROJECT_DIR$/Settings/settings.php" />
         <option value="$PROJECT_DIR$/resources/views/templates/partials/topNavigation.twig" />
-        <option value="$PROJECT_DIR$/app/Controllers/Auth/AuthController.php" />
         <option value="$PROJECT_DIR$/app/Models/ApplicantVisa.php" />
         <option value="$PROJECT_DIR$/app/Models/VisaStatus.php" />
         <option value="$PROJECT_DIR$/public/css/app.css" />
         <option value="$PROJECT_DIR$/resources/views/auth/HR/test.js" />
-        <option value="$PROJECT_DIR$/app/Helpers/Auth.php" />
         <option value="$PROJECT_DIR$/app/Models/ProfileSetting.php" />
         <option value="$PROJECT_DIR$/resources/views/auth/HR/Address/newAddress.twig" />
         <option value="$PROJECT_DIR$/resources/views/auth/HR/User/profile.twig" />
@@ -538,31 +152,39 @@
         <option value="$PROJECT_DIR$/app/Controllers/HomeController.php" />
         <option value="$PROJECT_DIR$/app/config/development/db.php" />
         <option value="$PROJECT_DIR$/resources/views/auth/errors/404.twig" />
-        <option value="$PROJECT_DIR$/resources/views/errors/404.twig" />
         <option value="$PROJECT_DIR$/resources/views/errors/500.twig" />
-        <option value="$PROJECT_DIR$/app/Middleware/AuthMiddleware.php" />
         <option value="$PROJECT_DIR$/resources/views/auth/HR/SinglePage.twig" />
         <option value="$PROJECT_DIR$/app/Models/Addresses.php" />
-        <option value="$PROJECT_DIR$/app/Models/Applicant.php" />
         <option value="$PROJECT_DIR$/app/Models/ApplicantLanguage.php" />
         <option value="dbprocedure:/300131e8/0911d869-a466-44a7-97fc-eb3ccbe13594/mena_portal..curdemo" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/0911d869-a466-44a7-97fc-eb3ccbe13594/console.sql" />
         <option value="$PROJECT_DIR$/userMaster.sql" />
         <option value="$PROJECT_DIR$/app/Models/Languages.php" />
-        <option value="$PROJECT_DIR$/resources/views/templates/app.twig" />
-        <option value="$PROJECT_DIR$/app/config/settings.php" />
         <option value="$PROJECT_DIR$/composer.json" />
-        <option value="$PROJECT_DIR$/resources/views/auth/HR/Applicant/newApplicant.twig" />
-        <option value="$PROJECT_DIR$/bootstrap/app.php" />
-        <option value="$PROJECT_DIR$/public/js/shiblie.js" />
-        <option value="$PROJECT_DIR$/resources/views/auth/HR/Interview/newInterview.twig" />
         <option value="$PROJECT_DIR$/app/Models/User.php" />
         <option value="$PROJECT_DIR$/app/Models/DepartmentHeads.php" />
-        <option value="$PROJECT_DIR$/app/Helpers/HR.php" />
-        <option value="$PROJECT_DIR$/app/Controllers/HRController.php" />
         <option value="$PROJECT_DIR$/app/routes.php" />
-        <option value="db-console:/69aaf592/0911d869-a466-44a7-97fc-eb3ccbe13594/" />
         <option value="$PROJECT_DIR$/app/Models/UserMaster.php" />
+        <option value="$PROJECT_DIR$/vendor/illuminate/contracts/Container/BindingResolutionException.php" />
+        <option value="$PROJECT_DIR$/app/config/settings.php" />
+        <option value="$PROJECT_DIR$/public/index.php" />
+        <option value="db-console:/69aaf592/0911d869-a466-44a7-97fc-eb3ccbe13594/" />
+        <option value="$PROJECT_DIR$/app/Helpers/HR.php" />
+        <option value="$PROJECT_DIR$/resources/views/auth/HR/Applicant/newApplicant.twig" />
+        <option value="$PROJECT_DIR$/resources/views/auth/HR/Interview/newInterview.twig" />
+        <option value="$PROJECT_DIR$/app/Routes/api.php" />
+        <option value="$PROJECT_DIR$/resources/views/errors/404.twig" />
+        <option value="$PROJECT_DIR$/bootstrap/app.php" />
+        <option value="$PROJECT_DIR$/app/Handlers/NotFoundHandler.php" />
+        <option value="$PROJECT_DIR$/app/Controllers/HRController.php" />
+        <option value="$PROJECT_DIR$/app/Models/Applicant.php" />
+        <option value="$PROJECT_DIR$/public/js/shiblie.js" />
+        <option value="$PROJECT_DIR$/mode.php" />
+        <option value="$PROJECT_DIR$/resources/views/templates/app.twig" />
+        <option value="$PROJECT_DIR$/app/Middleware/AuthMiddleware.php" />
+        <option value="$PROJECT_DIR$/app/Routes/web.php" />
+        <option value="$PROJECT_DIR$/app/Controllers/Auth/AuthController.php" />
+        <option value="$PROJECT_DIR$/app/Helpers/Auth.php" />
       </list>
     </option>
   </component>
@@ -682,6 +304,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="errors" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mena_portal" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mena_portal" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="auth" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -739,66 +383,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Interview" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mena_portal" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mena_portal" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="auth" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="HR" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Employee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mena_portal" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mena_portal" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="auth" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="HR" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Applicant" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -876,7 +460,43 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="Routes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mena_portal" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mena_portal" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="Models" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mena_portal" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mena_portal" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Middleware" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -912,7 +532,47 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="Handlers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mena_portal" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mena_portal" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="Controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mena_portal" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mena_portal" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Auth" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -959,18 +619,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/Routes" />
       <recent name="$PROJECT_DIR$/app/Models" />
       <recent name="$PROJECT_DIR$/resources/views/errors" />
       <recent name="$PROJECT_DIR$/app/Controllers" />
       <recent name="$PROJECT_DIR$/app/Helpers" />
-      <recent name="$PROJECT_DIR$/app/Controllers/Auth" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/Routes" />
       <recent name="$PROJECT_DIR$/resources/views" />
       <recent name="C:\xampp\htdocs\mena_portal\app\config" />
       <recent name="C:\xampp\htdocs\mena_portal\Settings" />
       <recent name="$PROJECT_DIR$/app" />
-      <recent name="$PROJECT_DIR$/resources/views/auth/HR/Address" />
     </key>
   </component>
   <component name="RunManager">
@@ -1076,18 +736,18 @@
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3520548" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3260274" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2739726" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32876712" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34931508" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34699455" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13085622" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24959612" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1542811" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16074313" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4178082" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3260274" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3520548" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1158,185 +818,10 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/auth/HR/Experience/allExperiences.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.65217394" vertical-offset="0" max-vertical-offset="0">
-          <caret line="1" column="45" selection-start-line="1" selection-start-column="45" selection-end-line="1" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/auth/HR/Employee/newEmployee.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.391304" vertical-offset="0" max-vertical-offset="0">
-          <caret line="19" column="57" selection-start-line="19" selection-start-column="57" selection-end-line="19" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/auth/HR/Employee/employeeById.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.65217394" vertical-offset="0" max-vertical-offset="0">
-          <caret line="1" column="31" selection-start-line="1" selection-start-column="31" selection-end-line="1" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/auth/HR/Employee/allEmployees.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.9130435" vertical-offset="0" max-vertical-offset="0">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/auth/HR/Education/newEducation.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.5652175" vertical-offset="0" max-vertical-offset="0">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/auth/HR/Education/educationById.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.65217394" vertical-offset="0" max-vertical-offset="0">
-          <caret line="1" column="39" selection-start-line="1" selection-start-column="39" selection-end-line="1" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/auth/HR/Education/allEducations.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.65217394" vertical-offset="0" max-vertical-offset="0">
-          <caret line="1" column="38" selection-start-line="1" selection-start-column="38" selection-end-line="1" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/auth/HR/Department/newDepartment.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.9130435" vertical-offset="0" max-vertical-offset="0">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/auth/HR/Department/departmentById.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.65217394" vertical-offset="0" max-vertical-offset="0">
-          <caret line="1" column="33" selection-start-line="1" selection-start-column="33" selection-end-line="1" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/auth/HR/Department/allDepartments.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.65217394" vertical-offset="0" max-vertical-offset="0">
-          <caret line="1" column="32" selection-start-line="1" selection-start-column="32" selection-end-line="1" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/auth/HR/Applicant/applicantById.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.65217394" vertical-offset="0" max-vertical-offset="0">
-          <caret line="5" column="14" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/auth/HR/Applicant/allApplicants.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46244478" vertical-offset="0" max-vertical-offset="0">
-          <caret line="34" column="38" selection-start-line="34" selection-start-column="38" selection-end-line="34" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/auth/HR/Address/addressById.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.65217394" vertical-offset="0" max-vertical-offset="0">
-          <caret line="1" column="30" selection-start-line="1" selection-start-column="30" selection-end-line="1" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/auth/HR/Address/allAddresses.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.02209131" vertical-offset="0" max-vertical-offset="0">
-          <caret line="1" column="30" selection-start-line="1" selection-start-column="30" selection-end-line="1" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.057251908" vertical-offset="0" max-vertical-offset="0">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/auth/HR/User/signin.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.0416665" vertical-offset="0" max-vertical-offset="0">
-          <caret line="16" column="39" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/templates/partials/topNavigation.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.125" vertical-offset="0" max-vertical-offset="0">
-          <caret line="156" column="42" selection-start-line="156" selection-start-column="42" selection-end-line="156" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/City.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33088234" vertical-offset="0" max-vertical-offset="0">
-          <caret line="22" column="21" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/auth/HR/Address/newAddress.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="55" column="71" selection-start-line="55" selection-start-column="71" selection-end-line="55" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/app.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.077120826" vertical-offset="0" max-vertical-offset="0">
-          <caret line="2" column="40" selection-start-line="2" selection-start-column="40" selection-end-line="2" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6940874" vertical-offset="0" max-vertical-offset="0">
-          <caret line="18" column="11" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Controllers/Auth/AuthController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.53539824" vertical-offset="0" max-vertical-offset="0">
-          <caret line="41" column="73" selection-start-line="41" selection-start-column="73" selection-end-line="41" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/skins/_all-skins.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Controllers/Controller.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Middleware/Middleware.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Middleware/AuthMiddleware.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44117647" vertical-offset="0" max-vertical-offset="0">
-          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1347,38 +832,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Controllers/HomeController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Models/Addresses.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-4.9166665" vertical-offset="0" max-vertical-offset="0">
           <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Helpers/Auth.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="25.5" vertical-offset="0" max-vertical-offset="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/auth/HR/SinglePage.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.083333" vertical-offset="0" max-vertical-offset="0">
-          <caret line="623" column="14" selection-start-line="13" selection-start-column="8" selection-end-line="623" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/Applicant.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46460176" vertical-offset="0" max-vertical-offset="0">
-          <caret line="26" column="22" selection-start-line="26" selection-start-column="22" selection-end-line="26" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -1390,34 +847,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/userMaster.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34931508" vertical-offset="0" max-vertical-offset="0">
-          <caret line="53" column="44" selection-start-line="53" selection-start-column="44" selection-end-line="53" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Models/Languages.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.30973452" vertical-offset="0" max-vertical-offset="678">
           <caret line="19" column="22" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/home.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-24.375" vertical-offset="0" max-vertical-offset="735">
-          <caret line="39" column="12" selection-start-line="39" selection-start-column="12" selection-end-line="39" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/templates/app.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.75" vertical-offset="960" max-vertical-offset="2505">
-          <caret line="78" column="18" selection-start-line="77" selection-start-column="6" selection-end-line="78" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1425,78 +858,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.0619469" vertical-offset="0" max-vertical-offset="2625">
           <caret line="58" column="35" selection-start-line="52" selection-start-column="8" selection-end-line="58" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/settings.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-20.0" vertical-offset="165" max-vertical-offset="945">
-          <caret line="48" column="9" selection-start-line="48" selection-start-column="9" selection-end-line="48" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/composer.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.25" vertical-offset="0" max-vertical-offset="555">
+        <state vertical-scroll-proportion="0.0" vertical-offset="390" max-vertical-offset="555">
           <caret line="26" column="38" selection-start-line="26" selection-start-column="38" selection-end-line="26" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/shiblie.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="4713" max-vertical-offset="5460">
-          <caret line="354" column="23" selection-start-line="354" selection-start-column="23" selection-end-line="354" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/auth/HR/Applicant/newApplicant.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.25" vertical-offset="132" max-vertical-offset="855">
-          <caret line="651" column="185" selection-start-line="651" selection-start-column="185" selection-end-line="651" selection-end-column="185" />
-          <folding>
-            <element signature="e#1270#1936#0#HTML" expanded="false" />
-            <element signature="e#1957#2615#0#HTML" expanded="false" />
-            <element signature="e#2636#3311#0#HTML" expanded="false" />
-            <element signature="e#3332#4130#0#HTML" expanded="false" />
-            <element signature="e#4151#5018#0#HTML" expanded="false" />
-            <element signature="e#5039#5863#0#HTML" expanded="false" />
-            <element signature="e#5884#7113#0#HTML" expanded="false" />
-            <element signature="e#7134#8142#0#HTML" expanded="false" />
-            <element signature="e#8163#11633#0#HTML" expanded="false" />
-            <element signature="e#11654#12349#0#HTML" expanded="false" />
-            <element signature="e#12370#12960#0#HTML" expanded="false" />
-            <element signature="e#12981#14351#0#HTML" expanded="false" />
-            <element signature="e#14372#15171#0#HTML" expanded="false" />
-            <element signature="e#15192#62049#0#HTML" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bootstrap/app.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.8431373" vertical-offset="773" max-vertical-offset="2070">
-          <caret line="76" column="39" selection-start-line="76" selection-start-column="33" selection-end-line="76" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/auth/HR/Interview/newInterview.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-20.0" vertical-offset="0" max-vertical-offset="720">
-          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.86725664" vertical-offset="192" max-vertical-offset="945">
-          <caret line="57" column="58" selection-start-line="57" selection-start-column="58" selection-end-line="57" selection-end-column="58" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1508,46 +876,344 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/UserMaster.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="2190">
+          <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/illuminate/container/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="704">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/com/jetbrains/php/lang/psi/stubs/data/Core_c.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.07058824" vertical-offset="0" max-vertical-offset="5220">
+          <caret line="2" column="36" selection-start-line="2" selection-start-column="36" selection-end-line="2" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Middleware/ValidationErrorsMiddleware.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="449">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Validation/Exceptions/MatchesPasswordException.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="704">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Validation/Exceptions/EmailAvailableException.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="704">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Validation/Rules/EmailAvailable.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="704">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/illuminate/contracts/Container/BindingResolutionException.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.1764706" vertical-offset="0" max-vertical-offset="680">
+          <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/illuminate/container/Container.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="16.808823" vertical-offset="0" max-vertical-offset="19020">
+          <caret line="762" column="30" selection-start-line="762" selection-start-column="22" selection-end-line="762" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Validation/Rules/UsernameAvailable.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="704">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.13274336" vertical-offset="0" max-vertical-offset="678">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/home.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8584071" vertical-offset="3" max-vertical-offset="735">
+          <caret line="39" column="12" selection-start-line="39" selection-start-column="12" selection-end-line="39" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/templates/partials/topNavigation.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1410" max-vertical-offset="2580">
+          <caret line="110" column="72" selection-start-line="110" selection-start-column="62" selection-end-line="110" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Controllers/HomeController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="345">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://db-console:/69aaf592/d9945329-8497-4087-a4dd-c620fbef4012/">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="702">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://db-console:/69aaf592/0911d869-a466-44a7-97fc-eb3ccbe13594/">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.4" vertical-offset="93" max-vertical-offset="3615">
+          <caret line="23" column="42" selection-start-line="23" selection-start-column="42" selection-end-line="23" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/plugins/daterangepicker/daterangepicker.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="361" max-vertical-offset="23220">
+          <caret line="36" column="23" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/Title.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5306604" vertical-offset="0" max-vertical-offset="424">
+          <caret line="20" column="20" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Helpers/HR.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.666667" vertical-offset="1004" max-vertical-offset="1425">
-          <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="792" max-vertical-offset="1500">
+          <caret line="89" column="5" selection-start-line="89" selection-start-column="5" selection-end-line="89" selection-end-column="5" />
           <folding>
-            <element signature="e#115#140#0#PHP" expanded="true" />
+            <element signature="e#115#140#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/routes.php">
+    <entry file="file://$PROJECT_DIR$/public/plugins/datepicker/bootstrap-datepicker.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-23.25" vertical-offset="1707" max-vertical-offset="2415">
-          <caret line="164" column="46" selection-start-line="164" selection-start-column="46" selection-end-line="164" selection-end-column="46" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="23550" max-vertical-offset="24855">
+          <caret line="1401" column="23" selection-start-line="1401" selection-start-column="23" selection-end-line="1401" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/auth/HR/Applicant/newApplicant.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-18.416666" vertical-offset="668" max-vertical-offset="10050">
+          <caret line="74" column="49" selection-start-line="74" selection-start-column="49" selection-end-line="74" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/auth/HR/Address/newAddress.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.35211268" vertical-offset="150" max-vertical-offset="2865">
+          <caret line="20" column="70" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/auth/HR/SinglePage.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.49295774" vertical-offset="0" max-vertical-offset="16425">
+          <caret line="14" column="67" selection-start-line="14" selection-start-column="67" selection-end-line="14" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/composer/autoload_psr4.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="704">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/composer/autoload_real.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1140">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/autoload.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.13235295" vertical-offset="0" max-vertical-offset="680">
+          <caret line="6" column="61" selection-start-line="6" selection-start-column="7" selection-end-line="6" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Middleware/Middleware.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="315">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/errors/404.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.72794116" vertical-offset="0" max-vertical-offset="680">
+          <caret line="33" column="66" selection-start-line="33" selection-start-column="66" selection-end-line="33" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Handlers/NotFoundHandler.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8455882" vertical-offset="85" max-vertical-offset="765">
+          <caret line="44" column="4" selection-start-line="44" selection-start-column="4" selection-end-line="44" selection-end-column="4" />
+          <folding>
+            <element signature="e#35#69#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.1470588" vertical-offset="0" max-vertical-offset="945">
+          <caret line="57" column="58" selection-start-line="57" selection-start-column="58" selection-end-line="57" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mode.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="678">
+          <caret line="0" column="11" selection-start-line="0" selection-start-column="11" selection-end-line="0" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Routes/api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.17699115" vertical-offset="0" max-vertical-offset="678">
+          <caret line="13" column="23" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="23" />
+          <folding>
+            <element signature="e#90#124#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bootstrap/app.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.2610619" vertical-offset="630" max-vertical-offset="2040">
+          <caret line="107" column="74" selection-start-line="107" selection-start-column="59" selection-end-line="107" selection-end-column="74" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/settings.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.22123894" vertical-offset="0" max-vertical-offset="945">
+          <caret line="15" column="34" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/templates/app.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.17050691" vertical-offset="804" max-vertical-offset="2145">
+          <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.125" vertical-offset="0" max-vertical-offset="2145">
+          <caret line="26" column="36" selection-start-line="26" selection-start-column="36" selection-end-line="26" selection-end-column="36" />
+          <folding>
+            <element signature="e#6097#6193#1#PHP" expanded="false" />
+            <element signature="e#6269#6363#1#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/Applicant.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.53097343" vertical-offset="0" max-vertical-offset="678">
+          <caret line="29" column="21" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Controllers/HRController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.1764708" vertical-offset="5589" max-vertical-offset="6330">
-          <caret line="402" column="30" selection-start-line="402" selection-start-column="21" selection-end-line="402" selection-end-column="30" />
+        <state vertical-scroll-proportion="0.64896756" vertical-offset="5815" max-vertical-offset="6525">
+          <caret line="422" column="26" selection-start-line="422" selection-start-column="26" selection-end-line="422" selection-end-column="26" />
           <folding>
             <element signature="e#119#144#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="dbDummy://db-console:/69aaf592/0911d869-a466-44a7-97fc-eb3ccbe13594/">
+    <entry file="file://$PROJECT_DIR$/resources/views/auth/HR/Interview/newInterview.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.0" vertical-offset="0" max-vertical-offset="3615">
-          <caret line="2" column="22" selection-start-line="0" selection-start-column="0" selection-end-line="235" selection-end-column="1" />
+        <state vertical-scroll-proportion="0.53097343" vertical-offset="0" max-vertical-offset="1590">
+          <caret line="24" column="66" selection-start-line="24" selection-start-column="66" selection-end-line="24" selection-end-column="66" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/UserMaster.php">
+    <entry file="file://$PROJECT_DIR$/public/js/shiblie.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34562212" vertical-offset="0" max-vertical-offset="2190">
-          <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
+        <state vertical-scroll-proportion="0.38319087" vertical-offset="3331" max-vertical-offset="5910">
+          <caret line="240" column="49" selection-start-line="240" selection-start-column="49" selection-end-line="240" selection-end-column="49" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Middleware/AuthMiddleware.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.5" vertical-offset="0" max-vertical-offset="405">
+          <caret line="17" column="36" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Controllers/Auth/AuthController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-19.5" vertical-offset="507" max-vertical-offset="1320">
+          <caret line="72" column="35" selection-start-line="72" selection-start-column="35" selection-end-line="72" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Helpers/Auth.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.50884956" vertical-offset="75" max-vertical-offset="1050">
+          <caret line="35" column="26" selection-start-line="35" selection-start-column="26" selection-end-line="35" selection-end-column="26" />
           <folding />
         </state>
       </provider>

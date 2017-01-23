@@ -26,8 +26,8 @@ return [
         'prefix'    =>  ''
     ],
     'app'       =>  [
-        'site_name' =>  'MENA_PORTAL',
-        'url'       =>  'http://localhost/~shiblie/mena_portal/public',
+        'siteName'  =>  'MENA_PORTAL',
+        'siteUrl'   =>  '/',
         'hash'      =>  [
             'algo'      =>  PASSWORD_DEFAULT,
             'cost'      =>  10
@@ -47,8 +47,8 @@ return [
         'html'          =>  true
     ],
     'view'      =>  [
-        'template'      =>  __DIR__ . DS. '..' . DS . 'resources' . DS . 'views' . DS,
-        'cache'         =>  __DIR__ . DS. '..' . DS . 'cache',
+        'template'      =>  __DIR__ . '/../resources/views/',
+        'cache'         =>  __DIR__ . '/../cache/',
         'debug'         =>  true,
         'auto_reload'   =>  true
     ],
@@ -57,6 +57,6 @@ return [
     ],
     'logger'    =>  [
         'name' => 'MENA_PORTAL',
-        'path' => __DIR__ . DS . '..' . DS . 'logs' . DS . 'app.log',
+        'path' => __DIR__ . '/../logs/app.log',
     ]
 ];

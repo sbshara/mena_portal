@@ -72,7 +72,7 @@
                                 <div class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                 </div>
-                                <input type="text" class="form-control pull-right" name="dob" id="datepicker" value="{{ old.dob ? old.dob : '1984-09-03' }}">
+                                <input type="date" class="form-control pull-right" name="dob" id="dob" value="{{ old.dob ? old.dob : '1984-09-03' }}">
                             </div>
                             {% if errors.dob %}
                                 <span class="help-block">{{ errors.dob | first }}</span>

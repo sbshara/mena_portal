@@ -17,8 +17,9 @@ use App\Models\Country;
 use App\Models\State;
 use App\Models\City;
 use App\Models\Languages;
-use App\Models\UserMaster;
+use App\Models\Title;
 use App\Models\DepartmentHeads;
+use App\Models\UserMaster;
 
 class HR {
 
@@ -86,9 +87,13 @@ class HR {
         return Department::all();
     }
 
-    public function departmentHead ($deptID) {
-
-
+    public function allDepartmentHeads () {
+        return DepartmentHeads::all();
     }
+
+    public function allTitles () {
+        return Title::all();
+    }
+
 
 }

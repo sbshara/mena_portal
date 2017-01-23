@@ -21,18 +21,6 @@ require INC_ROOT . DS . 'vendor/autoload.php';
 
 $settings = require __DIR__ . '/../app/config/settings.php';
 
-//$container = $app->getContainer();
-// $app used to be here
-
-//$container = new \Slim\Container;
-
-//$container['config'] = function ($container) {
-//    return new \Noodlehaus\Config([
-////        __DIR__ . '/../app/config/settings.php',
-//        INC_ROOT . DS . 'app/config/settings.php'
-//    ]);
-//};
-
 $app = new Slim($settings);
 
 $container = $app->getContainer();
@@ -92,7 +80,10 @@ $container['view'] = function ($container) {
         'cities'			=>  $container->HR->allCities(),
         'applicants'        =>  $container->HR->allApplicants(),
         'languages'         =>  $container->HR->allLanguages(),
-        'departments'       =>  $container->HR->allDepartments()
+        'departments'       =>  $container->HR->allDepartments(),
+        'departmentHeads'   =>  $container->HR->allDepartmentHeads(),
+        'employees'         =>  $container->HR->allEmployees(),
+        'titles'            =>  $container->HR->allTitles()
 	]);
 
 	// Add the flash message
@@ -110,21 +101,27 @@ $container['cache'] = function ($container) {
 	return new \App\Middleware\HttpCache\CacheProvider();
 };
 
+// Override notFoundHandler:
 $container['notFoundHandler'] = function ($container) {
-    return function ($request, $response) use ($container) {
-        $container->view->render($response, 'errors/404.twig');
-        return $response->withStatus(404);
-    };
+    return new App\Handlers\NotFoundHandler($container['view']);
+//    return function ($request, $response) use ($container) {
+//        $response = $container->view->render($response, 'errors/404.twig');
+//        return $response->withStatus(404);
+//    };
 };
 
 
 // Add the Controllers:
 $container['HomeController'] = function ($container) { return new \App\Controllers\HomeController($container); };
+
 $container['AuthController'] = function ($container) { return new \App\Controllers\Auth\AuthController($container); };
-$container['HRController'] = function ($container) { return new \App\Controllers\HRController($container); };
-$container['AddressController'] = function ($container) { return new \App\Controllers\AddressController($container); };
-$container['UserController'] = function ($container) { return new \App\Controllers\UserController($container); };
 $container['PasswordController'] = function ($container) { return new \App\Controllers\Auth\PasswordController($container); };
+
+$container['HRController'] = function ($container) { return new \App\Controllers\HRController($container); };
+$container['OperationsController'] = function ($container) { return new \App\Controllers\OperationsController($container); };
+$container['AccountsController'] = function ($container) { return new \App\Controllers\AccountsController($container); };
+
+
 $container['csrf'] = function ($container) { return new \Slim\Csrf\Guard(); };
 //$container['http'] = function ($container) { return new UploadedFile(); };
 
@@ -137,4 +134,5 @@ $app->add($container->csrf);
 v::with('App\\Validation\\Rules\\');
 
 
-require __DIR__ . '/../app/routes.php';
+require __DIR__ . '/../app/Routes/web.php';
+require __DIR__ . '/../app/Routes/api.php';

@@ -45,11 +45,11 @@ class AuthController extends Controller {
 		return $response->withRedirect($this->router->pathFor('home'));
 	}
 
-	public function getSignIn ($request, $response) {
+	public function getSignIn ($request, $response, $args) {
 		return $this->view->render($response, 'auth/HR/User/signin.twig');
 	}
 
-	public function postSignIn ($request, $response) {
+	public function postSignIn ($request, $response, $args) {
 		$validation = $this->validator->validate($request, [
 			'username'  =>  v::notEmpty()->alnum('-_$!@#%^&().=+~'),
 			'password'  =>  v::notEmpty()
@@ -67,7 +67,14 @@ class AuthController extends Controller {
 			return $response->withRedirect($this->router->pathFor('auth.Signin'));
 		}
 
-        return $response->withRedirect($this->router->pathFor('home'));
+        $referer = $_SESSION['initial_uri'];
+
+        if($referer != null) {
+            $destination = $referer;
+        } else {
+            $destination = urlencode($this->router->pathFor('home'));
+        }
+        return $response->withRedirect(urldecode($destination));
 	}
 
 
@@ -77,6 +84,6 @@ class AuthController extends Controller {
 	}
 
 	public function postUserProfile ($request, $response, $args) {
-		// TODO: POSTUSERPROFILE
+		// TODO: POST USER PROFILE
 	}
 }

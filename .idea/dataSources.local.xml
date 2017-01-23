@@ -7,6 +7,10 @@
       <schema-pattern>mena_portal.*</schema-pattern>
       <default-schemas>mena_portal.*</default-schemas>
     </data-source>
+    <data-source name="MySQL - @mysql2000.my-virtual-panel.com" uuid="d9945329-8497-4087-a4dd-c620fbef4012">
+      <secret-storage>master_key</secret-storage>
+      <first-sync>true</first-sync>
+      <user-name>shiblie</user-name>
+    </data-source>
   </component>
 </project>
-
