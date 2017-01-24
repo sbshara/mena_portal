@@ -253,7 +253,8 @@ function getDepartmentHead(Obj, Trgt) {
 // Autocomplete applicant name on adding new address
 function getApplicantName(Ray){
     var str = $(Ray).val().toString();
-    var localurl = document.location.origin + '/~shiblie/mena_portal/public' + '/AJAX/applicant/' + str;
+//    var localurl = document.location.origin + '/~shiblie/mena_portal/public' + '/AJAX/applicant/' + str; // Shiblie's MAC
+    var localurl = document.location.origin + '/mena_portal/public' + '/AJAX/applicant/' + str; // MENA PC
     if(str.length >= 1) {
         $.ajax({
             start: function () { Pace.restart(); },
@@ -289,7 +290,8 @@ function selectName(ObJ) {
     var strName = ObJ.getAttribute('data-applicant');
     var strID = ObJ.getAttribute('id');
     //data('applicant');
-    window.location.replace("http://localhost/~shiblie/mena_portal/public/auth/HR/interview/"+strID);
+    // window.location.replace("http://localhost/~shiblie/mena_portal/public/auth/HR/interview/"+strID); // Shiblie's MAC
+    window.location.replace("/mena_portal/public/auth/HR/interview/"+strID); // MENA PC
     //$('#applicant').val(strName);
     //$('#applicantid').attr('id', strID);
     //$('#name-guide').hide();
