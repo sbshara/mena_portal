@@ -411,19 +411,13 @@ class HRController extends Controller {
 
     public function DepartmentHead ($request, $response, $arg){
         $deptID = $arg['department_id'];
+        $empID = DepartmentHeads::where(
+                        'dept_id', $deptID)->orderBy(
+                                            'from_date', 'DESC')->get()->first()['emp_id'];
+        $appID = Employee::where(
+                    'id', $empID)->get()->first()['applicant_id'];
         $applicant = Applicant::where(
-            'id',
-            Employee::where(
-                'id',
-                DepartmentHeads::where(
-                    'dept_id',
-                    $deptID
-                )->orderBy(
-                    'from_date',
-                    'DESC'
-                )->get()->first()['emp_id']
-            )->get()->first()['applicant_id']
-        )->get()->first();
+            'id', $appID)->get()->first();
 //        var_dump($applicant);
 //        die();
         return $response->withJson($applicant);

@@ -12,13 +12,14 @@
                 {{ csrf.field | raw }}
                 <div class="form-group has-feedback{{ errors.applicantName ? ' has-error' : '' }}">
                     <label for="applicantName">Applicant Name: </label>
+                    <input name="applicantID" id="applicantID" value="{{ applicant.id }}" type="hidden"/>
                     <input
                             type="search"
                             class="form-control"
                             name="applicantName"
-                            id="applicantName"
+                            id="applicant"
                             placeholder="Enter Applicant Name..."
-                            value="{{ applicant.first_name }} {{ applicant.last_name }}"
+                            {% if applicant.first_name %}value="{{ applicant.first_name }} {{ applicant.last_name }}"{% endif %}
                             {% if applicant.first_name %}disabled{% endif %}
                             onkeyup="getApplicantName(this)"
                     />

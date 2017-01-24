@@ -117,9 +117,9 @@ $app->group('', function () {
 			// Interviews:
 			$this->group('/interview', function () {
 				// View New Interview:
-				$this->get('/[{applicant_id}]', HRController::class . ':getNewInterview')->setName('HR.NewInterview');
+				$this->get('[/{applicant_id}]', HRController::class . ':getNewInterview')->setName('HR.NewInterview');
 				// Submit a new Interview appointment:
-				$this->post('/[applicant_id]', HRController::class . ':postNewInterview');
+				$this->post('/', HRController::class . ':postNewInterview');
 				// View All Interviews:
 				$this->get('s/', HRController::class . ':getAllInterviews')->setName('HR.AllInterviews');
 			});

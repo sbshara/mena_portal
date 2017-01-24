@@ -232,17 +232,19 @@ function getDepartmentHead(Obj, Trgt) {
         type: 'get',
         success: function (response) {
             var option_data = '';
-            $.each(response, function (i, response) {
+            //$.each(response, function (i, response) {
                 option_data += "<option id='" + response.id + "' value='" + response.id + "' ";
-                if (response.id == source.val()) {
-                    option_data += "selected ";
-                }
+                //if (response.id == source.val()) {
+                //    option_data += "selected ";
+                //}
                 option_data += ">";
-                option_data += response.fullName;
+                option_data += response.first_name;
+                option_data += " ";
+                option_data += response.last_name;
                 //option_data += " ";
                 //option_data += response.last_name;
                 option_data += "</option>";
-            });
+            //});
             target.html(option_data);
         }
     });
@@ -252,8 +254,7 @@ function getDepartmentHead(Obj, Trgt) {
 function getApplicantName(Ray){
     var str = $(Ray).val().toString();
     var localurl = document.location.origin + '/~shiblie/mena_portal/public' + '/AJAX/applicant/' + str;
-    alert(localurl);
-    if(str.length > 1) {
+    if(str.length >= 1) {
         $.ajax({
             start: function () { Pace.restart(); },
             url: localurl,
@@ -288,9 +289,10 @@ function selectName(ObJ) {
     var strName = ObJ.getAttribute('data-applicant');
     var strID = ObJ.getAttribute('id');
     //data('applicant');
-    $('#applicant').val(strName);
-    $('#applicantid').val(strID);
-    $('#name-guide').hide();
+    window.location.replace("http://localhost/~shiblie/mena_portal/public/auth/HR/interview/"+strID);
+    //$('#applicant').val(strName);
+    //$('#applicantid').attr('id', strID);
+    //$('#name-guide').hide();
 };
 
 // Add and remove attachment (input field) (New Applicant)
