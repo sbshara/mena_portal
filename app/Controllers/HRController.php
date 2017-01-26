@@ -10,6 +10,8 @@ namespace App\Controllers;
 
 use App\Models\Addresses;
 use App\Models\ApplicantAddress;
+use App\Models\Languages;
+use App\Models\User;
 use Respect\Validation\Validator as v;
 use App\Models\Applicant;
 use App\Models\Employee;
@@ -26,28 +28,51 @@ use App\Models\DepartmentHeads;
 class HRController extends Controller {
 
 	// Applicants
-	public function getNewApplicant ($request, $response) {
-		return $this->view->render($response, 'auth/HR/Applicant/newApplicant.twig');
-	}
-
     public function getWizard ($request, $response) {
         return $this->view->render($response, 'auth/HR/SinglePage.twig');
     }
+
+	public function getNewApplicant ($request, $response) {
+		return $this->view->render($response, 'auth/HR/Applicant/newApplicant.twig');
+	}
 
 	public function getAllApplicants ($request, $response) {
 		return $this->view->render($response, 'auth/HR/Applicant/allApplicants.twig');
 	}
 
-	public function postNewApplicant ($request, $response) {
+    public function getApplicantByID ($request, $response, $args) {
+        $appID = $args['id'];
+        $applicant = Applicant::find($appID);
+        $employee = Employee::where('applicant_id', $applicant->id)->get()->first();
+        $user = User::where('emp_id', $employee->id)->get();
+        $langMap = ApplicantLanguage::where('applicant_id', $applicant->id)->get();
+        $visa = VisaStatus::where('applicant_id', $applicant->id)->get();
+        return $this->view->render(
+            $response,
+            'auth/HR/Applicant/applicantById.twig',
+            [
+                'applicant' =>  $applicant,
+                'employee'  =>  $employee,
+                'user'      =>  $user,
+                'Languages' =>  $langMap,
+                'Visas'     =>  $visa
+            ]);
+    }
+
+	public function postNewApplicant ($request, $response, $args) {
+        if($args['id']) {
+            $applicant = Applicant::find($args['id']);
+            $langMap = ApplicantLanguage::where('applicant_id', $applicant->id)->get();
+        }
 		// Defining profile pic:
 		$profile = $request->getUploadedFiles()['profilepic'];
 		// Define storage location for profilepic (attachment loop goes within the loop):
         // If no profile pic provided, the app would read the gender and choose default image accordingly
-		if($profile->getClientFilename() == '') {
+		if($profile->getClientFilename() == '' && $applicant->prof_pic = null) {
 			if($request->getParam('gender') === 'M') {
-				$profile_location = 'img/applicants/defaultMale.png';
+				$profile_location = '/img/applicants/defaultMale.png';
 			} else {
-				$profile_location = 'img/applicants/defaultFemale.png';
+				$profile_location = '/img/applicants/defaultFemale.png';
 			}
 		} else {
             // If profile pic is provided, then get the name, and save the name & destination in a variable:
@@ -57,7 +82,7 @@ class HRController extends Controller {
 		}
         // Define Languages part:
         $languages = $request->getParam('language_');
-        $langNum = $request->getParam('languageCount');
+        $langNum = (int)$request->getParam('languageCount');
         $lang = [];
         //--------------------------------------------
         // Validate form fields
@@ -78,6 +103,9 @@ class HRController extends Controller {
         ]);
         if(empty($languages)){
             $this->flash->addMessage('danger', 'You have to select at least 1 language!');
+            if($applicant) {
+                return $response->withRedirect($this->router->pathFor('HR.ApplicantById', [ 'id' => $applicant->id ]));
+            }
             return $response->withRedirect($this->router->pathFor('HR.NewApplicant'));
         }
 		if ($request->getParam('attachmentCounter') > -1) {
@@ -105,6 +133,9 @@ class HRController extends Controller {
         // Check if validations (fields & attachments) passed or failed
         if (is_null($attachmentValidation) ? '' : $attachmentValidation->failed() || $fieldValidation->failed()) {
             $this->flash->addMessage('danger', 'There are errors in some fields, please check and try again!');
+            if($applicant) {
+                return $response->withRedirect($this->router->pathFor('HR.ApplicantById', $applicant->id));
+            }
             return $response->withRedirect($this->router->pathFor('HR.NewApplicant'));
         }
         // ============ If Validation Passed: ============
@@ -113,26 +144,45 @@ class HRController extends Controller {
             $profile->moveTo($profile_location);
         }
         // created the applicant record:
-        $applicant = Applicant::create([
-            'first_name'        =>  $request->getParam('first_name'),
-            'last_name'         =>  $request->getParam('last_name'),
-            'per_email'         =>  $request->getParam('per_email'),
-            'mobile_phone'      =>  $request->getParam('mobile_phone'),
-            'gender'            =>  $request->getParam('gender'),
-            'birth_date'        =>  $request->getParam('dob'),
-            'prof_pic'          =>  $profile_location,
-            'source'            =>  $request->getParam('source'),
-            'nationality'       =>  $request->getParam('nationality'),
-            'notice_period'     =>  $request->getParam('notice'),
-            'expectation'       =>  $request->getParam('expectation')
-        ]);
+        if(!$applicant->id) {
+            $applicant = Applicant::create([
+                'first_name'    => $request->getParam('first_name'),
+                'last_name'     => $request->getParam('last_name'),
+                'per_email'     => $request->getParam('per_email'),
+                'mobile_phone'  => $request->getParam('mobile_phone'),
+                'gender'        => $request->getParam('gender'),
+                'birth_date'    => $request->getParam('dob'),
+                'prof_pic'      => $profile_location,
+                'source'        => $request->getParam('source'),
+                'nationality'   => $request->getParam('nationality'),
+                'notice_period' => $request->getParam('notice'),
+                'expectation'   => $request->getParam('expectation')
+            ]);
+        } else {
+            $applicant->first_name    = $request->getParam('first_name');
+            $applicant->last_name     = $request->getParam('last_name');
+            $applicant->per_email     = $request->getParam('per_email');
+            $applicant->mobile_phone  = $request->getParam('mobile_phone');
+            $applicant->gender        = $request->getParam('gender');
+            $applicant->birth_date    = $request->getParam('dob');
+            $applicant->prof_pic      = $profile_location;
+            $applicant->source        = $request->getParam('source');
+            $applicant->nationality   = $request->getParam('nationality');
+            $applicant->notice_period = $request->getParam('notice');
+            $applicant->expectation   = $request->getParam('expectation');
+
+        }
         // Create a record for each selected language (in applicant-language mapper)
         for($k = 0; $k < $langNum; $k++) {
             $languageID = $request->getParam('language_')[$k];
-            ApplicantLanguage::create([
-                'applicant_id'  => $applicant->id,
-                'language_id'   => $languageID
-            ]);
+            for ($l = 1; $l <= count($langMap); $l++) {
+                if ($languageID != $langMap[$l]['language_id']){
+                    ApplicantLanguage::create([
+                        'applicant_id'  => $applicant->id,
+                        'language_id'   => $languageID
+                    ]);
+                }
+            }
         }
         $visa = VisaStatus::create([
             'applicant_id'      =>  $applicant->id,
@@ -153,7 +203,7 @@ class HRController extends Controller {
                 $issueDate          = 'attachmentIssueDate' . $i;
                 $issueExpiry        = 'attachmentExpiryDate' . $i;
                 $attachmentLocation =
-                    'docs/applicants/' . 'applicantID_' .
+                    '/docs/applicants/' . 'applicantID_' .
                     $applicant->id . '_date' .
                     date('Y-m-d') . '-time' . time() . '_filename_' .
                     $attachment->getClientFilename();
@@ -183,7 +233,11 @@ class HRController extends Controller {
             }
         }
 		// Flash a message that the applicant record is created.
-		$this->flash->addMessage('success', 'Applicant was created successfully');
+        if($applicant) {
+            $this->flash->addMessage('success', 'Applicant was updated successfully');
+        } else {
+		  $this->flash->addMessage('success', 'Applicant was created successfully');
+        }
 		// redirect to the next page (add experience, add address, ...etc.)
         if($request->getParam('interview') == 'interview') {
             $interviewURL = $this->router->pathFor('HR.NewInterview', compact('applicant'));
@@ -193,6 +247,7 @@ class HRController extends Controller {
         }
         return $response->withRedirect($this->router->pathFor('home'));
 	}
+
 
 	// Employees
 	public function getNewEmployee ($request, $response) {

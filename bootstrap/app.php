@@ -10,6 +10,9 @@ use Respect\Validation\Validator as v;
 //use \DI\Bridge\Slim\App as Slim;
 use \Slim\App as Slim;
 use \Illuminate\Database\Capsule\Manager as Capsule;
+// Set the event dispatcher used by Eloquent models... (optional)
+use Illuminate\Events\Dispatcher;
+use Illuminate\Container\Container;
 
 session_cache_limiter(false);
 session_start();
@@ -27,6 +30,7 @@ $container = $app->getContainer();
 
 $capsule = new Capsule;
 $capsule->addConnection($container->db);
+$capsule->setEventDispatcher(new Dispatcher(new Container));
 $capsule->setAsGlobal();
 $capsule->bootEloquent();
 

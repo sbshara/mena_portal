@@ -48,11 +48,13 @@ $app->group('', function () {
 			// Applicants:
 			$this->group('/applicant', function () {
 				// View New Applicant page:
-				$this->get('[/]', HRController::class . ':getNewApplicant')->setName('HR.NewApplicant');
+				$this->get('/', HRController::class . ':getNewApplicant')->setName('HR.NewApplicant');
 				// Submit a new Applicant:
-				$this->post('[/]', HRController::class . ':postNewApplicant');
+				$this->post('/[{id}]', HRController::class . ':postNewApplicant');
+                // View existing Applicant record
+                $this->get('/update/{id}', HRController::class . ':getApplicantByID')->setName('HR.ApplicantById');
 				// View All Applicants
-				$this->get('s/', HRController::class . ':getAllApplicants')->setName('HR.AllApplicants');
+				$this->get('s', HRController::class . ':getAllApplicants')->setName('HR.AllApplicants');
 			});
 			// Employees:
 			$this->group('/employee', function () {

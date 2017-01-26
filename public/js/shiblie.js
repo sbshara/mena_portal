@@ -72,21 +72,6 @@ $(function(){
         }
     );
 
-    //Date picker
-    //$('#datepicker').datepicker({
-        //autoclose: true,
-        //changeMonth: true,
-        //changeYear: true,
-        //timepicker: true,
-        //dateFormat: 'yy-mm-dd hh:mm A'
-        //autoclose: true,
-        //timePicker: true,
-        //dropdown: true,
-        //showInputs: true,
-        //timePickerIncrement: 5,
-        //format: 'YYYY-MM-DD h:mm A'
-    //});
-
     $('#dob').daterangepicker({
         singleDatePicker: true,
         autoclose: true,
@@ -109,17 +94,6 @@ $(function(){
             format: 'YYYY-MM-DD h:mm A'
         }
     });
-
-    //Time picker
-    //$('.timepicker').daterangepicker({
-    //    autoclose: true,
-    //    timePicker: true,
-    //    dropdown: true,
-        //showInputs: true,
-        //timePickerIncrement: 5,
-        //format: 'YYYY-MM-DD h:mm A'
-    //});
-
 
     //iCheck for checkbox and radio inputs
     $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
