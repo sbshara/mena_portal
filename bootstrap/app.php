@@ -132,7 +132,7 @@ $container['csrf'] = function ($container) { return new \Slim\Csrf\Guard(); };
 $app->add(new \App\Middleware\ValidationErrorsMiddleware($container));
 $app->add(new \App\Middleware\OldInputMiddleware($container));
 $app->add(new \App\Middleware\CsrfViewMiddleware($container));
-$app->add(new \Slim\HttpCache\Cache('public', 30)); //86400
+$app->add(new \Slim\HttpCache\Cache('public', 10)); //86400
 $app->add($container->csrf);
 
 v::with('App\\Validation\\Rules\\');

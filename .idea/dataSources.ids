@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="dataSourceStorage">
   <data-source name="mena_portal@localhost" uuid="0911d869-a466-44a7-97fc-eb3ccbe13594">
-    <database-info product="MySQL" version="5.7.17" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+    <database-info product="MySQL" version="5.5.5-10.1.19-MariaDB" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
       <extra-name-characters>#@</extra-name-characters>
       <identifier-quote-string>`</identifier-quote-string>
     </database-info>
-    <case-sensitivity plain-identifiers="mixed" quoted-identifiers="upper"/>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
     <schema name="" catalog="mena_portal"/>
     <table name="addresses" schema="" catalog="mena_portal" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
@@ -34,7 +34,7 @@
     <table name="applicant_degree" schema="" catalog="mena_portal" type="TABLE">
       <column name="applicant_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="degree" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
-      <column name="acquired_date" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="JzIwMTYtMDEtMDEgMDA6MDA6MDAn"/>
+      <column name="acquired_date" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="JzIwMTUtMTItMzEgMjA6MDA6MDAn"/>
       <column name="institute_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
       <column name="city_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
@@ -163,19 +163,6 @@
       <exported-key name="documents_doc_country" table="documents" schema="" catalog="mena_portal" columns="doc_country"/>
       <exported-key name="employees_country_origin" table="employees" schema="" catalog="mena_portal" columns="country_origin"/>
       <exported-key name="states_country_id" table="states" schema="" catalog="mena_portal" columns="country_id"/>
-    </table>
-    <table name="country_master" schema="" catalog="mena_portal" type="VIEW">
-      <column name="countryid" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4" def="MA=="/>
-      <column name="a2_iso" sqlType="VARCHAR" precision="2" scale="0" nullable="true" jdbcType="12" remarks="Y291bnRyeV9wcmVmZXgy"/>
-      <column name="a3_un" sqlType="VARCHAR" precision="3" scale="0" nullable="true" jdbcType="12" remarks="Y291bnRyeV9wcmVmZXgz"/>
-      <column name="country_dialing_code" sqlType="VARCHAR" precision="24" scale="0" nullable="true" jdbcType="12"/>
-      <column name="num_un" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4" remarks="Y291bnRyeSBudW1iZXIgaW4gdGhlIFVO"/>
-      <column name="flag" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
-      <column name="country_name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
-      <column name="state_name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
-      <column name="city_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
-      <column name="city_name_ar" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
-      <column name="city_dialing_code" sqlType="VARCHAR" precision="4" scale="0" nullable="false" jdbcType="12" def="JzAwMDAn"/>
     </table>
     <table name="departments" schema="" catalog="mena_portal" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
@@ -487,7 +474,7 @@
       <column name="tbladr_city_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="notes" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
       <column name="tbldgr_acquired_city" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="acquired_date" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="JzIwMTYtMDEtMDEgMDA6MDA6MDAn"/>
+      <column name="acquired_date" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="JzIwMTUtMTItMzEgMjA6MDA6MDAn"/>
       <column name="degree" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="tbldgr_acquired_from" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="mapdoc_doc_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
