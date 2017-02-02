@@ -59,27 +59,27 @@ class HRController extends Controller {
             ]);
     }
 
-	public function postNewApplicant ($request, $response, $args) {
+    public function postApplicantByID ($request, $response, $args) {
         if($args['id']) {
             $applicant = Applicant::find($args['id']);
             $langMap = ApplicantLanguage::where('applicant_id', $applicant->id)->get();
         }
-		// Defining profile pic:
-		$profile = $request->getUploadedFiles()['profilepic'];
-		// Define storage location for profilepic (attachment loop goes within the loop):
+        // Defining profile pic:
+        $profile = $request->getUploadedFiles()['profilepic'];
+        // Define storage location for profilepic (attachment loop goes within the loop):
         // If no profile pic provided, the app would read the gender and choose default image accordingly
-		if($profile->getClientFilename() == '' && $applicant->prof_pic = null) {
-			if($request->getParam('gender') === 'M') {
-				$profile_location = '/img/applicants/defaultMale.png';
-			} else {
-				$profile_location = '/img/applicants/defaultFemale.png';
-			}
-		} else {
+        if($profile->getClientFilename() == '' && $applicant->prof_pic = null) {
+            if($request->getParam('gender') === 'M') {
+                $profile_location = '/img/applicants/defaultMale.png';
+            } else {
+                $profile_location = '/img/applicants/defaultFemale.png';
+            }
+        } else {
             // If profile pic is provided, then get the name, and save the name & destination in a variable:
-			$profile_location = 'img/applicants/' .
-				$request->getParam('first_name') . $request->getParam('last_name') .
-				date('Y-m-d') . '_' .time() . $profile->getClientFilename();
-		}
+            $profile_location = 'img/applicants/' .
+                $request->getParam('first_name') . $request->getParam('last_name') .
+                date('Y-m-d') . '_' .time() . $profile->getClientFilename();
+        }
         // Define Languages part:
         $languages = $request->getParam('language_');
         $langNum = (int)$request->getParam('languageCount');
@@ -108,7 +108,7 @@ class HRController extends Controller {
             }
             return $response->withRedirect($this->router->pathFor('HR.NewApplicant'));
         }
-		if ($request->getParam('attachmentCounter') > -1) {
+        if ($request->getParam('attachmentCounter') > -1) {
             $attachments = $request->getUploadedFiles()['attachment'];
             // Count total attachments (excluding profile pic):
             $totalAttach = $request->getParam('attachmentCounter');
@@ -189,7 +189,7 @@ class HRController extends Controller {
             'visa_type'         =>  $request->getParam('visa'),
             'visa_age'          =>  $request->getParam('visa_age')
         ]);
-			// -- Loop through each file (attachments)
+        // -- Loop through each file (attachments)
         if ($request->getParam('attachmentCounter') > -1) {
             $attachments = $request->getUploadedFiles()['attachment'];
             // Count total attachments (excluding profile pic):
@@ -232,13 +232,13 @@ class HRController extends Controller {
                 }
             }
         }
-		// Flash a message that the applicant record is created.
+        // Flash a message that the applicant record is created.
         if($applicant) {
             $this->flash->addMessage('success', 'Applicant was updated successfully');
         } else {
-		  $this->flash->addMessage('success', 'Applicant was created successfully');
+            $this->flash->addMessage('success', 'Applicant was created successfully');
         }
-		// redirect to the next page (add experience, add address, ...etc.)
+        // redirect to the next page (add experience, add address, ...etc.)
         if($request->getParam('interview') == 'interview') {
             $interviewURL = $this->router->pathFor('HR.NewInterview', compact('applicant'));
 
@@ -246,7 +246,152 @@ class HRController extends Controller {
             return $response->withRedirect($interviewURL);
         }
         return $response->withRedirect($this->router->pathFor('home'));
-	}
+    }
+
+	public function postNewApplicant ($request, $response) {
+        // Defining profile pic:
+        $profile = $request->getUploadedFiles()['profilepic'];
+        // Define storage location for profilepic (attachment loop goes within the loop):
+        // If no profile pic provided, the app would read the gender and choose default image accordingly
+        if($profile->getClientFilename() == '') {
+            if($request->getParam('gender') === 'M') {
+                $profile_location = 'img/applicants/defaultMale.png';
+            } else {
+                $profile_location = 'img/applicants/defaultFemale.png';
+            }
+        } else {
+            // If profile pic is provided, then get the name, and save the name & destination in a variable:
+            $profile_location = 'img/applicants/' .
+                $request->getParam('first_name') . $request->getParam('last_name') .
+                date('Y-m-d') . '_' .time() . $profile->getClientFilename();
+        }
+        // Define Languages part:
+        $languages = $request->getParam('language_');
+        $langNum = $request->getParam('languageCount');
+        $lang = [];
+        //--------------------------------------------
+        // Validate form fields
+        $fieldValidation = $this->validator->validate($request, [
+            'first_name'        =>  v::notEmpty()->alpha(),
+            'last_name'         =>  v::notEmpty()->alpha(),
+            'mobile_phone'      =>  v::notEmpty()->digit(' +()-')->phoneAvailable(),
+            'per_email'         =>  v::notEmpty()->email()->noWhitespace()->emailAvailable(),
+            'gender'            =>  v::notEmpty(),
+            'dob'               =>  v::notEmpty()->date()->OverEighteen(),
+            'nationality'       =>  v::notEmpty()->numeric(),
+            'visa'              =>  v::notEmpty(),
+            'visa_age'          =>  v::notEmpty(),
+            'source'            =>  v::notEmpty(),
+            'notice'            =>  v::notEmpty(),
+            'expectation'       =>  v::notEmpty()->numeric()->min(2000),
+            'languageCount'     =>  v::min(1)
+        ]);
+        if(empty($languages)){
+            $this->flash->addMessage('danger', 'You have to select at least 1 language!');
+            return $response->withRedirect($this->router->pathFor('HR.NewApplicant'));
+        }
+        if ($request->getParam('attachmentCounter') > -1) {
+            $attachments = $request->getUploadedFiles()['attachment'];
+            // Count total attachments (excluding profile pic):
+            $totalAttach = $request->getParam('attachmentCounter');
+            // Validate fields of attachment data:
+            for ($j = 0; $j <= $totalAttach; $j++) {
+                $country = 'attachmentCountry' . $j;
+                $type = 'attachmentType' . $j;
+                $issuer = 'attachmentIssuer' . $j;
+                $issueDate = 'attachmentIssueDate' . $j;
+                $issueExpiry = 'attachmentExpiryDate' . $j;
+
+                // Validate Attachment Fields
+                $attachmentValidation = $this->validator->validate($request, [
+                    $country        => v::notEmpty()->numeric(),
+                    $type           => v::notEmpty()->alnum(),
+                    $issuer         => v::notEmpty()->alnum(),
+                    $issueDate      => v::notEmpty(),
+                    $issueExpiry    => v::notEmpty(),
+                ]);
+            }
+        }
+        // Check if validations (fields & attachments) passed or failed
+        if (is_null($attachmentValidation) ? '' : $attachmentValidation->failed() || $fieldValidation->failed()) {
+            $this->flash->addMessage('danger', 'There are errors in some fields, please check and try again!');
+            return $response->withRedirect($this->router->pathFor('HR.NewApplicant'));
+        }
+        // ============ If Validation Passed: ============
+        // If profile upload has no errors, move the file
+        if ($profile->getError() === UPLOAD_ERR_OK) {
+            $profile->moveTo($profile_location);
+        }
+        // created the applicant record:
+        $applicant = Applicant::create([
+            'first_name'        =>  $request->getParam('first_name'),
+            'last_name'         =>  $request->getParam('last_name'),
+            'per_email'         =>  $request->getParam('per_email'),
+            'mobile_phone'      =>  $request->getParam('mobile_phone'),
+            'gender'            =>  $request->getParam('gender'),
+            'birth_date'        =>  $request->getParam('dob'),
+            'prof_pic'          =>  $profile_location,
+            'source'            =>  $request->getParam('source'),
+            'nationality'       =>  $request->getParam('nationality'),
+            'notice_period'     =>  $request->getParam('notice'),
+            'expectation'       =>  $request->getParam('expectation')
+        ]);
+        // Create a record for each selected language (in applicant-language mapper)
+        for($k = 0; $k < $langNum; $k++) {
+            $languageID = $request->getParam('language_')[$k];
+            ApplicantLanguage::create([
+                'applicant_id'  => $applicant->id,
+                'language_id'   => $languageID
+            ]);
+        }
+        $visa = VisaStatus::create([
+            'applicant_id'      =>  $applicant->id,
+            'visa_type'         =>  $request->getParam('visa'),
+            'visa_age'          =>  $request->getParam('visa_age')
+        ]);
+        // -- Loop through each file (attachments)
+        if ($request->getParam('attachmentCounter') > -1) {
+            $attachments = $request->getUploadedFiles()['attachment'];
+            // Count total attachments (excluding profile pic):
+            $totalAttach = $request->getParam('attachmentCounter');
+            // Validate fields of attachment data:
+            for ($i = 0; $i <= $totalAttach; $i++) {
+                $attachment = $attachments[$i];
+                $country = 'attachmentCountry' . $i;
+                $type = 'attachmentType' . $i;
+                $issuer = 'attachmentIssuer' . $i;
+                $issueDate = 'attachmentIssueDate' . $i;
+                $issueExpiry = 'attachmentExpiryDate' . $i;
+                $attachmentLocation =
+                    'docs/applicants/' . 'applicantID_' .
+                    $applicant->id . '_date' .
+                    date('Y-m-d') . '-time' . time() . '_filename_' .
+                    $attachment->getClientFilename();
+                // -- Get the temp file path
+                $tmpattach = $attachment->getClientFilename();
+                // -- Make sure we have a filepath
+                if (!empty($tmpattach)) {
+                    if ($attachment->getError() === UPLOAD_ERR_OK) {
+                        $attachment->moveTo($attachmentLocation);
+
+                        $document = Document::create([
+                            'doc_country' => $request->getParam($country),
+                            'doc_expiry_date' => $request->getParam($issueExpiry),
+                            'doc_issue_date' => $request->getParam($issueDate),
+                            'doc_issuer' => $request->getParam($issuer),
+                            'doc_type' => $request->getParam($type),
+                            'doc_loc' => $attachmentLocation
+                        ]);
+
+                        $mapper = ApplicantDocs::create([
+                            'applicant_id' => $applicant->id,
+                            'doc_id' => $document->id
+                        ]);
+                    }
+                }
+            }
+        }
+    }
 
 
 	// Employees

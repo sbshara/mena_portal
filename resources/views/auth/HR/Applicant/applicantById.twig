@@ -9,7 +9,7 @@
         </div>
         <div class="register-box-body">
             <p class="login-box-msg">Update Details for Applicant: {{ applicant.first_name }} {{ applicant.last_name }}</p>
-            <form action="{{ path_for('HR.NewApplicant') }}{{ applicant.id }}" method="post" autocomplete="on" enctype="multipart/form-data" >
+            <form action="{{ path_for('HR.ApplicantById', applicant.id) }}" method="post" autocomplete="on" enctype="multipart/form-data" >
                 {{ csrf.field | raw }}
                 <div class="form-group has-feedback{{ errors.first_name ? ' has-error' : '' }}">
                     <label for="first_name">
@@ -143,14 +143,7 @@
                     <select class="form-control" name="nationality" id="nationality">
                         <option value="">Please Select ... </option>
                         {% for country in HR.countries %}
-                            <option
-                                value="{{ country.id }}"
-                                {% if country.id == applicant.nationality %}
-                                     selected
-                                {% endif %}
-                                >
-                                {{ country.country_name | e }}
-                            </option>
+                            <option value="{{ country.id }}" {% if country.id == applicant.nationality %}selected{% endif %}>{{ country.country_name | e }}</option>
                         {% endfor %}
                     </select>
                     {% if errors.nationality %}

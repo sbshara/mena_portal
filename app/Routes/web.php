@@ -53,6 +53,8 @@ $app->group('', function () {
 				$this->post('/[{id}]', HRController::class . ':postNewApplicant');
                 // View existing Applicant record
                 $this->get('/update/{id}', HRController::class . ':getApplicantByID')->setName('HR.ApplicantById');
+				// Update existing Applicant Record
+				$this->post('/update/{id}', HRController::class . ':postApplicantByID');
 				// View All Applicants
 				$this->get('s', HRController::class . ':getAllApplicants')->setName('HR.AllApplicants');
 			});

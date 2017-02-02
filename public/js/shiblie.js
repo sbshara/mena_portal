@@ -73,18 +73,21 @@ $(function(){
     );
 
     $('#dob').daterangepicker({
+        defaultDate: null,
         singleDatePicker: true,
         autoclose: true,
         showDropdowns: true,
         changeMonth: true,
         changeYear: true,
         showInputs: true,
+        autoUpdateInput: false,
         locale: {
             format: 'YYYY-MM-DD'
         }
     });
 
     $('#interview_date').daterangepicker({
+        defaultDate: null,
         singleDatePicker: true,
         showDropdowns: true,
         timePicker: true,
@@ -112,9 +115,9 @@ $(function(){
     });
 
     //Colorpicker
-    $(".my-colorpicker1").colorpicker();
+    //$(".my-colorpicker1").colorpicker();
     //color picker with addon
-    $(".my-colorpicker2").colorpicker();
+    //$(".my-colorpicker2").colorpicker();
 
     ////Timepicker
     //$(".timepicker").timepicker({

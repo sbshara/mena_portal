@@ -1,3 +1,4 @@
+{% spaceless %}
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -23,9 +24,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="{{ base_url() }}/css/ionicons.min.css">
     <!-- JQuery UI CSS 1.12.1 -->
     {# <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> #}
-    <link rel="stylesheet" href="{{ base_url() }}/css/jquery-ui.css">
+    <link rel="stylesheet" href="{{ base_url() }}/css/jquery-ui.min.css">
     <!-- iCheck -->
-    <link rel="stylesheet" href="{{ base_url() }}/plugins/iCheck/square/blue.css">
+    {#<link rel="stylesheet" href="{{ base_url() }}/plugins/iCheck/square/blue.css">#}
     <!-- Pace style -->
     <link rel="stylesheet" href="{{ base_url() }}/plugins/pace/pace.min.css">
     <!-- Theme style -->
@@ -36,15 +37,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- bootstrap datepicker -->
     <link rel="stylesheet" href="{{ base_url() }}/plugins/datepicker/datepicker3.css">
     <!-- iCheck for checkboxes and radio inputs -->
-    <link rel="stylesheet" href="{{ base_url() }}/plugins/iCheck/all.css">
-    <!--Personalized CSS Rules-->
-    <link rel="stylesheet" href="{{ base_url() }}/css/app.css">
+    <link rel="stylesheet" href="{{ base_url() }}/plugins/iCheck/_all.min.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <!--<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>-->
+        <script src="{{ base_url() }}/js/html5shiv3.7.3.min.js"></script>
+        {#<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>#}
+        <script src="{{ base_url() }}/js/respond1.4.2.min.js"></script>
     <![endif]-->
     <!-- Google Captcha -->
     <script src="https://www.google.com/recaptcha/api.js"></script>
@@ -112,9 +113,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- bootstrap datepicker -->
 <script src="{{ base_url() }}/plugins/datepicker/bootstrap-datepicker.js"></script>
 <!-- bootstrap color picker -->
-<script src="{{ base_url() }}/plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
+{#<script src="{{ base_url() }}/plugins/colorpicker/bootstrap-colorpicker.min.js"></script>#}
 <!-- bootstrap time picker -->
-<script src="{{ base_url() }}/plugins/timepicker/bootstrap-timepicker.min.js"></script>
+{#<script src="{{ base_url() }}/plugins/timepicker/bootstrap-timepicker.min.js"></script>#}
 <!-- Select2 -->
 <script src="{{ base_url() }}/plugins/select2/select2.full.min.js"></script>
 <!-- InputMask -->
@@ -144,3 +145,4 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{ base_url() }}/js/shiblie.js"></script>
 </body>
 </html>
+{% endspaceless %}
