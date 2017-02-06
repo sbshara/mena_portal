@@ -44,6 +44,7 @@ $app->group('', function () {
 	$this->group('/auth', function () {
 		// Group all URLs that start with /HR
 		$this->group('/HR', function () {
+			$this->get('', HRController::class . ':index')->setName('HR.Home');
             $this->get('/wizard[/]', HRController::class . ':getWizard')->setName('HR.ApplicantWizard');
 			// Applicants:
 			$this->group('/applicant', function () {
@@ -82,42 +83,6 @@ $app->group('', function () {
 				// View Logged in User Profile
 				$this->get('/profile/', AuthController::class . ':getUserProfile')->setName('auth.Profile');
 			});
-			// Addresses:
-			$this->group('/address', function () {
-				// View new Address:
-				$this->get('/', HRController::class . ':getNewAddress')->setName('HR.NewAddress');
-				// Submit a new Address:
-				$this->post('/', HRController::class . ':postNewAddress');
-				// View All Addresses:
-				$this->get('es/', HRController::class . ':getAllAddresses')->setName('HR.AllAddresses');
-			});
-			// Education Degrees:
-			$this->group('/education', function () {
-				// View new Education:
-				$this->get('/', HRController::class . ':getNewEducation')->setName('HR.NewEducation');
-				// Submit a new Education:
-				$this->post('/', HRController::class . ':postNewEducation');
-				// View All Educations:
-				$this->get('s/', HRController::class . ':getAllEducation')->setName('HR.AllEducations');
-			});
-			// Professional Experience
-			$this->group('/professional_experience', function () {
-				// View new Experience:
-				$this->get('/', HRController::class . ':getNewExperience')->setName('HR.NewExperience');
-				// Submit a new Experience:
-				$this->post('/', HRController::class . ':postNewExperience');
-				// View All Experiences:
-				$this->get('s/', HRController::class . ':getAllExperiences')->setName('HR.AllExperiences');
-			});
-			// Skills:
-			$this->group('/skill', function () {
-				// View new Skill:
-				$this->get('/', HRController::class . ':getNewSkill')->setName('HR.NewSkill');
-				// Submit Skills Collection:
-				$this->post('/', HRController::class . ':postNewSkill');
-				// View All Skills:
-				$this->get('s/', HRController::class . ':getAllSkills')->setName('HR.AllSkills');
-			});
 			// Interviews:
 			$this->group('/interview', function () {
 				// View New Interview:
@@ -136,6 +101,45 @@ $app->group('', function () {
 				// View All Departments:
 				$this->get('s/', HRController::class . ':getAllDepartments')->setName('HR.AllDepartments');
 			});
+            $this->group('/miscellaneous', function (){
+                $this->get('/', HRController::class . ':getMiscellaneous')->setName('HR.Miscellaneous');
+                // Skills:
+                $this->group('/skill', function () {
+                    // View new Skill:
+                    $this->get('/', HRController::class . ':getNewSkill')->setName('HR.NewSkill');
+                    // Submit Skills Collection:
+                    $this->post('/', HRController::class . ':postNewSkill');
+                    // View All Skills:
+                    $this->get('s/', HRController::class . ':getAllSkills')->setName('HR.AllSkills');
+                });
+                // Addresses:
+                $this->group('/address', function () {
+                    // View new Address:
+                    $this->get('/', HRController::class . ':getNewAddress')->setName('HR.NewAddress');
+                    // Submit a new Address:
+                    $this->post('/', HRController::class . ':postNewAddress');
+                    // View All Addresses:
+                    $this->get('es/', HRController::class . ':getAllAddresses')->setName('HR.AllAddresses');
+                });
+                // Education Degrees:
+                $this->group('/education', function () {
+                    // View new Education:
+                    $this->get('/', HRController::class . ':getNewEducation')->setName('HR.NewEducation');
+                    // Submit a new Education:
+                    $this->post('/', HRController::class . ':postNewEducation');
+                    // View All Educations:
+                    $this->get('s/', HRController::class . ':getAllEducation')->setName('HR.AllEducations');
+                });
+                // Professional Experience
+                $this->group('/professional_experience', function () {
+                    // View new Experience:
+                    $this->get('/', HRController::class . ':getNewExperience')->setName('HR.NewExperience');
+                    // Submit a new Experience:
+                    $this->post('/', HRController::class . ':postNewExperience');
+                    // View All Experiences:
+                    $this->get('s/', HRController::class . ':getAllExperiences')->setName('HR.AllExperiences');
+                });
+            });
 		});
 		// SignOut Page:
 		$this->get('/sign/out', AuthController::class . ':getSignOut')->setName('auth.Signout');

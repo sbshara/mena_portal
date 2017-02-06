@@ -54,7 +54,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="icon" type="image/png" href="{{ base_url() }}/img/favicon.png">
 </head>
 
-<body class="hold-transition skin-{{ auth.userMaster.theme_color ? auth.userMaster.theme_color : 'blue'}} {{ auth.userMaster.sidebar_collapsed ? auth.userMaster.sidebar_collapsed : 'sidebar-collapse' }} {{ auth.userMaster.sidebar_mini ? auth.userMaster.sidebar_mini : 'sidebar-mini' }} {{ auth.userMaster.layout_fixed ? auth.userMaster.layout_fixed : 'fixed' }}">
+<body class="hold-transition skin-{{ auth.userMaster.theme_color ?: 'blue'}} {{ auth.userMaster.sidebar_collapsed ?: '' }} {{ auth.userMaster.sidebar_mini ?: '' }} {{ auth.userMaster.layout_fixed ?: 'fixed' }}">
 {# <body class="hold-transition skin-blue sidebar-collapse sidebar-mini"> #}
 <div class="wrapper">
 <!-- Main Header -->
