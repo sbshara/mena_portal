@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="dataSourceStorage">
   <data-source name="mena_portal@localhost" uuid="0911d869-a466-44a7-97fc-eb3ccbe13594">
-    <database-info product="MySQL" version="5.5.5-10.1.19-MariaDB" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+    <database-info product="MySQL" version="5.7.17" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
       <extra-name-characters>#@</extra-name-characters>
       <identifier-quote-string>`</identifier-quote-string>
     </database-info>
-    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <case-sensitivity plain-identifiers="mixed" quoted-identifiers="upper"/>
     <schema name="" catalog="mena_portal"/>
     <table name="addresses" schema="" catalog="mena_portal" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
@@ -125,6 +125,24 @@
       <index name="applicants_addresses_address_id" unique="false" columns="address_id"/>
       <index name="applicants_addresses_applicant_id" unique="false" columns="applicant_id"/>
     </table>
+    <table name="assets_trucks" schema="" catalog="mena_portal" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="vin" sqlType="VARCHAR" precision="17" scale="0" nullable="false" jdbcType="12"/>
+      <column name="registration_code" sqlType="VARCHAR" precision="1" scale="0" nullable="false" jdbcType="12"/>
+      <column name="registration_number" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="registration_date_start" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <column name="registration_date_end" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <column name="insurance_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="insurance_date_start" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <column name="insurance_date_end" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <column name="model" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="warranty" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="warranty_expiry_date" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <column name="warranty_expiry_mileage" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="created_at" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="updated_at" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
     <table name="benefits" schema="" catalog="mena_portal" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="benefit_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
@@ -164,6 +182,7 @@
       <exported-key name="employees_country_origin" table="employees" schema="" catalog="mena_portal" columns="country_origin"/>
       <exported-key name="states_country_id" table="states" schema="" catalog="mena_portal" columns="country_id"/>
     </table>
+    <table name="country_master" schema="" catalog="mena_portal" type="VIEW"/>
     <table name="departments" schema="" catalog="mena_portal" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="dept_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
@@ -269,6 +288,12 @@
       <index name="employees_birth_place" unique="false" columns="birth_place"/>
       <index name="employees_country_origin" unique="false" columns="country_origin"/>
     </table>
+    <table name="guidelines_answers" schema="" catalog="mena_portal" type="TABLE"/>
+    <table name="guidelines_articles" schema="" catalog="mena_portal" type="TABLE"/>
+    <table name="guidelines_articles_countries_mapping" schema="" catalog="mena_portal" type="TABLE"/>
+    <table name="guidelines_categories" schema="" catalog="mena_portal" type="TABLE"/>
+    <table name="guidelines_questions" schema="" catalog="mena_portal" type="TABLE"/>
+    <table name="guidelines_questions_answers_map" schema="" catalog="mena_portal" type="TABLE"/>
     <table name="interview_interviewer" schema="" catalog="mena_portal" type="TABLE">
       <column name="interview_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="interviewer_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
@@ -330,16 +355,6 @@
       <primary-key name="PRIMARY" columns="id"/>
       <exported-key name="emp_leaves_leave_type" table="emp_leaves" schema="" catalog="mena_portal" columns="leave_type"/>
     </table>
-    <table name="perm_role" schema="" catalog="mena_portal" type="TABLE">
-      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
-      <column name="perm_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="aWQgZnJvbSBwZXJtaXNzaW9ucyB0YWJsZQ=="/>
-      <column name="role_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="aWQgZnJvbSByb2xlcyB0YWJsZQ=="/>
-      <column name="perm_grant" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA==" remarks="MCA9IGRlbnksIDEgPSBncmFudA=="/>
-      <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="perm_role_role_id" columns="role_id" ref-table="roles" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <index name="perm_role_perm_id" unique="false" columns="perm_id"/>
-      <index name="perm_role_role_id" unique="false" columns="role_id"/>
-    </table>
     <table name="permissions" schema="" catalog="mena_portal" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="module" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" remarks="bW9kdWxlIG5hbWU="/>
@@ -366,21 +381,6 @@
       <primary-key name="PRIMARY" columns="id"/>
       <foreign-key name="profile_settings_user_id" columns="user_id" ref-table="users" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <index name="profile_settings_user_id" unique="false" columns="user_id"/>
-    </table>
-    <table name="role_user" schema="" catalog="mena_portal" type="TABLE">
-      <column name="role_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <foreign-key name="role_user_user_id" columns="user_id" ref-table="users" ref-schema="" ref-catalog="mena_portal" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <index name="role_user_role_id" unique="false" columns="role_id"/>
-      <index name="role_user_user_id" unique="false" columns="user_id"/>
-    </table>
-    <table name="roles" schema="" catalog="mena_portal" type="TABLE">
-      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
-      <column name="title" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12" remarks="aHVtYW4gcmVhZGFibGUgbmFtZQ=="/>
-      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
-      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
-      <primary-key name="PRIMARY" columns="id"/>
-      <exported-key name="perm_role_role_id" table="perm_role" schema="" catalog="mena_portal" columns="role_id"/>
     </table>
     <table name="salaries" schema="" catalog="mena_portal" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
@@ -564,10 +564,11 @@
       <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
       <primary-key name="PRIMARY" columns="id"/>
       <exported-key name="profile_settings_user_id" table="profile_settings" schema="" catalog="mena_portal" columns="user_id"/>
-      <exported-key name="role_user_user_id" table="role_user" schema="" catalog="mena_portal" columns="user_id"/>
       <index name="username" unique="true" columns="username"/>
       <index name="users_emp_id" unique="false" columns="emp_id"/>
     </table>
+    <table name="users_permissions" schema="" catalog="mena_portal" type="TABLE"/>
+    <table name="vehicle_brand_model" schema="" catalog="mena_portal" type="TABLE"/>
     <table name="visa_status" schema="" catalog="mena_portal" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="applicant_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>

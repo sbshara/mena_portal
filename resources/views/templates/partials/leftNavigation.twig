@@ -49,8 +49,8 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li></li>
-                            <li></li>
+                            <li>Applicant Link 1</li>
+                            <li>Applicant Link 2</li>
                         </ul>
                     </li>
                     <li class="treeview">
@@ -102,8 +102,8 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li></li>
-                            <li></li>
+                            <li><a href="#"><i class="fa fa-link>"></i><span>A</span></a></li>
+                            <li>B</li>
                         </ul>
                     </li>
 
@@ -120,7 +120,30 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="#">MENA Guidelines</a></li>
-                    <li><a href="#">Vehicle Maintenance Tracker</a></li>
+                    <li><a href="#">Another link</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="{{ path_for('OPS.Assets') }}">
+                    <i class="fa fa-link"></i>
+                    &nbsp;<span>Truck Management System</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="{{ path_for('OPS.Assets.AllTrucks') }}">
+                            <i class="fa fa-truck"></i>
+                            <span>Trucks</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path_for('OPS.Assets.NewTruck') }}">
+                            <i class="fa fa-truck"></i>
+                            <span>New Truck</span>
+                        </a>
+                    </li>
                 </ul>
             </li>
         </ul>

@@ -32,16 +32,18 @@ $app->group('', function () {
 // Routes with signed in required.
 $app->group('', function () {
 
-    $this->group('/SHB', function () {
-        $this->get("/one", AuthController::class . ':one')->setName('one');
-        $this->get("/redirect", AuthController::class . ':red')->setName('red');
-        $this->get("/two", AuthController::class . ':two')->setName('two');
-        $this->post('/requestdump', HRController::class . ':postDumpRequest')->setName('DumpRequest');
-//        $this->get('/test', HRController::class . ':test');
-    });
-
 	// Group all URLs that start with /auth
 	$this->group('/auth', function () {
+
+        // SignOut Page:
+        $this->get('/sign/out', AuthController::class . ':getSignOut')->setName('auth.Signout');
+        // Change Password Viewing Page:
+        $this->get('/change/password', PasswordController::class . ':getChangePassword')->setName('auth.PasswordChange');
+        // Submit Password Change:
+        $this->post('/change/password', PasswordController::class . ':postChangePassword');
+
+
+
 		// Group all URLs that start with /HR
 		$this->group('/HR', function () {
 			$this->get('', HRController::class . ':index')->setName('HR.Home');
@@ -141,22 +143,53 @@ $app->group('', function () {
                 });
             });
 		});
-		// SignOut Page:
-		$this->get('/sign/out', AuthController::class . ':getSignOut')->setName('auth.Signout');
-		// Change Password Viewing Page:
-		$this->get('/change/password', PasswordController::class . ':getChangePassword')->setName('auth.PasswordChange');
-		// Submit Password Change:
-		$this->post('/change/password', PasswordController::class . ':postChangePassword');
+
+
+
+        // Group all URLs that start with /ops
+        $this->group('/ops', function () {
+            $this->get('[/]', OperationsController::class . ':index')->setName('OPS.Home');
+
+            // Guidlines Group
+            $this->group('/guidelines', function () {
+                $this->get('[/]',OperationsController::class . ':getAllGuidelines')->setName('OPS.AllGuidelines');
+                $this->get('/new',OperationsController::class . ':getNewGuideline')->setName('OPS.NewGuideline');
+                $this->post('/new',OperationsController::class . ':postNewGuidelines');
+                $this->get('/{id}',OperationsController::class . ':getGuidelineById')->setName('OPS.GuidelineById');
+            });
+
+            // Vehicle Service Tracker
+            $this->group('/tms', function () {
+                $this->get('[/]', OperationsController::class . ':getTMSDB')->setName('OPS.TMS.DB');
+            });
+
+            // Resources (such as trucks)
+            $this->group('/assets', function(){
+                $this->get('/', OperationsController::class . ':getAssets')->setName('OPS.Assets');
+                $this->group('/truck', function(){
+                    // Get All Trucks
+                    $this->get('s/', OperationsController::class . ':getAllTrucks')->setName('OPS.Assets.AllTrucks');
+
+                    // Get New Truck page
+                    $this->get('/new', OperationsController::class . ':getNewTruck')->setName('OPS.Assets.NewTruck');
+                    // Post New Truck
+                    $this->post('/new', OperationsController::class . ':postNewTruck');
+
+                    // Get Truck By ID
+                    $this->get('/{id}', OperationsController::class . ':getTruckById')->setName('OPS.Assets.TruckById');
+                    // Update Existing Truck
+                    $this->post('/{id}', OperationsController::class . ':postTruckById');
+                });
+            });
+
+        });
+
+        // Group all URLs that start with /Accounts
+        $this->group('/accounts', function () {
+            $this->get('/', AccountsController::class . ':index')->setName('ACC.Home');
+        });
 	});
 
-	// Group all URLs that start with /Operations
-	$this->group('/Operations', function () {
-		$this->get('/', OperationsController::class . ':index')->setName('OPS.Home');
-	});
 
-	// Group all URLs that start with /Accounts
-	$this->group('/accounts', function () {
-		$this->get('/', AccountsController::class . ':index')->setName('ACC.Home');
-	});
 
 })->add(new AuthMiddleware($container));

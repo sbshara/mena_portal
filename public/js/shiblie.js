@@ -72,7 +72,7 @@ $(function(){
         }
     );
 
-    $('#dob').daterangepicker({
+    $('.date-picker').daterangepicker({
         defaultDate: null,
         singleDatePicker: true,
         autoclose: true,
@@ -80,11 +80,13 @@ $(function(){
         changeMonth: true,
         changeYear: true,
         showInputs: true,
-        autoUpdateInput: false,
+        autoUpdateInput: true,
         locale: {
             format: 'YYYY-MM-DD'
         }
     });
+
+
 
     $('#interview_date').daterangepicker({
         defaultDate: null,
@@ -145,7 +147,7 @@ $(document).ajaxStart(function() { Pace.restart(); });
 // Populate States on Country Selection
 function getStates(obj, trgt) {
     var country = obj.value;
-    var localurl = '/AJAX/states/' + country;
+    var localurl = document.location.origin + '/~shiblie/mena_portal/public' + '/AJAX/states/' + country;
     $.ajax({
         start:      function () { Pace.restart(); },
         url:        localurl,
@@ -165,7 +167,7 @@ function getCities(obj, trgt) {
     var state = obj.value;
     var objName = obj.name;
     var oldState = $('#' + objName + '_selection').val();
-    var localurl = 'http://localhost/~shiblie/mena_portal/public/AJAX/cities/' + state;
+    var localurl = document.location.origin + '/~shiblie/mena_portal/public' + '/AJAX/cities/' + state;
     $('#' + oldState).val(state);
     $.ajax({
         start:      function () { Pace.restart(); },
@@ -200,7 +202,7 @@ function setCity(obj) {
 function getDepartmentHead(Obj, Trgt) {
     var source = $('#' + Obj.id);
     var target = $('#' + Trgt);
-    var localUrl = 'http://localhost/~shiblie/mena_portal/public/AJAX/department/' + source.val();
+    var localUrl = document.location.origin + '/~shiblie/mena_portal/public' + '/AJAX/department/' + source.val();
     $.ajax({
         start: function () {
             Pace.restart();
@@ -231,7 +233,7 @@ function getDepartmentHead(Obj, Trgt) {
 function getApplicantName(Ray){
     var str = $(Ray).val().toString();
 //    var localurl = document.location.origin + '/~shiblie/mena_portal/public' + '/AJAX/applicant/' + str; // Shiblie's MAC
-    var localurl = document.location.origin + '/mena_portal/public' + '/AJAX/applicant/' + str; // MENA PC
+    var localurl = document.location.origin + '/~shiblie/mena_portal/public' + '/AJAX/applicant/' + str; // MENA PC
     if(str.length >= 1) {
         $.ajax({
             start: function () { Pace.restart(); },
@@ -260,6 +262,24 @@ function getApplicantName(Ray){
             }
         });
     }
+};
+
+// get vehicle model using the brand name
+function getModel(obj, trgt) {
+    var brand = obj.value;
+    var localurl = document.location.origin + '/~shiblie/mena_portal/public' + '/AJAX/models/' + brand;
+    $.ajax({
+        start:      function () { Pace.restart(); },
+        url:        localurl,
+        type:       'get',
+        success:    function(response){
+            var option_data = '<option>Please select a model...</option>';
+            $.each(response, function(i, response){
+                option_data = option_data + "<option id='"+response.id + "' value='" +response.id+"'>"+response.model_name+"</option>";
+            });
+            $('#' + trgt).html(option_data);
+        }
+    });
 };
 
 // selecting suggested applicant name
@@ -364,6 +384,17 @@ function interviewCheck(obj){
         $('#'+Check).val('interview');
     } else {
         $('#'+Check).val('null');
+    }
+};
+
+function showWarranty(obj) {
+    var warranty = obj.id;
+    if ( $('#'+warranty).is(':checked') === true) {
+        $('#warranty_validity').val(1);
+        $('#warranty').removeClass('hidden');
+    } else {
+        $('#warranty_validity').val(0);
+        $('#warranty').addClass('hidden');
     }
 };
 

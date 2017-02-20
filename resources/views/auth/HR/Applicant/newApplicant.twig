@@ -67,12 +67,12 @@
                         {% endif %}
                     </div>
                     <div class="form-group has-feedback{{ errors.dob ? ' has-error' : '' }}">
-                            <label for="date-picker">Date of Birth: &nbsp;</label><span class="text-red"><b>*</b></span>
+                            <label for="dob">Date of Birth: &nbsp;</label><span class="text-red"><b>*</b></span>
                             <div class="input-group date">
                                 <div class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                 </div>
-                                <input type="date" class="form-control pull-right" name="dob" id="dob" value="{{ old.dob ?: '1984-09-03' }}">
+                                <input type="date" class="form-control pull-right date-picker" name="dob" id="dob" value="{{ old.dob ?: '1984-09-03' }}">
                             </div>
                             {% if errors.dob %}
                                 <span class="help-block">{{ errors.dob | first }}</span>

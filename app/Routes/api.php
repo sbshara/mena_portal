@@ -7,21 +7,23 @@
  */
 
 use App\Middleware\AuthMiddleware;
-use App\Controllers\HRController;
+use App\Controllers\AJAXController;
 
 $app->group('', function () {
 	// AJAX Requests:
 	$this->group('/AJAX', function () {
 		// Get States by Country ID:
-		$this->get('/states/{country_id}', HRController::class . ':stateByCountry')->setName('AJAX.StatesByCountry');
+		$this->get('/states/{country_id}', AJAXController::class . ':stateByCountry')->setName('AJAX.StatesByCountry');
 		// Get Cities by State ID:
-		$this->get('/cities/{state_id}', HRController::class . ':cityByState')->setName('AJAX.CitiesByState');
+		$this->get('/cities/{state_id}', AJAXController::class . ':cityByState')->setName('AJAX.CitiesByState');
 		// Get Applicant Name by string:
-		$this->get('/applicant/{applicant_name}', HRController::class . ':applicantByName')->setName('AJAX.ApplicantName');
+		$this->get('/applicant/{applicant_name}', AJAXController::class . ':applicantByName')->setName('AJAX.ApplicantName');
         // Get Country by ID:
-        $this->get('/countries/{country_id}', HRController::class . ':countryById')->setName('AJAX.countryById');
+        $this->get('/countries/{country_id}', AJAXController::class . ':countryById')->setName('AJAX.countryById');
         // Get Department Head Information
-        $this->get('/department/{department_id}', HRController::class . ':DepartmentHead')->setName('AJAX.headByDepartment');
+        $this->get('/department/{department_id}', AJAXController::class . ':DepartmentHead')->setName('AJAX.headByDepartment');
+        // Get Vehicle Models using Brand Name
+        $this->get('/models/{brand_name}', AJAXController::class . ':modelByBrand')->setName('AJAX.ModelByBrand');
 	});
 
 })->add(new AuthMiddleware($container));

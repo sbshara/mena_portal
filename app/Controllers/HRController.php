@@ -12,6 +12,7 @@ use App\Models\Addresses;
 use App\Models\ApplicantAddress;
 use App\Models\Languages;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Respect\Validation\Validator as v;
 use App\Models\Applicant;
 use App\Models\Employee;
@@ -23,6 +24,7 @@ use App\Models\City;
 use App\Models\VisaStatus;
 use App\Models\ApplicantLanguage;
 use App\Models\DepartmentHeads;
+use App\Helpers\Auth as HELPAuth;
 
 
 class HRController extends Controller {
@@ -47,16 +49,19 @@ class HRController extends Controller {
         $user = User::where('emp_id', $employee->id)->get();
         $langMap = ApplicantLanguage::where('applicant_id', $applicant->id)->get();
         $visa = VisaStatus::where('applicant_id', $applicant->id)->get();
+        $userMaster = HELPAuth::userMaster();
         return $this->view->render(
             $response,
             'auth/HR/Applicant/applicantById.twig',
-            [
-                'applicant' =>  $applicant,
-                'employee'  =>  $employee,
-                'user'      =>  $user,
-                'Languages' =>  $langMap,
-                'Visas'     =>  $visa
-            ]);
+            compact('userMaster')
+        );
+//            [
+//                'applicant' =>  $applicant,
+//                'employee'  =>  $employee,
+//                'user'      =>  $user,
+//                'Languages' =>  $langMap,
+//                'Visas'     =>  $visa
+//            ]);
     }
 
     public function postApplicantByID ($request, $response, $args) {
@@ -563,66 +568,5 @@ class HRController extends Controller {
 	public function postNewSkill ($request, $response) {
 		//
 	}
-
-
-
-
-	// AJAX Requests:
-	public function stateByCountry ($request, $response, $arg) {
-		$states = State::where('country_id', (int)$arg['country_id'])->orderBy('state_name', 'ASC')->get();
-        if (count($states) <= 0) {
-            return $response->withStatus(404)->withJson(['error (404):' => 'No Records Found!']);
-        }
-		return $response->withJson($states);
-	}
-
-	public function cityByState ($request, $response, $arg) {
-		$cities = City::where('state_id', $arg['state_id'])->orderBy('city_name', 'ASC')->get();
-        if (count($cities) <= 0) {
-            return $response->withStatus(404)->withJson(['error (404):' => 'No Records Found!']);
-        }
-		return $response->withJson($cities);
-	}
-
-	public function applicantByName ($request, $response, $arg) {
-		$name = "%".$arg['applicant_name']."%";
-		$applicant = Applicant::where(
-                                    'first_name',
-                                    'LIKE',
-                                    $name
-                                )->orWhere(
-                                    'last_name',
-                                    'LIKE',
-                                    $name
-                                )->orderBy(
-                                    'first_name',
-                                    'ASC'
-                                )->get();
-        if (count($applicant) <= 0) {
-            return $response->withStatus(404)->withJson(['error (404):' => 'No Records Found!']);
-        }
-		return $response->withJson($applicant);
-	}
-
-    public function countryById ($request, $response, $arg) {
-        $countryName = Country::where('id', (int)$arg['country_id'])->get();
-        return $response->withJson($countryName);
-    }
-
-    public function DepartmentHead ($request, $response, $arg){
-        $deptID = $arg['department_id'];
-        $empID = DepartmentHeads::where(
-                        'dept_id', $deptID)->orderBy(
-                                            'from_date', 'DESC')->get()->first()['emp_id'];
-        $appID = Employee::where(
-                    'id', $empID)->get()->first()['applicant_id'];
-        $applicant = Applicant::where(
-            'id', $appID)->get()->first();
-//        var_dump($applicant);
-//        die();
-        return $response->withJson($applicant);
-    }
-
-
 
 }

@@ -48,6 +48,10 @@ $container['HR'] = function ($container) {
     return new \App\Helpers\HR();
 };
 
+$container['OPS'] = function ($container) {
+    return new \App\Helpers\OPS();
+};
+
 // Add global message flash dependency
 $container['flash'] = function ($container) {
 	return new \Slim\Flash\Messages();
@@ -90,6 +94,11 @@ $container['view'] = function ($container) {
         'titles'            =>  $container->HR->allTitles()
 	]);
 
+    $view->getEnvironment()->addGlobal('OPS', [
+        'Brands'            =>  $container->OPS->allBrands(),
+        'Vehicles'          =>  $container->OPS->allVehicles()
+    ]);
+
 	// Add the flash message
 	$view->getEnvironment()->addGlobal('flash', $container->flash);
 
@@ -125,6 +134,7 @@ $container['HRController'] = function ($container) { return new \App\Controllers
 $container['OperationsController'] = function ($container) { return new \App\Controllers\OperationsController($container); };
 $container['AccountsController'] = function ($container) { return new \App\Controllers\AccountsController($container); };
 
+$container['AJAXController'] = function ($container) { return new \App\Controllers\AJAXController($container); };
 
 $container['csrf'] = function ($container) { return new \Slim\Csrf\Guard(); };
 //$container['http'] = function ($container) { return new UploadedFile(); };

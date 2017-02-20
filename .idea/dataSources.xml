@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="1229742700">
+  <component name="DataSourceManagerImpl" format="xml" hash="3152239428">
     <data-source source="LOCAL" name="mena_portal@localhost" uuid="0911d869-a466-44a7-97fc-eb3ccbe13594">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
