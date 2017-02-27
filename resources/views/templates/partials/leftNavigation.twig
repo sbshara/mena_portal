@@ -33,7 +33,7 @@
             <!-- Optionally, you can add icons to the links -->
             <li class="treeview">
                 <a href="{{ path_for('HR.Home')}}">
-                    <i class="fa fa-link"></i>
+                    <i class="fa fa-book"></i>
                     &nbsp;<span>Human Resources</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
@@ -42,20 +42,20 @@
                 <ul class="treeview-menu">
                     <li class="treeview">
                         <a href="{{ path_for('HR.AllApplicants') }}">
-                            <i class="fa fa-link"></i>
+                            <i class="fa fa-graduation-cap"></i>
                             &nbsp;<span>Applicants</span>
                             <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li>Applicant Link 1</li>
-                            <li>Applicant Link 2</li>
+                            <li><a href="{{ path_for('HR.NewApplicant') }}">New Applicant</a></li>
+                            <li><a href="{{ path_for('HR.AllApplicants') }}">List Applicants</a></li>
                         </ul>
                     </li>
                     <li class="treeview">
                         <a href="{{ path_for('HR.AllEmployees') }}">
-                            <i class="fa fa-link"></i>
+                            <i class="fa fa-black-tie"></i>
                             &nbsp;<span>Employees</span>
                             <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
@@ -68,7 +68,7 @@
                     </li>
                     <li class="treeview">
                         <a href="{{ path_for('HR.AllUsers') }}">
-                            <i class="fa fa-link"></i>
+                            <i class="fa fa-users"></i>
                             &nbsp;<span>Users</span>
                             <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
@@ -79,10 +79,22 @@
                             <li></li>
                         </ul>
                     </li>
-                    <li><a href="{{ path_for('HR.AllDepartments') }}"><i class="fa fa-link"></i> Departments</a></li>
+                    <li class="treeview">
+                        <a href="{{ path_for('HR.AllDepartments') }}">
+                            <i class="fa fa-cubes"></i>
+                            &nbsp;<span>Departments</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="#"></a>New Department</li>
+                            <li><a href="#"></a>All Departments</li>
+                        </ul>
+                    </li>
                     <li class="treeview">
                         <a href="{{ path_for('HR.AllInterviews') }}">
-                            <i class="fa fa-link"></i>
+                            <i class="fa fa-calendar-check-o"></i>
                             &nbsp;<span>Interviews</span>
                             <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
@@ -95,7 +107,7 @@
                     </li>
                     <li class="treeview">
                         <a href="{{ path_for('HR.Miscellaneous') }}">
-                            <i class="fa fa-link"></i>
+                            <i class="fa fa-random"></i>
                             &nbsp;<span>Miscellaneous</span>
                             <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
@@ -109,23 +121,43 @@
 
                 </ul>
             </li>
-            <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
+
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-link"></i>
+                    <span>Another Link</span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="#">Link 1</a></li>
+                    <li><a href="#">Link 2</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="{{ path_for('OPS.Home') }}">
+                    <i class="fa fa-dashboard"></i>
                     &nbsp;<span>Operations</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="#">MENA Guidelines</a></li>
-                    <li><a href="#">Another link</a></li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-forumbee"></i>
+                            &nbsp;<span>Operations 1</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa-forumbee"></i>
+                            &nbsp;<span>Operations 2</span>
+                        </a>
+                    </li>
                 </ul>
             </li>
             <li class="treeview">
-                <a href="{{ path_for('OPS.Assets') }}">
-                    <i class="fa fa-link"></i>
+                <a href="#">
+                    <i class="fa fa-truck"></i>
                     &nbsp;<span>Truck Management System</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
@@ -133,16 +165,49 @@
                 </a>
                 <ul class="treeview-menu">
                     <li>
-                        <a href="{{ path_for('OPS.Assets.AllTrucks') }}">
-                            <i class="fa fa-truck"></i>
-                            <span>Trucks</span>
+                        <a href="{{ path_for('TMS.Home') }}">
+                            <i class="fa fa-dashboard"></i>
+                            <span>Main Dashboard</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ path_for('OPS.Assets.NewTruck') }}">
-                            <i class="fa fa-truck"></i>
-                            <span>New Truck</span>
+                        <a href="#">
+                            <i class="fa fa-cogs"></i>
+                            <span>Services</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
                         </a>
+                        <ul class="treeview-menu">
+                            <li><a href="">All Services</a></li>
+                            <li><a href="">New Service</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-money"></i>
+                            <span>Expenses</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="">All Expenses</a></li>
+                            <li><a href="">New Expense</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-truck"></i>
+                            <span>Trucks</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="{{ path_for('TMS.AllTrucks') }}">All Trucks</a></li>
+                            <li><a href="{{ path_for('TMS.NewTruck') }}">New Truck</a></li>
+                        </ul>
                     </li>
                 </ul>
             </li>

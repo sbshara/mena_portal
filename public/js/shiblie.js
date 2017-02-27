@@ -204,28 +204,27 @@ function getDepartmentHead(Obj, Trgt) {
     var target = $('#' + Trgt);
     var localUrl = document.location.origin + '/~shiblie/mena_portal/public' + '/AJAX/department/' + source.val();
     $.ajax({
-        start: function () {
-            Pace.restart();
-        },
-        url: localUrl,
-        type: 'get',
-        success: function (response) {
-            var option_data = '';
-            //$.each(response, function (i, response) {
-                option_data += "<option id='" + response.id + "' value='" + response.id + "' ";
-                //if (response.id == source.val()) {
-                //    option_data += "selected ";
-                //}
-                option_data += ">";
-                option_data += response.first_name;
-                option_data += " ";
-                option_data += response.last_name;
-                //option_data += " ";
-                //option_data += response.last_name;
-                option_data += "</option>";
-            //});
-            target.html(option_data);
-        }
+        start:      function () { Pace.restart(); },
+        url:        localUrl,
+        async:      true,
+        type:       'get',
+        success:    function (response) {
+                        var option_data = '';
+                        //$.each(response, function (i, response) {
+                            option_data += "<option id='" + response.id + "' value='" + response.id + "' ";
+                            //if (response.id == source.val()) {
+                            //    option_data += "selected ";
+                            //}
+                            option_data += ">";
+                            option_data += response.first_name;
+                            option_data += " ";
+                            option_data += response.last_name;
+                            //option_data += " ";
+                            //option_data += response.last_name;
+                            option_data += "</option>";
+                        //});
+                        target.html(option_data);
+                    }
     });
 };
 
@@ -236,26 +235,27 @@ function getApplicantName(Ray){
     var localurl = document.location.origin + '/~shiblie/mena_portal/public' + '/AJAX/applicant/' + str; // MENA PC
     if(str.length >= 1) {
         $.ajax({
-            start: function () { Pace.restart(); },
-            url: localurl,
-            type: 'get',
-            success: function (response) {
-                var option_data = "Options: (click on name to select)<ul>";
-                $.each(response, function (i, response) {
-                    option_data =
-                        option_data +
-                        "<li id='" +
-                        response.id +
-                        "'  style='cursor: pointer;' onclick='selectName(this)'" +
-                        "data-applicant='" +
-                        response.first_name + "." + response.last_name +
-                        "'>" +
-                        response.first_name + " " + response.last_name + "</li>";
-                });
-                option_data = option_data + "</ul>";
-                $('#name-guide').show();
-                $('#name-guide').html(option_data);
-            },
+            start:      function () { Pace.restart(); },
+            async:      true,
+            url:        localurl,
+            type:       'get',
+            success:    function (response) {
+                            var option_data = "Options: (click on name to select)<ul>";
+                            $.each(response, function (i, response) {
+                                option_data =
+                                    option_data +
+                                    "<li id='" +
+                                    response.id +
+                                    "'  style='cursor: pointer;' onclick='selectName(this)'" +
+                                    "data-applicant='" +
+                                    response.first_name + "." + response.last_name +
+                                    "'>" +
+                                    response.first_name + " " + response.last_name + "</li>";
+                            });
+                            option_data = option_data + "</ul>";
+                            $('#name-guide').show();
+                            $('#name-guide').html(option_data);
+                        },
             Error: function(response) {
                 $('#name-guide').hide();
                 //$('#name-guide').html(response);
@@ -271,6 +271,7 @@ function getModel(obj, trgt) {
     $.ajax({
         start:      function () { Pace.restart(); },
         url:        localurl,
+        async:      true,
         type:       'get',
         success:    function(response){
             var option_data = '<option>Please select a model...</option>';
@@ -391,9 +392,11 @@ function showWarranty(obj) {
     var warranty = obj.id;
     if ( $('#'+warranty).is(':checked') === true) {
         $('#warranty_validity').val(1);
+        $('#warranty_val').val(1);
         $('#warranty').removeClass('hidden');
     } else {
         $('#warranty_validity').val(0);
+        $('#warranty_val').val(0);
         $('#warranty').addClass('hidden');
     }
 };

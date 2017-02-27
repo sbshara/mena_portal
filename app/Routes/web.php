@@ -145,43 +145,37 @@ $app->group('', function () {
 		});
 
 
+        // Guidlines Group
+        $this->group('/guidelines', function () {
+            $this->get('[/]',OperationsController::class . ':getAllGuidelines')->setName('GDL.AllGuidelines');
+            $this->get('/new',OperationsController::class . ':getNewGuideline')->setName('GDL.NewGuideline');
+            $this->post('/new',OperationsController::class . ':postNewGuidelines');
+            $this->get('/{id}',OperationsController::class . ':getGuidelineById')->setName('GDL.GuidelineById');
+        });
+
+        // Vehicle Service Tracker
+        $this->group('/tms', function () {
+            $this->get('[/]', OperationsController::class . ':getTMSindex')->setName('TMS.Home');
+            $this->group('/truck', function(){
+                // Get All Trucks
+                $this->get('s/', OperationsController::class . ':getAllTrucks')->setName('TMS.AllTrucks');
+
+                // Get New Truck page
+                $this->get('/new', OperationsController::class . ':getNewTruck')->setName('TMS.NewTruck');
+                // Post New Truck
+                $this->post('/new', OperationsController::class . ':postNewTruck');
+
+                // Get Truck By ID
+                $this->get('/{id}', OperationsController::class . ':getTruckById')->setName('TMS.TruckById');
+                // Update Existing Truck
+                $this->post('/{id}', OperationsController::class . ':postTruckById');
+            });
+        });
+
 
         // Group all URLs that start with /ops
         $this->group('/ops', function () {
             $this->get('[/]', OperationsController::class . ':index')->setName('OPS.Home');
-
-            // Guidlines Group
-            $this->group('/guidelines', function () {
-                $this->get('[/]',OperationsController::class . ':getAllGuidelines')->setName('OPS.AllGuidelines');
-                $this->get('/new',OperationsController::class . ':getNewGuideline')->setName('OPS.NewGuideline');
-                $this->post('/new',OperationsController::class . ':postNewGuidelines');
-                $this->get('/{id}',OperationsController::class . ':getGuidelineById')->setName('OPS.GuidelineById');
-            });
-
-            // Vehicle Service Tracker
-            $this->group('/tms', function () {
-                $this->get('[/]', OperationsController::class . ':getTMSDB')->setName('OPS.TMS.DB');
-            });
-
-            // Resources (such as trucks)
-            $this->group('/assets', function(){
-                $this->get('/', OperationsController::class . ':getAssets')->setName('OPS.Assets');
-                $this->group('/truck', function(){
-                    // Get All Trucks
-                    $this->get('s/', OperationsController::class . ':getAllTrucks')->setName('OPS.Assets.AllTrucks');
-
-                    // Get New Truck page
-                    $this->get('/new', OperationsController::class . ':getNewTruck')->setName('OPS.Assets.NewTruck');
-                    // Post New Truck
-                    $this->post('/new', OperationsController::class . ':postNewTruck');
-
-                    // Get Truck By ID
-                    $this->get('/{id}', OperationsController::class . ':getTruckById')->setName('OPS.Assets.TruckById');
-                    // Update Existing Truck
-                    $this->post('/{id}', OperationsController::class . ':postTruckById');
-                });
-            });
-
         });
 
         // Group all URLs that start with /Accounts

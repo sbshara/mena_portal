@@ -97,10 +97,10 @@
                     </div>
                     <div class="form-group checkbox has-feedback{{ errors.warranty_validity ? ' has-error' : '' }}">
                         <label for="warranty_val">
-                            <input type="checkbox" name="warranty_val" id="warranty_val" class="checkbox-inline" onclick="showWarranty(this)" value="{{ old.warranty_val ?: '' }}"/>
+                            <input type="checkbox" name="warranty_val" id="warranty_val" value="0" class="checkbox-inline" onclick="showWarranty(this)" value="{{ old.warranty_val ?: '' }}"/>
                             &nbsp; Vehicle Under Warranty? &nbsp;
                         </label>
-                        <input type="hidden" name="warranty_validity" id="warranty_validity" class="checkbox-inline" value="{{ old.warranty_validity ?: '' }}"/>
+                        <input type="hidden" name="warranty_validity" id="warranty_validity" class="checkbox-inline" value="{{ old.warranty_validity ?: '0' }}"/>
                         {% if errors.warranty_validity %}
                             <span class="help-block">{{ errors.warranty_validity | first }}</span>
                         {% endif %}
@@ -115,10 +115,78 @@
                         </div>
                         <div class="form-group has-feedback{{ errors.warranty_expiry_mileage ? ' has-error' : '' }}">
                             <label for="warranty_expiry_mileage">Warranty Expiry (Mileage): &nbsp;</label>
-                            <input type="number" name="warranty_expiry_mileage" id="warranty_expiry_mileage" class="form-control" value="{{ old.warranty_expiry_mileage ?: '' }}"/>
+                            <input type="number" name="warranty_expiry_mileage" id="warranty_expiry_mileage" class="form-control" value="{{ old.warranty_expiry_mileage ?: '0' }}"/>
                             {% if errors.warranty_expiry_mileage %}
                                 <span class="help-block">{{ errors.warranty_expiry_mileage | first }}</span>
                             {% endif %}
+                        </div>
+                    </div>
+                    <div id="newAttachment" class="form-group">
+                        <label for="help-me">Attachments:</label>
+                        <p class="help-block" id="help-me"><span><i>Attach Images, Ownership, Insurance, or any other related documents<br/><mark>Remember to rename the files respectively</mark></i></span></p>
+                        <input type="hidden" id="attachmentCounter" name="attachmentCounter" value="-1">
+                        <input type="button" id="add" class="btn btn-xs" onclick="showInput('divattachmentGroup', 'attachmentCounter')" value="Add New" title="Add new attachment field"/> &nbsp;
+                        <input type="button" id="remove" class="btn btn-xs btn-danger" onclick="hideInput('divattachmentGroup', 'attachmentCounter')" value="Remove" title="Removes the last item" />
+                        <br/>
+                        <div class="form-group bg-gray-light hidden has-feedback {{ errors.attachment[0] ? ' has-error': '' }}" id="divattachmentGroup0">
+                            <div class="input-group inline has-feedback" id="div2attachment0">
+                                <label for="attachment0">File: &nbsp;</label>
+                                <input type="file" id="attachment0" name="attachment[]" class="btn btn-default btn-file"> &nbsp;
+                            </div>
+                        </div>
+                        <div class="form-group hidden has-feedback{{ errors.attachment[1] ? ' has-error' : '' }}" id="divattachmentGroup1">
+                            <div class="input-group inline has-feedback" id="div2attachment1">
+                                <label for="attachment1">File: &nbsp;</label>
+                                <input type="file" id="attachment1" name="attachment[]" class="btn btn-default btn-file"> &nbsp;
+                            </div>
+                        </div>
+                        <div class="form-group bg-gray-light hidden has-feedback{{ errors.attachment[2] ? ' has-error' : '' }}" id="divattachmentGroup2">
+                            <div class="input-group inline has-feedback" id="div2attachment2">
+                                <label for="attachment2">File: &nbsp;</label>
+                                <input type="file" id="attachment2" name="attachment[]" class="btn btn-default btn-file"> &nbsp;
+                            </div>
+                        </div>
+                        <div class="form-group hidden has-feedback{{ errors.attachment[3] ? ' has-error' : '' }}" id="divattachmentGroup3">
+                            <div class="input-group inline has-feedback" id="div2attachment3">
+                                <label for="attachment3">File: &nbsp;</label>
+                                <input type="file" id="attachment3" name="attachment[]" class="btn btn-default btn-file"> &nbsp;
+                            </div>
+                        </div>
+                        <div class="form-group bg-gray-light hidden has-feedback{{ errors.attachment[4] ? ' has-error' : '' }}" id="divattachmentGroup4">
+                            <div class="input-group inline has-feedback" id="div2attachment4">
+                                <label for="attachment4">File: &nbsp;</label>
+                                <input type="file" id="attachment4" name="attachment[]" class="btn btn-default btn-file"> &nbsp;
+                            </div>
+                        </div>
+                        <div class="form-group hidden  has-feedback{{ errors.attachment[5] ? ' has-error' : '' }}{{ errors.attachmentType5 ? ' has-error' : '' }}{{ errors.attachmentIssuer5 ? ' has-error' : '' }}{{ errors.attachmentIssueDate5 ? ' has-error' : '' }}{{ errors.attachmentExpiryDate5 ? ' has-error' : '' }}" id="divattachmentGroup5">
+                            <div class="input-group inline has-feedback" id="div2attachment5">
+                                <label for="attachment5">File: &nbsp;</label>
+                                <input type="file" id="attachment5" name="attachment[]" class="btn btn-default btn-file"> &nbsp;
+                            </div>
+                        </div>
+                        <div class="form-group bg-gray-light hidden has-feedback{{ errors.attachment[6] ? ' has-error' : '' }}" id="divattachmentGroup6">
+                            <div class="input-group inline has-feedback" id="div2attachment6">
+                                <label for="attachment6">File: &nbsp;</label>
+                                <input type="file" id="attachment6" name="attachment[]" class="btn btn-default btn-file"> &nbsp;
+                            </div>
+                        </div>
+                        <div class="form-group hidden has-feedback{{ errors.attachment[7] ? ' has-error' : '' }}" id="divattachmentGroup7">
+                            <div class="input-group inline has-feedback" id="div2attachment7">
+                                <label for="attachment7">File: &nbsp;</label>
+                                <input type="file" id="attachment7" name="attachment[]" class="btn btn-default btn-file"> &nbsp;
+                            </div>
+                        </div>
+                        <div class="form-group bg-gray-light hidden has-feedback{{ errors.attachment[8] ? ' has-error' : '' }}" id="divattachmentGroup8">
+                            <div class="input-group inline has-feedback" id="div2attachment8">
+                                <label for="attachment8">File: &nbsp;</label>
+                                <input type="file" id="attachment8" name="attachment[]" class="btn btn-default btn-file"> &nbsp;
+                            </div>
+                        </div>
+                        <div class="form-group hidden has-feedback{{ errors.attachment[9] ? ' has-error' : '' }}{{ errors.attachmentType9 ? ' has-error' : '' }}{{ errors.attachmentIssuer9 ? ' has-error' : '' }}{{ errors.attachmentIssueDate9 ? ' has-error' : '' }}{{ errors.attachmentExpiryDate9 ? ' has-error' : '' }}" id="divattachmentGroup9">
+                            <div class="input-group inline has-feedback" id="div2attachment9">
+                                <label for="attachment9">File: &nbsp;</label>
+                                <input type="file" id="attachment9" name="attachment[]" class="btn btn-default btn-file"> &nbsp;
+                            </div>
                         </div>
                     </div>
                     <br />
