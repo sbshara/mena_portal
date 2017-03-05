@@ -40,12 +40,12 @@
                 <tbody>
                 {% for applicant in HR.applicants %}
                     <tr>
-                        <td>{{ applicant.id }}</td>
+                        <td><a href="{{ path_for('HR.ApplicantById', {'id':applicant.id}) }}">=> {{ applicant.id }}</a></td>
                         <td>{{ applicant.first_name }}.{{ applicant.last_name }}</td>
                         <td>{{ applicant.mobile_phone }}</td>
                         <td>{{ applicant.per_email }}</td>
-                        <td>{{ applicant.nationality }}</td>
-                        <td>{{ applicant.gender }}</td>
+                        <td>{{ applicant.txtNationality() }}</td>
+                        <td>{% if applicant.gender == 'M' %}<i class="fa fa-male"></i>{% else %}<i class="fa fa-female"></i> {% endif %}</td>
                         <td>{{ applicant.birth_date }}</td>
                     </tr>
                 {% endfor %}

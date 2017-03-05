@@ -9,13 +9,17 @@
 namespace App\Controllers;
 
 use App\Models\AssetsTrucks;
-use App\Models\VehicleBrandModel;
+use App\Models\VehicleService;
 use Respect\Validation\Validator as v;
 use App\Models\Guidelines;
 
 
 class OperationsController extends Controller {
 
+
+    // ======================================================================
+    //                          Guidelines
+    // ======================================================================
 	public function getAllGuidelines ($request, $response, $args) {
         return $this->view->render($response, 'auth/Guidelines/allGuidelines.twig');
     }
@@ -33,14 +37,42 @@ class OperationsController extends Controller {
     public function postNewGuideline ($request, $response, $args) {
 
     }
+    // =========================END OF GUIDELINES============================
 
+    // ======================================================================
+    //                    TMS (Truck Management System)
+    // ======================================================================
+    // TMS Home Page
     public function getTMSindex ($request, $response, $args) {
         return $this->view->render($response, 'auth/TMS/Dashboard.twig');
     }
+
+    // TMS Upload Files
+    public function postUploadFiles ($request, $response, $args) {
+        $files = $request->getUploadedFiles();
+        for ($i = 0; $i <= count($files); $i++){
+            if (empty($files[$i])){
+                throw new Exception('Expected a newfile');
+            }
+            if ($files[$i]->getError() === UPLOAD_ERR_OK) {
+                $uploadFileName = $files[$i]->getClientFilename();
+                $files[$i]->moveTo("/docs/TMS/" . $uploadFileName . $i);
+            }
+        }
+        return json_encode(
+            array(
+                'csrf_name'     =>  $this->container->csrf->getTokenName(),
+                'csrf_value'    =>  $this->container->csrf->getTockenValue(),
+                'files'         =>  $files
+            )
+        );
+    }
+
     // Trucks
         // All Trucks
     public function getAllTrucks ($request, $response, $args) {
-        return $this->view->render($response, 'auth/TMS/Trucks/AllTrucks.twig');
+        $trucks = AssetsTrucks::all();
+        return $this->view->render($response, 'auth/TMS/Trucks/AllTrucks.twig', compact('trucks'));
     }
 
         // New Truck
@@ -51,8 +83,6 @@ class OperationsController extends Controller {
     public function postNewTruck ($request, $response, $args) {
         $attachCount = $request->getParam('attachmentCounter');
         $warranty = $request->getParam('warranty_val');
-//        var_dump($request->getParams());
-//        die();
         $validation = $this->validator->validate($request, [
             'vin'                       =>  v::notEmpty()->VINAvailable()->length(17,17,true)->alnum(),
             'brand'                     =>  v::notEmpty(),
@@ -145,4 +175,37 @@ class OperationsController extends Controller {
         $truck = AssetsTrucks::find($args['id']);
         return $this->view->render($response, 'auth/TMS/Trucks/TruckById.twig', compact('truck'));
     }
+    public function postTruckById ($request, $response, $args) {
+        $truck = AssetsTrucks::find($args['id']);
+
+    }
+//======================END TRUCKS CLASSES================================================================
+//======================START SERVICES CLASSES============================================================
+    public function getAllServices ($request, $response, $args) {
+        $services = VehicleService::all();
+        return $this->view->render($response, 'auth/TMS/Services/AllServices.twig', compact('services'));
+    }
+
+    public function getNewService ($request, $response, $args) {
+        return $this->view->render($response, 'auth/TMS/Services/NewService.twig');
+    }
+
+    public function getServiceById ($request, $response, $args) {
+        $service = VehicleService::find($args['id']);
+        return $this->view->render($response, 'auth/TMS/Services/ServiceById.twig', compact('service'));
+    }
+
+    public function postNewService ($request, $response, $args) {
+        // Validation
+        // Create Service Record
+    }
+
+    public function postServiceById ($request, $response, $args) {
+        $service = VehicleService::find($args['id']);
+
+        // Validation
+        // Update Service Record
+    }
+//=======================END SERVICES CLASSES=============================================================
+    // =========================END OF TMS===================================
 }

@@ -16,6 +16,7 @@ class AssetsTrucks extends Model {
     protected $table = 'assets_trucks';
 
     protected $fillable = [
+        'id',
         'vin',
         'registration_code',
         'registration_number',
@@ -33,6 +34,24 @@ class AssetsTrucks extends Model {
 
     public function nickName () {
         return strtoupper($this->registration_code) . '-' . $this->registration_number;
+    }
+
+    public function brandName () {
+        $brand = VehicleBrandModel::find($this->model);
+        return $brand['brand_name'];
+    }
+
+    public function modelName() {
+        $model = VehicleBrandModel::find($this->model);
+        return $model['model_name'];
+    }
+
+    public function brandModelYear () {
+        return $this->model_year . " - " . $this->brandName() . " - " . $this->modelName();
+    }
+
+    public function images () {
+        return TruckAttachments::where('truck_id', $this->id)->get();
     }
 
 }

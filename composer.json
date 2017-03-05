@@ -27,6 +27,7 @@
         "phpmailer/phpmailer": "~5.2",
         "monolog/monolog": "~1.22",
         "hassankhan/config": "~0.10.0",
-        "illuminate/events": "^5.3"
+        "illuminate/events": "^5.3",
+        "enyo/dropzone": "^4.3"
     }
 }

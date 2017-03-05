@@ -96,7 +96,8 @@ $container['view'] = function ($container) {
 
     $view->getEnvironment()->addGlobal('OPS', [
         'Brands'            =>  $container->OPS->allBrands(),
-        'Vehicles'          =>  $container->OPS->allVehicles()
+        'Vehicles'          =>  $container->OPS->allVehicles(),
+        'Categories'        =>  $container->OPS->allCategories()
     ]);
 
 	// Add the flash message

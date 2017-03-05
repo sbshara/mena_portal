@@ -86,7 +86,17 @@ $(function(){
         }
     });
 
+    $('#serviceDetails').focus(function() {
+        CKEDITOR.replace('serviceDetails');
+    });
 
+    Dropzone.options.serviceAttachment = {
+        paramName: 'serviceAttachment',
+        maxFiles: 10,
+        maxFilesize: 5,
+        forceFallback: true,
+        dictDefaultMessage: 'Drag & Drop your files here, or click to select files'
+    };
 
     $('#interview_date').daterangepicker({
         defaultDate: null,
@@ -287,12 +297,8 @@ function getModel(obj, trgt) {
 function selectName(ObJ) {
     var strName = ObJ.getAttribute('data-applicant');
     var strID = ObJ.getAttribute('id');
-    //data('applicant');
     // window.location.replace("http://localhost/~shiblie/mena_portal/public/auth/HR/interview/"+strID); // Shiblie's MAC
     window.location.replace("/mena_portal/public/auth/HR/interview/"+strID); // MENA PC
-    //$('#applicant').val(strName);
-    //$('#applicantid').attr('id', strID);
-    //$('#name-guide').hide();
 };
 
 // Add and remove attachment (input field) (New Applicant)
@@ -328,7 +334,7 @@ function showInput(div, counter) {
             atachAddErr = true;
         }
     }
-};
+}
 
 function hideInput(div, counter) {
     var cntrV = $('#' + counter).val();
@@ -354,7 +360,7 @@ function hideInput(div, counter) {
         cntrV--;
         $('#' + cntrN).val(cntrV);
     }
-};
+}
 
 
 $(function () {
@@ -400,4 +406,15 @@ function showWarranty(obj) {
         $('#warranty').addClass('hidden');
     }
 };
+
+$('#allTrucks').DataTable({
+    'paging': true,
+    'lengthChange': true,
+    'searching': true,
+    'ordering': true,
+    'info': true,
+    'autoWidth': true
+});
+
+
 

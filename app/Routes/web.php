@@ -42,8 +42,6 @@ $app->group('', function () {
         // Submit Password Change:
         $this->post('/change/password', PasswordController::class . ':postChangePassword');
 
-
-
 		// Group all URLs that start with /HR
 		$this->group('/HR', function () {
 			$this->get('', HRController::class . ':index')->setName('HR.Home');
@@ -144,7 +142,6 @@ $app->group('', function () {
             });
 		});
 
-
         // Guidlines Group
         $this->group('/guidelines', function () {
             $this->get('[/]',OperationsController::class . ':getAllGuidelines')->setName('GDL.AllGuidelines');
@@ -155,20 +152,35 @@ $app->group('', function () {
 
         // Vehicle Service Tracker
         $this->group('/tms', function () {
+            // TMS Home
             $this->get('[/]', OperationsController::class . ':getTMSindex')->setName('TMS.Home');
-            $this->group('/truck', function(){
-                // Get All Trucks
-                $this->get('s/', OperationsController::class . ':getAllTrucks')->setName('TMS.AllTrucks');
 
-                // Get New Truck page
+            // TMS Uploading Files
+            $this->post('/upload/', OperationsController::class . ':postUploadFiles')->setName('TMS.Upload');
+
+            // Trucks
+            $this->group('/truck', function () {
+                $this->get('s[/]', OperationsController::class . ':getAllTrucks')->setName('TMS.AllTrucks');
                 $this->get('/new', OperationsController::class . ':getNewTruck')->setName('TMS.NewTruck');
-                // Post New Truck
                 $this->post('/new', OperationsController::class . ':postNewTruck');
-
-                // Get Truck By ID
                 $this->get('/{id}', OperationsController::class . ':getTruckById')->setName('TMS.TruckById');
-                // Update Existing Truck
                 $this->post('/{id}', OperationsController::class . ':postTruckById');
+            });
+            // Services
+            $this->group('/service', function () {
+                $this->get('s[/]', OperationsController::class . ':getAllServices')->setName('TMS.AllServices');
+                $this->get('/new', OperationsController::class . ':getNewService')->setName('TMS.NewService');
+                $this->post('new', OperationsController::class . ':postNewService');
+                $this->get('/{id}', OperationsController::class . ':getServiceById')->setName('TMS.ServiceById');
+                $this->post('/{id}', OperationsController::class . ':postServiceById');
+            });
+            // Expenses
+            $this->group('/expense', function () {
+                $this->get('s[/]', OperationsController::class . ':getAllExpenses')->setName('TMS.AllExpenses');
+                $this->get('/new', OperationsController::class . ':getNewExpense')->setName('TMS.NewExpense');
+                $this->post('/new', OperationsController::class . ':postNewExpense');
+                $this->get('/{id}', OperationsController::class . ':getExpenseById')->setName('TMS.ExpenseById');
+                $this->post('/{id}', OperationsController::class . ':postExpenseById');
             });
         });
 

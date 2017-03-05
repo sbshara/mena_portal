@@ -18,6 +18,7 @@ class User extends Model {
 	protected $table = 'users';
 
 	protected $fillable = [
+        'id',
 		'emp_id',
 		'username',
 		'password',
@@ -32,7 +33,6 @@ class User extends Model {
 
 
 	public function setPassword($password) {
-
 		$this->update([
 			'password'  =>  password_hash($password, PASSWORD_DEFAULT),
 		]);
@@ -45,18 +45,37 @@ class User extends Model {
 	}
 
 	// TODO: verifyhash method as per codecourse PHP Authentication app
-	public function verifyHash($existing, $input){
-
-	}
+//	public function verifyHash($existing, $input){
+//
+//	}
 
 	public function getAll() {
 		return $this->all();
 	}
 
     public function fullName ($id) {
-        $user = $this->where('id', $id)-get();
-        return $user->first_name . ' ' . $user->last_name;
+//        $user = $this->where('id', $id)-get();
+        return $this->first_name . ' ' . $this->last_name;
     }
 
+    public function userEmployee () {
+        return Employee::find($this->emp_id);
+    }
+
+    public function userApplicant () {
+        return Applicant::find($this->userEmployee()->applicant_id);
+    }
+
+    public function userProfile () {
+        return ProfileSetting::where('user_id', $this->id)->get();
+    }
+
+//    public function userPermissions () {
+//
+//    }
+
+//    public function userMaster () {
+//
+//    }
 
 }

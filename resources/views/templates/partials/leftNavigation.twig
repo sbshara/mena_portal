@@ -158,7 +158,7 @@
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-truck"></i>
-                    &nbsp;<span>Truck Management System</span>
+                    &nbsp;<span>TMS</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
@@ -167,7 +167,7 @@
                     <li>
                         <a href="{{ path_for('TMS.Home') }}">
                             <i class="fa fa-dashboard"></i>
-                            <span>Main Dashboard</span>
+                            &nbsp;<span>Main Dashboard</span>
                         </a>
                     </li>
                     <li>
@@ -179,8 +179,8 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="">All Services</a></li>
-                            <li><a href="">New Service</a></li>
+                            <li><a href="{{ path_for('TMS.AllServices') }}">All Services</a></li>
+                            <li><a href="{{ path_for('TMS.NewService') }}">New Service</a></li>
                         </ul>
                     </li>
                     <li>
@@ -192,8 +192,8 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="">All Expenses</a></li>
-                            <li><a href="">New Expense</a></li>
+                            <li><a href="{{ path_for('TMS.AllExpenses') }}">All Expenses</a></li>
+                            <li><a href="{{ path_for('TMS.NewExpense') }}">New Expense</a></li>
                         </ul>
                     </li>
                     <li class="treeview">

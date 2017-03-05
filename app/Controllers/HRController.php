@@ -10,21 +10,14 @@ namespace App\Controllers;
 
 use App\Models\Addresses;
 use App\Models\ApplicantAddress;
-use App\Models\Languages;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 use Respect\Validation\Validator as v;
 use App\Models\Applicant;
 use App\Models\Employee;
 use App\Models\ApplicantDocs;
 use App\Models\Document;
-use App\Models\Country;
-use App\Models\State;
-use App\Models\City;
 use App\Models\VisaStatus;
 use App\Models\ApplicantLanguage;
-use App\Models\DepartmentHeads;
-use App\Helpers\Auth as HELPAuth;
 
 
 class HRController extends Controller {
@@ -49,7 +42,7 @@ class HRController extends Controller {
         $user = User::where('emp_id', $employee->id)->get();
         $langMap = ApplicantLanguage::where('applicant_id', $applicant->id)->get();
         $visa = VisaStatus::where('applicant_id', $applicant->id)->get();
-        $userMaster = HELPAuth::userMaster();
+        $userMaster = User::userMaster();
         return $this->view->render(
             $response,
             'auth/HR/Applicant/applicantById.twig',
