@@ -118,10 +118,6 @@ $container['cache'] = function ($container) {
 // Override notFoundHandler:
 $container['notFoundHandler'] = function ($container) {
     return new App\Handlers\NotFoundHandler($container['view']);
-//    return function ($request, $response) use ($container) {
-//        $response = $container->view->render($response, 'errors/404.twig');
-//        return $response->withStatus(404);
-//    };
 };
 
 

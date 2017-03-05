@@ -49,21 +49,15 @@ class OperationsController extends Controller {
 
     // TMS Upload Files
     public function postUploadFiles ($request, $response, $args) {
-        $files = $request->getUploadedFiles();
-        for ($i = 0; $i <= count($files); $i++){
-            if (empty($files[$i])){
-                throw new Exception('Expected a newfile');
-            }
-            if ($files[$i]->getError() === UPLOAD_ERR_OK) {
-                $uploadFileName = $files[$i]->getClientFilename();
-                $files[$i]->moveTo("/docs/TMS/" . $uploadFileName . $i);
-            }
-        }
-        return json_encode(
+        $file = $request->getUploadedFiles()['serviceAttachment'];
+        $uploadFileName = $file->getClientFilename();
+        $file->moveTo("/docs/TMS/" . $uploadFileName);
+//        return $response->withJson($files);
+        return $response->withJson(
             array(
                 'csrf_name'     =>  $this->container->csrf->getTokenName(),
                 'csrf_value'    =>  $this->container->csrf->getTockenValue(),
-                'files'         =>  $files
+                'files'         =>  $file
             )
         );
     }
@@ -187,7 +181,8 @@ class OperationsController extends Controller {
     }
 
     public function getNewService ($request, $response, $args) {
-        return $this->view->render($response, 'auth/TMS/Services/NewService.twig');
+//        return $this->view->render($response, 'auth/TMS/Services/NewService.twig');
+        return $this->view->render($response, 'auth/TMS/Services/upload.twig');
     }
 
     public function getServiceById ($request, $response, $args) {
