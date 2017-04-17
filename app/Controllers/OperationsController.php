@@ -50,6 +50,7 @@ class OperationsController extends Controller {
     // ======================================================================
     // @TMS Home Page
     public function getTMSindex ($request, $response, $args) {
+<<<<<<< HEAD
         isset($args['perPage']) ? $perPage = $args['perPage']: $perPage = 10;
         isset($args['page']) ? $page = $args['page'] : $page = 1;
         $allTrucks = AssetsTrucks::all()->count();
@@ -76,6 +77,23 @@ class OperationsController extends Controller {
                 'path'  =>  $request->getUri()->getPath(),
                 'query' =>  $request->getParams()
             ]
+=======
+        return $this->view->render($response, 'auth/TMS/Dashboard.twig');
+    }
+
+    // TMS Upload Files
+    public function postUploadFiles ($request, $response, $args) {
+        $file = $request->getUploadedFiles()['serviceAttachment'];
+        $uploadFileName = $file->getClientFilename();
+        $file->moveTo("/docs/TMS/" . $uploadFileName);
+//        return $response->withJson($files);
+        return $response->withJson(
+            array(
+                'csrf_name'     =>  $this->container->csrf->getTokenName(),
+                'csrf_value'    =>  $this->container->csrf->getTockenValue(),
+                'files'         =>  $file
+            )
+>>>>>>> origin/master
         );
         return $this->view->render($response, 'auth/TMS/Dashboard.twig', [
             'trucks'        =>  $trucks,
@@ -183,7 +201,8 @@ class OperationsController extends Controller {
         return $this->view->render($response, 'auth/TMS/Services/AllServices.twig', compact('services'));
     }
     public function getNewService ($request, $response, $args) {
-        return $this->view->render($response, 'auth/TMS/Services/NewService.twig');
+//        return $this->view->render($response, 'auth/TMS/Services/NewService.twig');
+        return $this->view->render($response, 'auth/TMS/Services/upload.twig');
     }
     public function getServiceById ($request, $response, $args) {
         $service = VehicleService::find($args['id']);

@@ -60,7 +60,27 @@ $container['view'] = function ($container) {            // Add the Twig View dep
 	return $view;
 };
 
+<<<<<<< HEAD
 require 'dependencies.php';
+=======
+// Add the validation dependency
+$container['validator'] = function ($container) {
+	return new App\Validation\Validator();
+};
+
+$container['cache'] = function ($container) {
+	return new \App\Middleware\HttpCache\CacheProvider();
+};
+
+// Override notFoundHandler:
+$container['notFoundHandler'] = function ($container) {
+    return new App\Handlers\NotFoundHandler($container['view']);
+};
+
+
+// Add the Controllers:
+$container['HomeController'] = function ($container) { return new \App\Controllers\HomeController($container); };
+>>>>>>> origin/master
 
 $container['csrf'] = function ($container) { return new Guard(); };
 
