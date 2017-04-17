@@ -33,12 +33,18 @@ class Auth {
 		return false;
 	}
 
-	public function attemptLDAP ($user, $password) {
+	public function attemptLDAP ($login, $password) {
 	    $ldap = ldap_connect("DXBHV-DC02.menaa.local");
-	    $usr = ldap_bind($ldap, $user, $password);
+	    $usr = ldap_bind($ldap, $login, $password);
 
-	    if ($usr) {
-	        return true;
+        if ($usr) {
+            $user = User::where('username', $login)->first();
+            if ($login) {
+                $_SESSION['user'] = $user->id;
+                return true;
+            } else {
+                return false;
+            }
         } else {
 	        return false;
         }
@@ -48,6 +54,7 @@ class Auth {
 	public function logout() {
 		unset($_SESSION['user']);
 		session_destroy();
+//        return true;
 	}
 
 	public function user() {
