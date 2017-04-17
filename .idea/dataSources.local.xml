@@ -2,12 +2,17 @@
 <project version="4">
   <component name="dataSourceStorageLocal">
     <data-source name="mena_portal@localhost" uuid="0911d869-a466-44a7-97fc-eb3ccbe13594">
+      <database-info product="MySQL" version="5.7.17" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+        <extra-name-characters>#@</extra-name-characters>
+        <identifier-quote-string>`</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="mixed" quoted-identifiers="upper" />
       <secret-storage>master_key</secret-storage>
       <user-name>root</user-name>
-      <schema-pattern>mena_portal.*</schema-pattern>
-      <default-schemas>mena_portal.*</default-schemas>
+      <introspection-schemas>*:,mena_portal</introspection-schemas>
     </data-source>
     <data-source name="MySQL - @mysql2000.my-virtual-panel.com" uuid="d9945329-8497-4087-a4dd-c620fbef4012">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
       <secret-storage>master_key</secret-storage>
       <first-sync>true</first-sync>
       <user-name>shiblie</user-name>

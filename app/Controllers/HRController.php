@@ -31,7 +31,10 @@ class HRController extends Controller {
 		return $this->view->render($response, 'auth/HR/Applicant/newApplicant.twig');
 	}
 
-	public function getAllApplicants ($request, $response) {
+	public function getAllApplicants ($request, $response, $args) {
+        // Per Page
+        // Page Number
+        // get all applicants here (remove from globals)
 		return $this->view->render($response, 'auth/HR/Applicant/allApplicants.twig');
 	}
 
@@ -68,13 +71,13 @@ class HRController extends Controller {
         // If no profile pic provided, the app would read the gender and choose default image accordingly
         if($profile->getClientFilename() == '' && $applicant->prof_pic = null) {
             if($request->getParam('gender') === 'M') {
-                $profile_location = '/img/applicants/defaultMale.png';
+                $profile_location = './img/applicants/defaultMale.png';
             } else {
-                $profile_location = '/img/applicants/defaultFemale.png';
+                $profile_location = './img/applicants/defaultFemale.png';
             }
         } else {
             // If profile pic is provided, then get the name, and save the name & destination in a variable:
-            $profile_location = 'img/applicants/' .
+            $profile_location = './img/applicants/' .
                 $request->getParam('first_name') . $request->getParam('last_name') .
                 date('Y-m-d') . '_' .time() . $profile->getClientFilename();
         }
@@ -132,7 +135,7 @@ class HRController extends Controller {
         if (is_null($attachmentValidation) ? '' : $attachmentValidation->failed() || $fieldValidation->failed()) {
             $this->flash->addMessage('danger', 'There are errors in some fields, please check and try again!');
             if($applicant) {
-                return $response->withRedirect($this->router->pathFor('HR.ApplicantById', $applicant->id));
+                return $response->withRedirect($this->router->pathFor('HR.ApplicantById', [ 'id' => $applicant->id ] ));
             }
             return $response->withRedirect($this->router->pathFor('HR.NewApplicant'));
         }
@@ -201,7 +204,7 @@ class HRController extends Controller {
                 $issueDate          = 'attachmentIssueDate' . $i;
                 $issueExpiry        = 'attachmentExpiryDate' . $i;
                 $attachmentLocation =
-                    '/docs/applicants/' . 'applicantID_' .
+                    './docs/applicants/' . 'applicantID_' .
                     $applicant->id . '_date' .
                     date('Y-m-d') . '-time' . time() . '_filename_' .
                     $attachment->getClientFilename();
@@ -391,7 +394,6 @@ class HRController extends Controller {
         }
     }
 
-
 	// Employees
 	public function getNewEmployee ($request, $response) {
 		return$this->view->render($response, 'auth/HR/Employee/newEmployee.twig');
@@ -490,7 +492,6 @@ class HRController extends Controller {
         return $response->withRedirect($this->router->pathFor('HR.NewSkill'));
 	}
 
-
 	// Departments:
 	public function getNewDepartment ($request, $response) {
 		return $this->view->render($response, 'auth/HR/Department/newDepartment.twig');
@@ -503,7 +504,6 @@ class HRController extends Controller {
 	public function postNewDepartment ($request, $response) {
 		//
 	}
-
 
 	// Education:
 	public function getNewEducation ($request, $response) {
@@ -518,7 +518,6 @@ class HRController extends Controller {
 		//
 	}
 
-
 	// Experience:
 	public function getNewExperience ($request, $response) {
 		return $this->view->render($response, 'auth/HR/Experience/newExperience.twig');
@@ -532,22 +531,20 @@ class HRController extends Controller {
 		//
 	}
 
-
 	// Interview:
-	public function getNewInterview ($request, $response, $arg) {
-        $applicantID = $arg['applicant_id'];
+	public function getNewInterview ($request, $response, $args) {
+        $applicantID = $args['applicant_id'];
         $applicant = Applicant::where('id', $applicantID)->get()->first();
 		return $this->view->render($response, 'auth/HR/Interview/newInterview.twig',compact('applicant'));
 	}
 
-	public function getAllInterviews ($request, $response, $arg) {
+	public function getAllInterviews ($request, $response, $args) {
 		return $this->view->render($response, 'auth/HR/Interview/allInterviews.twig');
 	}
 
-	public function postNewInterview ($request, $response, $arg) {
+	public function postNewInterview ($request, $response, $args) {
 		//
 	}
-
 
 	// Skill:
 	public function getNewSkill ($request, $response) {
@@ -561,5 +558,9 @@ class HRController extends Controller {
 	public function postNewSkill ($request, $response) {
 		//
 	}
+
+
+
+
 
 }

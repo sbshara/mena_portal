@@ -12,13 +12,14 @@ namespace App\Middleware;
 class CsrfViewMiddleware extends Middleware {
 
     /**
-     * @param $request
+     * @param $request PSR-7
      * @param $response
      * @param $next
-     * @return mixed
+     * @return HTML: 2 input:hidden (CSRF NAME & CSRF VALUE)
      */
     public function __invoke ($request, $response, $next) {
-		$this->container
+		$this
+            ->container
             ->view
             ->getEnvironment()
             ->addGlobal('csrf', [
@@ -26,11 +27,11 @@ class CsrfViewMiddleware extends Middleware {
                     $this->container->csrf->getTokenNameKey() .
                     '" value="' .
                     $this->container->csrf->getTokenName() .
-                    '"><input type="hidden" name="' .
+                    '" id="csrf_name"><input type="hidden" name="' .
                     $this->container->csrf->getTokenValueKey() .
                     '" value="' .
                     $this->container->csrf->getTokenValue() .
-                    '">'
+                    '" id="csrf_value">'
             ]);
 		$response = $next($request, $response);
 		return $response;

@@ -14,7 +14,7 @@
     <section class="content">
         <div class="row">
             <div class="col-md-12">
-                {% for vehicle in OPS.Vehicles %}
+                {% for vehicle in trucks %}
                     <div class="box">
                         <div class="box-header with-border">
                             <h3 class="box-title"><a class="fa fa-truck" href="{{ path_for('TMS.TruckById', {id: vehicle.id}) }}"> {{ vehicle.nickName() }}</a> <small> (VIN: {{ vehicle.vin | e }})</small></h3>
@@ -57,8 +57,29 @@
                             </div>
                         </div>
                     </div>
-                    <br />
                 {% endfor %}
+
+                <ul class="pagination">
+                    <li><a href="{{ path_for('TMS.Home', { page: 1, perPage: pagination.perPage }) }}">First</a></li>
+                    <li><a href="{{ path_for('TMS.Home', { page: 1, perPage: pagination.perPage }) }}">&laquo;</a></li>
+                    {% for i in pagination.firstVisible..pagination.lastVisible %}
+                        <li class="{% if i == pagination.page %}disabled{% endif %}">
+                            <a
+                                    href="{{ path_for(
+                                    'TMS.Home',
+                                    {
+                                        page: i,
+                                        perPage: pagination.perPage
+                                    }) }}"
+                                    class="{% if i == pagination.page %}active{% endif %}"
+                            >{{ i | e }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                    <li><a href="{{ path_for('TMS.Home', { page: pagination.totalPages, perPage: pagination.perPage }) }}">&raquo;</a></li>
+                    <li><a href="{{ path_for('TMS.Home', { page: pagination.totalPages, perPage: pagination.perPage }) }}">Last</a></li>
+                </ul>
+
             </div>
         </div>
 {% endblock %}

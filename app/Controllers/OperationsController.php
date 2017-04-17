@@ -12,10 +12,16 @@ use App\Models\AssetsTrucks;
 use App\Models\VehicleService;
 use Respect\Validation\Validator as v;
 use App\Models\Guidelines;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 
 class OperationsController extends Controller {
 
+    /*
+     * @param $request
+     * @param $response
+     * @param $args
+     */
 
     // ======================================================================
     //                          Guidelines
@@ -42,44 +48,50 @@ class OperationsController extends Controller {
     // ======================================================================
     //                    TMS (Truck Management System)
     // ======================================================================
-    // TMS Home Page
+    // @TMS Home Page
     public function getTMSindex ($request, $response, $args) {
-        return $this->view->render($response, 'auth/TMS/Dashboard.twig');
-    }
+        isset($args['perPage']) ? $perPage = $args['perPage']: $perPage = 10;
+        isset($args['page']) ? $page = $args['page'] : $page = 1;
+        $allTrucks = AssetsTrucks::all()->count();
+        $atrucks = AssetsTrucks::take($perPage)->skip(($page - 1) * $perPage)->get();
+//        $trucks = AssetsTrucks::all()->paginate(2);
+        $pagination = [
+            'perPage'       =>  $perPage,
+            'page'          =>  $page,
+            'total'         =>  $allTrucks,
+            'totalPages'    =>  ceil($allTrucks / $perPage),
+            'visible'       =>  5,
+            'firstVisible'  =>  $page - floor(5 / 2),
+            'lastVisible'   =>  $page + floor(5 / 2),
+            'path'          =>  $request->getUri()->getPath(),
+            'query'         =>  $request->getParams()
+        ];
 
-    // TMS Upload Files
-    public function postUploadFiles ($request, $response, $args) {
-        $files = $request->getUploadedFiles();
-        for ($i = 0; $i <= count($files); $i++){
-            if (empty($files[$i])){
-                throw new Exception('Expected a newfile');
-            }
-            if ($files[$i]->getError() === UPLOAD_ERR_OK) {
-                $uploadFileName = $files[$i]->getClientFilename();
-                $files[$i]->moveTo("/docs/TMS/" . $uploadFileName . $i);
-            }
-        }
-        return json_encode(
-            array(
-                'csrf_name'     =>  $this->container->csrf->getTokenName(),
-                'csrf_value'    =>  $this->container->csrf->getTockenValue(),
-                'files'         =>  $files
-            )
+        $trucks = new LengthAwarePaginator(
+            $atrucks,
+            count($allTrucks),
+            $perPage,
+            $page,
+            [
+                'path'  =>  $request->getUri()->getPath(),
+                'query' =>  $request->getParams()
+            ]
         );
+        return $this->view->render($response, 'auth/TMS/Dashboard.twig', [
+            'trucks'        =>  $trucks,
+            'pagination'    =>  $pagination
+        ]);
     }
 
-    // Trucks
-        // All Trucks
+
+//======================START TRUCKS CLASSES==============================================================
     public function getAllTrucks ($request, $response, $args) {
         $trucks = AssetsTrucks::all();
         return $this->view->render($response, 'auth/TMS/Trucks/AllTrucks.twig', compact('trucks'));
     }
-
-        // New Truck
     public function getNewTruck ($request, $response, $args) {
         return $this->view->render($response, 'auth/TMS/Trucks/newTruck.twig');
     }
-
     public function postNewTruck ($request, $response, $args) {
         $attachCount = $request->getParam('attachmentCounter');
         $warranty = $request->getParam('warranty_val');
@@ -149,28 +161,13 @@ class OperationsController extends Controller {
             'warranty_expiry_date'      =>  $request->getParam('warranty_expiry_date'),
             'warranty_expiry_mileage'   =>  $request->getParam('warranty_expiry_mileage'),
         ]);
-        $this->flash->addMessage(
-            'success',
-            "Vehicle record (" .
-            html(
-                "<a href='" .
-                $this->router->pathFor(
-                    'TMS.TruckById',
-                    [
-                        'id' => $truck->id
-                    ]) .
-                "'>" .
-                $truck->registration_code .
-                "-" .
-                $truck->registration_number .
+        $this->flash->addMessage('success', "Vehicle record (" . html(
+                "<a href='" . $this->router->pathFor('TMS.TruckById', ['id' => $truck->id ]) . "'>" .
+                    $truck->registration_code . "-" . $truck->registration_number .
                 "</a>"
-            ) .
-            ") was created successfully"
-        );
+            ) . ") was created successfully");
         return $response->withRedirect($this->router->pathFor('TMS.AllTrucks'));
     }
-
-        // Truck By ID
     public function getTruckById ($request, $response, $args) {
         $truck = AssetsTrucks::find($args['id']);
         return $this->view->render($response, 'auth/TMS/Trucks/TruckById.twig', compact('truck'));
@@ -185,21 +182,17 @@ class OperationsController extends Controller {
         $services = VehicleService::all();
         return $this->view->render($response, 'auth/TMS/Services/AllServices.twig', compact('services'));
     }
-
     public function getNewService ($request, $response, $args) {
         return $this->view->render($response, 'auth/TMS/Services/NewService.twig');
     }
-
     public function getServiceById ($request, $response, $args) {
         $service = VehicleService::find($args['id']);
         return $this->view->render($response, 'auth/TMS/Services/ServiceById.twig', compact('service'));
     }
-
     public function postNewService ($request, $response, $args) {
         // Validation
         // Create Service Record
     }
-
     public function postServiceById ($request, $response, $args) {
         $service = VehicleService::find($args['id']);
 

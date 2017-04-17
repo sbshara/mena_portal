@@ -16,8 +16,11 @@
             <p class="login-box-msg">Sign in to start your session</p>
             <form action="{{ path_for('auth.Signin') }}" method="post" autocomplete="off">
                 <div class="form-group has-feedback{{ errors.username ? ' has-error' : '' }}">
-                    <input type="text" class="form-control" placeholder="Username" name="username" id="username" value="{{ old.username }}">
-                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Username" name="username" id="username" value="{{ old.username }}">
+                        <span class="input-group-addon">@menaa.local</span>
+                    </div>
+                    {#<span class="glyphicon glyphicon-user form-control-feedback"></span>#}
                     {% if errors.username %}
                         <span class="help-block">{{ errors.username | first }}</span>
                     {% endif %}

@@ -1,12 +1,15 @@
 {% extends 'templates/app.twig' %}
 
-{% block title %}Assets & Resources - Trucks{% endblock %}
+{% block title %}Assets & Resources - Truck {{ truck.nickName() }}{% endblock %}
 
 {% block contents %}
+    Truck By ID
+    <br />
+    This Truck Plate is: {{ truck.nickName() }}
+    <br />
+    {#Current Mileage: {{ truck.currentMileage() }}#}
 
-
-
-
+    <br />
     <div class="carousel-slide" id="truckCarousel" data-ride="carousel">
         <ol class="carousel-indicators">
             {% for image in images %}
@@ -35,7 +38,4 @@
     </div>
 
 
-    Truck By ID <br>
-
-    This Truck Plate is: {{ truck.nickName() }}
 {% endblock %}

@@ -33,6 +33,18 @@ class Auth {
 		return false;
 	}
 
+	public function attemptLDAP ($user, $password) {
+	    $ldap = ldap_connect("DXBHV-DC02.menaa.local");
+	    $usr = ldap_bind($ldap, $user, $password);
+
+	    if ($usr) {
+	        return true;
+        } else {
+	        return false;
+        }
+
+    }
+
 	public function logout() {
 		unset($_SESSION['user']);
 		session_destroy();

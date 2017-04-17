@@ -9,7 +9,7 @@
 use App\Middleware\AuthMiddleware;
 use App\Controllers\AJAXController;
 
-$app->group('', function () {
+$app->group('/auth', function () {
 	// AJAX Requests:
 	$this->group('/AJAX', function () {
 		// Get States by Country ID:
@@ -24,6 +24,8 @@ $app->group('', function () {
         $this->get('/department/{department_id}', AJAXController::class . ':DepartmentHead')->setName('AJAX.headByDepartment');
         // Get Vehicle Models using Brand Name
         $this->get('/models/{brand_name}', AJAXController::class . ':modelByBrand')->setName('AJAX.ModelByBrand');
+        // TMS Uploading Files
+        $this->post('/upload/', AJAXController::class . ':postUploadFiles')->setName('TMS.Upload');
 	});
 
 })->add(new AuthMiddleware($container));

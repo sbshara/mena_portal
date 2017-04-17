@@ -57,13 +57,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
         {#<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>#}
         <script src="{{ base_url() }}/js/respond1.4.2.min.js"></script>
     <![endif]-->
-    <!-- Google Captcha -->
-    <script src="https://www.google.com/recaptcha/api.js"></script>
-    <!-- CK Editor -->
-    <script src="{{ base_url() }}/plugins/ckeditor/ckeditor.js"></script>
 
-    <!-- DropZone JS-->
-    <script src="{{ base_url() }}/plugins/dropzone/dist/dropzone.js"></script>
+    {% block additionalCSS %}
+    {% endblock %}
+    <!-- My Custom Styles -->
+    <link rel="stylesheet" href="{{ base_url() }}/css/shiblie.css">
 
     <title>MENA Assistance | {% block title %}{% endblock %}</title>
     <link rel="icon" type="image/png" href="{{ base_url() }}/img/favicon.png">
@@ -170,8 +168,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <script src="{{ base_url() }}/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="{{ base_url() }}/plugins/datatables/dataTables.bootstrap.min.js"></script>
-{#<script src="{{ base_url() }}/"></script>#}
-{#<script src="{{ base_url() }}/"></script>#}
+
+{#<script src="https://unpkg.com/react@15/dist/react.js"></script>#}
+<script src="{{ base_url() }}/plugins/reactjs/react.min.js"></script>
+{#<script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>#}
+<script src="{{ base_url() }}/plugins/reactjs/react-dom.min.js"></script>
+
+<!-- Google Captcha -->
+{#<script src="https://www.google.com/recaptcha/api.js"></script>#}
+<!-- CK Editor -->
+<script src="{{ base_url() }}/plugins/ckeditor/ckeditor.js"></script>
+
+<!-- DropZone JS-->
+<script src="{{ base_url() }}/plugins/dropzone/dist/dropzone.js"></script>
+
+{% block additionalJS %}
+{% endblock %}
 
 <!-- My Custom functions JS -->
 <script src="{{ base_url() }}/js/shiblie.js"></script>

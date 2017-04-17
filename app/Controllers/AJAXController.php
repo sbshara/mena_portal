@@ -79,4 +79,13 @@ class AJAXController extends Controller {
         return $response->withJson($models);
     }
 
+    // TMS Upload Files
+    public function postUploadFiles ($request, $response, $args) {
+        $files = $request->getUploadedFiles()->first();
+        $uploadFileName = $files->getClientFilename();
+        $destination = "./docs/TMS/" . $uploadFileName;
+        $files->moveTo($destination);
+        return $this->view->render($response,'auth/TMS/Services/NewService.twig');
+    }
+
 }

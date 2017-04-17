@@ -32,6 +32,19 @@
             <li class="header">MENA Assistance</li>
             <!-- Optionally, you can add icons to the links -->
             <li class="treeview">
+                <a href="{{ path_for('PRO.ProjectHome') }}">
+                    <i class="fa fa-diamond"></i>
+                    <span>Projects</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+
+
+
+
+
+
                 <a href="{{ path_for('HR.Home')}}">
                     <i class="fa fa-book"></i>
                     &nbsp;<span>Human Resources</span>
@@ -165,7 +178,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li>
-                        <a href="{{ path_for('TMS.Home') }}">
+                        <a href="{{ path_for('TMS.Home', {page:1, perPage:5}) }}">
                             <i class="fa fa-dashboard"></i>
                             &nbsp;<span>Main Dashboard</span>
                         </a>

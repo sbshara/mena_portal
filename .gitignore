@@ -1,5 +1,10 @@
-vendor/*
-.DS_*
 composer.lock
-cache/*
+config/*
+.DS_*
 .idea/*
+vendor/*
+app/cache/*
+*.jpeg
+*.jpg
+*.png
+*.bmp

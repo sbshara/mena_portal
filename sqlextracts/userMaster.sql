@@ -1,5 +1,4 @@
 select
-
   tblemp.emp_ref AS emp_ref,
   tblapp.first_name AS first_name,
   tblemp.middle_name AS middle_name,
@@ -123,32 +122,32 @@ select
 from (((((((((((((((((((((((((((((
     mena_portal.applicants tblapp left join
       mena_portal.employees tblemp on ((tblemp.applicant_id = tblapp.id))) left join
-        mena_portal.users tblusr on((tblusr.emp_id = tblemp.id))) left join
-          mena_portal.applicants_addresses mapadr on((tblapp.id = mapadr.applicant_id))) left join
-            mena_portal.addresses tbladr on((mapadr.address_id = tbladr.id))) left join
-              mena_portal.applicant_degree tbldgr on((tbldgr.applicant_id = tblapp.id))) left join
-                mena_portal.applicant_docs mapdoc on((mapdoc.applicant_id = tblapp.id))) left join
-                  mena_portal.documents tbldoc on((tbldoc.id = mapdoc.doc_id))) left join
-                    mena_portal.applicant_experience tblexp on((tblexp.applicant_id = tblapp.id))) left join
-                      mena_portal.applicant_skills mapskl on((mapskl.applicant_id = tblapp.id))) left join
-                        mena_portal.skills tblskl on((tblskl.id = mapskl.skill_id))) left join
-                          mena_portal.salaries tblsal on((tblsal.emp_id = tblemp.id))) left join
-                            mena_portal.benefits tblben on((tblben.id = tblsal.benefit_id))) left join
-                                mena_portal.dept_emp mapdpt on((mapdpt.emp_id = tblemp.id))) left join
-                                  mena_portal.departments tbldpt on((tbldpt.id = mapdpt.dept_no))) left join
-                                    mena_portal.emp_leaves maplvs on((maplvs.emp_id = tblemp.id))) left join
-                                        mena_portal.leavetypes tbllvt on((tbllvt.id = maplvs.leave_type))) left join
-                                          mena_portal.emp_title mapttl on((mapttl.emp_id = tblemp.id))) left join
-                                            mena_portal.titles tblttl on((tblttl.id = mapttl.title_id))) left join
-                                              mena_portal.interview_interviewer mapint on((mapint.interviewer_id = tblusr.id))) left join
-                                                  mena_portal.interviews tblint on((tblint.id = tblapp.id))) left join
-                                                      mena_portal.interview_schedule_mapping mapisch on((mapisch.interview_id = tblint.id))) left join
-                                                        mena_portal.interview_schedule tblisch on((tblisch.id = mapisch.interview_schedule_id))) left join
-                                                          mena_portal.profile_settings tblpro on((tblpro.user_id = tblusr.id))) left join
-                                                            mena_portal.visa_status tblvsa on((tblvsa.applicant_id = tblapp.id))) left join
-                                                              mena_portal.role_user maprol on((maprol.user_id = tblusr.id))) left join
-                                                                  mena_portal.roles tblrol on((tblrol.id = maprol.role_id))) left join
-                                                                    mena_portal.perm_role mapperm on((mapperm.role_id = tblrol.id)))left join
-                                                                      mena_portal.permissions tblperm on((tblperm.id = mapperm.perm_id))) LEFT JOIN
-                                                                        mena_portal.countries tblcnry on ((tblapp.nationality = tblcnry.id)) LEFT JOIN
-                                                                        mena_portal.cities tblcti on ((tblemp.birth_place = tblcti.id)));
+      mena_portal.users tblusr on((tblusr.emp_id = tblemp.id))) left join
+      mena_portal.applicants_addresses mapadr on((tblapp.id = mapadr.applicant_id))) left join
+      mena_portal.addresses tbladr on((mapadr.address_id = tbladr.id))) left join
+      mena_portal.applicant_degree tbldgr on((tbldgr.applicant_id = tblapp.id))) left join
+      mena_portal.applicant_docs mapdoc on((mapdoc.applicant_id = tblapp.id))) left join
+      mena_portal.documents tbldoc on((tbldoc.id = mapdoc.doc_id))) left join
+      mena_portal.applicant_experience tblexp on((tblexp.applicant_id = tblapp.id))) left join
+      mena_portal.applicant_skills mapskl on((mapskl.applicant_id = tblapp.id))) left join
+      mena_portal.skills tblskl on((tblskl.id = mapskl.skill_id))) left join
+      mena_portal.salaries tblsal on((tblsal.emp_id = tblemp.id))) left join
+      mena_portal.benefits tblben on((tblben.id = tblsal.benefit_id))) left join
+      mena_portal.dept_emp mapdpt on((mapdpt.emp_id = tblemp.id))) left join
+      mena_portal.departments tbldpt on((tbldpt.id = mapdpt.dept_no))) left join
+      mena_portal.emp_leaves maplvs on((maplvs.emp_id = tblemp.id))) left join
+      mena_portal.leavetypes tbllvt on((tbllvt.id = maplvs.leave_type))) left join
+      mena_portal.emp_title mapttl on((mapttl.emp_id = tblemp.id))) left join
+      mena_portal.titles tblttl on((tblttl.id = mapttl.title_id))) left join
+      mena_portal.interview_interviewer mapint on((mapint.interviewer_id = tblusr.id))) left join
+      mena_portal.interviews tblint on((tblint.id = tblapp.id))) left join
+      mena_portal.interview_schedule_mapping mapisch on((mapisch.interview_id = tblint.id))) left join
+      mena_portal.interview_schedule tblisch on((tblisch.id = mapisch.interview_schedule_id))) left join
+      mena_portal.profile_settings tblpro on((tblpro.user_id = tblusr.id))) left join
+      mena_portal.visa_status tblvsa on((tblvsa.applicant_id = tblapp.id))) left join
+      mena_portal.role_user maprol on((maprol.user_id = tblusr.id))) left join
+      mena_portal.roles tblrol on((tblrol.id = maprol.role_id))) left join
+      mena_portal.perm_role mapperm on((mapperm.role_id = tblrol.id)))left join
+      mena_portal.permissions tblperm on((tblperm.id = mapperm.perm_id))) LEFT JOIN
+      mena_portal.countries tblcnry on ((tblapp.nationality = tblcnry.id)) LEFT JOIN
+      mena_portal.cities tblcti on ((tblemp.birth_place = tblcti.id)));

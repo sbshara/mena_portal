@@ -11,6 +11,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class AssetsTrucks extends Model {
 
     protected $table = 'assets_trucks';
@@ -33,17 +34,17 @@ class AssetsTrucks extends Model {
     ];
 
     public function nickName () {
-        return strtoupper($this->registration_code) . '-' . $this->registration_number;
+        return $this->brandName() . ' => ' . $this->modelName() . ' => ' . strtoupper($this->registration_code) . '-' . $this->registration_number;
     }
 
     public function brandName () {
         $brand = VehicleBrandModel::find($this->model);
-        return $brand['brand_name'];
+        return $brand->brand_name;
     }
 
     public function modelName() {
         $model = VehicleBrandModel::find($this->model);
-        return $model['model_name'];
+        return $model->model_name;
     }
 
     public function brandModelYear () {
@@ -52,6 +53,13 @@ class AssetsTrucks extends Model {
 
     public function images () {
         return TruckAttachments::where('truck_id', $this->id)->get();
+    }
+
+    public function currentMileage() {
+        $serviceRecord =  VehicleService::where('truck_id', $this->id)->max('service_mileage')->get()['service_mileage'];
+        dump($serviceRecord);
+        die();
+        // return $serviceRecord;
     }
 
 }
