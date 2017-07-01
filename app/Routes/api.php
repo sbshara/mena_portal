@@ -26,6 +26,8 @@ $app->group('/auth', function () {
         $this->get('/models/{brand_name}', AJAXController::class . ':modelByBrand')->setName('AJAX.ModelByBrand');
         // TMS Uploading Files
         $this->post('/upload/', AJAXController::class . ':postUploadFiles')->setName('TMS.Upload');
+        // update project details (from project list):
+        $this->post('/PRO/UPDATE/{project_id}', AJAXController::class . ':postUpdateProject')->setName('PRO.Update');
 	});
 
 })->add(new AuthMiddleware($container));

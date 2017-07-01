@@ -460,5 +460,32 @@ $('#allTrucks').DataTable({
     'autoWidth': true
 });
 
+function updateProgressBar(obj) {
+    var prog = obj.value;
+    var reco = obj.getAttribute('record');
+    var localurl = document.location.origin + '/~shiblie/mena_portal/public' + '/AJAX/PRO/UPDATE/' + reco;
+
+    alert(localurl);
+
+    $.ajax({
+        start:      function () { Pace.restart(); },
+        url:        localurl,
+        async:      true,
+        type:       'post',
+        success:    function(response){
+            var option_data = '<option>Please select a model...</option>';
+            $.each(response, function(i, response){
+                option_data = option_data + "<option id='"+response.id + "' value='" +response.id+"'>"+response.model_name+"</option>";
+            });
+            $('#' + trgt).html(option_data);
+        }
+    });
+
+
+    //$('#progressBar').attr('aria-valuenow', prog);
+    //$('#progressBar').width(prog);
+};
+
+
 
 

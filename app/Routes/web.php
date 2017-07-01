@@ -144,23 +144,50 @@ $app->group('/auth', function () {
     // Group all URLs that start with /ops
     $this->group('/OPS', function () {
         $this->get('[/]', OperationsController::class . ':index')->setName('OPS.Home');
+    });
 
-        // projects
-        $this->group('/project', function (){
-//            $this->get('s', ProjectsController::class . ':getAllProjects')->setName('PRO.Projects');
-//            $this->get('/{project_id}', ProjectsController::class . ':getProjectById')->setName('PRO.ProjectById');
-            $this->get('/', ProjectsController::class . ':index')->setName('PRO.ProjectHome');
+    // projects
+    $this->group('/project', function (){
 
-            // Tasks
+        $this->get('/new', ProjectsController::class . ':getNewProject')->setName('PRO.NewProject');
+        $this->post('/new', ProjectsController::class . ':postNewProject');
+
+        $this->get('s/', ProjectsController::class . ':getAllProjects')->setName('PRO.AllProjects');
+
+
+        $this->group('/project{project_id}', function () {
+
+            $this->get('/', ProjectsController::class . ':getProjectById')->setName('PRO.ProjectById');
+            $this->post('/', ProjectsController::class . ':postProjectById');
+            $this->delete('/', ProjectsController::class . ':deleteProjectById');
+
+
+            // tasks within a project
             $this->group('/task', function () {
-//                $this->get('s', ProjectsController::class . ':getAllTasks')->setName('PRO.Tasks');
-//                $this->get('/{task_id}', ProjectsController::class . ':getTaskById')->setName('PRO.TaskById');
-//                $this->get('/', ProjectsController::class . ':TaskIndex')->setName('PRO.TaskHome');
+
+                $this->get('s/', ProjectsController::class . ':getTasksByProjectId')->setName('PRO.AllProjectTasks');
+
+                $this->get('/new', ProjectsController::class . ':getNewTask')->setName('PRO.NewTask');
+                $this->post('/new', ProjectsController::class . ':postNewTask');
+
+                $this->get('/task{task_id}', ProjectsController::class . ':getTaskById')->setName('PRO.TaskById');
+                $this->post('/task{task_id}', ProjectsController::class . ':postTaskById');
+                $this->delete('/task{task_id}', ProjectsController::class . ':deleteTaskById');
             });
+
         });
 
+        $this->get('/', ProjectsController::class . ':ProjectIndex')->setName('PRO.Home');
 
+
+        $this->group('/task', function () {
+
+            $this->get('s/', ProjectsController::class . ':getAllTasks')->setName('PRO.AllTasks');
+            $this->get('/', ProjectsController::class . ':TaskIndex')->setName('PRO.TaskHome');
+
+        });
     });
+
 
     // Group all URLs that start with /Accounts
     $this->group('/accounts', function () {

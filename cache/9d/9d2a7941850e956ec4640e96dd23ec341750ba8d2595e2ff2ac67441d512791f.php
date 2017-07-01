@@ -61,7 +61,7 @@ class __TwigTemplate_d0fb58445af78c3e922bffa375fc851745dcebad9ef718aed1ba743b370
             <li class=\"treeview\">
                 <a href=\"";
         // line 35
-        echo twig_escape_filter($this->env, $this->env->getExtension('Slim\Views\TwigExtension')->pathFor("PRO.ProjectHome"), "html", null, true);
+        echo twig_escape_filter($this->env, $this->env->getExtension('Slim\Views\TwigExtension')->pathFor("PRO.Home"), "html", null, true);
         echo "\">
                     <i class=\"fa fa-diamond\"></i>
                     <span>Projects</span>
@@ -69,14 +69,25 @@ class __TwigTemplate_d0fb58445af78c3e922bffa375fc851745dcebad9ef718aed1ba743b370
                         <i class=\"fa fa-angle-left pull-right\"></i>
                     </span>
                 </a>
-
-
-
-
-
-
+                <ul class=\"treeview-menu\">
+                    <li class=\"treeview\">
+                        <a href=\"";
+        // line 44
+        echo twig_escape_filter($this->env, $this->env->getExtension('Slim\Views\TwigExtension')->pathFor("PRO.AllProjects"), "html", null, true);
+        echo "\">
+                            <i class=\"fa fa-diamond\"></i>
+                            &nbsp;<span>All Projects</span>
+                            <span class=\"pull-right-container\">
+                                <i class=\"fa fa-angle-left pull-right\"></i>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!-- END of Projects Tab-->
+            <li>
                 <a href=\"";
-        // line 48
+        // line 56
         echo twig_escape_filter($this->env, $this->env->getExtension('Slim\Views\TwigExtension')->pathFor("HR.Home"), "html", null, true);
         echo "\">
                     <i class=\"fa fa-book\"></i>
@@ -88,7 +99,7 @@ class __TwigTemplate_d0fb58445af78c3e922bffa375fc851745dcebad9ef718aed1ba743b370
                 <ul class=\"treeview-menu\">
                     <li class=\"treeview\">
                         <a href=\"";
-        // line 57
+        // line 65
         echo twig_escape_filter($this->env, $this->env->getExtension('Slim\Views\TwigExtension')->pathFor("HR.AllApplicants"), "html", null, true);
         echo "\">
                             <i class=\"fa fa-graduation-cap\"></i>
@@ -99,18 +110,18 @@ class __TwigTemplate_d0fb58445af78c3e922bffa375fc851745dcebad9ef718aed1ba743b370
                         </a>
                         <ul class=\"treeview-menu\">
                             <li><a href=\"";
-        // line 65
+        // line 73
         echo twig_escape_filter($this->env, $this->env->getExtension('Slim\Views\TwigExtension')->pathFor("HR.NewApplicant"), "html", null, true);
         echo "\">New Applicant</a></li>
                             <li><a href=\"";
-        // line 66
+        // line 74
         echo twig_escape_filter($this->env, $this->env->getExtension('Slim\Views\TwigExtension')->pathFor("HR.AllApplicants"), "html", null, true);
         echo "\">List Applicants</a></li>
                         </ul>
                     </li>
                     <li class=\"treeview\">
                         <a href=\"";
-        // line 70
+        // line 78
         echo twig_escape_filter($this->env, $this->env->getExtension('Slim\Views\TwigExtension')->pathFor("HR.AllEmployees"), "html", null, true);
         echo "\">
                             <i class=\"fa fa-black-tie\"></i>
@@ -126,7 +137,7 @@ class __TwigTemplate_d0fb58445af78c3e922bffa375fc851745dcebad9ef718aed1ba743b370
                     </li>
                     <li class=\"treeview\">
                         <a href=\"";
-        // line 83
+        // line 91
         echo twig_escape_filter($this->env, $this->env->getExtension('Slim\Views\TwigExtension')->pathFor("HR.AllUsers"), "html", null, true);
         echo "\">
                             <i class=\"fa fa-users\"></i>
@@ -142,7 +153,7 @@ class __TwigTemplate_d0fb58445af78c3e922bffa375fc851745dcebad9ef718aed1ba743b370
                     </li>
                     <li class=\"treeview\">
                         <a href=\"";
-        // line 96
+        // line 104
         echo twig_escape_filter($this->env, $this->env->getExtension('Slim\Views\TwigExtension')->pathFor("HR.AllDepartments"), "html", null, true);
         echo "\">
                             <i class=\"fa fa-cubes\"></i>
@@ -158,7 +169,7 @@ class __TwigTemplate_d0fb58445af78c3e922bffa375fc851745dcebad9ef718aed1ba743b370
                     </li>
                     <li class=\"treeview\">
                         <a href=\"";
-        // line 109
+        // line 117
         echo twig_escape_filter($this->env, $this->env->getExtension('Slim\Views\TwigExtension')->pathFor("HR.AllInterviews"), "html", null, true);
         echo "\">
                             <i class=\"fa fa-calendar-check-o\"></i>
@@ -174,7 +185,7 @@ class __TwigTemplate_d0fb58445af78c3e922bffa375fc851745dcebad9ef718aed1ba743b370
                     </li>
                     <li class=\"treeview\">
                         <a href=\"";
-        // line 122
+        // line 130
         echo twig_escape_filter($this->env, $this->env->getExtension('Slim\Views\TwigExtension')->pathFor("HR.Miscellaneous"), "html", null, true);
         echo "\">
                             <i class=\"fa fa-random\"></i>
@@ -204,7 +215,7 @@ class __TwigTemplate_d0fb58445af78c3e922bffa375fc851745dcebad9ef718aed1ba743b370
             </li>
             <li class=\"treeview\">
                 <a href=\"";
-        // line 149
+        // line 157
         echo twig_escape_filter($this->env, $this->env->getExtension('Slim\Views\TwigExtension')->pathFor("OPS.Home"), "html", null, true);
         echo "\">
                     <i class=\"fa fa-dashboard\"></i>
@@ -239,7 +250,7 @@ class __TwigTemplate_d0fb58445af78c3e922bffa375fc851745dcebad9ef718aed1ba743b370
                 <ul class=\"treeview-menu\">
                     <li>
                         <a href=\"";
-        // line 181
+        // line 189
         echo twig_escape_filter($this->env, $this->env->getExtension('Slim\Views\TwigExtension')->pathFor("TMS.Home", array("page" => 1, "perPage" => 5)), "html", null, true);
         echo "\">
                             <i class=\"fa fa-dashboard\"></i>
@@ -256,11 +267,11 @@ class __TwigTemplate_d0fb58445af78c3e922bffa375fc851745dcebad9ef718aed1ba743b370
                         </a>
                         <ul class=\"treeview-menu\">
                             <li><a href=\"";
-        // line 195
+        // line 203
         echo twig_escape_filter($this->env, $this->env->getExtension('Slim\Views\TwigExtension')->pathFor("TMS.AllServices"), "html", null, true);
         echo "\">All Services</a></li>
                             <li><a href=\"";
-        // line 196
+        // line 204
         echo twig_escape_filter($this->env, $this->env->getExtension('Slim\Views\TwigExtension')->pathFor("TMS.NewService"), "html", null, true);
         echo "\">New Service</a></li>
                         </ul>
@@ -275,11 +286,11 @@ class __TwigTemplate_d0fb58445af78c3e922bffa375fc851745dcebad9ef718aed1ba743b370
                         </a>
                         <ul class=\"treeview-menu\">
                             <li><a href=\"";
-        // line 208
+        // line 216
         echo twig_escape_filter($this->env, $this->env->getExtension('Slim\Views\TwigExtension')->pathFor("TMS.AllExpenses"), "html", null, true);
         echo "\">All Expenses</a></li>
                             <li><a href=\"";
-        // line 209
+        // line 217
         echo twig_escape_filter($this->env, $this->env->getExtension('Slim\Views\TwigExtension')->pathFor("TMS.NewExpense"), "html", null, true);
         echo "\">New Expense</a></li>
                         </ul>
@@ -294,11 +305,11 @@ class __TwigTemplate_d0fb58445af78c3e922bffa375fc851745dcebad9ef718aed1ba743b370
                         </a>
                         <ul class=\"treeview-menu\">
                             <li><a href=\"";
-        // line 221
+        // line 229
         echo twig_escape_filter($this->env, $this->env->getExtension('Slim\Views\TwigExtension')->pathFor("TMS.AllTrucks"), "html", null, true);
         echo "\">All Trucks</a></li>
                             <li><a href=\"";
-        // line 222
+        // line 230
         echo twig_escape_filter($this->env, $this->env->getExtension('Slim\Views\TwigExtension')->pathFor("TMS.NewTruck"), "html", null, true);
         echo "\">New Truck</a></li>
                         </ul>
@@ -325,7 +336,7 @@ class __TwigTemplate_d0fb58445af78c3e922bffa375fc851745dcebad9ef718aed1ba743b370
 
     public function getDebugInfo()
     {
-        return array (  302 => 222,  298 => 221,  283 => 209,  279 => 208,  264 => 196,  260 => 195,  243 => 181,  208 => 149,  178 => 122,  162 => 109,  146 => 96,  130 => 83,  114 => 70,  107 => 66,  103 => 65,  92 => 57,  80 => 48,  64 => 35,  36 => 12,  29 => 9,  19 => 1,);
+        return array (  313 => 230,  309 => 229,  294 => 217,  290 => 216,  275 => 204,  271 => 203,  254 => 189,  219 => 157,  189 => 130,  173 => 117,  157 => 104,  141 => 91,  125 => 78,  118 => 74,  114 => 73,  103 => 65,  91 => 56,  76 => 44,  64 => 35,  36 => 12,  29 => 9,  19 => 1,);
     }
 
     public function getSourceContext()
@@ -364,19 +375,27 @@ class __TwigTemplate_d0fb58445af78c3e922bffa375fc851745dcebad9ef718aed1ba743b370
             <li class=\"header\">MENA Assistance</li>
             <!-- Optionally, you can add icons to the links -->
             <li class=\"treeview\">
-                <a href=\"{{ path_for('PRO.ProjectHome') }}\">
+                <a href=\"{{ path_for('PRO.Home') }}\">
                     <i class=\"fa fa-diamond\"></i>
                     <span>Projects</span>
                     <span class=\"pull-right-container\">
                         <i class=\"fa fa-angle-left pull-right\"></i>
                     </span>
                 </a>
-
-
-
-
-
-
+                <ul class=\"treeview-menu\">
+                    <li class=\"treeview\">
+                        <a href=\"{{ path_for('PRO.AllProjects') }}\">
+                            <i class=\"fa fa-diamond\"></i>
+                            &nbsp;<span>All Projects</span>
+                            <span class=\"pull-right-container\">
+                                <i class=\"fa fa-angle-left pull-right\"></i>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!-- END of Projects Tab-->
+            <li>
                 <a href=\"{{ path_for('HR.Home')}}\">
                     <i class=\"fa fa-book\"></i>
                     &nbsp;<span>Human Resources</span>

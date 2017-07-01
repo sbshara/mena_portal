@@ -157,7 +157,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 ";
         // line 71
-        echo " <body class=\"hold-transition skin-blue sidebar-collapse sidebar-mini fixed\">
+        echo " <body class=\"hold-transition skin-blue fixed\">
 <div class=\"wrapper\">
 <!-- Main Header -->
 <header class=\"main-header\">
@@ -186,12 +186,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
             // line 89
             echo "    ";
             $this->loadTemplate("templates/partials/leftNavigation.twig", "templates/app.twig", 89)->display($context);
-            // line 90
-            echo "<!-- END OF LEFT SIDE COLUMN -->
-";
         }
-        // line 92
-        echo "
+        // line 91
+        echo "    <!-- END OF LEFT SIDE COLUMN -->
+
 <!-- Content Wrapper. Contains page content -->
 <div class=\"content-wrapper\">
         <!-- Flash Messages -->
@@ -213,7 +211,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <footer class=\"main-footer\">
     <!-- To the right -->
     <div class=\"pull-right hidden-xs\">
-        Version 0.1 -- ";
+        Version 1.0.0 -- ";
         // line 109
         echo twig_escape_filter($this->env, twig_date_format_filter($this->env, "now", "M, Y"), "html", null, true);
         echo " <small><i>(IE9 & earlier versions are not fully supported)</i></small>
@@ -441,7 +439,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     public function getDebugInfo()
     {
-        return array (  428 => 185,  424 => 99,  421 => 98,  416 => 66,  412 => 62,  409 => 61,  400 => 189,  396 => 187,  394 => 185,  389 => 183,  383 => 180,  380 => 179,  373 => 175,  368 => 173,  363 => 170,  359 => 169,  353 => 167,  348 => 164,  343 => 162,  338 => 160,  332 => 157,  327 => 155,  322 => 153,  318 => 152,  313 => 150,  308 => 148,  303 => 146,  298 => 144,  293 => 142,  288 => 141,  283 => 138,  279 => 137,  275 => 136,  270 => 134,  267 => 133,  264 => 131,  259 => 128,  253 => 125,  249 => 124,  243 => 122,  237 => 117,  233 => 115,  231 => 114,  224 => 112,  218 => 109,  207 => 100,  205 => 98,  202 => 97,  200 => 96,  194 => 92,  190 => 90,  187 => 89,  185 => 88,  180 => 85,  178 => 84,  167 => 76,  160 => 71,  154 => 67,  150 => 66,  145 => 64,  142 => 63,  140 => 61,  133 => 58,  129 => 56,  120 => 50,  114 => 47,  110 => 46,  104 => 43,  99 => 41,  94 => 39,  89 => 37,  85 => 36,  80 => 34,  77 => 33,  71 => 30,  65 => 27,  63 => 26,  57 => 23,  55 => 22,  50 => 19,  45 => 17,  40 => 16,  25 => 2,  23 => 1,);
+        return array (  426 => 185,  422 => 99,  419 => 98,  414 => 66,  410 => 62,  407 => 61,  398 => 189,  394 => 187,  392 => 185,  387 => 183,  381 => 180,  378 => 179,  371 => 175,  366 => 173,  361 => 170,  357 => 169,  351 => 167,  346 => 164,  341 => 162,  336 => 160,  330 => 157,  325 => 155,  320 => 153,  316 => 152,  311 => 150,  306 => 148,  301 => 146,  296 => 144,  291 => 142,  286 => 141,  281 => 138,  277 => 137,  273 => 136,  268 => 134,  265 => 133,  262 => 131,  257 => 128,  251 => 125,  247 => 124,  241 => 122,  235 => 117,  231 => 115,  229 => 114,  222 => 112,  216 => 109,  205 => 100,  203 => 98,  200 => 97,  198 => 96,  191 => 91,  187 => 89,  185 => 88,  180 => 85,  178 => 84,  167 => 76,  160 => 71,  154 => 67,  150 => 66,  145 => 64,  142 => 63,  140 => 61,  133 => 58,  129 => 56,  120 => 50,  114 => 47,  110 => 46,  104 => 43,  99 => 41,  94 => 39,  89 => 37,  85 => 36,  80 => 34,  77 => 33,  71 => 30,  65 => 27,  63 => 26,  57 => 23,  55 => 22,  50 => 19,  45 => 17,  40 => 16,  25 => 2,  23 => 1,);
     }
 
     public function getSourceContext()
@@ -516,7 +514,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </head>
 
 {#<body class=\"hold-transition skin-{{ auth.userMaster.theme_color ?: 'blue'}} {{ auth.userMaster.sidebar_collapsed ?: 'sidebar_collapse' }} {{ auth.userMaster.sidebar_mini ?: 'sidebar-mini' }} {{ auth.userMaster.layout_fixed ?: 'fixed' }}\">#}
- <body class=\"hold-transition skin-blue sidebar-collapse sidebar-mini fixed\">
+ <body class=\"hold-transition skin-blue fixed\">
 <div class=\"wrapper\">
 <!-- Main Header -->
 <header class=\"main-header\">
@@ -535,8 +533,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- Left side column. contains the logo and sidebar -->
 {% if auth.check %}
     {% include 'templates/partials/leftNavigation.twig' %}
-<!-- END OF LEFT SIDE COLUMN -->
 {% endif %}
+    <!-- END OF LEFT SIDE COLUMN -->
 
 <!-- Content Wrapper. Contains page content -->
 <div class=\"content-wrapper\">
@@ -554,7 +552,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <footer class=\"main-footer\">
     <!-- To the right -->
     <div class=\"pull-right hidden-xs\">
-        Version 0.1 -- {{ \"now\" | date('M, Y') }} <small><i>(IE9 & earlier versions are not fully supported)</i></small>
+        Version 1.0.0 -- {{ \"now\" | date('M, Y') }} <small><i>(IE9 & earlier versions are not fully supported)</i></small>
     </div>
     <!-- Default to the left -->
     <strong>Copyright &copy; {{ \"now\" | date('Y') }} <a href=\"{{ base_url() }}\">MENA Assistance</a>.</strong> All rights reserved.

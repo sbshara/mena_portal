@@ -4,6 +4,8 @@ namespace App\Helpers;
 
 use App\Models\AssetsTrucks;
 use App\Models\GuidelinesCategories;
+use App\Models\ProjectProgressOptions;
+use App\Models\ProjectStatusOptions;
 use App\Models\VehicleBrandModel;
 
 class OPS {
@@ -20,7 +22,13 @@ class OPS {
         return GuidelinesCategories::all()->sortBy('category');
     }
 
+    public function allProjectStatus () {
+        return ProjectStatusOptions::all()->where('visibility', 1)->sortBy('sortindex');
+    }
 
+    public function projectProgress () {
+        return ProjectProgressOptions::all()->where('visibility', 1);
+    }
 
 
 

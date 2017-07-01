@@ -28,7 +28,9 @@ $view->getEnvironment()->addGlobal('HR', [
 
 $view->getEnvironment()->addGlobal('OPS', [
     'Brands'            =>  $container->OPS->allBrands(),
-    'Categories'        =>  $container->OPS->allCategories()
+    'Categories'        =>  $container->OPS->allCategories(),
+    'ProjectStatus'     =>  $container->OPS->allProjectStatus(),
+    'ProjectProgress'   =>  $container->OPS->projectProgress()
 ]);
 
 // Add the flash message

@@ -33,12 +33,11 @@ class AuthController extends Controller {
 			return $response->withRedirect($this->router->pathFor('auth.Signin'));
 		}
 
-		$username = $request->getParam('username') . '@menaa.local';
-		$password = $request->getParam('password');
+		// use attemptLDAP on local domain, append '@menaa.local' to the username
 
-		$auth = $this->auth->attemptLDAP(
-			$username,
-			$password
+		$auth = $this->auth->attempt (
+            $request->getParam('username'),
+            $request->getParam('password')
 		);
 		if (!$auth) {
 			$this->flash->addMessage('danger', 'Could not sign you in using these credentials');

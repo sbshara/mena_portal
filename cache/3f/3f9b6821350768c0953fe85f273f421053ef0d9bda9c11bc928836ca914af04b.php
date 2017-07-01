@@ -11,7 +11,6 @@ class __TwigTemplate_85dff15b9378d266bc2413c138584410392becb99374c3d067ac8808917
         $this->parent = $this->loadTemplate("templates/app.twig", "home.twig", 1);
         $this->blocks = array(
             'title' => array($this, 'block_title'),
-            'bodyTags' => array($this, 'block_bodyTags'),
             'contents' => array($this, 'block_contents'),
         );
     }
@@ -33,25 +32,20 @@ class __TwigTemplate_85dff15b9378d266bc2413c138584410392becb99374c3d067ac8808917
     }
 
     // line 5
-    public function block_bodyTags($context, array $blocks = array())
-    {
-        echo "hold-transition skin-blue sidebar-collapse sidebar-mini";
-    }
-
-    // line 7
     public function block_contents($context, array $blocks = array())
     {
-        // line 8
+        // line 6
         echo "        <!-- Content Header (Page header) -->
         <section class=\"content-header\">
             <h1>
-                Home Page
-                <small>This is your home page</small>
+                MENA PORTAL
+                <small>MENA Assistance Business Intelligence mini-apps</small>
             </h1>
             <!--GUIDANCE MAPPER (TOP RIGHT)-->
             <ol class=\"breadcrumb\">
-                <li><a href=\"#\"><i class=\"fa fa-dashboard\"></i> Level</a></li>
-                <li class=\"active\">Home</li>
+                ";
+        // line 15
+        echo "                <li class=\"active\">Home</li>
             </ol>
             <!--END OF GUIDANCE MAPPER-->
         </section>
@@ -59,29 +53,135 @@ class __TwigTemplate_85dff15b9378d266bc2413c138584410392becb99374c3d067ac8808917
         <!-- Main content -->
         <section class=\"content\">
 
-            Home Page
-
-            <br/>
-            <a href=\"";
-        // line 28
-        echo twig_escape_filter($this->env, $this->env->getExtension('Slim\Views\TwigExtension')->pathFor("HR.NewApplicant"), "html", null, true);
-        echo "\">New Applicant</a>
-
-            <br/>
-            <a href=\"";
-        // line 31
-        echo twig_escape_filter($this->env, $this->env->getExtension('Slim\Views\TwigExtension')->pathFor("HR.AllApplicants"), "html", null, true);
-        echo "\">List All Applicants</a>
-
-
-<!--
-            <br/>
-            <a href=\"";
-        // line 36
-        echo twig_escape_filter($this->env, $this->env->getExtension('Slim\Views\TwigExtension')->pathFor("HR.NewEmployee"), "html", null, true);
-        echo "\">New Employee</a>
--->
-
+            ";
+        // line 23
+        if (twig_get_attribute($this->env, $this->getSourceContext(), ($context["auth"] ?? null), "check", array())) {
+            // line 24
+            echo "                <p>
+                    <h4>Currently stable</h4>
+                    <ul>
+                        <li></li>
+                    </ul>
+                    <hr />
+                    <h4>Development in progress</h4>
+                    <ul>
+                        <li>
+                            <a href=\"";
+            // line 33
+            echo twig_escape_filter($this->env, $this->env->getExtension('Slim\Views\TwigExtension')->pathFor("home"), "html", null, true);
+            echo "\">Home Page</a>
+                            <ul>
+                                <li>Loading logged-in user details (and profile pic)</li>
+                                <li>Loading navigation menus with the correct accessible apps</li>
+                                <li>Loading customised settings (such as theme color, layout options ... etc.)</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href=\"\">HR</a>
+                            <ul>
+                                <li>
+                                    <a href=\"\">Applicants</a>
+                                    <ul>
+                                        <li><a href=\"\">New Applicant</a></li>
+                                        <li><a href=\"\">List Applicants</a></li>
+                                        <li><a href=\"\">Application Status</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href=\"\">Skills</a></li>
+                                <li><a href=\"\">Addresses</a></li>
+                                <li><a href=\"\">Work Experiences</a></li>
+                                <li><a href=\"\">Education & Degrees</a></li>
+                                <li><a href=\"\">Residency & Visa Status</a></li>
+                                <li><a href=\"\">Interviews</a></li>
+                                <li><a href=\"\">Employees</a></li>
+                                <li><a href=\"\">Contracts</a></li>
+                                <li><a href=\"\">Benefits</a></li>
+                                <li><a href=\"\">Attendance & Leaves</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href=\"\">Operations</a>
+                        </li>
+                        <li>
+                            <a href=\"\">Accounts</a>
+                        </li>
+                        <li>
+                            <a href=\"\">TMS (Truck Management System)</a>
+                            <ul>
+                                <li>Trucks</li>
+                                <li>Services</li>
+                                <li>Expenses</li>
+                                <li>Reports</li>
+                                <li>Reminders</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href=\"\">IT & Development</a>
+                            <ul>
+                                <li>Users</li>
+                                <li>User Group Security Policy</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href=\"\">Projects</a>
+                            <ul>
+                                <li>Projects Timeline</li>
+                                <li>Tasks <small>Including task handler, start & end time, and relations to projects</small></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <h4>Features</h4>
+                    <ul>
+                        <li>Reliable</li>
+                        <li>Light Weight, Fast, Simple to Install, and Detailed Documentation</li>
+                        <li>Searchable</li>
+                        <li>Custom Form Validations</li>
+                        <li>CSRF Protection (Cross-Site Request Forgery)</li>
+                        <li>Email Integration & Notification</li>
+                        <li>Complex Security (hashed passwords, session tokens, activity logging)</li>
+                        <li>Integration Ready APIs</li>
+                        <li>Single File Configuration</li>
+                        <li>Coding Best Practices</li>
+                    </ul>
+                    <h4>Resources & Libraries</h4>
+                    <ul class=\"list-inline\">
+                        <li>Slim Framework</li>
+                        <li>Slim Twig View</li>
+                        <li>Slim CSRF</li>
+                        <li>Slim Flash</li>
+                        <li>Slim HTTP-Cache</li>
+                        <li>Slim Pagination</li>
+                        <li>Slim Bridge</li>
+                        <li>Slim ACL</li>
+                        <li>Illuminate Database</li>
+                        <li>Illuminate Events</li>
+                        <li>Illuminate Pagination</li>
+                        <li>Hassankhan Config</li>
+                        <li>Respect Validation</li>
+                        <li>PHPMailer</li>
+                        <li>Monolog</li>
+                        <li>Enyo Dropzone</li>
+                        <li>League Google O-Auth</li>
+                        <li>Symfony Security</li>
+                        <li>Symfony LDAP</li>
+                        <li>Symfony Form</li>
+                        <li>Symfony Twig-Bridge</li>
+                        <li>Symfony Var-Dumper</li>
+                    </ul>
+                </p>
+            ";
+        } else {
+            // line 134
+            echo "                <p>
+                    An ongoing project containing multiple mini-apps related to the Operations, Employees, and other business related apps.
+                    <br />
+                    <br />
+                    <strong>Please login to gain access!</strong>
+                </p>
+            ";
+        }
+        // line 141
+        echo "
 
         </section>
         <!-- /.content -->
@@ -101,7 +201,7 @@ class __TwigTemplate_85dff15b9378d266bc2413c138584410392becb99374c3d067ac8808917
 
     public function getDebugInfo()
     {
-        return array (  81 => 36,  73 => 31,  67 => 28,  45 => 8,  42 => 7,  36 => 5,  30 => 3,  11 => 1,);
+        return array (  184 => 141,  175 => 134,  71 => 33,  60 => 24,  58 => 23,  48 => 15,  38 => 6,  35 => 5,  29 => 3,  11 => 1,);
     }
 
     public function getSourceContext()
@@ -110,18 +210,16 @@ class __TwigTemplate_85dff15b9378d266bc2413c138584410392becb99374c3d067ac8808917
 
 {% block title %}Home{% endblock %}
 
-{% block bodyTags %}hold-transition skin-blue sidebar-collapse sidebar-mini{% endblock %}
-
 {% block contents %}
         <!-- Content Header (Page header) -->
         <section class=\"content-header\">
             <h1>
-                Home Page
-                <small>This is your home page</small>
+                MENA PORTAL
+                <small>MENA Assistance Business Intelligence mini-apps</small>
             </h1>
             <!--GUIDANCE MAPPER (TOP RIGHT)-->
             <ol class=\"breadcrumb\">
-                <li><a href=\"#\"><i class=\"fa fa-dashboard\"></i> Level</a></li>
+                {#<li><a href=\"#\"><i class=\"fa fa-dashboard\"></i> Level</a></li>#}
                 <li class=\"active\">Home</li>
             </ol>
             <!--END OF GUIDANCE MAPPER-->
@@ -130,19 +228,124 @@ class __TwigTemplate_85dff15b9378d266bc2413c138584410392becb99374c3d067ac8808917
         <!-- Main content -->
         <section class=\"content\">
 
-            Home Page
-
-            <br/>
-            <a href=\"{{ path_for('HR.NewApplicant') }}\">New Applicant</a>
-
-            <br/>
-            <a href=\"{{ path_for('HR.AllApplicants') }}\">List All Applicants</a>
-
-
-<!--
-            <br/>
-            <a href=\"{{ path_for('HR.NewEmployee') }}\">New Employee</a>
--->
+            {% if auth.check %}
+                <p>
+                    <h4>Currently stable</h4>
+                    <ul>
+                        <li></li>
+                    </ul>
+                    <hr />
+                    <h4>Development in progress</h4>
+                    <ul>
+                        <li>
+                            <a href=\"{{ path_for('home') }}\">Home Page</a>
+                            <ul>
+                                <li>Loading logged-in user details (and profile pic)</li>
+                                <li>Loading navigation menus with the correct accessible apps</li>
+                                <li>Loading customised settings (such as theme color, layout options ... etc.)</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href=\"\">HR</a>
+                            <ul>
+                                <li>
+                                    <a href=\"\">Applicants</a>
+                                    <ul>
+                                        <li><a href=\"\">New Applicant</a></li>
+                                        <li><a href=\"\">List Applicants</a></li>
+                                        <li><a href=\"\">Application Status</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href=\"\">Skills</a></li>
+                                <li><a href=\"\">Addresses</a></li>
+                                <li><a href=\"\">Work Experiences</a></li>
+                                <li><a href=\"\">Education & Degrees</a></li>
+                                <li><a href=\"\">Residency & Visa Status</a></li>
+                                <li><a href=\"\">Interviews</a></li>
+                                <li><a href=\"\">Employees</a></li>
+                                <li><a href=\"\">Contracts</a></li>
+                                <li><a href=\"\">Benefits</a></li>
+                                <li><a href=\"\">Attendance & Leaves</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href=\"\">Operations</a>
+                        </li>
+                        <li>
+                            <a href=\"\">Accounts</a>
+                        </li>
+                        <li>
+                            <a href=\"\">TMS (Truck Management System)</a>
+                            <ul>
+                                <li>Trucks</li>
+                                <li>Services</li>
+                                <li>Expenses</li>
+                                <li>Reports</li>
+                                <li>Reminders</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href=\"\">IT & Development</a>
+                            <ul>
+                                <li>Users</li>
+                                <li>User Group Security Policy</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href=\"\">Projects</a>
+                            <ul>
+                                <li>Projects Timeline</li>
+                                <li>Tasks <small>Including task handler, start & end time, and relations to projects</small></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <h4>Features</h4>
+                    <ul>
+                        <li>Reliable</li>
+                        <li>Light Weight, Fast, Simple to Install, and Detailed Documentation</li>
+                        <li>Searchable</li>
+                        <li>Custom Form Validations</li>
+                        <li>CSRF Protection (Cross-Site Request Forgery)</li>
+                        <li>Email Integration & Notification</li>
+                        <li>Complex Security (hashed passwords, session tokens, activity logging)</li>
+                        <li>Integration Ready APIs</li>
+                        <li>Single File Configuration</li>
+                        <li>Coding Best Practices</li>
+                    </ul>
+                    <h4>Resources & Libraries</h4>
+                    <ul class=\"list-inline\">
+                        <li>Slim Framework</li>
+                        <li>Slim Twig View</li>
+                        <li>Slim CSRF</li>
+                        <li>Slim Flash</li>
+                        <li>Slim HTTP-Cache</li>
+                        <li>Slim Pagination</li>
+                        <li>Slim Bridge</li>
+                        <li>Slim ACL</li>
+                        <li>Illuminate Database</li>
+                        <li>Illuminate Events</li>
+                        <li>Illuminate Pagination</li>
+                        <li>Hassankhan Config</li>
+                        <li>Respect Validation</li>
+                        <li>PHPMailer</li>
+                        <li>Monolog</li>
+                        <li>Enyo Dropzone</li>
+                        <li>League Google O-Auth</li>
+                        <li>Symfony Security</li>
+                        <li>Symfony LDAP</li>
+                        <li>Symfony Form</li>
+                        <li>Symfony Twig-Bridge</li>
+                        <li>Symfony Var-Dumper</li>
+                    </ul>
+                </p>
+            {% else %}
+                <p>
+                    An ongoing project containing multiple mini-apps related to the Operations, Employees, and other business related apps.
+                    <br />
+                    <br />
+                    <strong>Please login to gain access!</strong>
+                </p>
+            {% endif %}
 
 
         </section>

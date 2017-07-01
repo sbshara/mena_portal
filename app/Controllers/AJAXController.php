@@ -8,6 +8,7 @@
 
 namespace App\Controllers;
 
+use App\Models\Project;
 use App\Models\VehicleBrandModel;
 use App\Models\Applicant;
 use App\Models\Employee;
@@ -20,24 +21,24 @@ use App\Models\DepartmentHeads;
 class AJAXController extends Controller {
 
 	// AJAX Requests:
-	public function stateByCountry ($request, $response, $arg) {
-		$states = State::where('country_id', (int)$arg['country_id'])->orderBy('state_name', 'ASC')->get();
+	public function stateByCountry ($request, $response, $args) {
+		$states = State::where('country_id', (int)$args['country_id'])->orderBy('state_name', 'ASC')->get();
         if (count($states) <= 0) {
             return $response->withStatus(404)->withJson(['error (404):' => 'No Records Found!']);
         }
 		return $response->withJson($states);
 	}
 
-	public function cityByState ($request, $response, $arg) {
-		$cities = City::where('state_id', $arg['state_id'])->orderBy('city_name', 'ASC')->get();
+	public function cityByState ($request, $response, $args) {
+		$cities = City::where('state_id', $args['state_id'])->orderBy('city_name', 'ASC')->get();
         if (count($cities) <= 0) {
             return $response->withStatus(404)->withJson(['error (404):' => 'No Records Found!']);
         }
 		return $response->withJson($cities);
 	}
 
-	public function applicantByName ($request, $response, $arg) {
-		$name = "%".$arg['applicant_name']."%";
+	public function applicantByName ($request, $response, $args) {
+		$name = "%".$args['applicant_name']."%";
 		$applicant = Applicant::where(
                                     'first_name',
                                     'LIKE',
@@ -56,13 +57,13 @@ class AJAXController extends Controller {
 		return $response->withJson($applicant);
 	}
 
-    public function countryById ($request, $response, $arg) {
-        $countryName = Country::where('id', (int)$arg['country_id'])->get();
+    public function countryById ($request, $response, $args) {
+        $countryName = Country::where('id', (int)$args['country_id'])->get();
         return $response->withJson($countryName);
     }
 
-    public function DepartmentHead ($request, $response, $arg){
-        $deptID = $arg['department_id'];
+    public function DepartmentHead ($request, $response, $args){
+        $deptID = $args['department_id'];
         $empID = DepartmentHeads::where(
                         'dept_id', $deptID)->orderBy(
                                             'from_date', 'DESC')->get()->first()['emp_id'];
@@ -86,6 +87,12 @@ class AJAXController extends Controller {
         $destination = "./docs/TMS/" . $uploadFileName;
         $files->moveTo($destination);
         return $this->view->render($response,'auth/TMS/Services/NewService.twig');
+    }
+
+    // Project update values:
+    public function postUpdateProject ($request, $response, $args) {
+        $project = Project::find($args['project_id']);
+
     }
 
 }

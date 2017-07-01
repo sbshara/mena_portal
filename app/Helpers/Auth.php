@@ -21,6 +21,8 @@ class Auth {
 		return isset($_SESSION['user']);
 	}
 
+
+	// using related database
 	public function attempt ($user, $password) {
 		$user = User::where('username', $user)->first();
 		if (!$user) {
@@ -33,11 +35,14 @@ class Auth {
 		return false;
 	}
 
+	// using menaa.local domain registered users
 	public function attemptLDAP ($login, $password) {
 	    $ldap = ldap_connect("DXBHV-DC02.menaa.local");
 	    $usr = ldap_bind($ldap, $login, $password);
 
         if ($usr) {
+            // user must be registered in the DB->Users to be logged in
+            // not all local users get to login to the portal
             $user = User::where('username', $login)->first();
             if ($login) {
                 $_SESSION['user'] = $user->id;

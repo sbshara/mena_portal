@@ -68,7 +68,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </head>
 
 {#<body class="hold-transition skin-{{ auth.userMaster.theme_color ?: 'blue'}} {{ auth.userMaster.sidebar_collapsed ?: 'sidebar_collapse' }} {{ auth.userMaster.sidebar_mini ?: 'sidebar-mini' }} {{ auth.userMaster.layout_fixed ?: 'fixed' }}">#}
- <body class="hold-transition skin-blue sidebar-collapse sidebar-mini fixed">
+ <body class="hold-transition skin-blue fixed">
 <div class="wrapper">
 <!-- Main Header -->
 <header class="main-header">
@@ -87,8 +87,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- Left side column. contains the logo and sidebar -->
 {% if auth.check %}
     {% include 'templates/partials/leftNavigation.twig' %}
-<!-- END OF LEFT SIDE COLUMN -->
 {% endif %}
+    <!-- END OF LEFT SIDE COLUMN -->
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -106,7 +106,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <footer class="main-footer">
     <!-- To the right -->
     <div class="pull-right hidden-xs">
-        Version 0.1 -- {{ "now" | date('M, Y') }} <small><i>(IE9 & earlier versions are not fully supported)</i></small>
+        Version 1.0.0 -- {{ "now" | date('M, Y') }} <small><i>(IE9 & earlier versions are not fully supported)</i></small>
     </div>
     <!-- Default to the left -->
     <strong>Copyright &copy; {{ "now" | date('Y') }} <a href="{{ base_url() }}">MENA Assistance</a>.</strong> All rights reserved.
